@@ -6,11 +6,21 @@
   const STORAGE_KEY = 'fxtextile_content';
   const IMG_STORAGE_KEY = 'fxtextile_images';
 
+  function getExportedTexts() {
+    return (window.FX_TEXTILE_EXPORTED_CONTENT && window.FX_TEXTILE_EXPORTED_CONTENT.texts) || {};
+  }
+
+  function getExportedImages() {
+    return (window.FX_TEXTILE_EXPORTED_CONTENT && window.FX_TEXTILE_EXPORTED_CONTENT.images) || {};
+  }
+
   function applyTexts() {
     try {
+      const exported = getExportedTexts();
       const raw = localStorage.getItem(STORAGE_KEY);
-      if (!raw) return;
-      const data = JSON.parse(raw);
+      const local = raw ? JSON.parse(raw) : {};
+      const data = Object.assign({}, exported, local);
+      if (!Object.keys(data).length) return;
 
       document.querySelectorAll('[data-edit-key]').forEach(enSpan => {
         const key = enSpan.getAttribute('data-edit-key');
@@ -41,9 +51,11 @@
 
   function applyImages() {
     try {
+      const exported = getExportedImages();
       const raw = localStorage.getItem(IMG_STORAGE_KEY);
-      if (!raw) return;
-      const data = JSON.parse(raw);
+      const local = raw ? JSON.parse(raw) : {};
+      const data = Object.assign({}, exported, local);
+      if (!Object.keys(data).length) return;
 
       document.querySelectorAll('[data-img-key]').forEach(img => {
         const key = img.getAttribute('data-img-key');

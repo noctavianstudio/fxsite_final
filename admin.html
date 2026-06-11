@@ -2816,6 +2816,7 @@ const ORIGINAL_IMAGES = {
 // ── STATE ─────────────────────────────────────────────────────────────────
 const STORAGE_KEY = 'fxtextile_content';
 const IMG_STORAGE_KEY = 'fxtextile_images';
+const SAVE_ENDPOINT_KEY = 'fxtextile_save_endpoint';
 let savedTexts = {};
 let savedImages = {};
 let currentSection = 'dashboard';
@@ -2830,11 +2831,19 @@ function loadState() {
   } catch(e) {}
 }
 
-function saveState() {
+function saveState(showToast = true) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(savedTexts));
   localStorage.setItem(IMG_STORAGE_KEY, JSON.stringify(savedImages));
   updateCounts();
-  toast('Changes saved ✓', 'success');
+  if (showToast) toast('Changes saved ✓', 'success');
+}
+
+function buildDataJsContent() {
+  return `window.FX_TEXTILE_EXPORTED_CONTENT = ${JSON.stringify({
+    texts: savedTexts,
+    images: savedImages,
+    generatedAt: new Date().toISOString()
+  }, null, 2)};\n`;
 }
 
 // ── COUNTS ───────────────────────────────────────────────────────────────
@@ -3205,6 +3214,23 @@ function renderSettings() {
     </div>
   </div>
   <div class="settings-section">
+    <h3>Publishing</h3>
+    <div class="setting-row">
+      <div class="setting-label">
+        <div class="sl-name">Save endpoint</div>
+        <div class="sl-desc">Used by Save All to publish data.js to GitHub</div>
+      </div>
+      <input id="save-endpoint-input" value="${localStorage.getItem(SAVE_ENDPOINT_KEY) || ''}" placeholder="https://your-api.vercel.app/api/save-content" style="background:var(--surface);border:1px solid var(--border);color:var(--text);padding:10px 12px;width:min(460px,100%);border-radius:4px">
+    </div>
+    <div class="setting-row">
+      <div class="setting-label">
+        <div class="sl-name">Endpoint setting</div>
+        <div class="sl-desc">Keep empty for local-only saves</div>
+      </div>
+      <button class="btn btn-secondary" onclick="saveEndpointSetting()">Save Endpoint</button>
+    </div>
+  </div>
+  <div class="settings-section">
     <h3>Storage Info</h3>
     <div class="setting-row">
       <div class="setting-label">
@@ -3238,6 +3264,18 @@ function toggleAdminMode() {
   toast(!current ? 'Admin bar enabled on site pages' : 'Admin bar disabled', 'success');
 }
 
+function saveEndpointSetting() {
+  const input = document.getElementById('save-endpoint-input');
+  const value = input ? input.value.trim() : '';
+  if (value) {
+    localStorage.setItem(SAVE_ENDPOINT_KEY, value);
+    toast('Save endpoint configured', 'success');
+  } else {
+    localStorage.removeItem(SAVE_ENDPOINT_KEY);
+    toast('Save endpoint cleared', 'success');
+  }
+}
+
 function resetAllTexts() {
   if (!confirm('Reset all text changes? This cannot be undone.')) return;
   savedTexts = {};
@@ -3265,8 +3303,38 @@ function resetEverything() {
 }
 
 // ── GLOBAL ACTIONS ────────────────────────────────────────────────────────
-function saveAll() {
-  saveState();
+async function saveAll() {
+  saveState(false);
+  const endpoint = localStorage.getItem(SAVE_ENDPOINT_KEY);
+  if (!endpoint) {
+    toast('Saved locally. Configure Save endpoint to publish automatically.', 'warning');
+    return;
+  }
+
+  const password = prompt('Publishing password');
+  if (!password) {
+    toast('Publish cancelled', 'warning');
+    return;
+  }
+
+  try {
+    toast('Publishing to GitHub...', 'success');
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        password,
+        message: 'Update site content',
+        content: buildDataJsContent()
+      })
+    });
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(result.error || 'Publish failed');
+    toast('Published to GitHub ✓', 'success');
+  } catch (error) {
+    console.error(error);
+    toast('Publish failed: ' + error.message, 'error');
+  }
 }
 
 function previewSite() {
@@ -3275,32 +3343,7 @@ function previewSite() {
 }
 
 function exportData() {
-  // Generate a data.js file that can be placed in the site folder
-  // When present, it pre-populates localStorage on first load
-  const data = {
-    texts: savedTexts,
-    images: Object.fromEntries(
-      Object.entries(savedImages).map(([k,v]) => [k, v.length > 200 ? '[base64-image]' : v])
-    )
-  };
-  
-  const content = `/**
- * FX Textile — Exported Content
- * Generated: ${new Date().toLocaleString()}
- * Place this file in the site root folder.
- * It auto-loads into localStorage on first visit.
- */
-(function() {
-  const TEXTS = ${JSON.stringify(savedTexts, null, 2)};
-  const IMGS_KEYS = ${JSON.stringify(Object.keys(savedImages))};
-  
-  // Only set if not already customised by user
-  if (!localStorage.getItem('fxtextile_exported')) {
-    localStorage.setItem('fxtextile_content', JSON.stringify(TEXTS));
-    localStorage.setItem('fxtextile_exported', '1');
-    console.log('FX Textile: content loaded from data.js');
-  }
-})();`;
+  const content = buildDataJsContent();
   
   const blob = new Blob([content], {type: 'text/javascript'});
   const url = URL.createObjectURL(blob);

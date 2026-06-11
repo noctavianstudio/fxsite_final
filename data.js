@@ -1,6 +1,5 @@
-/**
- * FX Textile exported content placeholder.
- * Replace this file with the data.js exported from admin.html.
- */
-(function() {
-})();
+window.FX_TEXTILE_EXPORTED_CONTENT = {
+  texts: {},
+  images: {},
+  generatedAt: null
+};
