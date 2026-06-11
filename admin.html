@@ -138,7 +138,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <div class="header-actions">
     <button class="btn btn-secondary" onclick="previewSite()">👁 Preview Site</button>
     <button class="btn btn-success" onclick="saveAll()">💾 Save All</button>
-    <button class="btn btn-primary" onclick="exportData()">📦 Export data.js</button>
   </div>
 </div>
 
@@ -2955,19 +2954,14 @@ function renderDashboard() {
         <div class="ql-label">Products</div>
         <div class="ql-sub">Ürün açıklamaları</div>
       </a>
-      <a class="quick-link" onclick="exportData()">
-        <div class="ql-icon">📦</div>
-        <div class="ql-label">Export data.js</div>
-        <div class="ql-sub">Kalıcı kayıt için indir</div>
-      </a>
     </div>
     
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:16px 20px;margin-top:8px">
       <div style="font-size:13px;font-weight:600;margin-bottom:8px">💡 Nasıl çalışır?</div>
       <p style="font-size:12px;color:var(--text-dim);line-height:1.7">
-        Yaptığın değişiklikler <strong style="color:var(--text)">localStorage'a</strong> kaydedilir ve tüm sayfalara anında yansır.<br>
-        <strong style="color:var(--text)">Export data.js</strong> butonu ile değişiklikleri kalıcı dosyaya aktarabilirsin.<br>
-        İndirilen data.js'i site klasörüne koyarsan hosting'e taşıdıktan sonra da çalışır.
+        Yaptığın değişiklikler önce bu tarayıcıya kaydedilir ve önizlemede anında görünür.<br>
+        <strong style="color:var(--text)">Save All</strong> butonu yayın endpoint'i ayarlandıysa değişiklikleri GitHub'a gönderir.<br>
+        GitHub Pages birkaç dakika içinde ana siteyi günceller.
       </p>
     </div>
   </div>`;
