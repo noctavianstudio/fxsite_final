@@ -289,5 +289,6 @@ function setLang(l){document.querySelectorAll('.lang-btn').forEach(b=>b.classLis
 document.addEventListener('DOMContentLoaded',()=>{const s=localStorage.getItem('fxlang')||'en';setLang(s);});
 </script>
 <script>document.querySelectorAll('.fbtn').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');});});</script>
+<script src="data.js"></script>
 <script src="content-loader.js"></script>
 </body></html>

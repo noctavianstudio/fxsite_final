@@ -271,5 +271,6 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
 function setLang(l){document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.l===l));document.querySelectorAll('[data-lang]').forEach(e=>e.classList.toggle('active',e.getAttribute('data-lang')===l));localStorage.setItem('fxlang',l);document.documentElement.lang=l;}
 document.addEventListener('DOMContentLoaded',()=>{const s=localStorage.getItem('fxlang')||'en';setLang(s);});
 </script>
+<script src="data.js"></script>
 <script src="content-loader.js"></script>
 </body></html>
