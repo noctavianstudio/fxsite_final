@@ -1,0 +1,3330 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>FX Textile — Admin Panel</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0f0f10;--surface:#1a1a1c;--surface2:#222226;--border:#2e2e34;
+  --red:#8b1a1a;--red-light:#b52020;--green:#2a7a2a;--green-light:#3aaa3a;
+  --text:#e8e8ea;--text-dim:#888;--text-muted:#555;
+  --accent:#c0392b;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column}
+
+/* ── HEADER ── */
+.header{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;display:flex;align-items:center;gap:16px;height:56px;position:sticky;top:0;z-index:100}
+.header-logo{font-size:15px;font-weight:700;letter-spacing:1px;color:#fff}
+.header-logo span{color:var(--red-light)}
+.header-badge{background:var(--red);color:#fff;padding:2px 10px;font-size:11px;letter-spacing:1px;border-radius:2px}
+.header-actions{margin-left:auto;display:flex;gap:8px}
+.btn{padding:7px 16px;font-size:12px;font-weight:600;letter-spacing:.5px;border:none;cursor:pointer;border-radius:3px;transition:all .15s;display:inline-flex;align-items:center;gap:6px}
+.btn-primary{background:var(--red);color:#fff}.btn-primary:hover{background:var(--red-light)}
+.btn-secondary{background:var(--surface2);color:var(--text);border:1px solid var(--border)}.btn-secondary:hover{border-color:#555}
+.btn-success{background:var(--green);color:#fff}.btn-success:hover{background:var(--green-light)}
+.btn-sm{padding:4px 10px;font-size:11px}
+
+/* ── LAYOUT ── */
+.layout{display:flex;flex:1;min-height:0}
+.sidebar{width:220px;background:var(--surface);border-right:1px solid var(--border);padding:16px 0;flex-shrink:0;overflow-y:auto}
+.main{flex:1;overflow-y:auto;padding:0}
+
+/* ── SIDEBAR ── */
+.sidebar-section{padding:8px 16px 4px;font-size:10px;letter-spacing:2px;color:var(--text-muted);text-transform:uppercase;margin-top:8px}
+.sidebar-item{display:flex;align-items:center;gap:10px;padding:9px 16px;font-size:13px;color:var(--text-dim);cursor:pointer;border-left:3px solid transparent;transition:all .15s}
+.sidebar-item:hover{color:var(--text);background:var(--surface2)}
+.sidebar-item.active{color:#fff;background:rgba(139,26,26,0.15);border-left-color:var(--red)}
+.sidebar-item .icon{font-size:15px;flex-shrink:0}
+.sidebar-item .count{margin-left:auto;background:var(--surface2);padding:1px 7px;border-radius:10px;font-size:10px;color:var(--text-muted)}
+
+/* ── CONTENT AREA ── */
+.content-header{padding:20px 24px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;background:var(--surface)}
+.content-header h2{font-size:16px;font-weight:600}
+.content-header .ch-sub{font-size:12px;color:var(--text-dim);margin-top:2px}
+.search-bar{margin-left:auto;display:flex;align-items:center;gap:8px}
+.search-input{background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:7px 12px;font-size:13px;border-radius:3px;width:220px;outline:none}
+.search-input:focus{border-color:#555}
+
+/* ── TEXT EDITOR ── */
+.text-list{padding:16px}
+.text-item{background:var(--surface);border:1px solid var(--border);border-radius:4px;margin-bottom:10px;overflow:hidden;transition:border-color .15s}
+.text-item:hover{border-color:#444}
+.text-item.modified{border-left:3px solid var(--red-light)}
+.text-item-header{display:flex;align-items:center;gap:12px;padding:10px 14px;cursor:pointer;user-select:none}
+.text-item-key{font-family:monospace;font-size:11px;color:var(--text-muted);background:var(--surface2);padding:2px 8px;border-radius:2px}
+.text-item-preview{flex:1;font-size:13px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.text-item-preview.changed{color:#f0a000}
+.text-item-toggle{font-size:11px;color:var(--text-muted)}
+.text-item-body{display:none;padding:0 14px 14px;border-top:1px solid var(--border);background:var(--surface2)}
+.text-item-body.open{display:block}
+.lang-tabs{display:flex;gap:0;margin:12px 0 10px}
+.lang-tab{padding:5px 14px;font-size:12px;font-weight:600;letter-spacing:.5px;cursor:pointer;border:1px solid var(--border);color:var(--text-dim);background:var(--surface);transition:all .15s}
+.lang-tab:first-child{border-radius:3px 0 0 3px}
+.lang-tab:last-child{border-radius:0 3px 3px 0;border-left:none}
+.lang-tab:not(:first-child):not(:last-child){border-left:none}
+.lang-tab.active{background:var(--red);color:#fff;border-color:var(--red)}
+.text-field{width:100%;background:var(--surface);border:1px solid var(--border);color:var(--text);padding:8px 10px;font-size:13px;border-radius:3px;outline:none;resize:vertical;min-height:52px;font-family:inherit;transition:border-color .15s;line-height:1.5}
+.text-field:focus{border-color:var(--red)}
+.field-actions{display:flex;gap:8px;margin-top:8px;align-items:center}
+.field-hint{font-size:11px;color:var(--text-muted)}
+.field-hint code{background:var(--surface2);padding:1px 5px;border-radius:2px;font-family:monospace}
+
+/* ── IMAGE EDITOR ── */
+.image-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;padding:20px}
+.img-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:border-color .15s}
+.img-card:hover{border-color:#444}
+.img-card.modified{border:2px solid var(--red-light)}
+.img-preview{height:160px;overflow:hidden;position:relative;background:#111;cursor:pointer}
+.img-preview img{width:100%;height:100%;object-fit:cover;display:block}
+.img-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.55);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s}
+.img-preview:hover .img-overlay{opacity:1}
+.img-overlay-text{color:#fff;font-size:13px;font-weight:600;letter-spacing:1px}
+.img-info{padding:12px}
+.img-key{font-family:monospace;font-size:11px;color:var(--text-muted);margin-bottom:4px}
+.img-label{font-size:13px;color:var(--text);margin-bottom:8px}
+.img-page{font-size:11px;color:var(--text-muted)}
+.img-actions{display:flex;gap:6px;margin-top:10px}
+.upload-input{display:none}
+
+/* ── DASHBOARD ── */
+.dashboard{padding:24px}
+.dash-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px;margin-bottom:28px}
+.dash-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:20px}
+.dash-num{font-size:36px;font-weight:300;color:#fff;line-height:1}
+.dash-label{font-size:12px;color:var(--text-dim);margin-top:6px}
+.dash-sub{font-size:11px;color:var(--text-muted);margin-top:4px}
+.quick-links{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px}
+.quick-link{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:16px;cursor:pointer;transition:all .15s;text-decoration:none;display:block}
+.quick-link:hover{border-color:var(--red);background:rgba(139,26,26,0.08)}
+.quick-link .ql-icon{font-size:24px;margin-bottom:8px}
+.quick-link .ql-label{font-size:13px;font-weight:600;color:var(--text)}
+.quick-link .ql-sub{font-size:11px;color:var(--text-dim);margin-top:3px}
+.status-banner{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:16px 20px;display:flex;align-items:center;gap:12px}
+.status-dot{width:8px;height:8px;border-radius:50%;background:var(--green-light);flex-shrink:0}
+.status-text{font-size:13px;color:var(--text-dim)}
+
+/* ── SETTINGS ── */
+.settings-section{padding:20px 24px;border-bottom:1px solid var(--border)}
+.settings-section h3{font-size:14px;font-weight:600;margin-bottom:16px;color:#fff}
+.setting-row{display:flex;align-items:center;gap:16px;padding:10px 0;border-bottom:1px solid var(--border)}
+.setting-row:last-child{border-bottom:none}
+.setting-label{flex:1}
+.setting-label .sl-name{font-size:13px;color:var(--text)}
+.setting-label .sl-desc{font-size:12px;color:var(--text-dim);margin-top:2px}
+.danger-zone{background:rgba(139,26,26,0.08);border:1px solid rgba(139,26,26,0.3);border-radius:4px;padding:16px 20px;margin:24px}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:24px;right:24px;background:#222;border:1px solid #444;color:#fff;padding:12px 18px;border-radius:4px;font-size:13px;z-index:9999;opacity:0;transform:translateY(8px);transition:all .25s;pointer-events:none}
+.toast.show{opacity:1;transform:translateY(0)}
+.toast.success{border-color:var(--green-light);background:#1a2e1a}
+.toast.error{border-color:var(--red-light);background:#2e1a1a}
+
+/* ── MISC ── */
+.badge-modified{background:rgba(176,80,0,0.2);color:#f0a000;padding:2px 8px;border-radius:2px;font-size:11px;margin-left:8px}
+.empty-state{text-align:center;padding:60px 20px;color:var(--text-muted)}
+.empty-state .es-icon{font-size:40px;margin-bottom:12px}
+.save-indicator{font-size:11px;color:var(--green-light);margin-left:8px;opacity:0;transition:opacity .3s}
+.save-indicator.visible{opacity:1}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-logo">FX<span>TEXTILE</span></div>
+  <div class="header-badge">ADMIN</div>
+  <div style="font-size:12px;color:var(--text-muted)">Content Management Panel</div>
+  <div class="header-actions">
+    <button class="btn btn-secondary" onclick="previewSite()">👁 Preview Site</button>
+    <button class="btn btn-success" onclick="saveAll()">💾 Save All</button>
+    <button class="btn btn-primary" onclick="exportData()">📦 Export data.js</button>
+  </div>
+</div>
+
+<div class="layout">
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-section">Dashboard</div>
+    <div class="sidebar-item active" onclick="showSection('dashboard')" data-section="dashboard">
+      <span class="icon">🏠</span> Overview
+    </div>
+    
+    <div class="sidebar-section">Pages — Texts</div>
+    <div class="sidebar-item" onclick="showSection('texts-index')" data-section="texts-index">
+      <span class="icon">📄</span> Ana Sayfa
+      <span class="count" id="count-texts-index">0</span>
+    </div>
+    <div class="sidebar-item" onclick="showSection('texts-products')" data-section="texts-products">
+      <span class="icon">📦</span> Products
+      <span class="count" id="count-texts-products">0</span>
+    </div>
+    <div class="sidebar-item" onclick="showSection('texts-sustainability')" data-section="texts-sustainability">
+      <span class="icon">🌱</span> Sustainability
+      <span class="count" id="count-texts-sustainability">0</span>
+    </div>
+    <div class="sidebar-item" onclick="showSection('texts-global')" data-section="texts-global">
+      <span class="icon">🌍</span> Global
+      <span class="count" id="count-texts-global">0</span>
+    </div>
+    <div class="sidebar-item" onclick="showSection('texts-certifications')" data-section="texts-certifications">
+      <span class="icon">🏅</span> Certifications
+      <span class="count" id="count-texts-certifications">0</span>
+    </div>
+    <div class="sidebar-item" onclick="showSection('texts-contact')" data-section="texts-contact">
+      <span class="icon">✉️</span> Contact
+      <span class="count" id="count-texts-contact">0</span>
+    </div>
+    
+    <div class="sidebar-section">Pages — Images</div>
+    <div class="sidebar-item" onclick="showSection('images-index')" data-section="images-index">
+      <span class="icon">🖼</span> Ana Sayfa
+      <span class="count" id="count-images-index">0</span>
+    </div>
+    <div class="sidebar-item" onclick="showSection('images-products')" data-section="images-products">
+      <span class="icon">🖼</span> Products
+      <span class="count" id="count-images-products">0</span>
+    </div>
+    <div class="sidebar-item" onclick="showSection('images-sustainability')" data-section="images-sustainability">
+      <span class="icon">🖼</span> Sustainability
+      <span class="count" id="count-images-sustainability">0</span>
+    </div>
+    <div class="sidebar-item" onclick="showSection('images-global')" data-section="images-global">
+      <span class="icon">🖼</span> Global
+      <span class="count" id="count-images-global">0</span>
+    </div>
+    <div class="sidebar-item" onclick="showSection('images-certifications')" data-section="images-certifications">
+      <span class="icon">🖼</span> Certifications
+      <span class="count" id="count-images-certifications">0</span>
+    </div>
+    <div class="sidebar-item" onclick="showSection('images-contact')" data-section="images-contact">
+      <span class="icon">🖼</span> Contact
+      <span class="count" id="count-images-contact">0</span>
+    </div>
+    
+    <div class="sidebar-section">System</div>
+    <div class="sidebar-item" onclick="showSection('settings')" data-section="settings">
+      <span class="icon">⚙️</span> Settings
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main" id="main-area">
+    <!-- Sections injected by JS -->
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ── EMBEDDED CONTENT DATA ──────────────────────────────────────────────────
+const ORIGINAL_TEXTS = {
+  "index_1": {
+    "en": "About",
+    "tr": "Hakkımızda",
+    "es": "Nosotros",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_2": {
+    "en": "Products",
+    "tr": "Ürünler",
+    "es": "Productos",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_3": {
+    "en": "Sustainability",
+    "tr": "Sürdürülebilirlik",
+    "es": "Sostenibilidad",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_4": {
+    "en": "Global",
+    "tr": "Global",
+    "es": "Global",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_5": {
+    "en": "Certifications",
+    "tr": "Sertifikalar",
+    "es": "Certificaciones",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_6": {
+    "en": "Contact",
+    "tr": "İletişim",
+    "es": "Contacto",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_7": {
+    "en": "A Division of Harput Holding &nbsp;·&nbsp; Est. 2023, Bursa Turkey",
+    "tr": "Harput Holding Bünyesinde &nbsp;·&nbsp; Kuruluş 2023, Bursa Türkiye",
+    "es": "Una División de Harput Holding &nbsp;·&nbsp; Est. 2023, Bursa Turquía",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_8": {
+    "en": "Fabric<br><em>woven for</em><br>tomorrow.",
+    "tr": "Yarına<br><em>dokunan</em><br>kumaş.",
+    "es": "Tejido para<br><em>construir</em><br>el mañana.",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_9": {
+    "en": "Premium certified apparel fabrics — sustainable, traceable, and born from 65 years of Turkish textile mastery.",
+    "tr": "Premium sertifikalı giyim kumaşları — sürdürülebilir, izlenebilir ve 65 yıllık Türk tekstil uzmanlığından doğmuş.",
+    "es": "Telas premium certificadas para ropa — sostenibles, trazables y nacidas de 65 años de maestría textil turca.",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_10": {
+    "en": "Explore Fabrics",
+    "tr": "Kumaşları Keşfet",
+    "es": "Ver Telas",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_11": {
+    "en": "Request Samples",
+    "tr": "Numune İste",
+    "es": "Pedir Muestras",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_12": {
+    "en": "Employees",
+    "tr": "Çalışan",
+    "es": "Empleados",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_13": {
+    "en": "Export Countries",
+    "tr": "İhracat Ülkesi",
+    "es": "Países Exportación",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_14": {
+    "en": "Revenue 2023",
+    "tr": "Ciro 2023",
+    "es": "Ingresos 2023",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_15": {
+    "en": "Production Area",
+    "tr": "Üretim Alanı",
+    "es": "Área Producción",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_16": {
+    "en": "Years Experience",
+    "tr": "Yıl Deneyim",
+    "es": "Años Experiencia",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_17": {
+    "en": "Turkey Top Industrial",
+    "tr": "Türkiye İlk 500",
+    "es": "Top 500 Industrial TR",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_18": {
+    "en": "About FX Textile",
+    "tr": "FX Textile Hakkında",
+    "es": "Sobre FX Textile",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_19": {
+    "en": "Where craft meets<br><em>conscience.</em>",
+    "tr": "Ustalığın <em>vicdanla</em><br>buluştuğu yer.",
+    "es": "Donde el oficio<br><em>encuentra la ética.</em>",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_20": {
+    "en": "FX Textile is the apparel fabric brand of Harput Holding, established in 2023 to bring the group's full integrated production strength to the fashion sector. Every fabric carries GOTS, GRS, OCS or RCS certification.",
+    "tr": "FX Textile, grubun tam entegre üretim gücünü moda sektörüne taşımak amacıyla 2023'te kurulmuş giyim kumaşları markasıdır. Her kumaş GOTS, GRS, OCS veya RCS sertifikası taşır.",
+    "es": "FX Textile es la marca de telas de Harput Holding, fundada en 2023. Cada tela lleva certificación GOTS, GRS, OCS o RCS.",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_21": {
+    "en": "Backed by 6 facilities across 195,000 m² in Bursa — yarn spinning, weaving, and a dyehouse recycling 100% of its process water — FX Textile offers a fully traceable, sustainable supply chain from fiber to finished fabric.",
+    "tr": "Bursa'da 195.000 m²'ye yayılan 6 tesis — iplik eğirme, dokuma ve proses suyunun %100'ünü geri dönüştüren bir boyahane — ile FX Textile, elyaftan bitmiş kumaşa tam izlenebilir, sürdürülebilir bir tedarik zinciri sunar.",
+    "es": "Con 6 instalaciones en 195.000 m² en Bursa — hilado, tejido y una tinturería que recicla el 100% del agua — FX Textile ofrece una cadena de suministro trazable y sostenible de fibra a tela terminada.",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_22": {
+    "en": "View Products",
+    "tr": "Ürünleri Gör",
+    "es": "Ver Productos",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_23": {
+    "en": "Certified Sustainable",
+    "tr": "Sertifikalı Sürdürülebilir",
+    "es": "Sostenibilidad Certificada",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_24": {
+    "en": "GOTS, GRS, OCS and RCS certified fabrics. Every roll comes with full Textile Exchange traceability and transaction certificates.",
+    "tr": "GOTS, GRS, OCS ve RCS sertifikalı kumaşlar. Her top, Textile Exchange izlenebilirliği ve işlem sertifikaları ile birlikte gelir.",
+    "es": "Telas certificadas GOTS, GRS, OCS y RCS. Cada rollo con trazabilidad Textile Exchange y certificados de transacción.",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_25": {
+    "en": "Vertically Integrated",
+    "tr": "Dikey Entegre",
+    "es": "Integración Vertical",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_26": {
+    "en": "Yarn spinning, weaving, dyeing and finishing all under one holding — ensuring unbroken chain of custody from fiber to bolt.",
+    "tr": "İplik eğirme, dokuma, boyama ve apre hepsi tek bir holding bünyesinde — elyaftan topa kesintisiz gözetim zinciri.",
+    "es": "Hilado, tejido, teñido y acabado bajo un mismo holding — cadena de custodia ininterrumpida de fibra a pieza.",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_27": {
+    "en": "Low-Impact Production",
+    "tr": "Düşük Çevresel Etkili Üretim",
+    "es": "Producción de Bajo Impacto",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_28": {
+    "en": "Solar-powered yarn facility, closed-loop dyehouse water recycling, rainwater harvesting and ZDHC-aligned chemical management.",
+    "tr": "Güneş enerjili iplik tesisi, kapalı devre boyahane suyu geri dönüşümü, yağmur suyu hasadı ve ZDHC uyumlu kimyasal yönetim.",
+    "es": "Planta de hilados solar, reciclaje de agua en circuito cerrado, cosecha de lluvia y gestión química ZDHC.",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_29": {
+    "en": "The Holding Behind the Brand",
+    "tr": "Markanın Arkasındaki Holding",
+    "es": "El Holding Detrás de la Marca",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_30": {
+    "en": "Harput Holding —<br><em>six decades, six facilities.</em>",
+    "tr": "Harput Holding —<br><em>altı on yıl, altı tesis.</em>",
+    "es": "Harput Holding —<br><em>seis décadas, seis plantas.</em>",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_31": {
+    "en": "Est. 2015. 220,000 m² total area. 4,500 t/month POY spinning, texturizing and twisting. Solar panels on roof.",
+    "tr": "2015 kuruluş. 220.000 m² toplam alan. Aylık 4.500 ton POY eğirme, tekstüre ve büküm. Çatıda güneş panelleri.",
+    "es": "Est. 2015. 220.000 m² de área total. 4.500 t/mes hilado POY, texturizado y torcido. Paneles solares en el techo.",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_32": {
+    "en": "Est. 1998. 84,106 m². 3,500,000 m/month. Continuous dyeing, rotary &amp; digital printing, coating. Wastewater treatment &amp; recycling.",
+    "tr": "1998 kuruluş. 84.106 m². Aylık 3.500.000 m. Kontinü boyama, rotasyon &amp; dijital baskı, kaplama. Atıksu arıtma &amp; geri dönüşüm.",
+    "es": "Est. 1998. 84.106 m². 3.500.000 m/mes. Teñido continuo, impresión rotativa y digital, recubrimiento. Tratamiento de aguas residuales.",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_33": {
+    "en": "Two weaving facilities: Gökçeköy (1,800,000 m/month — Air-Jet &amp; Water-Jet) and Miranda Organize (700,000 m/month — Jacquard &amp; Armure).",
+    "tr": "İki dokuma tesisi: Gökçeköy (1.800.000 m/ay — Hava &amp; Su Jetli) ve Miranda Organize (700.000 m/ay — Jakarlı &amp; Armür).",
+    "es": "Dos plantas: Gökçeköy (1.800.000 m/mes — Air-Jet y Water-Jet) y Miranda (700.000 m/mes — Jacquard y Armure).",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_34": {
+    "en": "Certified at every standard.",
+    "tr": "Her standartta sertifikalı.",
+    "es": "Certificados en cada estándar.",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_35": {
+    "en": "View all certificates →",
+    "tr": "Tüm sertifikalar →",
+    "es": "Ver todas →",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_36": {
+    "en": "Sectors We Serve",
+    "tr": "Hizmet Verdiğimiz Sektörler",
+    "es": "Sectores que Servimos",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_37": {
+    "en": "Fabric for every <em>discipline.</em>",
+    "tr": "Her <em>disiplin</em> için kumaş.",
+    "es": "Tela para cada <em>disciplina.</em>",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_38": {
+    "en": "Clothing",
+    "tr": "Giyim",
+    "es": "Ropa",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_39": {
+    "en": "Sportswear",
+    "tr": "Spor Giyim",
+    "es": "Ropa Deportiva",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_40": {
+    "en": "Home Textiles",
+    "tr": "Ev Tekstili",
+    "es": "Textil Hogar",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_41": {
+    "en": "Automotive",
+    "tr": "Otomotiv",
+    "es": "Automotriz",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_42": {
+    "en": "Furnishing",
+    "tr": "Döşemelik",
+    "es": "Tapicería",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_43": {
+    "en": "65 years of textile mastery,<br><em>now in the service of fashion.</em>",
+    "tr": "65 yıllık tekstil uzmanlığı,<br><em>şimdi modanın hizmetinde.</em>",
+    "es": "65 años de maestría textil,<br><em>ahora al servicio de la moda.</em>",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_44": {
+    "en": "Founded in Elazığ",
+    "tr": "Elazığ'da Kuruluş",
+    "es": "Fundada en Elazığ",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_45": {
+    "en": "Production Facilities",
+    "tr": "Üretim Tesisi",
+    "es": "Plantas de Producción",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_46": {
+    "en": "Continents",
+    "tr": "Kıta",
+    "es": "Continentes",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_47": {
+    "en": "Turkey Top 500 Industrial",
+    "tr": "Türkiye İlk 500 Sanayi",
+    "es": "Top 500 Industrial Turquía",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_48": {
+    "en": "Premium apparel fabrics. A division of Harput Holding. Est. 2023, Bursa, Turkey.",
+    "tr": "Premium giyim kumaşları. Harput Holding bünyesinde. 2023, Bursa, Türkiye.",
+    "es": "Telas premium para ropa. División de Harput Holding. Est. 2023, Bursa, Turquía.",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_49": {
+    "en": "Company",
+    "tr": "Şirket",
+    "es": "Empresa",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_50": {
+    "en": "About Us",
+    "tr": "Hakkımızda",
+    "es": "Nosotros",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_51": {
+    "en": "Global Presence",
+    "tr": "Küresel Varlık",
+    "es": "Presencia Global",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_52": {
+    "en": "Certifications",
+    "tr": "Sertifikalar",
+    "es": "Certificaciones",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_53": {
+    "en": "Products",
+    "tr": "Ürünler",
+    "es": "Productos",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_54": {
+    "en": "Recycled Polyester",
+    "tr": "Geri Dön. Polyester",
+    "es": "Poliéster Reciclado",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_55": {
+    "en": "Organic Cotton",
+    "tr": "Organik Pamuk",
+    "es": "Algodón Orgánico",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_56": {
+    "en": "Sustainability",
+    "tr": "Sürdürülebilirlik",
+    "es": "Sostenibilidad",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_57": {
+    "en": "Contact",
+    "tr": "İletişim",
+    "es": "Contacto",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_58": {
+    "en": "Send Message",
+    "tr": "Mesaj Gönder",
+    "es": "Enviar Mensaje",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "products_1": {
+    "en": "About",
+    "tr": "Hakkımızda",
+    "es": "Nosotros",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_2": {
+    "en": "Products",
+    "tr": "Ürünler",
+    "es": "Productos",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_3": {
+    "en": "Sustainability",
+    "tr": "Sürdürülebilirlik",
+    "es": "Sostenibilidad",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_4": {
+    "en": "Global",
+    "tr": "Global",
+    "es": "Global",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_5": {
+    "en": "Certifications",
+    "tr": "Sertifikalar",
+    "es": "Certificaciones",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_6": {
+    "en": "Contact",
+    "tr": "İletişim",
+    "es": "Contacto",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_7": {
+    "en": "Products",
+    "tr": "Ürünler",
+    "es": "Productos",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_8": {
+    "en": "Premium certified<br><em>apparel fabrics.</em>",
+    "tr": "Premium sertifikalı<br><em>giyim kumaşları.</em>",
+    "es": "Telas premium<br><em>certificadas para ropa.</em>",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_9": {
+    "en": "Filter:",
+    "tr": "Filtrele:",
+    "es": "Filtrar:",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_10": {
+    "en": "All",
+    "tr": "Tümü",
+    "es": "Todo",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_11": {
+    "en": "Dyed",
+    "tr": "Boyalı",
+    "es": "Teñido",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_12": {
+    "en": "Printed",
+    "tr": "Baskılı",
+    "es": "Estampado",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_13": {
+    "en": "100% Recycled Polyester",
+    "tr": "%100 Geri Dön. Polyester",
+    "es": "100% Poliéster Reciclado",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_14": {
+    "en": "Post-consumer recycled polyester woven fabric. Available in greige, dyed and printed. Full GRS traceability.",
+    "tr": "Tüketici sonrası geri dönüştürülmüş polyester dokuma kumaş. Ham, boyalı ve baskılı mevcuttur. Tam GRS izlenebilirliği.",
+    "es": "Tela tejida de poliéster reciclado post-consumo. Disponible en crudo, teñido e impreso. Trazabilidad GRS completa.",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_15": {
+    "en": "100% Organic Cotton",
+    "tr": "%100 Organik Pamuk",
+    "es": "100% Algodón Orgánico",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_16": {
+    "en": "GOTS v7.0 and OCS 100 certified woven fabric. Greige, dyed and printed. No synthetic pesticides. Full field-to-fabric chain of custody.",
+    "tr": "GOTS v7.0 ve OCS 100 sertifikalı dokuma kumaş. Ham, boyalı ve baskılı. Sentetik pestisit yok. Tam gözetim zinciri.",
+    "es": "Tela tejida certificada GOTS v7.0 y OCS 100. Cruda, teñida e impresa. Sin pesticidas sintéticos.",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_17": {
+    "en": "Recycled Polyester + Viscose",
+    "tr": "Geri Dön. Polyester + Viskoz",
+    "es": "Poliéster Reciclado + Viscosa",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_18": {
+    "en": "5–94% recycled polyester + 6–95% viscose. Superior drape for women's fashion. RCS Blended certified. Dyed and printed.",
+    "tr": "%5–94 geri dönüştürülmüş polyester + %6–95 viskoz. Kadın modası için üstün döküm. RCS Blended sertifikalı.",
+    "es": "5–94% rPET + 6–95% viscosa. Caída superior para moda femenina. Certificación RCS Blended.",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_19": {
+    "en": "Recycled Polyester + Modal",
+    "tr": "Geri Dön. Polyester + Modal",
+    "es": "Poliéster Reciclado + Modal",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_20": {
+    "en": "5–94% recycled polyester + 6–95% modal. Soft, breathable hand-feel. RCS Blended. Ideal for premium casual and resort collections.",
+    "tr": "%5–94 geri dönüştürülmüş polyester + %6–95 modal. Yumuşak, nefes alabilen his. RCS Blended.",
+    "es": "5–94% rPET + 6–95% modal. Sensación suave y transpirable. RCS Blended. Ideal para colecciones resort.",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_21": {
+    "en": "Organic Cotton + Viscose",
+    "tr": "Organik Pamuk + Viskoz",
+    "es": "Algodón Orgánico + Viscosa",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_22": {
+    "en": "5–94% organic cotton + 6–95% viscose. OCS Blended certified. Natural fluid drape. Rich dyed and printed palette.",
+    "tr": "%5–94 organik pamuk + %6–95 viskoz. OCS Blended sertifikalı. Doğal akıcı döküm. Zengin boyalı ve baskılı palet.",
+    "es": "5–94% algodón orgánico + 6–95% viscosa. Certificación OCS Blended. Caída fluida y natural.",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_23": {
+    "en": "Recycled Polyester + Polyester",
+    "tr": "Geri Dön. Polyester + Polyester",
+    "es": "Poliéster Reciclado + Poliéster",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_24": {
+    "en": "5–94% rPET + 6–95% standard polyester. RCS Blended. Cost-effective entry point into certified sustainable fabrics.",
+    "tr": "%5–94 rPET + %6–95 standart polyester. RCS Blended. Sertifikalı sürdürülebilir kumaşlara uygun maliyetli giriş.",
+    "es": "5–94% rPET + 6–95% poliéster estándar. RCS Blended. Punto de entrada rentable a telas certificadas.",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_25": {
+    "en": "Why Certified Materials",
+    "tr": "Neden Sertifikalı Malzeme",
+    "es": "Por qué Materiales Certificados",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_26": {
+    "en": "Every certificate tells<br><em>the full story.</em>",
+    "tr": "Her sertifika tam<br><em>hikayeyi anlatır.</em>",
+    "es": "Cada certificado cuenta<br><em>la historia completa.</em>",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_27": {
+    "en": "When you source from FX Textile, you receive more than fabric — full supply chain documentation, Textile Exchange TE-ID, transaction certificates and scope certificates for every certified order.",
+    "tr": "FX Textile'den tedarik ettiğinizde kumaştan fazlasını alırsınız — tam tedarik zinciri dokümantasyonu, Textile Exchange TE-ID, işlem sertifikaları ve kapsam sertifikaları.",
+    "es": "Al adquirir de FX Textile recibe más que tela — documentación completa, TE-ID de Textile Exchange y certificados de transacción para cada pedido certificado.",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_28": {
+    "en": "GRS, GOTS, OCS or RCS logos on your product require valid transaction certificates from your supplier for every shipment. We make this seamless.",
+    "tr": "Ürününüzdeki GRS, GOTS, OCS veya RCS logoları, her sevkiyat için tedarikçinizden geçerli işlem sertifikaları gerektirir. Bu süreci sorunsuz hale getiriyoruz.",
+    "es": "Los logotipos en su producto requieren certificados de transacción válidos de su proveedor para cada envío.",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_29": {
+    "en": "View Certifications",
+    "tr": "Sertifikaları Gör",
+    "es": "Ver Certificaciones",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_30": {
+    "en": "Production Process",
+    "tr": "Üretim Süreci",
+    "es": "Proceso de Producción",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_31": {
+    "en": "From fiber<br><em>to finished bolt.</em>",
+    "tr": "Elyaftan<br><em>bitmiş topa.</em>",
+    "es": "De la fibra<br><em>al rollo terminado.</em>",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_32": {
+    "en": "Fiber",
+    "tr": "Elyaf",
+    "es": "Fibra",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_33": {
+    "en": "Yarn",
+    "tr": "İplik",
+    "es": "Hilo",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_34": {
+    "en": "Weaving",
+    "tr": "Dokuma",
+    "es": "Tejido",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_35": {
+    "en": "Dyeing",
+    "tr": "Boyama",
+    "es": "Teñido",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_36": {
+    "en": "Finishing",
+    "tr": "Apre",
+    "es": "Acabado",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_37": {
+    "en": "Certified",
+    "tr": "Sertifikalı",
+    "es": "Certificado",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_38": {
+    "en": "Technical Specifications",
+    "tr": "Teknik Özellikler",
+    "es": "Especificaciones Técnicas",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_39": {
+    "en": "Standard <em>product range.</em>",
+    "tr": "Standart <em>ürün yelpazesi.</em>",
+    "es": "Gama de <em>productos estándar.</em>",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_40": {
+    "en": "Product",
+    "tr": "Ürün",
+    "es": "Producto",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_41": {
+    "en": "Composition",
+    "tr": "Kompozisyon",
+    "es": "Composición",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_42": {
+    "en": "Availability",
+    "tr": "Mevcut",
+    "es": "Disponibilidad",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_43": {
+    "en": "Recycled Polyester",
+    "tr": "Geri Dön. Polyester",
+    "es": "Poliéster Reciclado",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_44": {
+    "en": "Organic Cotton",
+    "tr": "Organik Pamuk",
+    "es": "Algodón Orgánico",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_45": {
+    "en": "Organic Cotton + Viscose",
+    "tr": "Org. Pamuk + Viskoz",
+    "es": "Algodón Org. + Viscosa",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_46": {
+    "en": "Premium apparel fabrics. A division of Harput Holding. Est. 2023, Bursa, Turkey.",
+    "tr": "Premium giyim kumaşları. Harput Holding bünyesinde. 2023, Bursa, Türkiye.",
+    "es": "Telas premium para ropa. División de Harput Holding. Est. 2023, Bursa, Turquía.",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_47": {
+    "en": "Company",
+    "tr": "Şirket",
+    "es": "Empresa",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_48": {
+    "en": "About Us",
+    "tr": "Hakkımızda",
+    "es": "Nosotros",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_49": {
+    "en": "Global Presence",
+    "tr": "Küresel Varlık",
+    "es": "Presencia Global",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_50": {
+    "en": "Certifications",
+    "tr": "Sertifikalar",
+    "es": "Certificaciones",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_51": {
+    "en": "Products",
+    "tr": "Ürünler",
+    "es": "Productos",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_52": {
+    "en": "Recycled Polyester",
+    "tr": "Geri Dön. Polyester",
+    "es": "Poliéster Reciclado",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_53": {
+    "en": "Organic Cotton",
+    "tr": "Organik Pamuk",
+    "es": "Algodón Orgánico",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_54": {
+    "en": "Sustainability",
+    "tr": "Sürdürülebilirlik",
+    "es": "Sostenibilidad",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_55": {
+    "en": "Contact",
+    "tr": "İletişim",
+    "es": "Contacto",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "products_56": {
+    "en": "Send Message",
+    "tr": "Mesaj Gönder",
+    "es": "Enviar Mensaje",
+    "page": "products",
+    "page_label": "Ürünler / Products"
+  },
+  "sustainability_1": {
+    "en": "About",
+    "tr": "Hakkımızda",
+    "es": "Nosotros",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_2": {
+    "en": "Products",
+    "tr": "Ürünler",
+    "es": "Productos",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_3": {
+    "en": "Sustainability",
+    "tr": "Sürdürülebilirlik",
+    "es": "Sostenibilidad",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_4": {
+    "en": "Global",
+    "tr": "Global",
+    "es": "Global",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_5": {
+    "en": "Certifications",
+    "tr": "Sertifikalar",
+    "es": "Certificaciones",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_6": {
+    "en": "Contact",
+    "tr": "İletişim",
+    "es": "Contacto",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_7": {
+    "en": "Sustainability",
+    "tr": "Sürdürülebilirlik",
+    "es": "Sostenibilidad",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_8": {
+    "en": "Responsible<br><em>at every thread.</em>",
+    "tr": "Her iplikte<br><em>sorumlu.</em>",
+    "es": "Responsables<br><em>en cada hilo.</em>",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_9": {
+    "en": "Our Commitment",
+    "tr": "Taahhüdümüz",
+    "es": "Nuestro Compromiso",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_10": {
+    "en": "Circular economy<br><em>from fiber to fabric.</em>",
+    "tr": "Elyaftan kumaşa<br><em>döngüsel ekonomi.</em>",
+    "es": "Economía circular<br><em>de fibra a tela.</em>",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_11": {
+    "en": "For over six years, Harput Holding has invested in projects that reduce water consumption, recover energy and build a zero-waste production model. Sustainability at FX Textile is embedded in every certification, every production process and every shipment document.",
+    "tr": "Altı yılı aşkın süredir Harput Holding, su tüketimini azaltan, enerji geri kazanan ve sıfır atık üretim modeli oluşturan projelere yatırım yapmaktadır.",
+    "es": "Durante más de seis años, Harput Holding ha invertido en proyectos que reducen el consumo de agua, recuperan energía y construyen un modelo de producción de residuo cero.",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_12": {
+    "en": "The 2025–2030 Strategic Sustainability Plan tracks all programmes under three pillars: Environment, Social and Governance — aligned with global ESG reporting standards.",
+    "tr": "2025–2030 Stratejik Sürdürülebilirlik Planı, tüm programları Çevre, Sosyal ve Yönetim olmak üzere üç eksen altında izler.",
+    "es": "El Plan Estratégico de Sostenibilidad 2025–2030 sigue todos los programas bajo tres pilares: Medio Ambiente, Social y Gobernanza.",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_13": {
+    "en": "Dyehouse Water Treated &amp; Recycled",
+    "tr": "Boyahane Suyu Arıtılıyor",
+    "es": "Agua Tinturería Tratada",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_14": {
+    "en": "Solar Panels on Yarn Facility Roof",
+    "tr": "İplik Tesisi Çatısında Güneş Paneli",
+    "es": "Paneles Solares en Planta Hilados",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_15": {
+    "en": "Years of R&amp;D Projects",
+    "tr": "Yıllık Ar-Ge Projesi",
+    "es": "Años de Proyectos I+D",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_16": {
+    "en": "ISO Standards Certified",
+    "tr": "ISO Standardı Sertifikalı",
+    "es": "Normas ISO Certificadas",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_17": {
+    "en": "Our Sustainability Pillars",
+    "tr": "Sürdürülebilirlik Sütunlarımız",
+    "es": "Nuestros Pilares de Sostenibilidad",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_18": {
+    "en": "How we reduce<br><em>our footprint.</em>",
+    "tr": "Ayak izimizi nasıl<br><em>azaltıyoruz.</em>",
+    "es": "Cómo reducimos<br><em>nuestra huella.</em>",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_19": {
+    "en": "Solar Energy Systems",
+    "tr": "Güneş Enerjisi Sistemleri",
+    "es": "Sistemas de Energía Solar",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_20": {
+    "en": "Rooftop solar PV panels at Kemalpaşa Yarn Facility (Miranlı) provide renewable electricity directly to the production line, reducing carbon footprint per kg of yarn produced.",
+    "tr": "Kemalpaşa İplik Tesisi'nde çatı güneş PV panelleri üretim hattına yenilenebilir elektrik sağlar.",
+    "es": "Paneles solares fotovoltaicos en la Planta de Hilados de Kemalpaşa proporcionan electricidad renovable a la línea de producción.",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_21": {
+    "en": "Water Recycling &amp; Recovery",
+    "tr": "Su Geri Dönüşümü ve Tasarrufu",
+    "es": "Reciclaje y Recuperación de Agua",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_22": {
+    "en": "Closed-loop water recycling in water-jet looms. Dyehouse wastewater fully treated before discharge. Rainwater harvesting systems across all facilities.",
+    "tr": "Su jetli tezgahlarda kapalı devre su geri dönüşümü. Boyahane atık suyu deşarj öncesinde tamamen arıtılır. Tüm tesislerde yağmur suyu hasadı.",
+    "es": "Reciclaje de agua en circuito cerrado en telares. Aguas residuales de tinturería tratadas completamente. Cosecha de lluvia en todas las instalaciones.",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_23": {
+    "en": "Recycled Fiber Sourcing",
+    "tr": "Geri Dönüştürülmüş Elyaf Tedariki",
+    "es": "Aprovisionamiento de Fibra Reciclada",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_24": {
+    "en": "Post-consumer recycled polyester certified under GRS v4.0 and RCS v2.0, traceable from PET bottle to finished fabric. Reduces dependency on virgin petrochemical feedstocks.",
+    "tr": "GRS v4.0 ve RCS v2.0 kapsamında sertifikalı tüketici sonrası geri dönüştürülmüş polyester, PET şişeden bitmiş kumaşa kadar izlenebilir.",
+    "es": "Poliéster reciclado post-consumo certificado bajo GRS v4.0 y RCS v2.0, trazable desde botella PET hasta tela terminada.",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_25": {
+    "en": "Organic Cotton Programme",
+    "tr": "Organik Pamuk Programı",
+    "es": "Programa de Algodón Orgánico",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_26": {
+    "en": "GOTS v7.0 and OCS v3.0 certified organic cotton fabrics. No synthetic pesticides or fertilizers. Full chain-of-custody from field to finished roll.",
+    "tr": "GOTS v7.0 ve OCS v3.0 sertifikalı organik pamuk kumaşlar. Sentetik pestisit veya gübre yok. Tarladan topa tam gözetim zinciri.",
+    "es": "Telas de algodón orgánico certificadas GOTS v7.0 y OCS v3.0. Sin pesticidas ni fertilizantes sintéticos.",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_27": {
+    "en": "Chemical Management",
+    "tr": "Kimyasal Yönetimi",
+    "es": "Gestión de Sustancias Químicas",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_28": {
+    "en": "ZDHC-aligned chemical management across all dyehouse and finishing processes. OEKO-TEX® STANDARD 100 certified output confirms no harmful residues in finished fabrics.",
+    "tr": "Tüm boyahane ve apre işlemlerinde ZDHC uyumlu kimyasal yönetimi. OEKO-TEX® STANDARD 100 sertifikalı çıktı.",
+    "es": "Gestión química alineada con ZDHC. Salida certificada OEKO-TEX® STANDARD 100.",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_29": {
+    "en": "Energy Efficiency",
+    "tr": "Enerji Verimliliği",
+    "es": "Eficiencia Energética",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_30": {
+    "en": "ISO 50001 Energy Management System across all facilities. Ongoing R&amp;D projects targeting carbon footprint reduction through heat recovery and optimised scheduling.",
+    "tr": "Tüm tesislerde ISO 50001 Enerji Yönetim Sistemi. Isı geri kazanımı ve optimize zamanlama ile karbon ayak izi azaltmayı hedefleyen süregelen Ar-Ge projeleri.",
+    "es": "Sistema de Gestión de Energía ISO 50001 en todas las instalaciones. Proyectos de I+D para reducir la huella de carbono.",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_31": {
+    "en": "Circular Economy",
+    "tr": "Döngüsel Ekonomi",
+    "es": "Economía Circular",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_32": {
+    "en": "Closing the<br><em>loop.</em>",
+    "tr": "Döngüyü<br><em>kapatmak.</em>",
+    "es": "Cerrando<br><em>el ciclo.</em>",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_33": {
+    "en": "Circular economy is one of the core scopes in Harput Holding's R&amp;D roadmap. Over the past six years the group has conducted multiple projects to minimise waste, reuse resources and eliminate environmental damage at source.",
+    "tr": "Döngüsel ekonomi, Harput Holding'in Ar-Ge yol haritasının temel kapsamlarından biridir. Son altı yılda holding, atıkları minimuma indirmek için birden fazla proje yürütmüştür.",
+    "es": "La economía circular es uno de los ámbitos fundamentales en la hoja de ruta de I+D de Harput Holding.",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_34": {
+    "en": "Water recycling &amp; reuse",
+    "tr": "Su geri dönüşümü ve yeniden kullanımı",
+    "es": "Reciclaje y reutilización del agua",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_35": {
+    "en": "Reducing water consumption in dye house",
+    "tr": "Boyahanede su tüketiminin azaltılması",
+    "es": "Reducción del consumo de agua en tinturería",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_36": {
+    "en": "ZDHC Chemical Management Applications",
+    "tr": "ZDHC Kimyasal Yönetim Uygulamaları",
+    "es": "Aplicaciones de Gestión Química ZDHC",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_37": {
+    "en": "Rainwater harvesting for industrial use",
+    "tr": "Endüstriyel kullanım için yağmur suyu hasadı",
+    "es": "Captación de agua de lluvia para uso industrial",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_38": {
+    "en": "Solar energy systems on yarn facility roof",
+    "tr": "İplik tesisi çatısında güneş enerjisi sistemleri",
+    "es": "Sistemas de energía solar en el techo de la planta de hilados",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_39": {
+    "en": "Ongoing R&amp;D — carbon targets to 2030",
+    "tr": "Süregelen Ar-Ge — 2030'a kadar karbon hedefleri",
+    "es": "I+D continuo — objetivos de carbono hasta 2030",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_40": {
+    "en": "2025–2030 Strategic Plan",
+    "tr": "2025–2030 Stratejik Planı",
+    "es": "Plan Estratégico 2025–2030",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_41": {
+    "en": "Three pillars, <em>one direction.</em>",
+    "tr": "Üç eksen, <em>tek yön.</em>",
+    "es": "Tres pilares, <em>una dirección.</em>",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_42": {
+    "en": "Environment",
+    "tr": "Çevre",
+    "es": "Medio Ambiente",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_43": {
+    "en": "Tracking and reducing environmental impact through measurable KPIs — water, carbon, waste, energy.",
+    "tr": "Su, karbon, atık, enerji ölçülebilir KPI'larla çevresel etkinin izlenmesi ve azaltılması.",
+    "es": "Seguimiento y reducción del impacto ambiental mediante KPI medibles.",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_44": {
+    "en": "Social",
+    "tr": "Sosyal",
+    "es": "Social",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_45": {
+    "en": "Fair, safe working conditions across all 6 facilities and supply chain. BSCI, ISO 45001, Higg SLM and INDITEX JOIN LIFE compliant.",
+    "tr": "Tüm 6 tesis ve tedarik zincirinde adil, güvenli çalışma koşulları. BSCI, ISO 45001, Higg SLM ve INDITEX JOIN LIFE uyumlu.",
+    "es": "Condiciones de trabajo justas y seguras en las 6 instalaciones. Conforme con BSCI, ISO 45001, Higg SLM e INDITEX JOIN LIFE.",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_46": {
+    "en": "Governance",
+    "tr": "Yönetim",
+    "es": "Gobernanza",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_47": {
+    "en": "Transparent reporting, third-party auditing and continuous improvement from procurement to export. ISO 9001, 14001, 22000 certified.",
+    "tr": "Tedarikten ihracata şeffaf raporlama, üçüncü taraf denetimi ve sürekli iyileştirme. ISO 9001, 14001, 22000 sertifikalı.",
+    "es": "Informes transparentes y auditorías de terceros. Certificado ISO 9001, 14001 y 22000.",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_48": {
+    "en": "Memberships &amp; Partnerships",
+    "tr": "Üyelikler ve Ortaklıklar",
+    "es": "Membresías y Asociaciones",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_49": {
+    "en": "Business Social Compliance Initiative — social auditing framework member",
+    "tr": "Sosyal denetim çerçevesi üyesi",
+    "es": "Marco de auditoría social",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_50": {
+    "en": "Facility Environmental Module &amp; Social Labour Module active user",
+    "tr": "FEM ve SLM aktif kullanıcısı",
+    "es": "Usuario activo de FEM y SLM",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_51": {
+    "en": "Approved supplier for most sustainable product line",
+    "tr": "En sürdürülebilir ürün hattı için onaylı tedarikçi",
+    "es": "Proveedor aprobado para línea sostenible",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_52": {
+    "en": "Licensed CB for GRS, OCS and RCS standards",
+    "tr": "GRS, OCS ve RCS için lisanslı sertifikasyon kuruluşu",
+    "es": "Organismo de certificación autorizado",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_53": {
+    "en": "Premium apparel fabrics. A division of Harput Holding. Est. 2023, Bursa, Turkey.",
+    "tr": "Premium giyim kumaşları. Harput Holding bünyesinde. 2023, Bursa, Türkiye.",
+    "es": "Telas premium para ropa. División de Harput Holding. Est. 2023, Bursa, Turquía.",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_54": {
+    "en": "Company",
+    "tr": "Şirket",
+    "es": "Empresa",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_55": {
+    "en": "About Us",
+    "tr": "Hakkımızda",
+    "es": "Nosotros",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_56": {
+    "en": "Global Presence",
+    "tr": "Küresel Varlık",
+    "es": "Presencia Global",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_57": {
+    "en": "Certifications",
+    "tr": "Sertifikalar",
+    "es": "Certificaciones",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_58": {
+    "en": "Products",
+    "tr": "Ürünler",
+    "es": "Productos",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_59": {
+    "en": "Recycled Polyester",
+    "tr": "Geri Dön. Polyester",
+    "es": "Poliéster Reciclado",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_60": {
+    "en": "Organic Cotton",
+    "tr": "Organik Pamuk",
+    "es": "Algodón Orgánico",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_61": {
+    "en": "Sustainability",
+    "tr": "Sürdürülebilirlik",
+    "es": "Sostenibilidad",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_62": {
+    "en": "Contact",
+    "tr": "İletişim",
+    "es": "Contacto",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "sustainability_63": {
+    "en": "Send Message",
+    "tr": "Mesaj Gönder",
+    "es": "Enviar Mensaje",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability"
+  },
+  "global_1": {
+    "en": "About",
+    "tr": "Hakkımızda",
+    "es": "Nosotros",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_2": {
+    "en": "Products",
+    "tr": "Ürünler",
+    "es": "Productos",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_3": {
+    "en": "Sustainability",
+    "tr": "Sürdürülebilirlik",
+    "es": "Sostenibilidad",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_4": {
+    "en": "Global",
+    "tr": "Global",
+    "es": "Global",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_5": {
+    "en": "Certifications",
+    "tr": "Sertifikalar",
+    "es": "Certificaciones",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_6": {
+    "en": "Contact",
+    "tr": "İletişim",
+    "es": "Contacto",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_7": {
+    "en": "Global Presence",
+    "tr": "Küresel Varlık",
+    "es": "Presencia Global",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_8": {
+    "en": "5 Continents.<br><em>70 Countries.</em>",
+    "tr": "5 Kıta.<br><em>70 Ülke.</em>",
+    "es": "5 Continentes.<br><em>70 Países.</em>",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_9": {
+    "en": "Worldwide Reach",
+    "tr": "Dünya Genelinde Erişim",
+    "es": "Alcance Mundial",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_10": {
+    "en": "Harput Holding exports<br>to <em>9 regions.</em>",
+    "tr": "Harput Holding <em>9 bölgeye</em><br>ihracat yapar.",
+    "es": "Harput Holding exporta<br>a <em>9 regiones.</em>",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_11": {
+    "en": "As the apparel fabric brand of Harput Holding, FX Textile taps into the group's established global distribution network — reaching garment makers and brands across 70 countries on 5 continents.",
+    "tr": "Harput Holding'in giyim kumaşları markası olarak FX Textile, grubun küresel dağıtım ağından yararlanır — 5 kıtada 70 ülkedeki konfeksiyoncilere ve markalara ulaşır.",
+    "es": "Como marca de telas de Harput Holding, FX Textile aprovecha su red de distribución global, llegando a fabricantes de prendas en 70 países en 5 continentes.",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_12": {
+    "en": "Countries",
+    "tr": "Ülke",
+    "es": "Países",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_13": {
+    "en": "Continents",
+    "tr": "Kıta",
+    "es": "Continentes",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_14": {
+    "en": "Regions",
+    "tr": "Bölge",
+    "es": "Regiones",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_15": {
+    "en": "of Sales Exported",
+    "tr": "Satışların İhracatı",
+    "es": "de Ventas Exportadas",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_16": {
+    "en": "Export Map",
+    "tr": "İhracat Haritası",
+    "es": "Mapa de Exportación",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_17": {
+    "en": "9 Export Regions",
+    "tr": "9 İhracat Bölgesi",
+    "es": "9 Regiones de Exportación",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_18": {
+    "en": "European Union",
+    "tr": "Avrupa Birliği",
+    "es": "Unión Europea",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_19": {
+    "en": "Primary export market. Serving fashion brands and apparel manufacturers across all EU member states.",
+    "tr": "Birincil ihracat pazarı. Tüm AB üye devletlerindeki moda markalarına ve giyim üreticilerine hizmet vermektedir.",
+    "es": "Mercado de exportación principal. Marcas de moda y fabricantes en todos los estados miembros de la UE.",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_20": {
+    "en": "Non-EU Europe",
+    "tr": "AB Dışı Avrupa",
+    "es": "Europa no-UE",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_21": {
+    "en": "UK, Switzerland, Norway and other non-EU European markets. Strong fast-fashion and mid-market brand relationships.",
+    "tr": "İngiltere, İsviçre, Norveç ve diğer AB dışı Avrupa pazarları.",
+    "es": "UK, Suiza, Noruega y otros mercados europeos no-UE.",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_22": {
+    "en": "North America",
+    "tr": "Kuzey Amerika",
+    "es": "Norteamérica",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_23": {
+    "en": "USA and Canada. Growing demand for certified sustainable apparel fabrics from sustainable fashion brands.",
+    "tr": "ABD ve Kanada. Sürdürülebilir moda markalarından sertifikalı kumaşlara artan talep.",
+    "es": "EE.UU. y Canadá. Creciente demanda de telas certificadas sostenibles.",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_24": {
+    "en": "Middle East",
+    "tr": "Orta Doğu",
+    "es": "Oriente Medio",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_25": {
+    "en": "GCC countries, Jordan, Egypt and Lebanon. Strong historical commercial ties and growing fashion retail.",
+    "tr": "Körfez İşbirliği Konseyi ülkeleri, Ürdün, Mısır ve Lübnan.",
+    "es": "Países del CCG, Jordania, Egipto y Líbano.",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_26": {
+    "en": "Africa",
+    "tr": "Afrika",
+    "es": "África",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_27": {
+    "en": "Sub-Saharan and North Africa. Expanding market with growing garment manufacturing in Ethiopia, Morocco and Egypt.",
+    "tr": "Sahra Altı ve Kuzey Afrika. Etiyopya, Fas ve Mısır'da büyüyen konfeksiyon üretim tabanıyla genişleyen pazar.",
+    "es": "África subsahariana y del norte. Mercado en expansión con base de fabricación de prendas en Etiopía, Marruecos y Egipto.",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_28": {
+    "en": "Turkic Republics",
+    "tr": "Türk Cumhuriyetleri",
+    "es": "Repúblicas Túrquicas",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_29": {
+    "en": "Kazakhstan, Uzbekistan, Azerbaijan, Turkmenistan and Kyrgyzstan. Shared cultural heritage driving strong trade.",
+    "tr": "Kazakistan, Özbekistan, Azerbaycan, Türkmenistan ve Kırgızistan.",
+    "es": "Kazajistán, Uzbekistán, Azerbaiyán, Turkmenistán y Kirguistán.",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_30": {
+    "en": "CIS Countries",
+    "tr": "BDT Ülkeleri",
+    "es": "Países CEI",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_31": {
+    "en": "Russia, Ukraine, Belarus and other CIS members. Established wholesale and distribution relationships.",
+    "tr": "Rusya, Ukrayna, Belarus ve diğer BDT üyeleri.",
+    "es": "Rusia, Ucrania, Bielorrusia y otros miembros de la CEI.",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_32": {
+    "en": "Mid / South America",
+    "tr": "Orta / Güney Amerika",
+    "es": "Centro / Sudamérica",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_33": {
+    "en": "Brazil, Mexico, Colombia and beyond. Growing sustainable fashion movement driving certified fabric demand.",
+    "tr": "Brezilya, Meksika, Kolombiya ve ötesi. Büyüyen sürdürülebilir moda hareketi.",
+    "es": "Brasil, México, Colombia y más. El creciente movimiento de moda sostenible impulsa la demanda.",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_34": {
+    "en": "Asia — Far East",
+    "tr": "Asya — Uzak Doğu",
+    "es": "Asia — Lejano Oriente",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_35": {
+    "en": "China, South Korea, Japan, Bangladesh, Vietnam. Premium certified European fabrics for Asian garment exporters.",
+    "tr": "Çin, Güney Kore, Japonya, Bangladeş, Vietnam. Asyalı konfeksiyon ihracatçıları için Avrupa yapımı sertifikalı kumaşlar.",
+    "es": "China, Corea del Sur, Japón, Bangladesh, Vietnam. Telas europeas certificadas para exportadores asiáticos.",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_36": {
+    "en": "Premium apparel fabrics. A division of Harput Holding. Est. 2023, Bursa, Turkey.",
+    "tr": "Premium giyim kumaşları. Harput Holding bünyesinde. 2023, Bursa, Türkiye.",
+    "es": "Telas premium para ropa. División de Harput Holding. Est. 2023, Bursa, Turquía.",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_37": {
+    "en": "Company",
+    "tr": "Şirket",
+    "es": "Empresa",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_38": {
+    "en": "About Us",
+    "tr": "Hakkımızda",
+    "es": "Nosotros",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_39": {
+    "en": "Global Presence",
+    "tr": "Küresel Varlık",
+    "es": "Presencia Global",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_40": {
+    "en": "Certifications",
+    "tr": "Sertifikalar",
+    "es": "Certificaciones",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_41": {
+    "en": "Products",
+    "tr": "Ürünler",
+    "es": "Productos",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_42": {
+    "en": "Recycled Polyester",
+    "tr": "Geri Dön. Polyester",
+    "es": "Poliéster Reciclado",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_43": {
+    "en": "Organic Cotton",
+    "tr": "Organik Pamuk",
+    "es": "Algodón Orgánico",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_44": {
+    "en": "Sustainability",
+    "tr": "Sürdürülebilirlik",
+    "es": "Sostenibilidad",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_45": {
+    "en": "Contact",
+    "tr": "İletişim",
+    "es": "Contacto",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "global_46": {
+    "en": "Send Message",
+    "tr": "Mesaj Gönder",
+    "es": "Enviar Mensaje",
+    "page": "global",
+    "page_label": "Global Presence"
+  },
+  "certifications_1": {
+    "en": "About",
+    "tr": "Hakkımızda",
+    "es": "Nosotros",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_2": {
+    "en": "Products",
+    "tr": "Ürünler",
+    "es": "Productos",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_3": {
+    "en": "Sustainability",
+    "tr": "Sürdürülebilirlik",
+    "es": "Sostenibilidad",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_4": {
+    "en": "Global",
+    "tr": "Global",
+    "es": "Global",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_5": {
+    "en": "Certifications",
+    "tr": "Sertifikalar",
+    "es": "Certificaciones",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_6": {
+    "en": "Contact",
+    "tr": "İletişim",
+    "es": "Contacto",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_7": {
+    "en": "Certifications",
+    "tr": "Sertifikalar",
+    "es": "Certificaciones",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_8": {
+    "en": "Verified at<br><em>every standard.</em>",
+    "tr": "Her standartta<br><em>doğrulanmış.</em>",
+    "es": "Verificado en<br><em>cada estándar.</em>",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_9": {
+    "en": "Active Scope Certificates",
+    "tr": "Aktif Kapsam Sertifikaları",
+    "es": "Certificados de Alcance Activos",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_10": {
+    "en": "Two scope certificates,<br><em>twelve certified products.</em>",
+    "tr": "İki kapsam sertifikası,<br><em>on iki sertifikalı ürün.</em>",
+    "es": "Dos certificados de alcance,<br><em>doce productos certificados.</em>",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_11": {
+    "en": "GOTS Version 7.0 certification issued by ETKO Ekolojik Tarım Kontrol Organizasyonu, accredited by IOAS (Acc. No. 53). Covers 100% organic cotton woven fabrics in greige, dyed and printed versions.",
+    "tr": "IOAS tarafından akredite edilmiş ETKO tarafından verilen GOTS v7.0 sertifikası. Ham, boyalı ve baskılı %100 organik pamuk dokuma kumaşları kapsar.",
+    "es": "Certificación GOTS v7.0 emitida por ETKO, acreditada por IOAS. Cubre telas tejidas 100% algodón orgánico en versiones crudas, teñidas e impresas.",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_12": {
+    "en": "Valid: 12 Dec 2025 – 11 Dec 2026",
+    "tr": "Geçerli: 12 Ara 2025 – 11 Ara 2026",
+    "es": "Válido: 12 dic 2025 – 11 dic 2026",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_13": {
+    "en": "ACTIVE",
+    "tr": "AKTİF",
+    "es": "ACTIVO",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_14": {
+    "en": "Multi-standard scope certificate (GRS v4.0, OCS v3.0, RCS v2.0) issued by ETKO, licensed by Textile Exchange. Covers 12 product lines including recycled polyester, organic cotton and blended woven fabrics.",
+    "tr": "Textile Exchange lisanslı ETKO tarafından verilen çok standartlı kapsam sertifikası (GRS v4.0, OCS v3.0, RCS v2.0). 12 ürün hattını kapsar.",
+    "es": "Certificado multi-estándar (GRS v4.0, OCS v3.0, RCS v2.0). Cubre 12 líneas de productos.",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_15": {
+    "en": "Valid: 12 Dec 2025 – 11 Dec 2026",
+    "tr": "Geçerli: 12 Ara 2025 – 11 Ara 2026",
+    "es": "Válido: 12 dic 2025 – 11 dic 2026",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_16": {
+    "en": "ACTIVE",
+    "tr": "AKTİF",
+    "es": "ACTIVO",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_17": {
+    "en": "Complete Certification List",
+    "tr": "Tam Sertifika Listesi",
+    "es": "Lista Completa de Certificaciones",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_18": {
+    "en": "All standards, <em>active today.</em>",
+    "tr": "Tüm standartlar, <em>bugün aktif.</em>",
+    "es": "Todos los estándares, <em>activos hoy.</em>",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_19": {
+    "en": "Standard",
+    "tr": "Standart",
+    "es": "Norma",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_20": {
+    "en": "Version",
+    "tr": "Versiyon",
+    "es": "Versión",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_21": {
+    "en": "Issuing Body",
+    "tr": "Veren Kuruluş",
+    "es": "Organismo Emisor",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_22": {
+    "en": "Scope",
+    "tr": "Kapsam",
+    "es": "Alcance",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_23": {
+    "en": "Status",
+    "tr": "Durum",
+    "es": "Estado",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_24": {
+    "en": "100% Organic Cotton woven fabrics",
+    "tr": "%100 Organik Pamuk dokuma kumaşlar",
+    "es": "Telas tejidas 100% Algodón Orgánico",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_25": {
+    "en": "Active",
+    "tr": "Aktif",
+    "es": "Activo",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_26": {
+    "en": "100% rPET woven fabrics",
+    "tr": "%100 rPET dokuma kumaşlar",
+    "es": "Telas tejidas 100% rPET",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_27": {
+    "en": "Active",
+    "tr": "Aktif",
+    "es": "Activo",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_28": {
+    "en": "Organic cotton &amp; blended wovens",
+    "tr": "Org. pamuk ve karışımlı dokuma",
+    "es": "Tejidos orgánicos y mezclados",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_29": {
+    "en": "Active",
+    "tr": "Aktif",
+    "es": "Activo",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_30": {
+    "en": "rPET blended wovens",
+    "tr": "rPET karışımlı dokuma",
+    "es": "Tejidos mezclados rPET",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_31": {
+    "en": "Active",
+    "tr": "Aktif",
+    "es": "Activo",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_32": {
+    "en": "Quality Management System",
+    "tr": "Kalite Yönetim Sistemi",
+    "es": "Sistema de Gestión de Calidad",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_33": {
+    "en": "Active",
+    "tr": "Aktif",
+    "es": "Activo",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_34": {
+    "en": "Environmental Management System",
+    "tr": "Çevre Yönetim Sistemi",
+    "es": "Sistema de Gestión Ambiental",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_35": {
+    "en": "Active",
+    "tr": "Aktif",
+    "es": "Activo",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_36": {
+    "en": "Energy Management System",
+    "tr": "Enerji Yönetim Sistemi",
+    "es": "Sistema de Gestión de Energía",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_37": {
+    "en": "Active",
+    "tr": "Aktif",
+    "es": "Activo",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_38": {
+    "en": "Food Safety Management",
+    "tr": "Gıda Güvenliği Yönetimi",
+    "es": "Gestión de Seguridad Alimentaria",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_39": {
+    "en": "Active",
+    "tr": "Aktif",
+    "es": "Activo",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_40": {
+    "en": "Occupational Health &amp; Safety",
+    "tr": "İş Sağlığı ve Güvenliği",
+    "es": "Salud y Seguridad Ocupacional",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_41": {
+    "en": "Active",
+    "tr": "Aktif",
+    "es": "Activo",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_42": {
+    "en": "Finished fabrics — no harmful substances",
+    "tr": "Bitmiş kumaşlar — zararlı madde yok",
+    "es": "Telas terminadas — sin sustancias dañinas",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_43": {
+    "en": "Active",
+    "tr": "Aktif",
+    "es": "Activo",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_44": {
+    "en": "Social compliance — all facilities",
+    "tr": "Sosyal uyum — tüm tesisler",
+    "es": "Cumplimiento social — todas las instalaciones",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_45": {
+    "en": "Member",
+    "tr": "Üye",
+    "es": "Miembro",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_46": {
+    "en": "Environmental + Social Labour Module",
+    "tr": "Çevresel + Sosyal İşgücü Modülü",
+    "es": "Módulo Ambiental + Laboral Social",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_47": {
+    "en": "Active",
+    "tr": "Aktif",
+    "es": "Activo",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_48": {
+    "en": "Approved supplier — sustainable product line",
+    "tr": "Onaylı tedarikçi — sürdürülebilir ürün hattı",
+    "es": "Proveedor aprobado — línea de producto sostenible",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_49": {
+    "en": "Approved",
+    "tr": "Onaylı",
+    "es": "Aprobado",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_50": {
+    "en": "Social compliance shared audit platform",
+    "tr": "Sosyal uyum paylaşımlı denetim platformu",
+    "es": "Plataforma de auditoría social compartida",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_51": {
+    "en": "Member",
+    "tr": "Üye",
+    "es": "Miembro",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_52": {
+    "en": "What Certifications Mean for You",
+    "tr": "Sertifikaların Size Anlamı",
+    "es": "Qué Significan para Usted",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_53": {
+    "en": "Claim it with<br><em>confidence.</em>",
+    "tr": "Güvenle <em>iddia edin.</em>",
+    "es": "Recláme­lo con <em>confianza.</em>",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_54": {
+    "en": "When you use GRS, GOTS, OCS or RCS logos on your products, you need a valid Transaction Certificate (TC) from your fabric supplier for every shipment. At FX Textile we issue TCs for every certified order — plus full Scope Certificate documentation and Textile Exchange TE-ID.",
+    "tr": "Ürünlerinizde GRS, GOTS, OCS veya RCS logolarını kullandığınızda, her sevkiyat için geçerli İşlem Sertifikası (TC) gerekir. FX Textile olarak her sertifikalı sipariş için TC düzenliyoruz.",
+    "es": "Los logotipos GRS, GOTS, OCS o RCS en sus productos requieren un TC válido de su proveedor para cada envío. En FX Textile emitimos TCs para cada pedido certificado.",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_55": {
+    "en": "Request a Sample with TC",
+    "tr": "TC ile Numune İste",
+    "es": "Solicitar Muestra con TC",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_56": {
+    "en": "Premium apparel fabrics. A division of Harput Holding. Est. 2023, Bursa, Turkey.",
+    "tr": "Premium giyim kumaşları. Harput Holding bünyesinde. 2023, Bursa, Türkiye.",
+    "es": "Telas premium para ropa. División de Harput Holding. Est. 2023, Bursa, Turquía.",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_57": {
+    "en": "Company",
+    "tr": "Şirket",
+    "es": "Empresa",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_58": {
+    "en": "About Us",
+    "tr": "Hakkımızda",
+    "es": "Nosotros",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_59": {
+    "en": "Global Presence",
+    "tr": "Küresel Varlık",
+    "es": "Presencia Global",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_60": {
+    "en": "Certifications",
+    "tr": "Sertifikalar",
+    "es": "Certificaciones",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_61": {
+    "en": "Products",
+    "tr": "Ürünler",
+    "es": "Productos",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_62": {
+    "en": "Recycled Polyester",
+    "tr": "Geri Dön. Polyester",
+    "es": "Poliéster Reciclado",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_63": {
+    "en": "Organic Cotton",
+    "tr": "Organik Pamuk",
+    "es": "Algodón Orgánico",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_64": {
+    "en": "Sustainability",
+    "tr": "Sürdürülebilirlik",
+    "es": "Sostenibilidad",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_65": {
+    "en": "Contact",
+    "tr": "İletişim",
+    "es": "Contacto",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "certifications_66": {
+    "en": "Send Message",
+    "tr": "Mesaj Gönder",
+    "es": "Enviar Mensaje",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications"
+  },
+  "contact_1": {
+    "en": "About",
+    "tr": "Hakkımızda",
+    "es": "Nosotros",
+    "page": "contact",
+    "page_label": "İletişim / Contact"
+  },
+  "contact_2": {
+    "en": "Products",
+    "tr": "Ürünler",
+    "es": "Productos",
+    "page": "contact",
+    "page_label": "İletişim / Contact"
+  },
+  "contact_3": {
+    "en": "Sustainability",
+    "tr": "Sürdürülebilirlik",
+    "es": "Sostenibilidad",
+    "page": "contact",
+    "page_label": "İletişim / Contact"
+  },
+  "contact_4": {
+    "en": "Global",
+    "tr": "Global",
+    "es": "Global",
+    "page": "contact",
+    "page_label": "İletişim / Contact"
+  },
+  "contact_5": {
+    "en": "Certifications",
+    "tr": "Sertifikalar",
+    "es": "Certificaciones",
+    "page": "contact",
+    "page_label": "İletişim / Contact"
+  },
+  "contact_6": {
+    "en": "Contact",
+    "tr": "İletişim",
+    "es": "Contacto",
+    "page": "contact",
+    "page_label": "İletişim / Contact"
+  },
+  "contact_7": {
+    "en": "Contact",
+    "tr": "İletişim",
+    "es": "Contacto",
+    "page": "contact",
+    "page_label": "İletişim / Contact"
+  },
+  "contact_8": {
+    "en": "Let's build something<br><em>remarkable.</em>",
+    "tr": "Birlikte olağanüstü<br><em>bir şey inşa edelim.</em>",
+    "es": "Construyamos algo<br><em>extraordinario.</em>",
+    "page": "contact",
+    "page_label": "İletişim / Contact"
+  },
+  "contact_9": {
+    "en": "Get in Touch",
+    "tr": "Bize Ulaşın",
+    "es": "Contáctenos",
+    "page": "contact",
+    "page_label": "İletişim / Contact"
+  },
+  "contact_10": {
+    "en": "We reply within<br><em>24 hours.</em>",
+    "tr": "24 saat içinde<br><em>yanıt veririz.</em>",
+    "es": "Respondemos en<br><em>24 horas.</em>",
+    "page": "contact",
+    "page_label": "İletişim / Contact"
+  },
+  "contact_11": {
+    "en": "Whether sourcing certified fabrics, requesting samples with TCs, exploring a supply partnership or asking a technical question — our team is ready.",
+    "tr": "Sertifikalı kumaş temin etmek, TC'li numune talep etmek, ortaklık keşfetmek veya teknik soru sormak — ekibimiz hazır.",
+    "es": "Para adquirir telas certificadas, solicitar muestras con TC, explorar una asociación o hacer preguntas técnicas.",
+    "page": "contact",
+    "page_label": "İletişim / Contact"
+  },
+  "contact_12": {
+    "en": "Company",
+    "tr": "Şirket",
+    "es": "Empresa",
+    "page": "contact",
+    "page_label": "İletişim / Contact"
+  },
+  "contact_13": {
+    "en": "Address",
+    "tr": "Adres",
+    "es": "Dirección",
+    "page": "contact",
+    "page_label": "İletişim / Contact"
+  },
+  "contact_14": {
+    "en": "Send us a message",
+    "tr": "Mesaj Gönderin",
+    "es": "Envíenos un mensaje",
+    "page": "contact",
+    "page_label": "İletişim / Contact"
+  },
+  "contact_15": {
+    "en": "First Name",
+    "tr": "Ad",
+    "es": "Nombre",
+    "page": "contact",
+    "page_label": "İletişim / Contact"
+  },
+  "contact_16": {
+    "en": "Last Name",
+    "tr": "Soyad",
+    "es": "Apellido",
+    "page": "contact",
+    "page_label": "İletişim / Contact"
+  },
+  "contact_17": {
+    "en": "Company / Brand",
+    "tr": "Firma / Marka",
+    "es": "Empresa / Marca",
+    "page": "contact",
+    "page_label": "İletişim / Contact"
+  },
+  "contact_18": {
+    "en": "Country",
+    "tr": "Ülke",
+    "es": "País",
+    "page": "contact",
+    "page_label": "İletişim / Contact"
+  },
+  "contact_19": {
+    "en": "I am interested in",
+    "tr": "İlgilendiğim konu",
+    "es": "Estoy interesado en",
+    "page": "contact",
+    "page_label": "İletişim / Contact"
+  },
+  "contact_20": {
+    "en": "Message",
+    "tr": "Mesaj",
+    "es": "Mensaje",
+    "page": "contact",
+    "page_label": "İletişim / Contact"
+  },
+  "contact_21": {
+    "en": "Send Message",
+    "tr": "Gönder",
+    "es": "Enviar",
+    "page": "contact",
+    "page_label": "İletişim / Contact"
+  },
+  "contact_22": {
+    "en": "Production Facilities",
+    "tr": "Üretim Tesisleri",
+    "es": "Plantas de Producción",
+    "page": "contact",
+    "page_label": "İletişim / Contact"
+  },
+  "contact_23": {
+    "en": "Kemalpaşa Yarn Facility",
+    "tr": "Kemalpaşa İplik Tesisi",
+    "es": "Planta de Hilados Kemalpaşa",
+    "page": "contact",
+    "page_label": "İletişim / Contact"
+  },
+  "contact_24": {
+    "en": "Est. 2015 · 4,500 t/month · Solar panels · 438 employees",
+    "tr": "2015 · Aylık 4.500 t · Güneş panelleri · 438 çalışan",
+    "es": "Est. 2015 · 4.500 t/mes · Paneles solares · 438 empleados",
+    "page": "contact",
+    "page_label": "İletişim / Contact"
+  },
+  "contact_25": {
+    "en": "Dyehouse &amp; Printing",
+    "tr": "Boyahane &amp; Baskı",
+    "es": "Tinturería e Impresión",
+    "page": "contact",
+    "page_label": "İletişim / Contact"
+  },
+  "contact_26": {
+    "en": "Est. 1998 · 3.5M m/month · Water recycling · 503 employees",
+    "tr": "1998 · Aylık 3.5M m · Su geri dönüşümü · 503 çalışan",
+    "es": "Est. 1998 · 3,5M m/mes · Reciclaje de agua · 503 empleados",
+    "page": "contact",
+    "page_label": "İletişim / Contact"
+  },
+  "contact_27": {
+    "en": "Weaving Facilities",
+    "tr": "Dokuma Tesisleri",
+    "es": "Plantas de Tejido",
+    "page": "contact",
+    "page_label": "İletişim / Contact"
+  },
+  "contact_28": {
+    "en": "2.5M+ m/month combined · Air-Jet, Water-Jet, Jacquard · 288 employees",
+    "tr": "Kombine 2.5M+ m/ay · Hava Jetli, Su Jetli, Jakarlı · 288 çalışan",
+    "es": "2,5M+ m/mes combinados · Air-Jet, Water-Jet, Jacquard · 288 empleados",
+    "page": "contact",
+    "page_label": "İletişim / Contact"
+  },
+  "contact_29": {
+    "en": "Premium apparel fabrics. A division of Harput Holding. Est. 2023, Bursa, Turkey.",
+    "tr": "Premium giyim kumaşları. Harput Holding bünyesinde. 2023, Bursa, Türkiye.",
+    "es": "Telas premium para ropa. División de Harput Holding. Est. 2023, Bursa, Turquía.",
+    "page": "contact",
+    "page_label": "İletişim / Contact"
+  },
+  "contact_30": {
+    "en": "Company",
+    "tr": "Şirket",
+    "es": "Empresa",
+    "page": "contact",
+    "page_label": "İletişim / Contact"
+  },
+  "contact_31": {
+    "en": "About Us",
+    "tr": "Hakkımızda",
+    "es": "Nosotros",
+    "page": "contact",
+    "page_label": "İletişim / Contact"
+  },
+  "contact_32": {
+    "en": "Global Presence",
+    "tr": "Küresel Varlık",
+    "es": "Presencia Global",
+    "page": "contact",
+    "page_label": "İletişim / Contact"
+  },
+  "contact_33": {
+    "en": "Certifications",
+    "tr": "Sertifikalar",
+    "es": "Certificaciones",
+    "page": "contact",
+    "page_label": "İletişim / Contact"
+  },
+  "contact_34": {
+    "en": "Products",
+    "tr": "Ürünler",
+    "es": "Productos",
+    "page": "contact",
+    "page_label": "İletişim / Contact"
+  },
+  "contact_35": {
+    "en": "Recycled Polyester",
+    "tr": "Geri Dön. Polyester",
+    "es": "Poliéster Reciclado",
+    "page": "contact",
+    "page_label": "İletişim / Contact"
+  },
+  "contact_36": {
+    "en": "Organic Cotton",
+    "tr": "Organik Pamuk",
+    "es": "Algodón Orgánico",
+    "page": "contact",
+    "page_label": "İletişim / Contact"
+  },
+  "contact_37": {
+    "en": "Sustainability",
+    "tr": "Sürdürülebilirlik",
+    "es": "Sostenibilidad",
+    "page": "contact",
+    "page_label": "İletişim / Contact"
+  },
+  "contact_38": {
+    "en": "Contact",
+    "tr": "İletişim",
+    "es": "Contacto",
+    "page": "contact",
+    "page_label": "İletişim / Contact"
+  },
+  "contact_39": {
+    "en": "Send Message",
+    "tr": "Mesaj Gönder",
+    "es": "Enviar Mensaje",
+    "page": "contact",
+    "page_label": "İletişim / Contact"
+  }
+};
+const ORIGINAL_IMAGES = {
+  "logo-fx-textile": {
+    "src": "images/logo-fx-textile.svg",
+    "page": "contact",
+    "page_label": "İletişim / Contact",
+    "label": "Logo Fx Textile"
+  },
+  "logo-harput": {
+    "src": "images/logo-harput.svg",
+    "page": "contact",
+    "page_label": "İletişim / Contact",
+    "label": "Logo Harput"
+  },
+  "hero-index": {
+    "src": "images/hero-index.jpg",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home",
+    "label": "Hero Index"
+  },
+  "index-intro-weaving": {
+    "src": "images/index-intro-weaving.jpg",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home",
+    "label": "Index Intro Weaving"
+  },
+  "index-pillar-recycled": {
+    "src": "images/index-pillar-recycled.jpg",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home",
+    "label": "Index Pillar Recycled"
+  },
+  "index-pillar-dyehouse": {
+    "src": "images/index-pillar-dyehouse.jpg",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home",
+    "label": "Index Pillar Dyehouse"
+  },
+  "index-pillar-solar": {
+    "src": "images/index-pillar-solar.jpg",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home",
+    "label": "Index Pillar Solar"
+  },
+  "index-facility-kemalpaşa": {
+    "src": "images/index-facility-kemalpaşa.jpg",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home",
+    "label": "Index Facility Kemalpaşa"
+  },
+  "index-facility-kinteks": {
+    "src": "images/index-facility-kinteks.jpg",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home",
+    "label": "Index Facility Kinteks"
+  },
+  "index-facility-weaving": {
+    "src": "images/index-facility-weaving.jpg",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home",
+    "label": "Index Facility Weaving"
+  },
+  "index-sector-clothing": {
+    "src": "images/index-sector-clothing.jpg",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home",
+    "label": "Index Sector Clothing"
+  },
+  "index-sector-sportswear": {
+    "src": "images/index-sector-sportswear.jpg",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home",
+    "label": "Index Sector Sportswear"
+  },
+  "index-sector-home": {
+    "src": "images/index-sector-home.jpg",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home",
+    "label": "Index Sector Home"
+  },
+  "index-sector-automotive": {
+    "src": "images/index-sector-automotive.jpg",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home",
+    "label": "Index Sector Automotive"
+  },
+  "index-sector-furnishing": {
+    "src": "images/index-sector-furnishing.jpg",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home",
+    "label": "Index Sector Furnishing"
+  },
+  "hero-products": {
+    "src": "images/hero-products.jpg",
+    "page": "products",
+    "page_label": "Ürünler / Products",
+    "label": "Hero Products"
+  },
+  "product-recycled-polyester": {
+    "src": "images/product-recycled-polyester.jpg",
+    "page": "products",
+    "page_label": "Ürünler / Products",
+    "label": "Product Recycled Polyester"
+  },
+  "product-organic-cotton": {
+    "src": "images/product-organic-cotton.jpg",
+    "page": "products",
+    "page_label": "Ürünler / Products",
+    "label": "Product Organic Cotton"
+  },
+  "product-rpet-viscose": {
+    "src": "images/product-rpet-viscose.jpg",
+    "page": "products",
+    "page_label": "Ürünler / Products",
+    "label": "Product Rpet Viscose"
+  },
+  "product-rpet-modal": {
+    "src": "images/product-rpet-modal.jpg",
+    "page": "products",
+    "page_label": "Ürünler / Products",
+    "label": "Product Rpet Modal"
+  },
+  "product-organic-viscose": {
+    "src": "images/product-organic-viscose.jpg",
+    "page": "products",
+    "page_label": "Ürünler / Products",
+    "label": "Product Organic Viscose"
+  },
+  "product-rpet-pes": {
+    "src": "images/product-rpet-pes.jpg",
+    "page": "products",
+    "page_label": "Ürünler / Products",
+    "label": "Product Rpet Pes"
+  },
+  "products-cert-docs": {
+    "src": "images/products-cert-docs.jpg",
+    "page": "products",
+    "page_label": "Ürünler / Products",
+    "label": "Products Cert Docs"
+  },
+  "hero-sustainability": {
+    "src": "images/hero-sustainability.jpg",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability",
+    "label": "Hero Sustainability"
+  },
+  "sustain-intro": {
+    "src": "images/sustain-intro.jpg",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability",
+    "label": "Sustain Intro"
+  },
+  "sustain-solar": {
+    "src": "images/sustain-solar.jpg",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability",
+    "label": "Sustain Solar"
+  },
+  "sustain-water": {
+    "src": "images/sustain-water.jpg",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability",
+    "label": "Sustain Water"
+  },
+  "sustain-recycled": {
+    "src": "images/sustain-recycled.jpg",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability",
+    "label": "Sustain Recycled"
+  },
+  "sustain-organic": {
+    "src": "images/sustain-organic.jpg",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability",
+    "label": "Sustain Organic"
+  },
+  "sustain-chemical": {
+    "src": "images/sustain-chemical.jpg",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability",
+    "label": "Sustain Chemical"
+  },
+  "sustain-energy": {
+    "src": "images/sustain-energy.jpg",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability",
+    "label": "Sustain Energy"
+  },
+  "sustain-circular": {
+    "src": "images/sustain-circular.jpg",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability",
+    "label": "Sustain Circular"
+  },
+  "sustain-esg-env": {
+    "src": "images/sustain-esg-env.jpg",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability",
+    "label": "Sustain Esg Env"
+  },
+  "sustain-esg-social": {
+    "src": "images/sustain-esg-social.jpg",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability",
+    "label": "Sustain Esg Social"
+  },
+  "sustain-esg-gov": {
+    "src": "images/sustain-esg-gov.jpg",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability",
+    "label": "Sustain Esg Gov"
+  },
+  "sustain-bsci": {
+    "src": "images/sustain-bsci.jpg",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability",
+    "label": "Sustain Bsci"
+  },
+  "sustain-higg": {
+    "src": "images/sustain-higg.jpg",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability",
+    "label": "Sustain Higg"
+  },
+  "sustain-inditex": {
+    "src": "images/sustain-inditex.jpg",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability",
+    "label": "Sustain Inditex"
+  },
+  "sustain-textile-exchange": {
+    "src": "images/sustain-textile-exchange.jpg",
+    "page": "sustainability",
+    "page_label": "Sürdürülebilirlik / Sustainability",
+    "label": "Sustain Textile Exchange"
+  },
+  "hero-global": {
+    "src": "images/hero-global.jpg",
+    "page": "global",
+    "page_label": "Global Presence",
+    "label": "Hero Global"
+  },
+  "world-map": {
+    "src": "images/world-map.jpg",
+    "page": "global",
+    "page_label": "Global Presence",
+    "label": "World Map"
+  },
+  "hero-certifications": {
+    "src": "images/hero-certifications.jpg",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications",
+    "label": "Hero Certifications"
+  },
+  "cert-gots": {
+    "src": "images/cert-gots.jpg",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications",
+    "label": "Cert Gots"
+  },
+  "cert-grs-ocs-rcs": {
+    "src": "images/cert-grs-ocs-rcs.jpg",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications",
+    "label": "Cert Grs Ocs Rcs"
+  },
+  "cert-trust": {
+    "src": "images/cert-trust.jpg",
+    "page": "certifications",
+    "page_label": "Sertifikalar / Certifications",
+    "label": "Cert Trust"
+  },
+  "hero-contact": {
+    "src": "images/hero-contact.jpg",
+    "page": "contact",
+    "page_label": "İletişim / Contact",
+    "label": "Hero Contact"
+  },
+  "contact-facility-kemalpaşa": {
+    "src": "images/contact-facility-kemalpaşa.jpg",
+    "page": "contact",
+    "page_label": "İletişim / Contact",
+    "label": "Contact Facility Kemalpaşa"
+  },
+  "contact-facility-kinteks": {
+    "src": "images/contact-facility-kinteks.jpg",
+    "page": "contact",
+    "page_label": "İletişim / Contact",
+    "label": "Contact Facility Kinteks"
+  },
+  "contact-facility-weaving": {
+    "src": "images/contact-facility-weaving.jpg",
+    "page": "contact",
+    "page_label": "İletişim / Contact",
+    "label": "Contact Facility Weaving"
+  }
+};
+
+// ── STATE ─────────────────────────────────────────────────────────────────
+const STORAGE_KEY = 'fxtextile_content';
+const IMG_STORAGE_KEY = 'fxtextile_images';
+let savedTexts = {};
+let savedImages = {};
+let currentSection = 'dashboard';
+let searchQuery = '';
+
+function loadState() {
+  try {
+    const t = localStorage.getItem(STORAGE_KEY);
+    if (t) savedTexts = JSON.parse(t);
+    const i = localStorage.getItem(IMG_STORAGE_KEY);
+    if (i) savedImages = JSON.parse(i);
+  } catch(e) {}
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(savedTexts));
+  localStorage.setItem(IMG_STORAGE_KEY, JSON.stringify(savedImages));
+  updateCounts();
+  toast('Changes saved ✓', 'success');
+}
+
+// ── COUNTS ───────────────────────────────────────────────────────────────
+function getModifiedTextCount(page) {
+  return Object.keys(savedTexts).filter(k => k.startsWith(page + '_') || 
+    (ORIGINAL_TEXTS[k] && ORIGINAL_TEXTS[k].page === page)).length;
+}
+
+function updateCounts() {
+  const pages = ['index','products','sustainability','global','certifications','contact'];
+  pages.forEach(p => {
+    const textCount = Object.keys(savedTexts).filter(k => {
+      return ORIGINAL_TEXTS[k] && ORIGINAL_TEXTS[k].page === p;
+    }).length;
+    const imgCount = Object.keys(savedImages).filter(k => {
+      return ORIGINAL_IMAGES[k] && ORIGINAL_IMAGES[k].page === p;
+    }).length;
+    const te = document.getElementById('count-texts-' + p);
+    const ie = document.getElementById('count-images-' + p);
+    if (te) te.textContent = textCount || '';
+    if (ie) ie.textContent = imgCount || '';
+  });
+}
+
+// ── NAVIGATION ───────────────────────────────────────────────────────────
+function showSection(section) {
+  currentSection = section;
+  document.querySelectorAll('.sidebar-item').forEach(el => {
+    el.classList.toggle('active', el.dataset.section === section);
+  });
+  
+  const main = document.getElementById('main-area');
+  
+  if (section === 'dashboard') {
+    main.innerHTML = renderDashboard();
+  } else if (section.startsWith('texts-')) {
+    const page = section.replace('texts-','');
+    main.innerHTML = renderTexts(page);
+  } else if (section.startsWith('images-')) {
+    const page = section.replace('images-','');
+    main.innerHTML = renderImages(page);
+  } else if (section === 'settings') {
+    main.innerHTML = renderSettings();
+  }
+  
+  main.scrollTop = 0;
+}
+
+// ── DASHBOARD ─────────────────────────────────────────────────────────────
+function renderDashboard() {
+  const totalTexts = Object.keys(ORIGINAL_TEXTS).length;
+  const totalImages = Object.keys(ORIGINAL_IMAGES).length;
+  const modTexts = Object.keys(savedTexts).length;
+  const modImages = Object.keys(savedImages).length;
+  
+  return `
+  <div class="dashboard">
+    <div class="status-banner" style="margin-bottom:24px">
+      <div class="status-dot"></div>
+      <div class="status-text">Admin panel aktif — değişiklikler bu tarayıcıda localStorage'a kaydedilir. Tüm sayfalara anında yansır.</div>
+    </div>
+    <div class="dash-grid">
+      <div class="dash-card">
+        <div class="dash-num">${totalTexts}</div>
+        <div class="dash-label">Total Text Blocks</div>
+        <div class="dash-sub">EN + TR + ES</div>
+      </div>
+      <div class="dash-card">
+        <div class="dash-num" style="color:${modTexts > 0 ? '#f0a000' : 'var(--text-dim)'}">${modTexts}</div>
+        <div class="dash-label">Modified Texts</div>
+        <div class="dash-sub">${modTexts === 0 ? 'No changes yet' : 'Unsaved or saved'}</div>
+      </div>
+      <div class="dash-card">
+        <div class="dash-num">${totalImages}</div>
+        <div class="dash-label">Total Images</div>
+        <div class="dash-sub">Across 6 pages</div>
+      </div>
+      <div class="dash-card">
+        <div class="dash-num" style="color:${modImages > 0 ? '#f0a000' : 'var(--text-dim)'}">${modImages}</div>
+        <div class="dash-label">Replaced Images</div>
+        <div class="dash-sub">${modImages === 0 ? 'Using originals' : 'Custom images set'}</div>
+      </div>
+    </div>
+    
+    <h3 style="font-size:13px;color:var(--text-dim);letter-spacing:1px;margin-bottom:14px;text-transform:uppercase">Quick Access</h3>
+    <div class="quick-links">
+      <a class="quick-link" onclick="showSection('texts-index')">
+        <div class="ql-icon">📝</div>
+        <div class="ql-label">Edit Texts</div>
+        <div class="ql-sub">Ana Sayfa içerikleri</div>
+      </a>
+      <a class="quick-link" onclick="showSection('images-index')">
+        <div class="ql-icon">🖼</div>
+        <div class="ql-label">Replace Images</div>
+        <div class="ql-sub">Hero, sectör, tesis görselleri</div>
+      </a>
+      <a class="quick-link" onclick="showSection('texts-sustainability')">
+        <div class="ql-icon">🌱</div>
+        <div class="ql-label">Sustainability</div>
+        <div class="ql-sub">Sürdürülebilirlik metinleri</div>
+      </a>
+      <a class="quick-link" onclick="showSection('images-sustainability')">
+        <div class="ql-icon">☀️</div>
+        <div class="ql-label">Sustainability Images</div>
+        <div class="ql-sub">Solar, water, organic görseller</div>
+      </a>
+      <a class="quick-link" onclick="showSection('texts-products')">
+        <div class="ql-icon">📦</div>
+        <div class="ql-label">Products</div>
+        <div class="ql-sub">Ürün açıklamaları</div>
+      </a>
+      <a class="quick-link" onclick="exportData()">
+        <div class="ql-icon">📦</div>
+        <div class="ql-label">Export data.js</div>
+        <div class="ql-sub">Kalıcı kayıt için indir</div>
+      </a>
+    </div>
+    
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:16px 20px;margin-top:8px">
+      <div style="font-size:13px;font-weight:600;margin-bottom:8px">💡 Nasıl çalışır?</div>
+      <p style="font-size:12px;color:var(--text-dim);line-height:1.7">
+        Yaptığın değişiklikler <strong style="color:var(--text)">localStorage'a</strong> kaydedilir ve tüm sayfalara anında yansır.<br>
+        <strong style="color:var(--text)">Export data.js</strong> butonu ile değişiklikleri kalıcı dosyaya aktarabilirsin.<br>
+        İndirilen data.js'i site klasörüne koyarsan hosting'e taşıdıktan sonra da çalışır.
+      </p>
+    </div>
+  </div>`;
+}
+
+// ── TEXT EDITOR ───────────────────────────────────────────────────────────
+function renderTexts(page) {
+  const PAGE_LABELS = {
+    index: 'Ana Sayfa / Home', products: 'Ürünler / Products',
+    sustainability: 'Sürdürülebilirlik', global: 'Global Presence',
+    certifications: 'Sertifikalar', contact: 'İletişim / Contact'
+  };
+  
+  const entries = Object.entries(ORIGINAL_TEXTS).filter(([k, v]) => v.page === page);
+  const modCount = entries.filter(([k]) => savedTexts[k]).length;
+  
+  return `
+  <div class="content-header">
+    <div>
+      <h2>${PAGE_LABELS[page] || page}</h2>
+      <div class="ch-sub">${entries.length} text block · ${modCount} modified</div>
+    </div>
+    <div class="search-bar">
+      <input class="search-input" type="text" placeholder="Search texts..." 
+        oninput="filterTexts('${page}', this.value)" id="search-${page}">
+    </div>
+  </div>
+  <div class="text-list" id="text-list-${page}">
+    ${entries.map(([key, orig]) => renderTextItem(key, orig)).join('')}
+  </div>`;
+}
+
+function renderTextItem(key, orig) {
+  const saved = savedTexts[key];
+  const isModified = !!saved;
+  const preview = (saved ? saved.en : orig.en).replace(/<[^>]+>/g, ' ').trim().substring(0, 60);
+  
+  return `<div class="text-item ${isModified ? 'modified' : ''}" id="item-${key}">
+    <div class="text-item-header" onclick="toggleTextItem('${key}')">
+      <span class="text-item-key">${key}</span>
+      <span class="text-item-preview ${isModified ? 'changed' : ''}">${preview}</span>
+      ${isModified ? '<span class="badge-modified">edited</span>' : ''}
+      <span class="text-item-toggle" id="toggle-${key}">▼</span>
+    </div>
+    <div class="text-item-body" id="body-${key}">
+      <div class="lang-tabs">
+        <div class="lang-tab active" onclick="switchLangTab('${key}','en',this)">🇬🇧 English</div>
+        <div class="lang-tab" onclick="switchLangTab('${key}','tr',this)">🇹🇷 Türkçe</div>
+        <div class="lang-tab" onclick="switchLangTab('${key}','es',this)">🇪🇸 Español</div>
+      </div>
+      <div id="tab-content-${key}-en">
+        <textarea class="text-field" id="field-${key}-en" 
+          oninput="onTextChange('${key}','en',this.value)"
+          rows="${Math.max(2, ((saved ? saved.en : orig.en).match(/<br>/g)||[]).length + 2)}"
+        >${saved ? saved.en : orig.en}</textarea>
+      </div>
+      <div id="tab-content-${key}-tr" style="display:none">
+        <textarea class="text-field" id="field-${key}-tr"
+          oninput="onTextChange('${key}','tr',this.value)"
+          rows="${Math.max(2, ((saved ? saved.tr : orig.tr).match(/<br>/g)||[]).length + 2)}"
+        >${saved ? saved.tr : orig.tr}</textarea>
+      </div>
+      <div id="tab-content-${key}-es" style="display:none">
+        <textarea class="text-field" id="field-${key}-es"
+          oninput="onTextChange('${key}','es',this.value)"
+          rows="${Math.max(2, ((saved ? saved.es : orig.es).match(/<br>/g)||[]).length + 2)}"
+        >${saved ? saved.es : orig.es}</textarea>
+      </div>
+      <div class="field-actions">
+        <div class="field-hint">HTML allowed: <code>&lt;br&gt;</code> <code>&lt;em&gt;</code> <code>&lt;strong&gt;</code> <code>&amp;nbsp;</code></div>
+        ${isModified ? `<button class="btn btn-secondary btn-sm" onclick="resetText('${key}')">↺ Reset to original</button>` : ''}
+        <button class="btn btn-success btn-sm" onclick="saveAll()">💾 Save</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function toggleTextItem(key) {
+  const body = document.getElementById('body-' + key);
+  const tog = document.getElementById('toggle-' + key);
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  tog.textContent = isOpen ? '▼' : '▲';
+}
+
+function switchLangTab(key, lang, el) {
+  ['en','tr','es'].forEach(l => {
+    document.getElementById('tab-content-' + key + '-' + l).style.display = l === lang ? 'block' : 'none';
+  });
+  el.parentElement.querySelectorAll('.lang-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function onTextChange(key, lang, value) {
+  const orig = ORIGINAL_TEXTS[key];
+  if (!orig) return;
+  
+  if (!savedTexts[key]) {
+    savedTexts[key] = { en: orig.en, tr: orig.tr, es: orig.es };
+  }
+  savedTexts[key][lang] = value;
+  
+  // Mark as modified
+  const item = document.getElementById('item-' + key);
+  if (item) item.classList.add('modified');
+}
+
+function resetText(key) {
+  delete savedTexts[key];
+  const item = document.getElementById('item-' + key);
+  if (item) {
+    const orig = ORIGINAL_TEXTS[key];
+    item.classList.remove('modified');
+    ['en','tr','es'].forEach(l => {
+      const f = document.getElementById('field-' + key + '-' + l);
+      if (f) f.value = orig[l];
+    });
+  }
+  saveState();
+}
+
+function filterTexts(page, query) {
+  const items = document.querySelectorAll('#text-list-' + page + ' .text-item');
+  items.forEach(item => {
+    const text = item.textContent.toLowerCase();
+    item.style.display = query === '' || text.includes(query.toLowerCase()) ? '' : 'none';
+  });
+}
+
+// ── IMAGE EDITOR ──────────────────────────────────────────────────────────
+function renderImages(page) {
+  const PAGE_LABELS = {
+    index: 'Ana Sayfa / Home', products: 'Ürünler / Products',
+    sustainability: 'Sürdürülebilirlik', global: 'Global Presence',
+    certifications: 'Sertifikalar', contact: 'İletişim / Contact'
+  };
+  
+  const entries = Object.entries(ORIGINAL_IMAGES).filter(([k,v]) => v.page === page);
+  // Remove duplicates
+  const seen = new Set();
+  const unique = entries.filter(([k]) => { if (seen.has(k)) return false; seen.add(k); return true; });
+  const modCount = unique.filter(([k]) => savedImages[k]).length;
+  
+  return `
+  <div class="content-header">
+    <div>
+      <h2>${PAGE_LABELS[page] || page} — Images</h2>
+      <div class="ch-sub">${unique.length} images · ${modCount} replaced</div>
+    </div>
+  </div>
+  <div class="image-grid">
+    ${unique.map(([key, meta]) => renderImageCard(key, meta)).join('')}
+  </div>`;
+}
+
+function renderImageCard(key, meta) {
+  const hasCustom = !!savedImages[key];
+  const src = hasCustom ? savedImages[key] : meta.src;
+  const label = meta.label || key;
+  
+  return `<div class="img-card ${hasCustom ? 'modified' : ''}" id="imgcard-${key}">
+    <div class="img-preview" onclick="triggerUpload('${key}')">
+      <img src="${src}" alt="${label}" id="imgpreview-${key}" 
+        onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%2280%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23222%22/><text x=%2250%25%22 y=%2250%25%22 font-family=%22sans-serif%22 font-size=%2212%22 fill=%22%23555%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>No image</text></svg>'">
+      <div class="img-overlay"><span class="img-overlay-text">📁 Click to replace</span></div>
+    </div>
+    <div class="img-info">
+      <div class="img-key">${key}</div>
+      <div class="img-label">${label}</div>
+      <div class="img-page">📄 ${meta.page_label}</div>
+      <div class="img-actions">
+        <button class="btn btn-secondary btn-sm" onclick="triggerUpload('${key}')">📁 Replace</button>
+        ${hasCustom ? `<button class="btn btn-secondary btn-sm" onclick="resetImage('${key}')">↺ Reset</button>` : ''}
+      </div>
+    </div>
+    <input type="file" class="upload-input" id="upload-${key}" 
+      accept="image/*" onchange="handleImageUpload('${key}', this)">
+  </div>`;
+}
+
+function triggerUpload(key) {
+  document.getElementById('upload-' + key).click();
+}
+
+function handleImageUpload(key, input) {
+  const file = input.files[0];
+  if (!file) return;
+  
+  // Check size (max 3MB for localStorage)
+  if (file.size > 3 * 1024 * 1024) {
+    toast('Image too large — max 3MB for browser storage', 'error');
+    return;
+  }
+  
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    const dataUrl = e.target.result;
+    savedImages[key] = dataUrl;
+    
+    // Update preview
+    const prev = document.getElementById('imgpreview-' + key);
+    if (prev) prev.src = dataUrl;
+    const card = document.getElementById('imgcard-' + key);
+    if (card) card.classList.add('modified');
+    
+    saveState();
+    toast(`Image "${key}" replaced ✓`, 'success');
+    
+    // Refresh card to show reset button
+    setTimeout(() => showSection(currentSection), 100);
+  };
+  reader.readAsDataURL(file);
+}
+
+function resetImage(key) {
+  delete savedImages[key];
+  const orig = ORIGINAL_IMAGES[key];
+  const prev = document.getElementById('imgpreview-' + key);
+  if (prev && orig) prev.src = orig.src;
+  const card = document.getElementById('imgcard-' + key);
+  if (card) card.classList.remove('modified');
+  saveState();
+  toast('Image reset to original', 'success');
+  setTimeout(() => showSection(currentSection), 100);
+}
+
+// ── SETTINGS ─────────────────────────────────────────────────────────────
+function renderSettings() {
+  const textCount = Object.keys(savedTexts).length;
+  const imgCount = Object.keys(savedImages).length;
+  
+  return `
+  <div class="content-header"><div><h2>Settings</h2></div></div>
+  <div class="settings-section">
+    <h3>Admin Mode</h3>
+    <div class="setting-row">
+      <div class="setting-label">
+        <div class="sl-name">Admin bar on site pages</div>
+        <div class="sl-desc">Shows a floating bar on all site pages with quick link to admin</div>
+      </div>
+      <button class="btn btn-secondary" onclick="toggleAdminMode()">
+        ${localStorage.getItem('fxtextile_admin_mode') === 'true' ? '✅ Enabled — Click to Disable' : '⬜ Disabled — Click to Enable'}
+      </button>
+    </div>
+  </div>
+  <div class="settings-section">
+    <h3>Storage Info</h3>
+    <div class="setting-row">
+      <div class="setting-label">
+        <div class="sl-name">Modified text blocks</div>
+        <div class="sl-desc">Saved in browser localStorage</div>
+      </div>
+      <span style="font-size:20px;font-weight:300">${textCount}</span>
+    </div>
+    <div class="setting-row">
+      <div class="setting-label">
+        <div class="sl-name">Replaced images</div>
+        <div class="sl-desc">Stored as base64 in localStorage (~3MB max per image)</div>
+      </div>
+      <span style="font-size:20px;font-weight:300">${imgCount}</span>
+    </div>
+  </div>
+  <div class="danger-zone">
+    <div style="font-size:13px;font-weight:600;color:#ff6060;margin-bottom:12px">⚠️ Danger Zone</div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <button class="btn btn-secondary" onclick="resetAllTexts()">↺ Reset All Texts</button>
+      <button class="btn btn-secondary" onclick="resetAllImages()">↺ Reset All Images</button>
+      <button class="btn btn-secondary" style="color:#ff6060;border-color:rgba(255,96,96,0.3)" onclick="resetEverything()">🗑 Reset Everything</button>
+    </div>
+  </div>`;
+}
+
+function toggleAdminMode() {
+  const current = localStorage.getItem('fxtextile_admin_mode') === 'true';
+  localStorage.setItem('fxtextile_admin_mode', String(!current));
+  showSection('settings');
+  toast(!current ? 'Admin bar enabled on site pages' : 'Admin bar disabled', 'success');
+}
+
+function resetAllTexts() {
+  if (!confirm('Reset all text changes? This cannot be undone.')) return;
+  savedTexts = {};
+  localStorage.removeItem(STORAGE_KEY);
+  toast('All texts reset', 'success');
+  showSection(currentSection);
+}
+
+function resetAllImages() {
+  if (!confirm('Reset all image replacements?')) return;
+  savedImages = {};
+  localStorage.removeItem(IMG_STORAGE_KEY);
+  toast('All images reset', 'success');
+  showSection(currentSection);
+}
+
+function resetEverything() {
+  if (!confirm('Reset ALL changes (texts + images)?')) return;
+  savedTexts = {};
+  savedImages = {};
+  localStorage.removeItem(STORAGE_KEY);
+  localStorage.removeItem(IMG_STORAGE_KEY);
+  toast('Everything reset', 'success');
+  showSection('dashboard');
+}
+
+// ── GLOBAL ACTIONS ────────────────────────────────────────────────────────
+function saveAll() {
+  saveState();
+}
+
+function previewSite() {
+  localStorage.setItem('fxtextile_admin_mode', 'true');
+  window.open('index.html', '_blank');
+}
+
+function exportData() {
+  // Generate a data.js file that can be placed in the site folder
+  // When present, it pre-populates localStorage on first load
+  const data = {
+    texts: savedTexts,
+    images: Object.fromEntries(
+      Object.entries(savedImages).map(([k,v]) => [k, v.length > 200 ? '[base64-image]' : v])
+    )
+  };
+  
+  const content = `/**
+ * FX Textile — Exported Content
+ * Generated: ${new Date().toLocaleString()}
+ * Place this file in the site root folder.
+ * It auto-loads into localStorage on first visit.
+ */
+(function() {
+  const TEXTS = ${JSON.stringify(savedTexts, null, 2)};
+  const IMGS_KEYS = ${JSON.stringify(Object.keys(savedImages))};
+  
+  // Only set if not already customised by user
+  if (!localStorage.getItem('fxtextile_exported')) {
+    localStorage.setItem('fxtextile_content', JSON.stringify(TEXTS));
+    localStorage.setItem('fxtextile_exported', '1');
+    console.log('FX Textile: content loaded from data.js');
+  }
+})();`;
+  
+  const blob = new Blob([content], {type: 'text/javascript'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'data.js';
+  a.click();
+  URL.revokeObjectURL(url);
+  toast('data.js exported — add to site folder', 'success');
+}
+
+// ── TOAST ─────────────────────────────────────────────────────────────────
+function toast(msg, type='success') {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = 'toast show ' + type;
+  clearTimeout(el._t);
+  el._t = setTimeout(() => el.className = 'toast', 2800);
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────
+loadState();
+showSection('dashboard');
+updateCounts();
+</script>
+</body>
+</html>

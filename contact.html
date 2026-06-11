@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Contact — FX Textile</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;background:#f5f2ee;color:#1a1a1a;overflow-x:hidden}
+:root{
+  --black:#0a0a0a;--off-white:#f5f2ee;--cream:#ede9e3;
+  --red:#8b1a1a;--red-light:#a52020;--red-dark:#6a1212;
+  --gray:#6b6b6b;--gray-light:#c8c4be;--border:rgba(0,0,0,0.1);
+}
+/* LANG BAR */
+.lang-bar{background:var(--black);padding:8px 60px;display:flex;justify-content:flex-end;gap:4px}
+.lang-btn{background:none;border:none;color:rgba(255,255,255,0.35);font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:1.5px;cursor:pointer;padding:4px 10px;transition:color .2s}
+.lang-btn:hover,.lang-btn.active{color:#fff}
+.lang-btn+.lang-btn{border-left:1px solid #333}
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(245,242,238,0.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:0 60px;display:flex;align-items:center;justify-content:space-between;height:76px}
+.nav-logo{display:flex;align-items:center;gap:18px}
+.logo-fx{height:34px;display:block;mix-blend-mode:multiply}
+.logo-div{width:1px;height:26px;background:var(--gray-light)}
+.logo-harput{height:22px;display:block;mix-blend-mode:multiply;opacity:0.6}
+.nav-links{display:flex;gap:32px;list-style:none;align-items:center}
+.nav-links a{text-decoration:none;color:var(--gray);font-size:11px;letter-spacing:2px;font-weight:500;text-transform:uppercase;transition:color .2s;font-family:'Barlow Condensed',sans-serif;padding:4px 0;border-bottom:2px solid transparent}
+.nav-links a:hover{color:var(--red)}
+.nav-links a.current{color:var(--black);border-bottom-color:var(--red)}
+.nav-cta{background:var(--red)!important;color:#fff!important;padding:10px 22px!important;border-bottom:none!important;letter-spacing:1.5px!important}
+.nav-cta:hover{background:var(--red-dark)!important}
+/* LANG SWITCHING */
+[data-lang]{display:none}
+[data-lang].active{display:inline}
+.block-lang[data-lang]{display:none}
+.block-lang[data-lang].active{display:block}
+/* FOOTER */
+footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,255,255,0.05)}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
+.footer-brand .foot-fx{height:28px;filter:brightness(0) invert(1);opacity:0.8;display:block;margin-bottom:12px}
+.footer-brand .foot-harput{height:18px;filter:brightness(0) invert(1);opacity:0.3;display:block;margin-bottom:20px}
+.footer-brand p{font-size:13px;color:rgba(255,255,255,0.3);line-height:1.7;max-width:220px}
+.footer-col h5{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:16px}
+.footer-col a{display:block;font-size:13px;color:rgba(255,255,255,0.4);text-decoration:none;margin-bottom:10px;transition:color .2s}
+.footer-col a:hover{color:rgba(255,255,255,0.8)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:28px;border-top:1px solid rgba(255,255,255,0.07)}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.2);font-family:'Barlow Condensed',sans-serif}
+/* UTILS */
+.section-eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--red);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.section-eyebrow::before{content:'';display:inline-block;width:24px;height:1px;background:var(--red)}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,58px);font-weight:300;line-height:1.1;margin-bottom:20px}
+.section-title em{font-style:italic}
+.section-body{font-size:16px;color:var(--gray);line-height:1.85;max-width:620px}
+.btn-primary{background:var(--red);color:#fff;border:none;padding:14px 32px;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:background .2s;display:inline-block}
+.btn-primary:hover{background:var(--red-dark)}
+.btn-ghost{border:1px solid var(--gray-light);color:var(--gray);padding:14px 32px;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:all .2s;display:inline-block}
+.btn-ghost:hover{border-color:var(--red);color:var(--red)}
+@media(max-width:1024px){
+  nav,.lang-bar{padding-left:24px;padding-right:24px}
+  footer{padding:40px 24px 28px}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .nav-links{display:none}
+  .footer-grid{grid-template-columns:1fr}
+}
+
+.contact-hero{height:50vh;min-height:360px;background:var(--black);display:flex;align-items:flex-end;position:relative;overflow:hidden}
+.contact-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.18}
+.contact-hero-grad{position:absolute;inset:0;background:linear-gradient(to top,#0a0a0a 40%,rgba(10,10,10,0.2) 100%)}
+.contact-hero-content{position:relative;z-index:2;padding:0 60px 72px}
+.page-tag{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--red-light);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.page-tag::before{content:'';width:24px;height:1px;background:var(--red-light);display:block}
+.page-title{font-family:'Cormorant Garamond',serif;font-size:clamp(48px,6vw,84px);font-weight:300;color:#fff;line-height:1.0}
+.page-title em{font-style:italic;opacity:0.5}
+/* CONTACT MAIN */
+.contact-main{padding:80px 60px;background:var(--off-white);display:grid;grid-template-columns:1fr 1.2fr;gap:80px}
+.contact-left p{font-size:16px;color:var(--gray);line-height:1.85;margin-bottom:32px}
+.cinfo-block{margin-bottom:28px}
+.cinfo-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gray-light);margin-bottom:8px}
+.cinfo-value{font-size:15px;color:var(--text);line-height:1.6}
+.contact-form{background:var(--cream);padding:48px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.form-field label{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gray)}
+.form-field input,.form-field textarea,.form-field select{background:var(--off-white);border:1px solid var(--border);padding:13px 16px;color:var(--text);font-family:'Barlow',sans-serif;font-size:14px;outline:none;transition:border-color .2s;width:100%;appearance:none}
+.form-field input:focus,.form-field textarea:focus,.form-field select:focus{border-color:var(--red)}
+.form-field textarea{height:130px;resize:vertical}
+.form-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;margin-bottom:32px}
+/* OFFICES STRIP */
+.offices{padding:72px 60px;background:var(--cream)}
+.offices-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-top:48px}
+.office-card{background:var(--off-white);padding:36px}
+.office-card h3{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;margin-bottom:4px}
+.office-card .city{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:16px}
+.office-card p{font-size:13px;color:var(--gray);line-height:1.7}
+@media(max-width:1024px){
+  .contact-main{grid-template-columns:1fr}
+  .offices-grid{grid-template-columns:1fr}
+  .contact-main,.offices{padding:60px 24px}
+  .contact-hero-content{padding:0 24px 56px}
+  .form-row{grid-template-columns:1fr}
+  .contact-form{padding:32px 24px}
+}
+</style>
+</head>
+<body>
+
+<div class="lang-bar">
+  <button class="lang-btn active" data-l="en" onclick="setLang('en')">EN</button>
+  <button class="lang-btn" data-l="tr" onclick="setLang('tr')">TR</button>
+  <button class="lang-btn" data-l="es" onclick="setLang('es')">ES</button>
+</div>
+<nav>
+  <div class="nav-logo">
+    <a href="index.html"><img data-img-key="logo-fx-textile" class="logo-fx" src="images/logo-fx-textile.svg" alt="FX Textile"></a>
+    <div class="logo-div"></div>
+    <a href="index.html"><img data-img-key="logo-harput" class="logo-harput" src="images/logo-harput.svg" alt="Harput Holding"></a>
+  </div>
+  <ul class="nav-links"><li><a href="index.html" ><span data-lang="en" class="active" data-edit-key="contact_1">About</span><span data-lang="tr">Hakkımızda</span><span data-lang="es">Nosotros</span></a></li><li><a href="products.html" ><span data-lang="en" class="active" data-edit-key="contact_2">Products</span><span data-lang="tr">Ürünler</span><span data-lang="es">Productos</span></a></li><li><a href="sustainability.html" ><span data-lang="en" class="active" data-edit-key="contact_3">Sustainability</span><span data-lang="tr">Sürdürülebilirlik</span><span data-lang="es">Sostenibilidad</span></a></li><li><a href="global.html" ><span data-lang="en" class="active" data-edit-key="contact_4">Global</span><span data-lang="tr">Global</span><span data-lang="es">Global</span></a></li><li><a href="certifications.html" ><span data-lang="en" class="active" data-edit-key="contact_5">Certifications</span><span data-lang="tr">Sertifikalar</span><span data-lang="es">Certificaciones</span></a></li><li><a href="contact.html" class="nav-cta"><span data-lang="en" class="active" data-edit-key="contact_6">Contact</span><span data-lang="tr">İletişim</span><span data-lang="es">Contacto</span></a></li></ul>
+</nav>
+
+<div class="contact-hero">
+  <img data-img-key="hero-contact" src="images/hero-contact.jpg" alt="Contact" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.18">
+  <div class="contact-hero-grad"></div>
+  <div class="contact-hero-content">
+    <div class="page-tag"><span data-lang="en" class="active" data-edit-key="contact_7">Contact</span><span data-lang="tr">İletişim</span><span data-lang="es">Contacto</span></div>
+    <h1 class="page-title"><span data-lang="en" class="active" data-edit-key="contact_8">Let's build something<br><em>remarkable.</em></span><span data-lang="tr">Birlikte olağanüstü<br><em>bir şey inşa edelim.</em></span><span data-lang="es">Construyamos algo<br><em>extraordinario.</em></span></h1>
+  </div>
+</div>
+
+<div class="contact-main">
+  <div class="contact-left">
+    <div class="section-eyebrow"><span data-lang="en" class="active" data-edit-key="contact_9">Get in Touch</span><span data-lang="tr">Bize Ulaşın</span><span data-lang="es">Contáctenos</span></div>
+    <h2 class="section-title"><span data-lang="en" class="active" data-edit-key="contact_10">We reply within<br><em>24 hours.</em></span><span data-lang="tr">24 saat içinde<br><em>yanıt veririz.</em></span><span data-lang="es">Respondemos en<br><em>24 horas.</em></span></h2>
+    <p><span data-lang="en" class="active" data-edit-key="contact_11">Whether sourcing certified fabrics, requesting samples with TCs, exploring a supply partnership or asking a technical question — our team is ready.</span><span data-lang="tr">Sertifikalı kumaş temin etmek, TC'li numune talep etmek, ortaklık keşfetmek veya teknik soru sormak — ekibimiz hazır.</span><span data-lang="es">Para adquirir telas certificadas, solicitar muestras con TC, explorar una asociación o hacer preguntas técnicas.</span></p>
+    <div class="cinfo-block"><div class="cinfo-label"><span data-lang="en" class="active" data-edit-key="contact_12">Company</span><span data-lang="tr">Şirket</span><span data-lang="es">Empresa</span></div><div class="cinfo-value">Efiks Tekstil San. ve Tic. Ltd. Şti.<br><span style="font-size:13px;color:var(--gray)">FX Textile — A Division of Harput Holding</span></div></div>
+    <div class="cinfo-block"><div class="cinfo-label"><span data-lang="en" class="active" data-edit-key="contact_13">Address</span><span data-lang="tr">Adres</span><span data-lang="es">Dirección</span></div><div class="cinfo-value">Işıktepe OSB Mah. Siyah Cad. No:49<br>Nilüfer, 16140 Bursa, Turkey</div></div>
+    <div class="cinfo-block"><div class="cinfo-label">Textile Exchange ID</div><div class="cinfo-value">TE-00128129</div></div>
+    <div class="cinfo-block"><div class="cinfo-label">GOTS License</div><div class="cinfo-value">GOTS-15837</div></div>
+  </div>
+  <div class="contact-form">
+    <div class="form-title"><span data-lang="en" class="active" data-edit-key="contact_14">Send us a message</span><span data-lang="tr">Mesaj Gönderin</span><span data-lang="es">Envíenos un mensaje</span></div>
+    <div class="form-row">
+      <div class="form-field"><label><span data-lang="en" class="active" data-edit-key="contact_15">First Name</span><span data-lang="tr">Ad</span><span data-lang="es">Nombre</span></label><input type="text"></div>
+      <div class="form-field"><label><span data-lang="en" class="active" data-edit-key="contact_16">Last Name</span><span data-lang="tr">Soyad</span><span data-lang="es">Apellido</span></label><input type="text"></div>
+    </div>
+    <div class="form-field"><label><span data-lang="en" class="active" data-edit-key="contact_17">Company / Brand</span><span data-lang="tr">Firma / Marka</span><span data-lang="es">Empresa / Marca</span></label><input type="text"></div>
+    <div class="form-row">
+      <div class="form-field"><label>Email</label><input type="email"></div>
+      <div class="form-field"><label><span data-lang="en" class="active" data-edit-key="contact_18">Country</span><span data-lang="tr">Ülke</span><span data-lang="es">País</span></label><input type="text"></div>
+    </div>
+    <div class="form-field">
+      <label><span data-lang="en" class="active" data-edit-key="contact_19">I am interested in</span><span data-lang="tr">İlgilendiğim konu</span><span data-lang="es">Estoy interesado en</span></label>
+      <select>
+        <option value="">Select...</option>
+        <option>Sample Request + Transaction Certificate</option>
+        <option>Price &amp; MOQ Inquiry</option>
+        <option>Sustainability / Certification Documentation</option>
+        <option>Long-term Supply Partnership</option>
+        <option>Technical / Product Questions</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="form-field"><label><span data-lang="en" class="active" data-edit-key="contact_20">Message</span><span data-lang="tr">Mesaj</span><span data-lang="es">Mensaje</span></label><textarea></textarea></div>
+    <button type="button" class="btn-primary" style="cursor:pointer;border:none;font-size:13px"><span data-lang="en" class="active" data-edit-key="contact_21">Send Message</span><span data-lang="tr">Gönder</span><span data-lang="es">Enviar</span></button>
+  </div>
+</div>
+
+<section class="offices">
+  <div class="section-eyebrow"><span data-lang="en" class="active" data-edit-key="contact_22">Production Facilities</span><span data-lang="tr">Üretim Tesisleri</span><span data-lang="es">Plantas de Producción</span></div>
+  <div class="offices-grid">
+    <div class="office-card"><img data-img-key="contact-facility-kemalpaşa" src="images/contact-facility-kemalpaşa.jpg" alt="Kemalpaşa" style="width:100%;height:180px;object-fit:cover;display:block"><h3 style="margin-top:24px">Miranlı</h3><div class="city"><span data-lang="en" class="active" data-edit-key="contact_23">Kemalpaşa Yarn Facility</span><span data-lang="tr">Kemalpaşa İplik Tesisi</span><span data-lang="es">Planta de Hilados Kemalpaşa</span></div><p><span data-lang="en" class="active" data-edit-key="contact_24">Est. 2015 · 4,500 t/month · Solar panels · 438 employees</span><span data-lang="tr">2015 · Aylık 4.500 t · Güneş panelleri · 438 çalışan</span><span data-lang="es">Est. 2015 · 4.500 t/mes · Paneles solares · 438 empleados</span></p></div>
+    <div class="office-card"><img data-img-key="contact-facility-kinteks" src="images/contact-facility-kinteks.jpg" alt="Kinteks" style="width:100%;height:180px;object-fit:cover;display:block"><h3 style="margin-top:24px">Kinteks</h3><div class="city"><span data-lang="en" class="active" data-edit-key="contact_25">Dyehouse &amp; Printing</span><span data-lang="tr">Boyahane &amp; Baskı</span><span data-lang="es">Tinturería e Impresión</span></div><p><span data-lang="en" class="active" data-edit-key="contact_26">Est. 1998 · 3.5M m/month · Water recycling · 503 employees</span><span data-lang="tr">1998 · Aylık 3.5M m · Su geri dönüşümü · 503 çalışan</span><span data-lang="es">Est. 1998 · 3,5M m/mes · Reciclaje de agua · 503 empleados</span></p></div>
+    <div class="office-card"><img data-img-key="contact-facility-weaving" src="images/contact-facility-weaving.jpg" alt="Weaving" style="width:100%;height:180px;object-fit:cover;display:block"><h3 style="margin-top:24px">Gökçeköy &amp; Miranda</h3><div class="city"><span data-lang="en" class="active" data-edit-key="contact_27">Weaving Facilities</span><span data-lang="tr">Dokuma Tesisleri</span><span data-lang="es">Plantas de Tejido</span></div><p><span data-lang="en" class="active" data-edit-key="contact_28">2.5M+ m/month combined · Air-Jet, Water-Jet, Jacquard · 288 employees</span><span data-lang="tr">Kombine 2.5M+ m/ay · Hava Jetli, Su Jetli, Jakarlı · 288 çalışan</span><span data-lang="es">2,5M+ m/mes combinados · Air-Jet, Water-Jet, Jacquard · 288 empleados</span></p></div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img data-img-key="logo-fx-textile" class="foot-fx" src="images/logo-fx-textile.svg" alt="FX Textile">
+      <img data-img-key="logo-harput" class="foot-harput" src="images/logo-harput.svg" alt="Harput Holding">
+      <p><span data-lang="en" class="active" data-edit-key="contact_29">Premium apparel fabrics. A division of Harput Holding. Est. 2023, Bursa, Turkey.</span>
+         <span data-lang="tr">Premium giyim kumaşları. Harput Holding bünyesinde. 2023, Bursa, Türkiye.</span>
+         <span data-lang="es">Telas premium para ropa. División de Harput Holding. Est. 2023, Bursa, Turquía.</span></p>
+    </div>
+    <div class="footer-col">
+      <h5><span data-lang="en" class="active" data-edit-key="contact_30">Company</span><span data-lang="tr">Şirket</span><span data-lang="es">Empresa</span></h5>
+      <a href="index.html"><span data-lang="en" class="active" data-edit-key="contact_31">About Us</span><span data-lang="tr">Hakkımızda</span><span data-lang="es">Nosotros</span></a>
+      <a href="global.html"><span data-lang="en" class="active" data-edit-key="contact_32">Global Presence</span><span data-lang="tr">Küresel Varlık</span><span data-lang="es">Presencia Global</span></a>
+      <a href="certifications.html"><span data-lang="en" class="active" data-edit-key="contact_33">Certifications</span><span data-lang="tr">Sertifikalar</span><span data-lang="es">Certificaciones</span></a>
+    </div>
+    <div class="footer-col">
+      <h5><span data-lang="en" class="active" data-edit-key="contact_34">Products</span><span data-lang="tr">Ürünler</span><span data-lang="es">Productos</span></h5>
+      <a href="products.html"><span data-lang="en" class="active" data-edit-key="contact_35">Recycled Polyester</span><span data-lang="tr">Geri Dön. Polyester</span><span data-lang="es">Poliéster Reciclado</span></a>
+      <a href="products.html"><span data-lang="en" class="active" data-edit-key="contact_36">Organic Cotton</span><span data-lang="tr">Organik Pamuk</span><span data-lang="es">Algodón Orgánico</span></a>
+      <a href="sustainability.html"><span data-lang="en" class="active" data-edit-key="contact_37">Sustainability</span><span data-lang="tr">Sürdürülebilirlik</span><span data-lang="es">Sostenibilidad</span></a>
+    </div>
+    <div class="footer-col">
+      <h5><span data-lang="en" class="active" data-edit-key="contact_38">Contact</span><span data-lang="tr">İletişim</span><span data-lang="es">Contacto</span></h5>
+      <a href="contact.html"><span data-lang="en" class="active" data-edit-key="contact_39">Send Message</span><span data-lang="tr">Mesaj Gönder</span><span data-lang="es">Enviar Mensaje</span></a>
+      <a href="contact.html" style="color:rgba(255,255,255,0.25);font-size:12px;margin-top:8px">Işıktepe OSB Mah.<br>Nilüfer, Bursa, TR</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Efiks Tekstil San. ve Tic. Ltd. Şti. — A Division of Harput Holding</span>
+    <span class="footer-copy">GOTS · GRS · OCS · RCS · ISO 9001 · 14001 · 50001</span>
+  </div>
+</footer>
+<script>
+function setLang(l){document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.l===l));document.querySelectorAll('[data-lang]').forEach(e=>e.classList.toggle('active',e.getAttribute('data-lang')===l));localStorage.setItem('fxlang',l);document.documentElement.lang=l;}
+document.addEventListener('DOMContentLoaded',()=>{const s=localStorage.getItem('fxlang')||'en';setLang(s);});
+</script>
+<script src="content-loader.js"></script>
+</body></html>

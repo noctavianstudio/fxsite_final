@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Sustainability — FX Textile</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;background:#f5f2ee;color:#1a1a1a;overflow-x:hidden}
+:root{
+  --black:#0a0a0a;--off-white:#f5f2ee;--cream:#ede9e3;
+  --red:#8b1a1a;--red-light:#a52020;--red-dark:#6a1212;
+  --gray:#6b6b6b;--gray-light:#c8c4be;--border:rgba(0,0,0,0.1);
+}
+/* LANG BAR */
+.lang-bar{background:var(--black);padding:8px 60px;display:flex;justify-content:flex-end;gap:4px}
+.lang-btn{background:none;border:none;color:rgba(255,255,255,0.35);font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:1.5px;cursor:pointer;padding:4px 10px;transition:color .2s}
+.lang-btn:hover,.lang-btn.active{color:#fff}
+.lang-btn+.lang-btn{border-left:1px solid #333}
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(245,242,238,0.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:0 60px;display:flex;align-items:center;justify-content:space-between;height:76px}
+.nav-logo{display:flex;align-items:center;gap:18px}
+.logo-fx{height:34px;display:block;mix-blend-mode:multiply}
+.logo-div{width:1px;height:26px;background:var(--gray-light)}
+.logo-harput{height:22px;display:block;mix-blend-mode:multiply;opacity:0.6}
+.nav-links{display:flex;gap:32px;list-style:none;align-items:center}
+.nav-links a{text-decoration:none;color:var(--gray);font-size:11px;letter-spacing:2px;font-weight:500;text-transform:uppercase;transition:color .2s;font-family:'Barlow Condensed',sans-serif;padding:4px 0;border-bottom:2px solid transparent}
+.nav-links a:hover{color:var(--red)}
+.nav-links a.current{color:var(--black);border-bottom-color:var(--red)}
+.nav-cta{background:var(--red)!important;color:#fff!important;padding:10px 22px!important;border-bottom:none!important;letter-spacing:1.5px!important}
+.nav-cta:hover{background:var(--red-dark)!important}
+/* LANG SWITCHING */
+[data-lang]{display:none}
+[data-lang].active{display:inline}
+.block-lang[data-lang]{display:none}
+.block-lang[data-lang].active{display:block}
+/* FOOTER */
+footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,255,255,0.05)}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
+.footer-brand .foot-fx{height:28px;filter:brightness(0) invert(1);opacity:0.8;display:block;margin-bottom:12px}
+.footer-brand .foot-harput{height:18px;filter:brightness(0) invert(1);opacity:0.3;display:block;margin-bottom:20px}
+.footer-brand p{font-size:13px;color:rgba(255,255,255,0.3);line-height:1.7;max-width:220px}
+.footer-col h5{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:16px}
+.footer-col a{display:block;font-size:13px;color:rgba(255,255,255,0.4);text-decoration:none;margin-bottom:10px;transition:color .2s}
+.footer-col a:hover{color:rgba(255,255,255,0.8)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:28px;border-top:1px solid rgba(255,255,255,0.07)}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.2);font-family:'Barlow Condensed',sans-serif}
+/* UTILS */
+.section-eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--red);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.section-eyebrow::before{content:'';display:inline-block;width:24px;height:1px;background:var(--red)}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,58px);font-weight:300;line-height:1.1;margin-bottom:20px}
+.section-title em{font-style:italic}
+.section-body{font-size:16px;color:var(--gray);line-height:1.85;max-width:620px}
+.btn-primary{background:var(--red);color:#fff;border:none;padding:14px 32px;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:background .2s;display:inline-block}
+.btn-primary:hover{background:var(--red-dark)}
+.btn-ghost{border:1px solid var(--gray-light);color:var(--gray);padding:14px 32px;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:all .2s;display:inline-block}
+.btn-ghost:hover{border-color:var(--red);color:var(--red)}
+@media(max-width:1024px){
+  nav,.lang-bar{padding-left:24px;padding-right:24px}
+  footer{padding:40px 24px 28px}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .nav-links{display:none}
+  .footer-grid{grid-template-columns:1fr}
+}
+
+.page-hero{height:72vh;min-height:500px;background:var(--black);display:flex;align-items:flex-end;position:relative;overflow:hidden}
+.page-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.25}
+.page-hero-grad{position:absolute;inset:0;background:linear-gradient(to top,#0a0a0a 40%,rgba(10,10,10,0.3) 100%)}
+.page-hero-content{position:relative;z-index:2;padding:0 60px 72px}
+.page-tag{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#5a9a5a;margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.page-tag::before{content:'';width:24px;height:1px;background:#5a9a5a;display:block}
+.page-title{font-family:'Cormorant Garamond',serif;font-size:clamp(48px,7vw,90px);font-weight:300;color:#fff;line-height:1.0}
+.page-title em{font-style:italic;opacity:0.55}
+/* INTRO */
+.s-intro{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.s-intro-text{padding:80px 60px;background:var(--cream)}
+.s-intro-text p{font-size:16px;color:var(--gray);line-height:1.85;margin-bottom:20px}
+.s-intro-img{position:relative;overflow:hidden;min-height:440px}
+.s-intro-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* KEY METRICS */
+.metrics-band{background:#0a1a0a;padding:56px 60px;display:flex;gap:0;flex-wrap:wrap}
+.metric{flex:1;min-width:180px;padding:0 40px;border-right:1px solid rgba(255,255,255,0.08);text-align:center}
+.metric:last-child{border-right:none}
+.metric-num{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;color:#7ac97a;line-height:1;display:block}
+.metric-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:2px;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-top:8px;display:block}
+/* PILLARS GRID */
+.pillars-deep{padding:100px 60px;background:var(--off-white)}
+.pillars-deep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-top:64px}
+.pd-card{background:var(--cream);overflow:hidden;transition:box-shadow .3s}
+.pd-card:hover{box-shadow:0 12px 40px rgba(0,0,0,0.1)}
+.pd-card-img{height:240px;overflow:hidden;position:relative}
+.pd-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.pd-card:hover .pd-card-img img{transform:scale(1.06)}
+.pd-card-body{padding:32px}
+.pd-icon{font-size:28px;margin-bottom:12px;display:block}
+.pd-card-body h3{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;margin-bottom:10px}
+.pd-card-body p{font-size:14px;color:var(--gray);line-height:1.75}
+/* CIRCULAR SPLIT */
+.circular-split{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.circ-text{padding:90px 60px;background:var(--black);color:#fff}
+.circ-text .section-eyebrow{color:#5a9a5a}
+.circ-text .section-eyebrow::before{background:#5a9a5a}
+.circ-text .section-title{color:#fff}
+.circ-text p{font-size:15px;color:rgba(255,255,255,0.5);line-height:1.85;margin-bottom:18px}
+.circ-list{margin-top:32px;display:flex;flex-direction:column;gap:14px}
+.circ-item{display:flex;gap:16px;align-items:flex-start}
+.circ-dot{width:8px;height:8px;background:#5a9a5a;border-radius:50%;flex-shrink:0;margin-top:7px}
+.circ-item-text{font-size:14px;color:rgba(255,255,255,0.55);line-height:1.6}
+.circ-item-text strong{color:rgba(255,255,255,0.8);font-weight:500}
+.circ-img{position:relative;overflow:hidden;min-height:560px}
+.circ-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* ESG */
+.esg-section{padding:100px 60px;background:var(--cream)}
+.esg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:56px}
+.esg-card{padding:40px;border-top:3px solid var(--red);background:var(--off-white)}
+.esg-card h3{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;margin-bottom:16px}
+.esg-card p{font-size:14px;color:var(--gray);line-height:1.75;margin-bottom:14px}
+.esg-card ul{padding-left:18px}
+.esg-card ul li{font-size:13px;color:var(--gray);line-height:1.7;margin-bottom:6px}
+/* MEMBERSHIPS */
+.memberships{padding:80px 60px;background:var(--off-white)}
+.memb-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:48px}
+.memb-card{background:var(--cream);padding:36px 28px;text-align:center}
+.memb-card h4{font-family:'Barlow Condensed',sans-serif;font-size:16px;letter-spacing:1px;margin-bottom:8px;font-weight:600}
+.memb-card p{font-size:12px;color:var(--gray);line-height:1.6}
+/* SDGS */
+.sdg-section{background:var(--black);padding:72px 60px}
+.sdg-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:40px}
+.sdg-chip{background:rgba(90,154,90,0.12);border:1px solid rgba(90,154,90,0.25);color:rgba(90,154,90,0.85);padding:8px 16px;font-size:13px;font-family:'Barlow Condensed',sans-serif;letter-spacing:1px}
+@media(max-width:1024px){
+  .s-intro,.circular-split{grid-template-columns:1fr}
+  .pillars-deep-grid,.esg-grid{grid-template-columns:1fr 1fr}
+  .memb-grid{grid-template-columns:1fr 1fr}
+  .metrics-band{gap:20px}
+  .metric{border-right:none;border-bottom:1px solid rgba(255,255,255,0.08)}
+  .pillars-deep,.esg-section,.memberships,.sdg-section{padding:60px 24px}
+  .circ-text{padding:60px 24px}
+  .page-hero-content{padding:0 24px 56px}
+}
+</style>
+</head>
+<body>
+
+<div class="lang-bar">
+  <button class="lang-btn active" data-l="en" onclick="setLang('en')">EN</button>
+  <button class="lang-btn" data-l="tr" onclick="setLang('tr')">TR</button>
+  <button class="lang-btn" data-l="es" onclick="setLang('es')">ES</button>
+</div>
+<nav>
+  <div class="nav-logo">
+    <a href="index.html"><img data-img-key="logo-fx-textile" class="logo-fx" src="images/logo-fx-textile.svg" alt="FX Textile"></a>
+    <div class="logo-div"></div>
+    <a href="index.html"><img data-img-key="logo-harput" class="logo-harput" src="images/logo-harput.svg" alt="Harput Holding"></a>
+  </div>
+  <ul class="nav-links"><li><a href="index.html" ><span data-lang="en" class="active" data-edit-key="sustainability_1">About</span><span data-lang="tr">Hakkımızda</span><span data-lang="es">Nosotros</span></a></li><li><a href="products.html" ><span data-lang="en" class="active" data-edit-key="sustainability_2">Products</span><span data-lang="tr">Ürünler</span><span data-lang="es">Productos</span></a></li><li><a href="sustainability.html" class="current"><span data-lang="en" class="active" data-edit-key="sustainability_3">Sustainability</span><span data-lang="tr">Sürdürülebilirlik</span><span data-lang="es">Sostenibilidad</span></a></li><li><a href="global.html" ><span data-lang="en" class="active" data-edit-key="sustainability_4">Global</span><span data-lang="tr">Global</span><span data-lang="es">Global</span></a></li><li><a href="certifications.html" ><span data-lang="en" class="active" data-edit-key="sustainability_5">Certifications</span><span data-lang="tr">Sertifikalar</span><span data-lang="es">Certificaciones</span></a></li><li><a href="contact.html" class="nav-cta"><span data-lang="en" class="active" data-edit-key="sustainability_6">Contact</span><span data-lang="tr">İletişim</span><span data-lang="es">Contacto</span></a></li></ul>
+</nav>
+
+<div class="page-hero">
+  <img data-img-key="hero-sustainability" src="images/hero-sustainability.jpg" alt="Sustainability" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.25">
+  <div class="page-hero-grad"></div>
+  <div class="page-hero-content">
+    <div class="page-tag" style="color:#5a9a5a"><span data-lang="en" class="active" data-edit-key="sustainability_7">Sustainability</span><span data-lang="tr">Sürdürülebilirlik</span><span data-lang="es">Sostenibilidad</span></div>
+    <h1 class="page-title"><span data-lang="en" class="active" data-edit-key="sustainability_8">Responsible<br><em>at every thread.</em></span><span data-lang="tr">Her iplikte<br><em>sorumlu.</em></span><span data-lang="es">Responsables<br><em>en cada hilo.</em></span></h1>
+  </div>
+</div>
+
+<div class="s-intro">
+  <div class="s-intro-text">
+    <div class="section-eyebrow"><span data-lang="en" class="active" data-edit-key="sustainability_9">Our Commitment</span><span data-lang="tr">Taahhüdümüz</span><span data-lang="es">Nuestro Compromiso</span></div>
+    <h2 class="section-title"><span data-lang="en" class="active" data-edit-key="sustainability_10">Circular economy<br><em>from fiber to fabric.</em></span><span data-lang="tr">Elyaftan kumaşa<br><em>döngüsel ekonomi.</em></span><span data-lang="es">Economía circular<br><em>de fibra a tela.</em></span></h2>
+    <p><span data-lang="en" class="active" data-edit-key="sustainability_11">For over six years, Harput Holding has invested in projects that reduce water consumption, recover energy and build a zero-waste production model. Sustainability at FX Textile is embedded in every certification, every production process and every shipment document.</span><span data-lang="tr">Altı yılı aşkın süredir Harput Holding, su tüketimini azaltan, enerji geri kazanan ve sıfır atık üretim modeli oluşturan projelere yatırım yapmaktadır.</span><span data-lang="es">Durante más de seis años, Harput Holding ha invertido en proyectos que reducen el consumo de agua, recuperan energía y construyen un modelo de producción de residuo cero.</span></p>
+    <p><span data-lang="en" class="active" data-edit-key="sustainability_12">The 2025–2030 Strategic Sustainability Plan tracks all programmes under three pillars: Environment, Social and Governance — aligned with global ESG reporting standards.</span><span data-lang="tr">2025–2030 Stratejik Sürdürülebilirlik Planı, tüm programları Çevre, Sosyal ve Yönetim olmak üzere üç eksen altında izler.</span><span data-lang="es">El Plan Estratégico de Sostenibilidad 2025–2030 sigue todos los programas bajo tres pilares: Medio Ambiente, Social y Gobernanza.</span></p>
+  </div>
+  <div class="s-intro-img"><img data-img-key="sustain-intro" src="images/sustain-intro.jpg" alt="Sustainability" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></div>
+</div>
+
+<div class="metrics-band">
+  <div class="metric"><span class="metric-num">100%</span><span class="metric-label"><span data-lang="en" class="active" data-edit-key="sustainability_13">Dyehouse Water Treated &amp; Recycled</span><span data-lang="tr">Boyahane Suyu Arıtılıyor</span><span data-lang="es">Agua Tinturería Tratada</span></span></div>
+  <div class="metric"><span class="metric-num">☀</span><span class="metric-label"><span data-lang="en" class="active" data-edit-key="sustainability_14">Solar Panels on Yarn Facility Roof</span><span data-lang="tr">İplik Tesisi Çatısında Güneş Paneli</span><span data-lang="es">Paneles Solares en Planta Hilados</span></span></div>
+  <div class="metric"><span class="metric-num">6+</span><span class="metric-label"><span data-lang="en" class="active" data-edit-key="sustainability_15">Years of R&amp;D Projects</span><span data-lang="tr">Yıllık Ar-Ge Projesi</span><span data-lang="es">Años de Proyectos I+D</span></span></div>
+  <div class="metric"><span class="metric-num">5</span><span class="metric-label"><span data-lang="en" class="active" data-edit-key="sustainability_16">ISO Standards Certified</span><span data-lang="tr">ISO Standardı Sertifikalı</span><span data-lang="es">Normas ISO Certificadas</span></span></div>
+</div>
+
+<section class="pillars-deep">
+  <div class="section-eyebrow"><span data-lang="en" class="active" data-edit-key="sustainability_17">Our Sustainability Pillars</span><span data-lang="tr">Sürdürülebilirlik Sütunlarımız</span><span data-lang="es">Nuestros Pilares de Sostenibilidad</span></div>
+  <h2 class="section-title"><span data-lang="en" class="active" data-edit-key="sustainability_18">How we reduce<br><em>our footprint.</em></span><span data-lang="tr">Ayak izimizi nasıl<br><em>azaltıyoruz.</em></span><span data-lang="es">Cómo reducimos<br><em>nuestra huella.</em></span></h2>
+  <div class="pillars-deep-grid">
+    <div class="pd-card"><div class="pd-card-img"><img data-img-key="sustain-solar" src="images/sustain-solar.jpg" alt="Solar Energy"></div><div class="pd-card-body"><span class="pd-icon">☀️</span><h3><span data-lang="en" class="active" data-edit-key="sustainability_19">Solar Energy Systems</span><span data-lang="tr">Güneş Enerjisi Sistemleri</span><span data-lang="es">Sistemas de Energía Solar</span></h3><p><span data-lang="en" class="active" data-edit-key="sustainability_20">Rooftop solar PV panels at Kemalpaşa Yarn Facility (Miranlı) provide renewable electricity directly to the production line, reducing carbon footprint per kg of yarn produced.</span><span data-lang="tr">Kemalpaşa İplik Tesisi'nde çatı güneş PV panelleri üretim hattına yenilenebilir elektrik sağlar.</span><span data-lang="es">Paneles solares fotovoltaicos en la Planta de Hilados de Kemalpaşa proporcionan electricidad renovable a la línea de producción.</span></p></div></div>
+    <div class="pd-card"><div class="pd-card-img"><img data-img-key="sustain-water" src="images/sustain-water.jpg" alt="Water Recycling"></div><div class="pd-card-body"><span class="pd-icon">💧</span><h3><span data-lang="en" class="active" data-edit-key="sustainability_21">Water Recycling &amp; Recovery</span><span data-lang="tr">Su Geri Dönüşümü ve Tasarrufu</span><span data-lang="es">Reciclaje y Recuperación de Agua</span></h3><p><span data-lang="en" class="active" data-edit-key="sustainability_22">Closed-loop water recycling in water-jet looms. Dyehouse wastewater fully treated before discharge. Rainwater harvesting systems across all facilities.</span><span data-lang="tr">Su jetli tezgahlarda kapalı devre su geri dönüşümü. Boyahane atık suyu deşarj öncesinde tamamen arıtılır. Tüm tesislerde yağmur suyu hasadı.</span><span data-lang="es">Reciclaje de agua en circuito cerrado en telares. Aguas residuales de tinturería tratadas completamente. Cosecha de lluvia en todas las instalaciones.</span></p></div></div>
+    <div class="pd-card"><div class="pd-card-img"><img data-img-key="sustain-recycled" src="images/sustain-recycled.jpg" alt="Recycled Fibers"></div><div class="pd-card-body"><span class="pd-icon">♻️</span><h3><span data-lang="en" class="active" data-edit-key="sustainability_23">Recycled Fiber Sourcing</span><span data-lang="tr">Geri Dönüştürülmüş Elyaf Tedariki</span><span data-lang="es">Aprovisionamiento de Fibra Reciclada</span></h3><p><span data-lang="en" class="active" data-edit-key="sustainability_24">Post-consumer recycled polyester certified under GRS v4.0 and RCS v2.0, traceable from PET bottle to finished fabric. Reduces dependency on virgin petrochemical feedstocks.</span><span data-lang="tr">GRS v4.0 ve RCS v2.0 kapsamında sertifikalı tüketici sonrası geri dönüştürülmüş polyester, PET şişeden bitmiş kumaşa kadar izlenebilir.</span><span data-lang="es">Poliéster reciclado post-consumo certificado bajo GRS v4.0 y RCS v2.0, trazable desde botella PET hasta tela terminada.</span></p></div></div>
+    <div class="pd-card"><div class="pd-card-img"><img data-img-key="sustain-organic" src="images/sustain-organic.jpg" alt="Organic Cotton"></div><div class="pd-card-body"><span class="pd-icon">🌱</span><h3><span data-lang="en" class="active" data-edit-key="sustainability_25">Organic Cotton Programme</span><span data-lang="tr">Organik Pamuk Programı</span><span data-lang="es">Programa de Algodón Orgánico</span></h3><p><span data-lang="en" class="active" data-edit-key="sustainability_26">GOTS v7.0 and OCS v3.0 certified organic cotton fabrics. No synthetic pesticides or fertilizers. Full chain-of-custody from field to finished roll.</span><span data-lang="tr">GOTS v7.0 ve OCS v3.0 sertifikalı organik pamuk kumaşlar. Sentetik pestisit veya gübre yok. Tarladan topa tam gözetim zinciri.</span><span data-lang="es">Telas de algodón orgánico certificadas GOTS v7.0 y OCS v3.0. Sin pesticidas ni fertilizantes sintéticos.</span></p></div></div>
+    <div class="pd-card"><div class="pd-card-img"><img data-img-key="sustain-chemical" src="images/sustain-chemical.jpg" alt="Chemical Management"></div><div class="pd-card-body"><span class="pd-icon">⚗️</span><h3><span data-lang="en" class="active" data-edit-key="sustainability_27">Chemical Management</span><span data-lang="tr">Kimyasal Yönetimi</span><span data-lang="es">Gestión de Sustancias Químicas</span></h3><p><span data-lang="en" class="active" data-edit-key="sustainability_28">ZDHC-aligned chemical management across all dyehouse and finishing processes. OEKO-TEX® STANDARD 100 certified output confirms no harmful residues in finished fabrics.</span><span data-lang="tr">Tüm boyahane ve apre işlemlerinde ZDHC uyumlu kimyasal yönetimi. OEKO-TEX® STANDARD 100 sertifikalı çıktı.</span><span data-lang="es">Gestión química alineada con ZDHC. Salida certificada OEKO-TEX® STANDARD 100.</span></p></div></div>
+    <div class="pd-card"><div class="pd-card-img"><img data-img-key="sustain-energy" src="images/sustain-energy.jpg" alt="Energy Efficiency"></div><div class="pd-card-body"><span class="pd-icon">⚡</span><h3><span data-lang="en" class="active" data-edit-key="sustainability_29">Energy Efficiency</span><span data-lang="tr">Enerji Verimliliği</span><span data-lang="es">Eficiencia Energética</span></h3><p><span data-lang="en" class="active" data-edit-key="sustainability_30">ISO 50001 Energy Management System across all facilities. Ongoing R&amp;D projects targeting carbon footprint reduction through heat recovery and optimised scheduling.</span><span data-lang="tr">Tüm tesislerde ISO 50001 Enerji Yönetim Sistemi. Isı geri kazanımı ve optimize zamanlama ile karbon ayak izi azaltmayı hedefleyen süregelen Ar-Ge projeleri.</span><span data-lang="es">Sistema de Gestión de Energía ISO 50001 en todas las instalaciones. Proyectos de I+D para reducir la huella de carbono.</span></p></div></div>
+  </div>
+</section>
+
+<div class="circular-split">
+  <div class="circ-text">
+    <div class="section-eyebrow" style="color:#5a9a5a"><span data-lang="en" class="active" data-edit-key="sustainability_31">Circular Economy</span><span data-lang="tr">Döngüsel Ekonomi</span><span data-lang="es">Economía Circular</span></div>
+    <h2 class="section-title" style="color:#fff"><span data-lang="en" class="active" data-edit-key="sustainability_32">Closing the<br><em>loop.</em></span><span data-lang="tr">Döngüyü<br><em>kapatmak.</em></span><span data-lang="es">Cerrando<br><em>el ciclo.</em></span></h2>
+    <p style="color:rgba(255,255,255,0.5);font-size:15px;line-height:1.8;margin-bottom:18px"><span data-lang="en" class="active" data-edit-key="sustainability_33">Circular economy is one of the core scopes in Harput Holding's R&amp;D roadmap. Over the past six years the group has conducted multiple projects to minimise waste, reuse resources and eliminate environmental damage at source.</span><span data-lang="tr">Döngüsel ekonomi, Harput Holding'in Ar-Ge yol haritasının temel kapsamlarından biridir. Son altı yılda holding, atıkları minimuma indirmek için birden fazla proje yürütmüştür.</span><span data-lang="es">La economía circular es uno de los ámbitos fundamentales en la hoja de ruta de I+D de Harput Holding.</span></p>
+    <div class="circ-list">
+      <div class="circ-item"><span class="circ-dot"></span><span class="circ-item-text"><strong><span data-lang="en" class="active" data-edit-key="sustainability_34">Water recycling &amp; reuse</span><span data-lang="tr">Su geri dönüşümü ve yeniden kullanımı</span><span data-lang="es">Reciclaje y reutilización del agua</span></strong></span></div>
+      <div class="circ-item"><span class="circ-dot"></span><span class="circ-item-text"><strong><span data-lang="en" class="active" data-edit-key="sustainability_35">Reducing water consumption in dye house</span><span data-lang="tr">Boyahanede su tüketiminin azaltılması</span><span data-lang="es">Reducción del consumo de agua en tinturería</span></strong></span></div>
+      <div class="circ-item"><span class="circ-dot"></span><span class="circ-item-text"><strong><span data-lang="en" class="active" data-edit-key="sustainability_36">ZDHC Chemical Management Applications</span><span data-lang="tr">ZDHC Kimyasal Yönetim Uygulamaları</span><span data-lang="es">Aplicaciones de Gestión Química ZDHC</span></strong></span></div>
+      <div class="circ-item"><span class="circ-dot"></span><span class="circ-item-text"><strong><span data-lang="en" class="active" data-edit-key="sustainability_37">Rainwater harvesting for industrial use</span><span data-lang="tr">Endüstriyel kullanım için yağmur suyu hasadı</span><span data-lang="es">Captación de agua de lluvia para uso industrial</span></strong></span></div>
+      <div class="circ-item"><span class="circ-dot"></span><span class="circ-item-text"><strong><span data-lang="en" class="active" data-edit-key="sustainability_38">Solar energy systems on yarn facility roof</span><span data-lang="tr">İplik tesisi çatısında güneş enerjisi sistemleri</span><span data-lang="es">Sistemas de energía solar en el techo de la planta de hilados</span></strong></span></div>
+      <div class="circ-item"><span class="circ-dot"></span><span class="circ-item-text"><strong><span data-lang="en" class="active" data-edit-key="sustainability_39">Ongoing R&amp;D — carbon targets to 2030</span><span data-lang="tr">Süregelen Ar-Ge — 2030'a kadar karbon hedefleri</span><span data-lang="es">I+D continuo — objetivos de carbono hasta 2030</span></strong></span></div>
+    </div>
+  </div>
+  <div class="circ-img"><img data-img-key="sustain-circular" src="images/sustain-circular.jpg" alt="Circular Economy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></div>
+</div>
+
+<section class="esg-section">
+  <div class="section-eyebrow"><span data-lang="en" class="active" data-edit-key="sustainability_40">2025–2030 Strategic Plan</span><span data-lang="tr">2025–2030 Stratejik Planı</span><span data-lang="es">Plan Estratégico 2025–2030</span></div>
+  <h2 class="section-title"><span data-lang="en" class="active" data-edit-key="sustainability_41">Three pillars, <em>one direction.</em></span><span data-lang="tr">Üç eksen, <em>tek yön.</em></span><span data-lang="es">Tres pilares, <em>una dirección.</em></span></h2>
+  <div class="esg-grid">
+    <div class="esg-card"><img data-img-key="sustain-esg-env" src="images/sustain-esg-env.jpg" alt="Environment" style="width:100%;height:180px;object-fit:cover;display:block"><h3 style="margin-top:24px"><span data-lang="en" class="active" data-edit-key="sustainability_42">Environment</span><span data-lang="tr">Çevre</span><span data-lang="es">Medio Ambiente</span></h3><p><span data-lang="en" class="active" data-edit-key="sustainability_43">Tracking and reducing environmental impact through measurable KPIs — water, carbon, waste, energy.</span><span data-lang="tr">Su, karbon, atık, enerji ölçülebilir KPI'larla çevresel etkinin izlenmesi ve azaltılması.</span><span data-lang="es">Seguimiento y reducción del impacto ambiental mediante KPI medibles.</span></p></div>
+    <div class="esg-card"><img data-img-key="sustain-esg-social" src="images/sustain-esg-social.jpg" alt="Social" style="width:100%;height:180px;object-fit:cover;display:block"><h3 style="margin-top:24px"><span data-lang="en" class="active" data-edit-key="sustainability_44">Social</span><span data-lang="tr">Sosyal</span><span data-lang="es">Social</span></h3><p><span data-lang="en" class="active" data-edit-key="sustainability_45">Fair, safe working conditions across all 6 facilities and supply chain. BSCI, ISO 45001, Higg SLM and INDITEX JOIN LIFE compliant.</span><span data-lang="tr">Tüm 6 tesis ve tedarik zincirinde adil, güvenli çalışma koşulları. BSCI, ISO 45001, Higg SLM ve INDITEX JOIN LIFE uyumlu.</span><span data-lang="es">Condiciones de trabajo justas y seguras en las 6 instalaciones. Conforme con BSCI, ISO 45001, Higg SLM e INDITEX JOIN LIFE.</span></p></div>
+    <div class="esg-card"><img data-img-key="sustain-esg-gov" src="images/sustain-esg-gov.jpg" alt="Governance" style="width:100%;height:180px;object-fit:cover;display:block"><h3 style="margin-top:24px"><span data-lang="en" class="active" data-edit-key="sustainability_46">Governance</span><span data-lang="tr">Yönetim</span><span data-lang="es">Gobernanza</span></h3><p><span data-lang="en" class="active" data-edit-key="sustainability_47">Transparent reporting, third-party auditing and continuous improvement from procurement to export. ISO 9001, 14001, 22000 certified.</span><span data-lang="tr">Tedarikten ihracata şeffaf raporlama, üçüncü taraf denetimi ve sürekli iyileştirme. ISO 9001, 14001, 22000 sertifikalı.</span><span data-lang="es">Informes transparentes y auditorías de terceros. Certificado ISO 9001, 14001 y 22000.</span></p></div>
+  </div>
+</section>
+
+<section class="memberships">
+  <div class="section-eyebrow"><span data-lang="en" class="active" data-edit-key="sustainability_48">Memberships &amp; Partnerships</span><span data-lang="tr">Üyelikler ve Ortaklıklar</span><span data-lang="es">Membresías y Asociaciones</span></div>
+  <div class="memb-grid">
+    <div class="memb-card"><img data-img-key="sustain-bsci" src="images/sustain-bsci.jpg" alt="BSCI" style="width:100%;height:120px;object-fit:cover;display:block"><h4 style="margin-top:20px">BSCI</h4><p><span data-lang="en" class="active" data-edit-key="sustainability_49">Business Social Compliance Initiative — social auditing framework member</span><span data-lang="tr">Sosyal denetim çerçevesi üyesi</span><span data-lang="es">Marco de auditoría social</span></p></div>
+    <div class="memb-card"><img data-img-key="sustain-higg" src="images/sustain-higg.jpg" alt="Higg Index" style="width:100%;height:120px;object-fit:cover;display:block"><h4 style="margin-top:20px">Higg Index</h4><p><span data-lang="en" class="active" data-edit-key="sustainability_50">Facility Environmental Module &amp; Social Labour Module active user</span><span data-lang="tr">FEM ve SLM aktif kullanıcısı</span><span data-lang="es">Usuario activo de FEM y SLM</span></p></div>
+    <div class="memb-card"><img data-img-key="sustain-inditex" src="images/sustain-inditex.jpg" alt="INDITEX JOIN LIFE" style="width:100%;height:120px;object-fit:cover;display:block"><h4 style="margin-top:20px">INDITEX<br>JOIN LIFE</h4><p><span data-lang="en" class="active" data-edit-key="sustainability_51">Approved supplier for most sustainable product line</span><span data-lang="tr">En sürdürülebilir ürün hattı için onaylı tedarikçi</span><span data-lang="es">Proveedor aprobado para línea sostenible</span></p></div>
+    <div class="memb-card"><img data-img-key="sustain-textile-exchange" src="images/sustain-textile-exchange.jpg" alt="Textile Exchange" style="width:100%;height:120px;object-fit:cover;display:block"><h4 style="margin-top:20px">Textile Exchange</h4><p><span data-lang="en" class="active" data-edit-key="sustainability_52">Licensed CB for GRS, OCS and RCS standards</span><span data-lang="tr">GRS, OCS ve RCS için lisanslı sertifikasyon kuruluşu</span><span data-lang="es">Organismo de certificación autorizado</span></p></div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img data-img-key="logo-fx-textile" class="foot-fx" src="images/logo-fx-textile.svg" alt="FX Textile">
+      <img data-img-key="logo-harput" class="foot-harput" src="images/logo-harput.svg" alt="Harput Holding">
+      <p><span data-lang="en" class="active" data-edit-key="sustainability_53">Premium apparel fabrics. A division of Harput Holding. Est. 2023, Bursa, Turkey.</span>
+         <span data-lang="tr">Premium giyim kumaşları. Harput Holding bünyesinde. 2023, Bursa, Türkiye.</span>
+         <span data-lang="es">Telas premium para ropa. División de Harput Holding. Est. 2023, Bursa, Turquía.</span></p>
+    </div>
+    <div class="footer-col">
+      <h5><span data-lang="en" class="active" data-edit-key="sustainability_54">Company</span><span data-lang="tr">Şirket</span><span data-lang="es">Empresa</span></h5>
+      <a href="index.html"><span data-lang="en" class="active" data-edit-key="sustainability_55">About Us</span><span data-lang="tr">Hakkımızda</span><span data-lang="es">Nosotros</span></a>
+      <a href="global.html"><span data-lang="en" class="active" data-edit-key="sustainability_56">Global Presence</span><span data-lang="tr">Küresel Varlık</span><span data-lang="es">Presencia Global</span></a>
+      <a href="certifications.html"><span data-lang="en" class="active" data-edit-key="sustainability_57">Certifications</span><span data-lang="tr">Sertifikalar</span><span data-lang="es">Certificaciones</span></a>
+    </div>
+    <div class="footer-col">
+      <h5><span data-lang="en" class="active" data-edit-key="sustainability_58">Products</span><span data-lang="tr">Ürünler</span><span data-lang="es">Productos</span></h5>
+      <a href="products.html"><span data-lang="en" class="active" data-edit-key="sustainability_59">Recycled Polyester</span><span data-lang="tr">Geri Dön. Polyester</span><span data-lang="es">Poliéster Reciclado</span></a>
+      <a href="products.html"><span data-lang="en" class="active" data-edit-key="sustainability_60">Organic Cotton</span><span data-lang="tr">Organik Pamuk</span><span data-lang="es">Algodón Orgánico</span></a>
+      <a href="sustainability.html"><span data-lang="en" class="active" data-edit-key="sustainability_61">Sustainability</span><span data-lang="tr">Sürdürülebilirlik</span><span data-lang="es">Sostenibilidad</span></a>
+    </div>
+    <div class="footer-col">
+      <h5><span data-lang="en" class="active" data-edit-key="sustainability_62">Contact</span><span data-lang="tr">İletişim</span><span data-lang="es">Contacto</span></h5>
+      <a href="contact.html"><span data-lang="en" class="active" data-edit-key="sustainability_63">Send Message</span><span data-lang="tr">Mesaj Gönder</span><span data-lang="es">Enviar Mensaje</span></a>
+      <a href="contact.html" style="color:rgba(255,255,255,0.25);font-size:12px;margin-top:8px">Işıktepe OSB Mah.<br>Nilüfer, Bursa, TR</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Efiks Tekstil San. ve Tic. Ltd. Şti. — A Division of Harput Holding</span>
+    <span class="footer-copy">GOTS · GRS · OCS · RCS · ISO 9001 · 14001 · 50001</span>
+  </div>
+</footer>
+<script>
+function setLang(l){document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.l===l));document.querySelectorAll('[data-lang]').forEach(e=>e.classList.toggle('active',e.getAttribute('data-lang')===l));localStorage.setItem('fxlang',l);document.documentElement.lang=l;}
+document.addEventListener('DOMContentLoaded',()=>{const s=localStorage.getItem('fxlang')||'en';setLang(s);});
+</script>
+<script src="content-loader.js"></script>
+</body></html>

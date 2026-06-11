@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Global Presence — FX Textile</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;background:#f5f2ee;color:#1a1a1a;overflow-x:hidden}
+:root{
+  --black:#0a0a0a;--off-white:#f5f2ee;--cream:#ede9e3;
+  --red:#8b1a1a;--red-light:#a52020;--red-dark:#6a1212;
+  --gray:#6b6b6b;--gray-light:#c8c4be;--border:rgba(0,0,0,0.1);
+}
+/* LANG BAR */
+.lang-bar{background:var(--black);padding:8px 60px;display:flex;justify-content:flex-end;gap:4px}
+.lang-btn{background:none;border:none;color:rgba(255,255,255,0.35);font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:1.5px;cursor:pointer;padding:4px 10px;transition:color .2s}
+.lang-btn:hover,.lang-btn.active{color:#fff}
+.lang-btn+.lang-btn{border-left:1px solid #333}
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(245,242,238,0.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:0 60px;display:flex;align-items:center;justify-content:space-between;height:76px}
+.nav-logo{display:flex;align-items:center;gap:18px}
+.logo-fx{height:34px;display:block;mix-blend-mode:multiply}
+.logo-div{width:1px;height:26px;background:var(--gray-light)}
+.logo-harput{height:22px;display:block;mix-blend-mode:multiply;opacity:0.6}
+.nav-links{display:flex;gap:32px;list-style:none;align-items:center}
+.nav-links a{text-decoration:none;color:var(--gray);font-size:11px;letter-spacing:2px;font-weight:500;text-transform:uppercase;transition:color .2s;font-family:'Barlow Condensed',sans-serif;padding:4px 0;border-bottom:2px solid transparent}
+.nav-links a:hover{color:var(--red)}
+.nav-links a.current{color:var(--black);border-bottom-color:var(--red)}
+.nav-cta{background:var(--red)!important;color:#fff!important;padding:10px 22px!important;border-bottom:none!important;letter-spacing:1.5px!important}
+.nav-cta:hover{background:var(--red-dark)!important}
+/* LANG SWITCHING */
+[data-lang]{display:none}
+[data-lang].active{display:inline}
+.block-lang[data-lang]{display:none}
+.block-lang[data-lang].active{display:block}
+/* FOOTER */
+footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,255,255,0.05)}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
+.footer-brand .foot-fx{height:28px;filter:brightness(0) invert(1);opacity:0.8;display:block;margin-bottom:12px}
+.footer-brand .foot-harput{height:18px;filter:brightness(0) invert(1);opacity:0.3;display:block;margin-bottom:20px}
+.footer-brand p{font-size:13px;color:rgba(255,255,255,0.3);line-height:1.7;max-width:220px}
+.footer-col h5{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:16px}
+.footer-col a{display:block;font-size:13px;color:rgba(255,255,255,0.4);text-decoration:none;margin-bottom:10px;transition:color .2s}
+.footer-col a:hover{color:rgba(255,255,255,0.8)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:28px;border-top:1px solid rgba(255,255,255,0.07)}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.2);font-family:'Barlow Condensed',sans-serif}
+/* UTILS */
+.section-eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--red);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.section-eyebrow::before{content:'';display:inline-block;width:24px;height:1px;background:var(--red)}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,58px);font-weight:300;line-height:1.1;margin-bottom:20px}
+.section-title em{font-style:italic}
+.section-body{font-size:16px;color:var(--gray);line-height:1.85;max-width:620px}
+.btn-primary{background:var(--red);color:#fff;border:none;padding:14px 32px;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:background .2s;display:inline-block}
+.btn-primary:hover{background:var(--red-dark)}
+.btn-ghost{border:1px solid var(--gray-light);color:var(--gray);padding:14px 32px;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:all .2s;display:inline-block}
+.btn-ghost:hover{border-color:var(--red);color:var(--red)}
+@media(max-width:1024px){
+  nav,.lang-bar{padding-left:24px;padding-right:24px}
+  footer{padding:40px 24px 28px}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .nav-links{display:none}
+  .footer-grid{grid-template-columns:1fr}
+}
+
+.page-hero{height:60vh;min-height:420px;background:var(--black);display:flex;align-items:flex-end;position:relative;overflow:hidden}
+.page-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.2}
+.page-hero-grad{position:absolute;inset:0;background:linear-gradient(to top,#0a0a0a 40%,rgba(10,10,10,0.2) 100%)}
+.page-hero-content{position:relative;z-index:2;padding:0 60px 72px}
+.page-tag{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--red-light);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.page-tag::before{content:'';width:24px;height:1px;background:var(--red-light);display:block}
+.page-title{font-family:'Cormorant Garamond',serif;font-size:clamp(48px,6vw,84px);font-weight:300;color:#fff;line-height:1.0}
+.page-title em{font-style:italic;opacity:0.5}
+/* INTRO */
+.global-intro{padding:80px 60px;background:var(--cream);display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.global-intro-text .section-body{margin-top:20px}
+.global-stats{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.gs{background:var(--off-white);padding:28px;border-left:3px solid var(--red)}
+.gs-num{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:300;color:var(--red);line-height:1;display:block}
+.gs-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray);margin-top:6px;display:block}
+/* MAP */
+.map-section{padding:80px 60px;background:var(--off-white)}
+.map-wrap{background:var(--cream);border:1px solid var(--border);overflow:hidden;margin-top:48px}
+.world-map-svg{width:100%;display:block}
+/* REGIONS GRID */
+.regions-section{padding:80px 60px;background:var(--cream)}
+.regions-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-top:48px}
+.region-card{background:var(--off-white);padding:36px 32px;position:relative;overflow:hidden}
+.region-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--red);transition:height .4s}
+.region-card:hover::before{height:100%}
+.region-num{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;color:var(--red);opacity:0.2;line-height:1}
+.region-name{font-family:'Barlow Condensed',sans-serif;font-size:16px;letter-spacing:1.5px;font-weight:600;text-transform:uppercase;margin-top:8px;margin-bottom:10px}
+.region-desc{font-size:13px;color:var(--gray);line-height:1.65}
+@media(max-width:1024px){
+  .global-intro,.regions-grid{grid-template-columns:1fr 1fr}
+  .global-intro,.map-section,.regions-section{padding:60px 24px}
+  .page-hero-content{padding:0 24px 56px}
+}
+@media(max-width:600px){.global-intro,.regions-grid{grid-template-columns:1fr}}
+
+/* MAP IMAGE SECTION */
+.map-section{padding:80px 60px;background:var(--off-white)}
+.map-wrap{overflow:hidden;margin-top:48px;border:1px solid var(--border);position:relative}
+.map-wrap img{width:100%;display:block;height:auto}
+.map-placeholder-note{background:var(--cream);border:2px dashed var(--gray-light);padding:48px;text-align:center;margin-top:0}
+.map-placeholder-note p{font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:1px;color:var(--gray)}
+@media(max-width:1024px){.map-section,.regions-section,.global-intro{padding:60px 24px}.page-hero-content{padding:0 24px 56px}}
+</style>
+</head>
+<body>
+
+<div class="lang-bar">
+  <button class="lang-btn active" data-l="en" onclick="setLang('en')">EN</button>
+  <button class="lang-btn" data-l="tr" onclick="setLang('tr')">TR</button>
+  <button class="lang-btn" data-l="es" onclick="setLang('es')">ES</button>
+</div>
+<nav>
+  <div class="nav-logo">
+    <a href="index.html"><img data-img-key="logo-fx-textile" class="logo-fx" src="images/logo-fx-textile.svg" alt="FX Textile"></a>
+    <div class="logo-div"></div>
+    <a href="index.html"><img data-img-key="logo-harput" class="logo-harput" src="images/logo-harput.svg" alt="Harput Holding"></a>
+  </div>
+  <ul class="nav-links"><li><a href="index.html" ><span data-lang="en" class="active" data-edit-key="global_1">About</span><span data-lang="tr">Hakkımızda</span><span data-lang="es">Nosotros</span></a></li><li><a href="products.html" ><span data-lang="en" class="active" data-edit-key="global_2">Products</span><span data-lang="tr">Ürünler</span><span data-lang="es">Productos</span></a></li><li><a href="sustainability.html" ><span data-lang="en" class="active" data-edit-key="global_3">Sustainability</span><span data-lang="tr">Sürdürülebilirlik</span><span data-lang="es">Sostenibilidad</span></a></li><li><a href="global.html" class="current"><span data-lang="en" class="active" data-edit-key="global_4">Global</span><span data-lang="tr">Global</span><span data-lang="es">Global</span></a></li><li><a href="certifications.html" ><span data-lang="en" class="active" data-edit-key="global_5">Certifications</span><span data-lang="tr">Sertifikalar</span><span data-lang="es">Certificaciones</span></a></li><li><a href="contact.html" class="nav-cta"><span data-lang="en" class="active" data-edit-key="global_6">Contact</span><span data-lang="tr">İletişim</span><span data-lang="es">Contacto</span></a></li></ul>
+</nav>
+
+<div class="page-hero">
+  <img data-img-key="hero-global" src="images/hero-global.jpg" alt="Global" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.2">
+  <div class="page-hero-grad"></div>
+  <div class="page-hero-content">
+    <div class="page-tag"><span data-lang="en" class="active" data-edit-key="global_7">Global Presence</span><span data-lang="tr">Küresel Varlık</span><span data-lang="es">Presencia Global</span></div>
+    <h1 class="page-title"><span data-lang="en" class="active" data-edit-key="global_8">5 Continents.<br><em>70 Countries.</em></span><span data-lang="tr">5 Kıta.<br><em>70 Ülke.</em></span><span data-lang="es">5 Continentes.<br><em>70 Países.</em></span></h1>
+  </div>
+</div>
+
+<div class="global-intro">
+  <div class="global-intro-text">
+    <div class="section-eyebrow"><span data-lang="en" class="active" data-edit-key="global_9">Worldwide Reach</span><span data-lang="tr">Dünya Genelinde Erişim</span><span data-lang="es">Alcance Mundial</span></div>
+    <h2 class="section-title"><span data-lang="en" class="active" data-edit-key="global_10">Harput Holding exports<br>to <em>9 regions.</em></span><span data-lang="tr">Harput Holding <em>9 bölgeye</em><br>ihracat yapar.</span><span data-lang="es">Harput Holding exporta<br>a <em>9 regiones.</em></span></h2>
+    <p class="section-body"><span data-lang="en" class="active" data-edit-key="global_11">As the apparel fabric brand of Harput Holding, FX Textile taps into the group's established global distribution network — reaching garment makers and brands across 70 countries on 5 continents.</span><span data-lang="tr">Harput Holding'in giyim kumaşları markası olarak FX Textile, grubun küresel dağıtım ağından yararlanır — 5 kıtada 70 ülkedeki konfeksiyoncilere ve markalara ulaşır.</span><span data-lang="es">Como marca de telas de Harput Holding, FX Textile aprovecha su red de distribución global, llegando a fabricantes de prendas en 70 países en 5 continentes.</span></p>
+  </div>
+  <div class="global-stats">
+    <div class="gs"><span class="gs-num">70</span><span class="gs-label"><span data-lang="en" class="active" data-edit-key="global_12">Countries</span><span data-lang="tr">Ülke</span><span data-lang="es">Países</span></span></div>
+    <div class="gs"><span class="gs-num">5</span><span class="gs-label"><span data-lang="en" class="active" data-edit-key="global_13">Continents</span><span data-lang="tr">Kıta</span><span data-lang="es">Continentes</span></span></div>
+    <div class="gs"><span class="gs-num">9</span><span class="gs-label"><span data-lang="en" class="active" data-edit-key="global_14">Regions</span><span data-lang="tr">Bölge</span><span data-lang="es">Regiones</span></span></div>
+    <div class="gs"><span class="gs-num">25%</span><span class="gs-label"><span data-lang="en" class="active" data-edit-key="global_15">of Sales Exported</span><span data-lang="tr">Satışların İhracatı</span><span data-lang="es">de Ventas Exportadas</span></span></div>
+  </div>
+</div>
+
+<!-- WORLD MAP — Replace image/images/world-map.jpg with your actual map image -->
+<section class="map-section">
+  <div class="section-eyebrow"><span data-lang="en" class="active" data-edit-key="global_16">Export Map</span><span data-lang="tr">İhracat Haritası</span><span data-lang="es">Mapa de Exportación</span></div>
+  <div class="map-wrap">
+    <img data-img-key="world-map" src="images/world-map.jpg" alt="World Export Map"
+         style="width:100%;display:block;min-height:420px;object-fit:cover">
+    <!-- 
+      ╔══════════════════════════════════════════════════════════════════╗
+      ║  DÜNYA HARİTASI — REPLACE THIS IMAGE                           ║
+      ║  Replace images/world-map.jpg with your map image.             ║
+      ║  Recommended size: 1400 × 600px or wider                       ║
+      ║  Active regions: EU, Non-EU Europe, North America,             ║
+      ║  Mid/South America, Africa, Middle East,                       ║
+      ║  Turkic Republics, CIS, Asia (Far East)                        ║
+      ╚══════════════════════════════════════════════════════════════════╝
+    -->
+  </div>
+</section>
+
+<section class="regions-section">
+  <div class="section-eyebrow"><span data-lang="en" class="active" data-edit-key="global_17">9 Export Regions</span><span data-lang="tr">9 İhracat Bölgesi</span><span data-lang="es">9 Regiones de Exportación</span></div>
+  <div class="regions-grid">
+    <div class="region-card"><div class="region-num">01</div><div class="region-name"><span data-lang="en" class="active" data-edit-key="global_18">European Union</span><span data-lang="tr">Avrupa Birliği</span><span data-lang="es">Unión Europea</span></div><p class="region-desc"><span data-lang="en" class="active" data-edit-key="global_19">Primary export market. Serving fashion brands and apparel manufacturers across all EU member states.</span><span data-lang="tr">Birincil ihracat pazarı. Tüm AB üye devletlerindeki moda markalarına ve giyim üreticilerine hizmet vermektedir.</span><span data-lang="es">Mercado de exportación principal. Marcas de moda y fabricantes en todos los estados miembros de la UE.</span></p></div>
+    <div class="region-card"><div class="region-num">02</div><div class="region-name"><span data-lang="en" class="active" data-edit-key="global_20">Non-EU Europe</span><span data-lang="tr">AB Dışı Avrupa</span><span data-lang="es">Europa no-UE</span></div><p class="region-desc"><span data-lang="en" class="active" data-edit-key="global_21">UK, Switzerland, Norway and other non-EU European markets. Strong fast-fashion and mid-market brand relationships.</span><span data-lang="tr">İngiltere, İsviçre, Norveç ve diğer AB dışı Avrupa pazarları.</span><span data-lang="es">UK, Suiza, Noruega y otros mercados europeos no-UE.</span></p></div>
+    <div class="region-card"><div class="region-num">03</div><div class="region-name"><span data-lang="en" class="active" data-edit-key="global_22">North America</span><span data-lang="tr">Kuzey Amerika</span><span data-lang="es">Norteamérica</span></div><p class="region-desc"><span data-lang="en" class="active" data-edit-key="global_23">USA and Canada. Growing demand for certified sustainable apparel fabrics from sustainable fashion brands.</span><span data-lang="tr">ABD ve Kanada. Sürdürülebilir moda markalarından sertifikalı kumaşlara artan talep.</span><span data-lang="es">EE.UU. y Canadá. Creciente demanda de telas certificadas sostenibles.</span></p></div>
+    <div class="region-card"><div class="region-num">04</div><div class="region-name"><span data-lang="en" class="active" data-edit-key="global_24">Middle East</span><span data-lang="tr">Orta Doğu</span><span data-lang="es">Oriente Medio</span></div><p class="region-desc"><span data-lang="en" class="active" data-edit-key="global_25">GCC countries, Jordan, Egypt and Lebanon. Strong historical commercial ties and growing fashion retail.</span><span data-lang="tr">Körfez İşbirliği Konseyi ülkeleri, Ürdün, Mısır ve Lübnan.</span><span data-lang="es">Países del CCG, Jordania, Egipto y Líbano.</span></p></div>
+    <div class="region-card"><div class="region-num">05</div><div class="region-name"><span data-lang="en" class="active" data-edit-key="global_26">Africa</span><span data-lang="tr">Afrika</span><span data-lang="es">África</span></div><p class="region-desc"><span data-lang="en" class="active" data-edit-key="global_27">Sub-Saharan and North Africa. Expanding market with growing garment manufacturing in Ethiopia, Morocco and Egypt.</span><span data-lang="tr">Sahra Altı ve Kuzey Afrika. Etiyopya, Fas ve Mısır'da büyüyen konfeksiyon üretim tabanıyla genişleyen pazar.</span><span data-lang="es">África subsahariana y del norte. Mercado en expansión con base de fabricación de prendas en Etiopía, Marruecos y Egipto.</span></p></div>
+    <div class="region-card"><div class="region-num">06</div><div class="region-name"><span data-lang="en" class="active" data-edit-key="global_28">Turkic Republics</span><span data-lang="tr">Türk Cumhuriyetleri</span><span data-lang="es">Repúblicas Túrquicas</span></div><p class="region-desc"><span data-lang="en" class="active" data-edit-key="global_29">Kazakhstan, Uzbekistan, Azerbaijan, Turkmenistan and Kyrgyzstan. Shared cultural heritage driving strong trade.</span><span data-lang="tr">Kazakistan, Özbekistan, Azerbaycan, Türkmenistan ve Kırgızistan.</span><span data-lang="es">Kazajistán, Uzbekistán, Azerbaiyán, Turkmenistán y Kirguistán.</span></p></div>
+    <div class="region-card"><div class="region-num">07</div><div class="region-name"><span data-lang="en" class="active" data-edit-key="global_30">CIS Countries</span><span data-lang="tr">BDT Ülkeleri</span><span data-lang="es">Países CEI</span></div><p class="region-desc"><span data-lang="en" class="active" data-edit-key="global_31">Russia, Ukraine, Belarus and other CIS members. Established wholesale and distribution relationships.</span><span data-lang="tr">Rusya, Ukrayna, Belarus ve diğer BDT üyeleri.</span><span data-lang="es">Rusia, Ucrania, Bielorrusia y otros miembros de la CEI.</span></p></div>
+    <div class="region-card"><div class="region-num">08</div><div class="region-name"><span data-lang="en" class="active" data-edit-key="global_32">Mid / South America</span><span data-lang="tr">Orta / Güney Amerika</span><span data-lang="es">Centro / Sudamérica</span></div><p class="region-desc"><span data-lang="en" class="active" data-edit-key="global_33">Brazil, Mexico, Colombia and beyond. Growing sustainable fashion movement driving certified fabric demand.</span><span data-lang="tr">Brezilya, Meksika, Kolombiya ve ötesi. Büyüyen sürdürülebilir moda hareketi.</span><span data-lang="es">Brasil, México, Colombia y más. El creciente movimiento de moda sostenible impulsa la demanda.</span></p></div>
+    <div class="region-card"><div class="region-num">09</div><div class="region-name"><span data-lang="en" class="active" data-edit-key="global_34">Asia — Far East</span><span data-lang="tr">Asya — Uzak Doğu</span><span data-lang="es">Asia — Lejano Oriente</span></div><p class="region-desc"><span data-lang="en" class="active" data-edit-key="global_35">China, South Korea, Japan, Bangladesh, Vietnam. Premium certified European fabrics for Asian garment exporters.</span><span data-lang="tr">Çin, Güney Kore, Japonya, Bangladeş, Vietnam. Asyalı konfeksiyon ihracatçıları için Avrupa yapımı sertifikalı kumaşlar.</span><span data-lang="es">China, Corea del Sur, Japón, Bangladesh, Vietnam. Telas europeas certificadas para exportadores asiáticos.</span></p></div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img data-img-key="logo-fx-textile" class="foot-fx" src="images/logo-fx-textile.svg" alt="FX Textile">
+      <img data-img-key="logo-harput" class="foot-harput" src="images/logo-harput.svg" alt="Harput Holding">
+      <p><span data-lang="en" class="active" data-edit-key="global_36">Premium apparel fabrics. A division of Harput Holding. Est. 2023, Bursa, Turkey.</span>
+         <span data-lang="tr">Premium giyim kumaşları. Harput Holding bünyesinde. 2023, Bursa, Türkiye.</span>
+         <span data-lang="es">Telas premium para ropa. División de Harput Holding. Est. 2023, Bursa, Turquía.</span></p>
+    </div>
+    <div class="footer-col">
+      <h5><span data-lang="en" class="active" data-edit-key="global_37">Company</span><span data-lang="tr">Şirket</span><span data-lang="es">Empresa</span></h5>
+      <a href="index.html"><span data-lang="en" class="active" data-edit-key="global_38">About Us</span><span data-lang="tr">Hakkımızda</span><span data-lang="es">Nosotros</span></a>
+      <a href="global.html"><span data-lang="en" class="active" data-edit-key="global_39">Global Presence</span><span data-lang="tr">Küresel Varlık</span><span data-lang="es">Presencia Global</span></a>
+      <a href="certifications.html"><span data-lang="en" class="active" data-edit-key="global_40">Certifications</span><span data-lang="tr">Sertifikalar</span><span data-lang="es">Certificaciones</span></a>
+    </div>
+    <div class="footer-col">
+      <h5><span data-lang="en" class="active" data-edit-key="global_41">Products</span><span data-lang="tr">Ürünler</span><span data-lang="es">Productos</span></h5>
+      <a href="products.html"><span data-lang="en" class="active" data-edit-key="global_42">Recycled Polyester</span><span data-lang="tr">Geri Dön. Polyester</span><span data-lang="es">Poliéster Reciclado</span></a>
+      <a href="products.html"><span data-lang="en" class="active" data-edit-key="global_43">Organic Cotton</span><span data-lang="tr">Organik Pamuk</span><span data-lang="es">Algodón Orgánico</span></a>
+      <a href="sustainability.html"><span data-lang="en" class="active" data-edit-key="global_44">Sustainability</span><span data-lang="tr">Sürdürülebilirlik</span><span data-lang="es">Sostenibilidad</span></a>
+    </div>
+    <div class="footer-col">
+      <h5><span data-lang="en" class="active" data-edit-key="global_45">Contact</span><span data-lang="tr">İletişim</span><span data-lang="es">Contacto</span></h5>
+      <a href="contact.html"><span data-lang="en" class="active" data-edit-key="global_46">Send Message</span><span data-lang="tr">Mesaj Gönder</span><span data-lang="es">Enviar Mensaje</span></a>
+      <a href="contact.html" style="color:rgba(255,255,255,0.25);font-size:12px;margin-top:8px">Işıktepe OSB Mah.<br>Nilüfer, Bursa, TR</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Efiks Tekstil San. ve Tic. Ltd. Şti. — A Division of Harput Holding</span>
+    <span class="footer-copy">GOTS · GRS · OCS · RCS · ISO 9001 · 14001 · 50001</span>
+  </div>
+</footer>
+<script>
+function setLang(l){document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.l===l));document.querySelectorAll('[data-lang]').forEach(e=>e.classList.toggle('active',e.getAttribute('data-lang')===l));localStorage.setItem('fxlang',l);document.documentElement.lang=l;}
+document.addEventListener('DOMContentLoaded',()=>{const s=localStorage.getItem('fxlang')||'en';setLang(s);});
+</script>
+<script src="content-loader.js"></script>
+</body></html>
