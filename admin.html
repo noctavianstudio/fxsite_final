@@ -121,6 +121,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .toast.success{border-color:var(--green-light);background:#1a2e1a}
 .toast.error{border-color:var(--red-light);background:#2e1a1a}
 
+/* ── LOGIN ── */
+.login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;background:radial-gradient(circle at 50% 0%,rgba(139,26,26,.18),transparent 36%),var(--bg)}
+.login-card{width:min(420px,100%);background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:32px;box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.login-mark{font-size:22px;font-weight:700;letter-spacing:2px;margin-bottom:6px}.login-mark span{color:var(--red-light)}
+.login-title{font-size:13px;color:var(--text-muted);margin-bottom:28px}
+.login-field{display:flex;flex-direction:column;gap:7px;margin-bottom:14px}.login-field label{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--text-muted)}.login-field input{background:var(--bg-soft);border:1px solid var(--border);color:var(--text);padding:13px 14px;border-radius:4px;outline:none}.login-field input:focus{border-color:var(--red-light)}
+.login-error{display:none;color:#ff8080;font-size:12px;margin:4px 0 14px}.login-error.show{display:block}
+.admin-shell.locked{display:none}
+
 /* ── MISC ── */
 .badge-modified{background:rgba(176,80,0,0.2);color:#f0a000;padding:2px 8px;border-radius:2px;font-size:11px;margin-left:8px}
 .empty-state{text-align:center;padding:60px 20px;color:var(--text-muted)}
@@ -131,12 +140,31 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 </head>
 <body>
 
+<div id="login-screen" class="login-screen">
+  <form class="login-card" onsubmit="return adminLogin(event)">
+    <div class="login-mark">FX<span>TEXTILE</span></div>
+    <div class="login-title">Admin Panel Login</div>
+    <div class="login-field">
+      <label>Username</label>
+      <input id="admin-username" autocomplete="username" autofocus>
+    </div>
+    <div class="login-field">
+      <label>Password</label>
+      <input id="admin-password" type="password" autocomplete="current-password">
+    </div>
+    <div id="login-error" class="login-error">Invalid username or password.</div>
+    <button class="btn btn-success" style="width:100%;justify-content:center" type="submit">Login</button>
+  </form>
+</div>
+
+<div id="admin-shell" class="admin-shell locked">
 <div class="header">
   <div class="header-logo">FX<span>TEXTILE</span></div>
   <div class="header-badge">ADMIN</div>
   <div style="font-size:12px;color:var(--text-muted)">Content Management Panel</div>
   <div class="header-actions">
     <button class="btn btn-secondary" onclick="previewSite()">👁 Preview Site</button>
+    <button class="btn btn-secondary" onclick="adminLogout()">Logout</button>
     <button class="btn btn-success" onclick="saveAll()">💾 Save All</button>
   </div>
 </div>
@@ -211,6 +239,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <div class="main" id="main-area">
     <!-- Sections injected by JS -->
   </div>
+</div>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -2816,10 +2845,51 @@ const ORIGINAL_IMAGES = {
 const STORAGE_KEY = 'fxtextile_content';
 const IMG_STORAGE_KEY = 'fxtextile_images';
 const SAVE_ENDPOINT_KEY = 'fxtextile_save_endpoint';
+const ADMIN_SESSION_KEY = 'fxtextile_admin_session';
+const ADMIN_USER = 'admin';
+const ADMIN_PASS = 'adminfx';
 let savedTexts = {};
 let savedImages = {};
 let currentSection = 'dashboard';
 let searchQuery = '';
+
+function isAdminLoggedIn() {
+  return sessionStorage.getItem(ADMIN_SESSION_KEY) === 'true';
+}
+
+function showLogin() {
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('admin-shell').classList.add('locked');
+}
+
+function showAdmin() {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('admin-shell').classList.remove('locked');
+  loadState();
+  showSection('dashboard');
+  updateCounts();
+}
+
+function adminLogin(event) {
+  event.preventDefault();
+  const user = document.getElementById('admin-username').value.trim();
+  const pass = document.getElementById('admin-password').value;
+  const error = document.getElementById('login-error');
+
+  if (user === ADMIN_USER && pass === ADMIN_PASS) {
+    sessionStorage.setItem(ADMIN_SESSION_KEY, 'true');
+    error.classList.remove('show');
+    showAdmin();
+  } else {
+    error.classList.add('show');
+  }
+  return false;
+}
+
+function adminLogout() {
+  sessionStorage.removeItem(ADMIN_SESSION_KEY);
+  showLogin();
+}
 
 function loadState() {
   try {
@@ -3359,9 +3429,11 @@ function toast(msg, type='success') {
 }
 
 // ── INIT ──────────────────────────────────────────────────────────────────
-loadState();
-showSection('dashboard');
-updateCounts();
+if (isAdminLoggedIn()) {
+  showAdmin();
+} else {
+  showLogin();
+}
 </script>
 </body>
 </html>
