@@ -3256,7 +3256,7 @@ function updateCounts() {
       return ORIGINAL_TEXTS[k] && ORIGINAL_TEXTS[k].page === p;
     }).length;
     const imgCount = Object.keys(savedImages).filter(k => {
-      return ORIGINAL_IMAGES[k] && ORIGINAL_IMAGES[k].page === p;
+      return ORIGINAL_IMAGES[k] && ORIGINAL_IMAGES[k].page === p && !isSliderImageKey(k);
     }).length;
     const te = document.getElementById('count-texts-' + p);
     const ie = document.getElementById('count-images-' + p);
@@ -3304,7 +3304,7 @@ function renderSliders() {
   <div class="content-header">
     <div>
       <h2>Home Slider</h2>
-      <div class="ch-sub">${sliders.length} slides - EN + TR + ES editable</div>
+      <div class="ch-sub">${sliders.length} slides - TR + EN + ES editable</div>
     </div>
     <div class="header-actions">
       <button class="btn btn-secondary" onclick="resetSliders()">Reset Sliders</button>
@@ -3330,7 +3330,7 @@ function renderSliderCard(slide, index, total) {
       <div class="slider-grid">
         <div>
           <div class="slider-preview">
-            <img src="${escapeHtml(image)}" alt="">
+            <img id="slider-preview-img-${index}" src="${escapeHtml(image)}" alt="">
             <div class="slider-preview-copy">
               <div class="slider-preview-kicker">${slide.eyebrow?.en || ''}</div>
               <div class="slider-preview-title">${slide.title?.en || ''}</div>
@@ -3345,7 +3345,7 @@ function renderSliderCard(slide, index, total) {
           </div>
         </div>
         <div class="slider-fields">
-          ${['en','tr','es'].map(lang => renderSliderLangFields(slide, index, lang)).join('')}
+          ${['tr','en','es'].map(lang => renderSliderLangFields(slide, index, lang)).join('')}
         </div>
       </div>
     </div>
@@ -3353,7 +3353,7 @@ function renderSliderCard(slide, index, total) {
 }
 
 function renderSliderLangFields(slide, index, lang) {
-  const labels = { en: 'English', tr: 'Turkce', es: 'Espanol' };
+  const labels = { tr: 'Turkce', en: 'English', es: 'Espanol' };
   return `<div>
     <div class="slider-lang-title">${labels[lang]}</div>
     <div class="slider-field-row"><label>Eyebrow</label><input value="${escapeHtml(slide.eyebrow?.[lang] || '')}" oninput="updateSliderField(${index},'eyebrow','${lang}',this.value)"></div>
@@ -3432,16 +3432,39 @@ function resetSliders() {
 function uploadSliderImage(index, input) {
   const file = input.files && input.files[0];
   if (!file) return;
-  if (file.size > 3 * 1024 * 1024) {
-    toast('Image too large - max 3MB', 'error');
+  if (!file.type || !file.type.startsWith('image/')) {
+    toast('Please select an image file', 'error');
     return;
   }
   const reader = new FileReader();
+  reader.onerror = () => toast('Image could not be read', 'error');
   reader.onload = e => {
-    updateSliderField(index, 'image', null, e.target.result);
-    showSection('sliders');
+    compressSliderImage(e.target.result, 1800, 0.86).then(dataUrl => {
+      updateSliderField(index, 'image', null, dataUrl);
+      const preview = document.getElementById('slider-preview-img-' + index);
+      if (preview) preview.src = dataUrl;
+      toast('Slider image loaded', 'success');
+      setTimeout(() => showSection('sliders'), 80);
+    }).catch(() => toast('Image could not be loaded', 'error'));
   };
   reader.readAsDataURL(file);
+}
+
+function compressSliderImage(dataUrl, maxWidth, quality) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => {
+      const scale = Math.min(1, maxWidth / img.width);
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.round(img.width * scale);
+      canvas.height = Math.round(img.height * scale);
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      resolve(canvas.toDataURL('image/jpeg', quality));
+    };
+    img.onerror = reject;
+    img.src = dataUrl;
+  });
 }
 
 // ── DASHBOARD ─────────────────────────────────────────────────────────────
@@ -3652,7 +3675,7 @@ function renderImages(page) {
     certifications: 'Sertifikalar', contact: 'İletişim / Contact'
   };
   
-  const entries = Object.entries(ORIGINAL_IMAGES).filter(([k,v]) => v.page === page);
+  const entries = Object.entries(ORIGINAL_IMAGES).filter(([k,v]) => v.page === page && !isSliderImageKey(k));
   // Remove duplicates
   const seen = new Set();
   const unique = entries.filter(([k]) => { if (seen.has(k)) return false; seen.add(k); return true; });
@@ -3668,6 +3691,10 @@ function renderImages(page) {
   <div class="image-grid">
     ${unique.map(([key, meta]) => renderImageCard(key, meta)).join('')}
   </div>`;
+}
+
+function isSliderImageKey(key) {
+  return key === 'hero-index' || key === 'hero-index-slide-2' || key === 'hero-index-slide-3';
 }
 
 function renderImageCard(key, meta) {
