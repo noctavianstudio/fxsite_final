@@ -85,6 +85,9 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
 
 /* HERO */
 .hero{height:100vh;min-height:680px;background:var(--black);display:flex;align-items:flex-end;position:relative;overflow:hidden}
+.hero-slider{position:absolute;inset:0}
+.hero-slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity 900ms ease,visibility 900ms ease;display:flex;align-items:flex-end}
+.hero-slide.active{opacity:1;visibility:visible}
 .hero-bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.3}
 .hero-grad{position:absolute;inset:0;background:linear-gradient(to top,#0a0a0a 35%,rgba(10,10,10,0.4) 100%)}
 .hero-accent{position:absolute;top:0;right:0;width:42%;height:100%;background:linear-gradient(180deg,rgba(139,26,26,0.18) 0%,transparent 70%);clip-path:polygon(28% 0%,100% 0%,100% 100%,0% 100%)}
@@ -96,6 +99,12 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
 .hero-sub{font-size:16px;color:rgba(255,255,255,0.45);font-weight:300;max-width:500px;line-height:1.75;margin-bottom:48px}
 .hero-ctas{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
 .hero-scroll{position:absolute;bottom:32px;right:60px;color:rgba(255,255,255,0.25);font-size:10px;letter-spacing:3px;writing-mode:vertical-rl;font-family:'Barlow Condensed',sans-serif}
+.hero-controls{position:absolute;z-index:5;right:60px;bottom:86px;display:flex;gap:8px}
+.hero-arrow{width:38px;height:38px;border:1px solid rgba(255,255,255,0.24);background:rgba(10,10,10,0.28);color:#fff;font-size:20px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
+.hero-arrow:hover{background:var(--red);border-color:var(--red);transform:translateY(-1px)}
+.hero-dots{position:absolute;z-index:5;left:60px;bottom:42px;display:flex;gap:8px}
+.hero-dot{width:28px;height:2px;border:none;background:rgba(255,255,255,0.24);cursor:pointer;padding:0;transition:background .2s,width .2s}
+.hero-dot.active{background:var(--red-light);width:42px}
 /* STATS */
 .stats-band{background:var(--red);padding:0 60px;display:flex;justify-content:space-between;align-items:stretch}
 .stat-item{padding:36px 0;text-align:center;color:#fff;flex:1}
@@ -163,9 +172,12 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
   .stats-band{padding:0 24px;flex-wrap:wrap}
   .stat-item{flex:1 1 30%}
   .hero-content,.about-sec,.sectors,.cert-strip{padding-left:24px;padding-right:24px}
+  .hero-controls{right:24px}
+  .hero-dots{left:24px}
   .heritage-banner{padding:48px 24px}
 }
 @media(max-width:600px){.sectors-grid{grid-template-columns:repeat(2,1fr)}.stat-item{flex:1 1 45%}}
+@media(max-width:600px){.hero-controls{bottom:78px}.hero-arrow{width:34px;height:34px}.hero-dots{bottom:26px}.hero-content{padding-bottom:112px}.hero-scroll{display:none}}
 </style>
 </head>
 <body>
@@ -186,29 +198,66 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
 </nav>
 
 <div class="hero">
-  <img data-img-key="hero-index" class="hero-bg-img" src="images/hero-index.jpg" alt="FX Textile Hero">
+  <div class="hero-slider" id="hero-slider">
+    <div class="hero-slide active">
+      <img data-img-key="hero-index" class="hero-bg-img" src="images/hero-index.jpg" alt="FX Textile Hero">
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          <span data-lang="en" class="active" data-edit-key="index_7">A Division of Harput Holding &nbsp;·&nbsp; Est. 2023, Bursa Turkey</span>
+          <span data-lang="tr">Harput Holding Bünyesinde &nbsp;·&nbsp; Kuruluş 2023, Bursa Türkiye</span>
+          <span data-lang="es">Una División de Harput Holding &nbsp;·&nbsp; Est. 2023, Bursa Turquía</span>
+        </div>
+        <h1 class="hero-title">
+          <span data-lang="en" class="active" data-edit-key="index_8">Fabric<br><em>woven for</em><br>tomorrow.</span>
+          <span data-lang="tr">Yarına<br><em>dokunan</em><br>kumaş.</span>
+          <span data-lang="es">Tejido para<br><em>construir</em><br>el mañana.</span>
+        </h1>
+        <p class="hero-sub">
+          <span data-lang="en" class="active" data-edit-key="index_9">Premium certified apparel fabrics — sustainable, traceable, and born from 65 years of Turkish textile mastery.</span>
+          <span data-lang="tr">Premium sertifikalı giyim kumaşları — sürdürülebilir, izlenebilir ve 65 yıllık Türk tekstil uzmanlığından doğmuş.</span>
+          <span data-lang="es">Telas premium certificadas para ropa — sostenibles, trazables y nacidas de 65 años de maestría textil turca.</span>
+        </p>
+        <div class="hero-ctas">
+          <a href="products.html" class="btn-primary"><span data-lang="en" class="active" data-edit-key="index_10">Explore Fabrics</span><span data-lang="tr">Kumaşları Keşfet</span><span data-lang="es">Ver Telas</span></a>
+          <a href="contact.html" class="btn-ghost" style="border-color:rgba(255,255,255,0.25);color:rgba(255,255,255,0.7)"><span data-lang="en" class="active" data-edit-key="index_11">Request Samples</span><span data-lang="tr">Numune İste</span><span data-lang="es">Pedir Muestras</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-slide">
+      <img data-img-key="hero-index-slide-2" class="hero-bg-img" src="images/hero-sustainability.jpg" alt="Sustainable Textile Production">
+      <div class="hero-content">
+        <div class="hero-eyebrow"><span data-lang="en" class="active" data-edit-key="index_63">Certified Sustainable Production</span><span data-lang="tr">Sertifikalı Sürdürülebilir Üretim</span><span data-lang="es">Producción Sostenible Certificada</span></div>
+        <h1 class="hero-title"><span data-lang="en" class="active" data-edit-key="index_64">Lower impact.<br><em>Higher</em><br>standards.</span><span data-lang="tr">Daha düşük etki.<br><em>Daha yüksek</em><br>standartlar.</span><span data-lang="es">Menor impacto.<br><em>Mayores</em><br>estándares.</span></h1>
+        <p class="hero-sub"><span data-lang="en" class="active" data-edit-key="index_65">GOTS, GRS, OCS and RCS certified fabrics supported by solar energy, water recycling and traceable production.</span><span data-lang="tr">Güneş enerjisi, su geri dönüşümü ve izlenebilir üretimle desteklenen GOTS, GRS, OCS ve RCS sertifikalı kumaşlar.</span><span data-lang="es">Telas certificadas GOTS, GRS, OCS y RCS respaldadas por energía solar, reciclaje de agua y producción trazable.</span></p>
+        <div class="hero-ctas">
+          <a href="sustainability.html" class="btn-primary"><span data-lang="en" class="active" data-edit-key="index_66">View Sustainability</span><span data-lang="tr">Sürdürülebilirliği Gör</span><span data-lang="es">Ver Sostenibilidad</span></a>
+          <a href="certifications.html" class="btn-ghost" style="border-color:rgba(255,255,255,0.25);color:rgba(255,255,255,0.7)"><span data-lang="en" class="active" data-edit-key="index_67">See Certificates</span><span data-lang="tr">Sertifikaları Gör</span><span data-lang="es">Ver Certificados</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-slide">
+      <img data-img-key="hero-index-slide-3" class="hero-bg-img" src="images/hero-global.jpg" alt="Global Fabric Supply">
+      <div class="hero-content">
+        <div class="hero-eyebrow"><span data-lang="en" class="active" data-edit-key="index_68">Global Reach from Bursa</span><span data-lang="tr">Bursa'dan Küresel Erişim</span><span data-lang="es">Alcance Global desde Bursa</span></div>
+        <h1 class="hero-title"><span data-lang="en" class="active" data-edit-key="index_69">A strategic<br><em>fabric</em><br>partner.</span><span data-lang="tr">Stratejik<br><em>kumaş</em><br>iş ortağı.</span><span data-lang="es">Un socio<br><em>textil</em><br>estratégico.</span></h1>
+        <p class="hero-sub"><span data-lang="en" class="active" data-edit-key="index_70">Reliable supply, creative fabric development and export experience for Europe and global textile markets.</span><span data-lang="tr">Avrupa ve global tekstil pazarları için güvenilir tedarik, yaratıcı kumaş geliştirme ve ihracat deneyimi.</span><span data-lang="es">Suministro fiable, desarrollo creativo de tejidos y experiencia exportadora para Europa y mercados textiles globales.</span></p>
+        <div class="hero-ctas">
+          <a href="global.html" class="btn-primary"><span data-lang="en" class="active" data-edit-key="index_71">Explore Global Presence</span><span data-lang="tr">Global Varlığı Keşfet</span><span data-lang="es">Explorar Presencia Global</span></a>
+          <a href="contact.html" class="btn-ghost" style="border-color:rgba(255,255,255,0.25);color:rgba(255,255,255,0.7)"><span data-lang="en" class="active" data-edit-key="index_72">Start a Project</span><span data-lang="tr">Proje Başlat</span><span data-lang="es">Iniciar Proyecto</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="hero-grad"></div>
   <div class="hero-accent"></div>
-  <div class="hero-content">
-    <div class="hero-eyebrow">
-      <span data-lang="en" class="active" data-edit-key="index_7">A Division of Harput Holding &nbsp;·&nbsp; Est. 2023, Bursa Turkey</span>
-      <span data-lang="tr">Harput Holding Bünyesinde &nbsp;·&nbsp; Kuruluş 2023, Bursa Türkiye</span>
-      <span data-lang="es">Una División de Harput Holding &nbsp;·&nbsp; Est. 2023, Bursa Turquía</span>
-    </div>
-    <h1 class="hero-title">
-      <span data-lang="en" class="active" data-edit-key="index_8">Fabric<br><em>woven for</em><br>tomorrow.</span>
-      <span data-lang="tr">Yarına<br><em>dokunan</em><br>kumaş.</span>
-      <span data-lang="es">Tejido para<br><em>construir</em><br>el mañana.</span>
-    </h1>
-    <p class="hero-sub">
-      <span data-lang="en" class="active" data-edit-key="index_9">Premium certified apparel fabrics — sustainable, traceable, and born from 65 years of Turkish textile mastery.</span>
-      <span data-lang="tr">Premium sertifikalı giyim kumaşları — sürdürülebilir, izlenebilir ve 65 yıllık Türk tekstil uzmanlığından doğmuş.</span>
-      <span data-lang="es">Telas premium certificadas para ropa — sostenibles, trazables y nacidas de 65 años de maestría textil turca.</span>
-    </p>
-    <div class="hero-ctas">
-      <a href="products.html" class="btn-primary"><span data-lang="en" class="active" data-edit-key="index_10">Explore Fabrics</span><span data-lang="tr">Kumaşları Keşfet</span><span data-lang="es">Ver Telas</span></a>
-      <a href="contact.html" class="btn-ghost" style="border-color:rgba(255,255,255,0.25);color:rgba(255,255,255,0.7)"><span data-lang="en" class="active" data-edit-key="index_11">Request Samples</span><span data-lang="tr">Numune İste</span><span data-lang="es">Pedir Muestras</span></a>
-    </div>
+  <div class="hero-controls">
+    <button class="hero-arrow" type="button" aria-label="Previous slide" onclick="moveHeroSlide(-1)">‹</button>
+    <button class="hero-arrow" type="button" aria-label="Next slide" onclick="moveHeroSlide(1)">›</button>
+  </div>
+  <div class="hero-dots" aria-label="Hero slide navigation">
+    <button class="hero-dot active" type="button" aria-label="Slide 1" onclick="setHeroSlide(0)"></button>
+    <button class="hero-dot" type="button" aria-label="Slide 2" onclick="setHeroSlide(1)"></button>
+    <button class="hero-dot" type="button" aria-label="Slide 3" onclick="setHeroSlide(2)"></button>
   </div>
   <div class="hero-scroll">SCROLL</div>
 </div>
@@ -353,8 +402,14 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
   </div>
 </footer>
 <script>
+let heroSlideIndex=0;
+let heroSlideTimer=null;
 function setLang(l){document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.l===l));document.querySelectorAll('[data-lang]').forEach(e=>e.classList.toggle('active',e.getAttribute('data-lang')===l));localStorage.setItem('fxlang',l);document.documentElement.lang=l;}
-document.addEventListener('DOMContentLoaded',()=>{const s=localStorage.getItem('fxlang')||'en';setLang(s);document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{const n=document.querySelector('nav');const b=document.querySelector('.nav-toggle');if(n&&b){n.classList.remove('menu-open');b.setAttribute('aria-expanded','false');}}));});
+function setHeroSlide(index,manual=false){const slides=document.querySelectorAll('.hero-slide');const dots=document.querySelectorAll('.hero-dot');if(!slides.length)return;heroSlideIndex=(index+slides.length)%slides.length;slides.forEach((s,i)=>s.classList.toggle('active',i===heroSlideIndex));dots.forEach((d,i)=>d.classList.toggle('active',i===heroSlideIndex));if(manual)restartHeroSlider();}
+function moveHeroSlide(dir){setHeroSlide(heroSlideIndex+dir,true);}
+function restartHeroSlider(){clearInterval(heroSlideTimer);heroSlideTimer=setInterval(()=>setHeroSlide(heroSlideIndex+1),5000);}
+function initHeroSlider(){setHeroSlide(0);restartHeroSlider();}
+document.addEventListener('DOMContentLoaded',()=>{const s=localStorage.getItem('fxlang')||'en';setLang(s);initHeroSlider();document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{const n=document.querySelector('nav');const b=document.querySelector('.nav-toggle');if(n&&b){n.classList.remove('menu-open');b.setAttribute('aria-expanded','false');}}));});
 function toggleMobileMenu(btn){const nav=btn.closest('nav');const open=!nav.classList.contains('menu-open');nav.classList.toggle('menu-open',open);btn.setAttribute('aria-expanded',String(open));}
 </script>
 <script src="data.js"></script>

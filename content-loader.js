@@ -142,10 +142,61 @@
     document.body.style.paddingBottom = '50px';
   }
 
+  function applyMotion() {
+    try {
+      if (!document.getElementById('fx-motion-styles')) {
+        const style = document.createElement('style');
+        style.id = 'fx-motion-styles';
+        style.textContent = `
+          @media (prefers-reduced-motion:no-preference){
+            .fx-reveal{opacity:0;transform:translateY(26px);transition:opacity .75s ease,transform .75s ease}
+            .fx-reveal.in-view{opacity:1;transform:none}
+            .fx-hover-lift{transition:transform .28s ease,box-shadow .28s ease}
+            .fx-hover-lift:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,0,0,.12)}
+            .fx-image-hover{overflow:hidden}
+            .fx-image-hover img{transition:transform .7s ease}
+            .fx-image-hover:hover img{transform:scale(1.04)}
+          }
+        `;
+        document.head.appendChild(style);
+      }
+
+      const revealSelector = [
+        '.section-eyebrow','.section-title','.section-body','.intro-text-side p',
+        '.pillar','.about-card','.mission-card','.cert-strip-left','.cbadge',
+        '.sector-card','.prod-card','.pd-card','.esg-card','.memb-card',
+        '.region-card','.office-card','.cert-card','.dash-card'
+      ].join(',');
+      document.querySelectorAll(revealSelector).forEach((el, index) => {
+        el.classList.add('fx-reveal');
+        el.style.transitionDelay = Math.min(index % 6, 5) * 45 + 'ms';
+      });
+
+      document.querySelectorAll('.pillar,.about-card,.mission-card,.prod-card,.pd-card,.esg-card,.region-card,.office-card,.cert-card').forEach(el => el.classList.add('fx-hover-lift'));
+      document.querySelectorAll('.sector-card,.intro-img-side,.about-img-grid div,.prod-img,.pd-card-img,.cert-card-img,.office-card').forEach(el => el.classList.add('fx-image-hover'));
+
+      if (!('IntersectionObserver' in window)) {
+        document.querySelectorAll('.fx-reveal').forEach(el => el.classList.add('in-view'));
+        return;
+      }
+
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.14, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.fx-reveal').forEach(el => observer.observe(el));
+    } catch(e) { console.warn('Motion loader:', e); }
+  }
+
   function init() {
     applyTheme();
     applyTexts();
     applyImages();
+    applyMotion();
     addAdminBar();
   }
 
