@@ -3436,19 +3436,62 @@ function uploadSliderImage(index, input) {
     toast('Please select an image file', 'error');
     return;
   }
-  const reader = new FileReader();
-  reader.onerror = () => toast('Image could not be read', 'error');
-  reader.onload = e => {
-    const originalDataUrl = e.target.result;
-    compressSliderImage(originalDataUrl, 1800, 0.86).catch(() => originalDataUrl).then(dataUrl => {
-      updateSliderField(index, 'image', null, dataUrl);
-      const preview = document.getElementById('slider-preview-img-' + index);
+
+  const preview = document.getElementById('slider-preview-img-' + index);
+  const objectUrl = URL.createObjectURL(file);
+  if (preview) preview.src = objectUrl;
+
+  compressSliderFile(file)
+    .then(dataUrl => {
+      const sliders = getSliders();
+      if (!sliders[index]) throw new Error('Slider not found');
+      sliders[index].image = dataUrl;
+      savedSliders = sliders;
+      try {
+        saveState(false);
+      } catch (error) {
+        throw new Error('Image is too large for browser storage. Try a smaller JPG.');
+      }
       if (preview) preview.src = dataUrl;
       toast('Slider image loaded', 'success');
       setTimeout(() => showSection('sliders'), 80);
-    }).catch(() => toast('Image could not be loaded', 'error'));
-  };
-  reader.readAsDataURL(file);
+    })
+    .catch(error => {
+      console.error(error);
+      toast(error.message || 'Image could not be loaded', 'error');
+    })
+    .finally(() => URL.revokeObjectURL(objectUrl));
+}
+
+function compressSliderFile(file) {
+  const attempts = [
+    { maxWidth: 1600, quality: 0.78 },
+    { maxWidth: 1200, quality: 0.70 },
+    { maxWidth: 900, quality: 0.64 }
+  ];
+  return fileToDataUrl(file)
+    .then(dataUrl => compressSliderImage(dataUrl, attempts[0].maxWidth, attempts[0].quality)
+      .catch(() => dataUrl))
+    .then(async firstResult => {
+      let result = firstResult;
+      for (const settings of attempts.slice(1)) {
+        if (result.length < 1800000) break;
+        result = await compressSliderImage(result, settings.maxWidth, settings.quality);
+      }
+      if (result.length > 2600000) {
+        throw new Error('Image is too large. Please use a smaller JPG image.');
+      }
+      return result;
+    });
+}
+
+function fileToDataUrl(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = e => resolve(e.target.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
 }
 
 function compressSliderImage(dataUrl, maxWidth, quality) {
@@ -3457,9 +3500,11 @@ function compressSliderImage(dataUrl, maxWidth, quality) {
     img.onload = () => {
       const scale = Math.min(1, maxWidth / img.width);
       const canvas = document.createElement('canvas');
-      canvas.width = Math.round(img.width * scale);
-      canvas.height = Math.round(img.height * scale);
+      canvas.width = Math.max(1, Math.round(img.width * scale));
+      canvas.height = Math.max(1, Math.round(img.height * scale));
       const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#111';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
       resolve(canvas.toDataURL('image/jpeg', quality));
     };
