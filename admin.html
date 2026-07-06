@@ -3796,33 +3796,39 @@ function triggerUpload(key) {
 }
 
 function handleImageUpload(key, input) {
-  const file = input.files[0];
+  const file = input.files && input.files[0];
   if (!file) return;
-  
-  // Check size (max 3MB for localStorage)
-  if (file.size > 3 * 1024 * 1024) {
-    toast('Image too large — max 3MB for browser storage', 'error');
+
+  if (!file.type || !file.type.startsWith('image/')) {
+    toast('Please select an image file', 'error');
     return;
   }
-  
-  const reader = new FileReader();
-  reader.onload = (e) => {
-    const dataUrl = e.target.result;
+
+  const prev = document.getElementById('imgpreview-' + key);
+  const objectUrl = URL.createObjectURL(file);
+  if (prev) prev.src = objectUrl;
+
+  compressSliderFile(file).then(dataUrl => {
     savedImages[key] = dataUrl;
-    
-    // Update preview
-    const prev = document.getElementById('imgpreview-' + key);
+    try {
+      saveState(false);
+    } catch (error) {
+      delete savedImages[key];
+      throw new Error('Image is too large for browser storage. Try a smaller JPG.');
+    }
+
     if (prev) prev.src = dataUrl;
     const card = document.getElementById('imgcard-' + key);
     if (card) card.classList.add('modified');
-    
-    saveState();
-    toast(`Image "${key}" replaced ✓`, 'success');
-    
-    // Refresh card to show reset button
+
+    toast(`Image "${key}" replaced`, 'success');
     setTimeout(() => showSection(currentSection), 100);
-  };
-  reader.readAsDataURL(file);
+  }).catch(error => {
+    console.error(error);
+    const orig = ORIGINAL_IMAGES[key];
+    if (prev && orig) prev.src = savedImages[key] || orig.src;
+    toast(error.message || 'Image could not be loaded', 'error');
+  }).finally(() => URL.revokeObjectURL(objectUrl));
 }
 
 function resetImage(key) {
