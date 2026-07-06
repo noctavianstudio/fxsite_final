@@ -277,6 +277,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
 <div class="toast" id="toast"></div>
 
+<script src="data.js"></script>
 <script>
 // ── EMBEDDED CONTENT DATA ──────────────────────────────────────────────────
 const ORIGINAL_TEXTS = {
@@ -3057,12 +3058,17 @@ function adminLogout() {
 
 function loadState() {
   try {
+    const exported = window.FX_TEXTILE_EXPORTED_CONTENT || {};
+    savedTexts = Object.assign({}, exported.texts || {});
+    savedImages = Object.assign({}, exported.images || {});
+    savedTheme = Object.assign({}, exported.theme || {});
+
     const t = localStorage.getItem(STORAGE_KEY);
-    if (t) savedTexts = JSON.parse(t);
+    if (t) savedTexts = Object.assign(savedTexts, JSON.parse(t));
     const i = localStorage.getItem(IMG_STORAGE_KEY);
-    if (i) savedImages = JSON.parse(i);
+    if (i) savedImages = Object.assign(savedImages, JSON.parse(i));
     const theme = localStorage.getItem(THEME_STORAGE_KEY);
-    if (theme) savedTheme = JSON.parse(theme);
+    if (theme) savedTheme = Object.assign(savedTheme, JSON.parse(theme));
   } catch(e) {}
 }
 
