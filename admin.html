@@ -146,6 +146,21 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .theme-preview-swatches{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:16px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .theme-preview-swatch{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--text-dim)}.theme-preview-swatch span{width:34px;height:22px;border-radius:3px;border:1px solid rgba(255,255,255,.16)}
 @media(max-width:900px){.theme-preview-wrap{grid-template-columns:1fr}.setting-row{align-items:flex-start;flex-direction:column}.theme-controls{width:100%}}
+.slider-list{padding:16px;display:grid;gap:14px}
+.slider-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden}
+.slider-card-head{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--surface2);border-bottom:1px solid var(--border)}
+.slider-card-head h3{font-size:13px;font-weight:600;color:#fff;flex:1}
+.slider-card-body{padding:14px;display:grid;gap:14px}
+.slider-grid{display:grid;grid-template-columns:minmax(220px,.75fr) minmax(260px,1.25fr);gap:14px}
+.slider-preview{position:relative;min-height:220px;background:#050505;overflow:hidden;border:1px solid var(--border)}
+.slider-preview img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.34}
+.slider-preview-copy{position:relative;z-index:1;color:#fff;padding:20px;display:flex;flex-direction:column;justify-content:flex-end;min-height:220px}
+.slider-preview-kicker{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--red-light);margin-bottom:10px}
+.slider-preview-title{font-family:Georgia,serif;font-size:28px;line-height:1.05;font-weight:300;margin-bottom:10px}.slider-preview-title em{opacity:.6}
+.slider-preview-text{font-size:12px;line-height:1.55;color:rgba(255,255,255,.65)}
+.slider-fields{display:grid;gap:10px}.slider-field-row{display:grid;grid-template-columns:82px 1fr;gap:8px;align-items:start}.slider-field-row label{font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;padding-top:8px}
+.slider-field-row input,.slider-field-row textarea{width:100%;background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:8px 10px;border-radius:3px;font:inherit;font-size:12px;outline:none}.slider-field-row textarea{min-height:62px;resize:vertical}
+.slider-lang-title{font-size:11px;color:var(--text-dim);letter-spacing:1px;text-transform:uppercase;margin:6px 0 -2px}
 .danger-zone{background:rgba(139,26,26,0.08);border:1px solid rgba(139,26,26,0.3);border-radius:4px;padding:16px 20px;margin:24px}
 
 /* ── TOAST ── */
@@ -208,6 +223,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <div class="sidebar-section">Dashboard</div>
     <div class="sidebar-item active" onclick="showSection('dashboard')" data-section="dashboard">
       <span class="icon">🏠</span> Overview
+    </div>
+    <div class="sidebar-item" onclick="showSection('sliders')" data-section="sliders">
+      <span class="icon">▣</span> Home Slider
+      <span class="count" id="count-sliders">0</span>
     </div>
     
     <div class="sidebar-section">Pages — Texts</div>
@@ -2989,6 +3008,7 @@ const ORIGINAL_IMAGES = {
 const STORAGE_KEY = 'fxtextile_content';
 const IMG_STORAGE_KEY = 'fxtextile_images';
 const THEME_STORAGE_KEY = 'fxtextile_theme';
+const SLIDER_STORAGE_KEY = 'fxtextile_sliders';
 const SAVE_ENDPOINT_KEY = 'fxtextile_save_endpoint';
 const ADMIN_SESSION_KEY = 'fxtextile_admin_session';
 const ADMIN_USER = 'admin';
@@ -3011,9 +3031,42 @@ const DEFAULT_THEME = {
   navFontSize: '11',
   navMobileFontSize: '13'
 };
+const DEFAULT_SLIDERS = [
+  {
+    image: 'images/hero-index.jpg',
+    eyebrow: { en: 'A Division of Harput Holding &nbsp;·&nbsp; Est. 2023, Bursa Turkey', tr: 'Harput Holding Bünyesinde &nbsp;·&nbsp; Kuruluş 2023, Bursa Türkiye', es: 'Una División de Harput Holding &nbsp;·&nbsp; Est. 2023, Bursa Turquía' },
+    title: { en: 'Fabric<br><em>woven for</em><br>tomorrow.', tr: 'Yarına<br><em>dokunan</em><br>kumaş.', es: 'Tejido para<br><em>construir</em><br>el mañana.' },
+    body: { en: 'Premium certified apparel fabrics — sustainable, traceable, and born from 65 years of Turkish textile mastery.', tr: 'Premium sertifikalı giyim kumaşları — sürdürülebilir, izlenebilir ve 65 yıllık Türk tekstil uzmanlığından doğmuş.', es: 'Telas premium certificadas para ropa — sostenibles, trazables y nacidas de 65 años de maestría textil turca.' },
+    primaryText: { en: 'Explore Fabrics', tr: 'Kumaşları Keşfet', es: 'Ver Telas' },
+    primaryHref: 'products.html',
+    secondaryText: { en: 'Request Samples', tr: 'Numune İste', es: 'Pedir Muestras' },
+    secondaryHref: 'contact.html'
+  },
+  {
+    image: 'images/hero-slide-placeholder-2.svg',
+    eyebrow: { en: 'Certified Fabric Excellence', tr: 'Sertifikalı Kumaş Mükemmelliği', es: 'Excelencia Textil Certificada' },
+    title: { en: 'Quality<br><em>woven with</em><br>purpose.', tr: 'Amaçla<br><em>dokunan</em><br>kalite.', es: 'Calidad<br><em>tejida con</em><br>propósito.' },
+    body: { en: 'Reliable apparel fabrics shaped by certified production, responsible sourcing and the experience of Turkish textile craft.', tr: 'Sertifikalı üretim, sorumlu tedarik ve Türk tekstil ustalığının deneyimiyle şekillenen güvenilir giyim kumaşları.', es: 'Telas confiables para confección, creadas con producción certificada, abastecimiento responsable y experiencia textil turca.' },
+    primaryText: { en: 'Explore Fabrics', tr: 'Kumaşları Keşfet', es: 'Ver Telas' },
+    primaryHref: 'products.html',
+    secondaryText: { en: 'Request Samples', tr: 'Numune İste', es: 'Pedir Muestras' },
+    secondaryHref: 'contact.html'
+  },
+  {
+    image: 'images/hero-slide-placeholder-3.svg',
+    eyebrow: { en: 'Global Textile Partnership', tr: 'Küresel Tekstil İş Ortaklığı', es: 'Alianza Textil Global' },
+    title: { en: 'Your<br><em>strategic</em><br>fabric partner.', tr: 'Stratejik<br><em>kumaş</em><br>iş ortağınız.', es: 'Tu socio<br><em>estratégico</em><br>en tejidos.' },
+    body: { en: 'From Bursa to global markets, we support brands with sustainable fabric development, agile supply and long-term partnership.', tr: 'Bursa’dan global pazarlara, markalara sürdürülebilir kumaş geliştirme, esnek tedarik ve uzun vadeli iş ortaklığı sunuyoruz.', es: 'Desde Bursa hacia los mercados globales, apoyamos a las marcas con desarrollo sostenible, suministro ágil y colaboración a largo plazo.' },
+    primaryText: { en: 'Explore Fabrics', tr: 'Kumaşları Keşfet', es: 'Ver Telas' },
+    primaryHref: 'products.html',
+    secondaryText: { en: 'Request Samples', tr: 'Numune İste', es: 'Pedir Muestras' },
+    secondaryHref: 'contact.html'
+  }
+];
 let savedTexts = {};
 let savedImages = {};
 let savedTheme = {};
+let savedSliders = [];
 let currentSection = 'dashboard';
 let searchQuery = '';
 
@@ -3062,6 +3115,7 @@ function loadState() {
     savedTexts = Object.assign({}, exported.texts || {});
     savedImages = Object.assign({}, exported.images || {});
     savedTheme = Object.assign({}, exported.theme || {});
+    savedSliders = Array.isArray(exported.sliders) ? exported.sliders : DEFAULT_SLIDERS.map(s => JSON.parse(JSON.stringify(s)));
 
     const t = localStorage.getItem(STORAGE_KEY);
     if (t) savedTexts = Object.assign(savedTexts, JSON.parse(t));
@@ -3069,6 +3123,8 @@ function loadState() {
     if (i) savedImages = Object.assign(savedImages, JSON.parse(i));
     const theme = localStorage.getItem(THEME_STORAGE_KEY);
     if (theme) savedTheme = Object.assign(savedTheme, JSON.parse(theme));
+    const sliders = localStorage.getItem(SLIDER_STORAGE_KEY);
+    if (sliders) savedSliders = JSON.parse(sliders);
   } catch(e) {}
 }
 
@@ -3076,6 +3132,7 @@ function saveState(showToast = true) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(savedTexts));
   localStorage.setItem(IMG_STORAGE_KEY, JSON.stringify(savedImages));
   localStorage.setItem(THEME_STORAGE_KEY, JSON.stringify(savedTheme));
+  localStorage.setItem(SLIDER_STORAGE_KEY, JSON.stringify(savedSliders));
   updateCounts();
   if (showToast) toast('Changes saved ✓', 'success');
 }
@@ -3085,12 +3142,17 @@ function buildDataJsContent() {
     texts: savedTexts,
     images: savedImages,
     theme: getTheme(),
+    sliders: getSliders(),
     generatedAt: new Date().toISOString()
   }, null, 2)};\n`;
 }
 
 function getTheme() {
   return Object.assign({}, DEFAULT_THEME, savedTheme);
+}
+
+function getSliders() {
+  return savedSliders && savedSliders.length ? savedSliders : DEFAULT_SLIDERS.map(s => JSON.parse(JSON.stringify(s)));
 }
 
 function applyAdminThemePreview() {
@@ -3201,6 +3263,8 @@ function updateCounts() {
     if (te) te.textContent = textCount || '';
     if (ie) ie.textContent = imgCount || '';
   });
+  const sliderCount = document.getElementById('count-sliders');
+  if (sliderCount) sliderCount.textContent = getSliders().length || '';
 }
 
 // ── NAVIGATION ───────────────────────────────────────────────────────────
@@ -3214,6 +3278,8 @@ function showSection(section) {
   
   if (section === 'dashboard') {
     main.innerHTML = renderDashboard();
+  } else if (section === 'sliders') {
+    main.innerHTML = renderSliders();
   } else if (section.startsWith('texts-')) {
     const page = section.replace('texts-','');
     main.innerHTML = renderTexts(page);
@@ -3226,6 +3292,156 @@ function showSection(section) {
   }
   
   main.scrollTop = 0;
+}
+
+function escapeHtml(value) {
+  return String(value || '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+}
+
+function renderSliders() {
+  const sliders = getSliders();
+  return `
+  <div class="content-header">
+    <div>
+      <h2>Home Slider</h2>
+      <div class="ch-sub">${sliders.length} slides - EN + TR + ES editable</div>
+    </div>
+    <div class="header-actions">
+      <button class="btn btn-secondary" onclick="resetSliders()">Reset Sliders</button>
+      <button class="btn btn-success" onclick="addSlider()">+ Add New Slider</button>
+    </div>
+  </div>
+  <div class="slider-list">
+    ${sliders.map((slide, index) => renderSliderCard(slide, index, sliders.length)).join('')}
+  </div>`;
+}
+
+function renderSliderCard(slide, index, total) {
+  const image = slide.image || 'images/hero-slide-placeholder-2.svg';
+  return `<div class="slider-card">
+    <div class="slider-card-head">
+      <h3>Slider ${index + 1}</h3>
+      <button class="btn btn-secondary btn-sm" onclick="moveSlider(${index},-1)" ${index === 0 ? 'disabled' : ''}>Up</button>
+      <button class="btn btn-secondary btn-sm" onclick="moveSlider(${index},1)" ${index === total - 1 ? 'disabled' : ''}>Down</button>
+      <button class="btn btn-secondary btn-sm" onclick="duplicateSlider(${index})">Duplicate</button>
+      <button class="btn btn-secondary btn-sm" onclick="removeSlider(${index})" ${total <= 1 ? 'disabled' : ''}>Remove</button>
+    </div>
+    <div class="slider-card-body">
+      <div class="slider-grid">
+        <div>
+          <div class="slider-preview">
+            <img src="${escapeHtml(image)}" alt="">
+            <div class="slider-preview-copy">
+              <div class="slider-preview-kicker">${slide.eyebrow?.en || ''}</div>
+              <div class="slider-preview-title">${slide.title?.en || ''}</div>
+              <div class="slider-preview-text">${slide.body?.en || ''}</div>
+            </div>
+          </div>
+          <div class="slider-fields" style="margin-top:10px">
+            <div class="slider-field-row"><label>Image</label><input value="${escapeHtml(image)}" oninput="updateSliderField(${index},'image',null,this.value)" placeholder="images/hero-index.jpg or data URL"></div>
+            <div class="slider-field-row"><label>Upload</label><input type="file" accept="image/*" onchange="uploadSliderImage(${index},this)"></div>
+            <div class="slider-field-row"><label>Primary URL</label><input value="${escapeHtml(slide.primaryHref || 'products.html')}" oninput="updateSliderField(${index},'primaryHref',null,this.value)"></div>
+            <div class="slider-field-row"><label>Second URL</label><input value="${escapeHtml(slide.secondaryHref || 'contact.html')}" oninput="updateSliderField(${index},'secondaryHref',null,this.value)"></div>
+          </div>
+        </div>
+        <div class="slider-fields">
+          ${['en','tr','es'].map(lang => renderSliderLangFields(slide, index, lang)).join('')}
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderSliderLangFields(slide, index, lang) {
+  const labels = { en: 'English', tr: 'Turkce', es: 'Espanol' };
+  return `<div>
+    <div class="slider-lang-title">${labels[lang]}</div>
+    <div class="slider-field-row"><label>Eyebrow</label><input value="${escapeHtml(slide.eyebrow?.[lang] || '')}" oninput="updateSliderField(${index},'eyebrow','${lang}',this.value)"></div>
+    <div class="slider-field-row"><label>Title</label><textarea oninput="updateSliderField(${index},'title','${lang}',this.value)">${escapeHtml(slide.title?.[lang] || '')}</textarea></div>
+    <div class="slider-field-row"><label>Body</label><textarea oninput="updateSliderField(${index},'body','${lang}',this.value)">${escapeHtml(slide.body?.[lang] || '')}</textarea></div>
+    <div class="slider-field-row"><label>Button 1</label><input value="${escapeHtml(slide.primaryText?.[lang] || '')}" oninput="updateSliderField(${index},'primaryText','${lang}',this.value)"></div>
+    <div class="slider-field-row"><label>Button 2</label><input value="${escapeHtml(slide.secondaryText?.[lang] || '')}" oninput="updateSliderField(${index},'secondaryText','${lang}',this.value)"></div>
+  </div>`;
+}
+
+function updateSliderField(index, field, lang, value) {
+  const sliders = getSliders();
+  if (!sliders[index]) return;
+  if (lang) {
+    sliders[index][field] = sliders[index][field] || {};
+    sliders[index][field][lang] = value;
+  } else {
+    sliders[index][field] = value;
+  }
+  savedSliders = sliders;
+  saveState(false);
+}
+
+function addSlider() {
+  const sliders = getSliders();
+  sliders.push({
+    image: 'images/hero-slide-placeholder-2.svg',
+    eyebrow: { en: 'New Homepage Slider', tr: 'Yeni Ana Sayfa Slider', es: 'Nuevo Slider de Inicio' },
+    title: { en: 'Add your<br><em>new</em><br>message.', tr: 'Yeni<br><em>mesajinizi</em><br>ekleyin.', es: 'Agrega tu<br><em>nuevo</em><br>mensaje.' },
+    body: { en: 'Edit this slide from the slider panel with your own text, buttons and image.', tr: 'Bu slideri kendi metin, buton ve gorselinizle duzenleyin.', es: 'Edita este slider con tu propio texto, botones e imagen.' },
+    primaryText: { en: 'Explore Fabrics', tr: 'Kumaslari Kesfet', es: 'Ver Telas' },
+    primaryHref: 'products.html',
+    secondaryText: { en: 'Request Samples', tr: 'Numune Iste', es: 'Pedir Muestras' },
+    secondaryHref: 'contact.html'
+  });
+  savedSliders = sliders;
+  saveState(false);
+  showSection('sliders');
+}
+
+function duplicateSlider(index) {
+  const sliders = getSliders();
+  sliders.splice(index + 1, 0, JSON.parse(JSON.stringify(sliders[index])));
+  savedSliders = sliders;
+  saveState(false);
+  showSection('sliders');
+}
+
+function removeSlider(index) {
+  const sliders = getSliders();
+  if (sliders.length <= 1 || !confirm('Remove this slider?')) return;
+  sliders.splice(index, 1);
+  savedSliders = sliders;
+  saveState(false);
+  showSection('sliders');
+}
+
+function moveSlider(index, dir) {
+  const sliders = getSliders();
+  const next = index + dir;
+  if (next < 0 || next >= sliders.length) return;
+  [sliders[index], sliders[next]] = [sliders[next], sliders[index]];
+  savedSliders = sliders;
+  saveState(false);
+  showSection('sliders');
+}
+
+function resetSliders() {
+  if (!confirm('Reset all sliders to default?')) return;
+  savedSliders = DEFAULT_SLIDERS.map(s => JSON.parse(JSON.stringify(s)));
+  localStorage.removeItem(SLIDER_STORAGE_KEY);
+  saveState(false);
+  showSection('sliders');
+}
+
+function uploadSliderImage(index, input) {
+  const file = input.files && input.files[0];
+  if (!file) return;
+  if (file.size > 3 * 1024 * 1024) {
+    toast('Image too large - max 3MB', 'error');
+    return;
+  }
+  const reader = new FileReader();
+  reader.onload = e => {
+    updateSliderField(index, 'image', null, e.target.result);
+    showSection('sliders');
+  };
+  reader.readAsDataURL(file);
 }
 
 // ── DASHBOARD ─────────────────────────────────────────────────────────────
@@ -3784,9 +4000,11 @@ function resetEverything() {
   savedTexts = {};
   savedImages = {};
   savedTheme = {};
+  savedSliders = DEFAULT_SLIDERS.map(s => JSON.parse(JSON.stringify(s)));
   localStorage.removeItem(STORAGE_KEY);
   localStorage.removeItem(IMG_STORAGE_KEY);
   localStorage.removeItem(THEME_STORAGE_KEY);
+  localStorage.removeItem(SLIDER_STORAGE_KEY);
   applyAdminThemePreview();
   toast('Everything reset', 'success');
   showSection('dashboard');

@@ -6,6 +6,7 @@
   const STORAGE_KEY = 'fxtextile_content';
   const IMG_STORAGE_KEY = 'fxtextile_images';
   const THEME_STORAGE_KEY = 'fxtextile_theme';
+  const SLIDER_STORAGE_KEY = 'fxtextile_sliders';
 
   function getExportedTexts() {
     return (window.FX_TEXTILE_EXPORTED_CONTENT && window.FX_TEXTILE_EXPORTED_CONTENT.texts) || {};
@@ -17,6 +18,14 @@
 
   function getExportedTheme() {
     return (window.FX_TEXTILE_EXPORTED_CONTENT && window.FX_TEXTILE_EXPORTED_CONTENT.theme) || {};
+  }
+
+  function getExportedSliders() {
+    return (window.FX_TEXTILE_EXPORTED_CONTENT && window.FX_TEXTILE_EXPORTED_CONTENT.sliders) || null;
+  }
+
+  function escapeAttr(value) {
+    return String(value || '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
   }
 
   function applyTheme() {
@@ -124,6 +133,53 @@
     } catch(e) { console.warn('Image loader:', e); }
   }
 
+  function applySliders() {
+    try {
+      const sliderWrap = document.getElementById('hero-slider');
+      const dotsWrap = document.querySelector('.hero-dots');
+      if (!sliderWrap || !dotsWrap) return;
+
+      const raw = localStorage.getItem(SLIDER_STORAGE_KEY);
+      const local = raw ? JSON.parse(raw) : null;
+      const exported = getExportedSliders();
+      const sliders = Array.isArray(local) ? local : (Array.isArray(exported) ? exported : null);
+      if (!sliders || !sliders.length) return;
+
+      const slideHtml = sliders.map((slide, index) => `
+        <div class="hero-slide${index === 0 ? ' active' : ''}">
+          <img class="hero-bg-img" src="${escapeAttr(slide.image)}" alt="FX Textile Slider ${index + 1}">
+          <div class="hero-content">
+            <div class="hero-eyebrow">
+              <span data-lang="en" class="active">${slide.eyebrow?.en || ''}</span>
+              <span data-lang="tr">${slide.eyebrow?.tr || ''}</span>
+              <span data-lang="es">${slide.eyebrow?.es || ''}</span>
+            </div>
+            <h1 class="hero-title">
+              <span data-lang="en" class="active">${slide.title?.en || ''}</span>
+              <span data-lang="tr">${slide.title?.tr || ''}</span>
+              <span data-lang="es">${slide.title?.es || ''}</span>
+            </h1>
+            <p class="hero-sub">
+              <span data-lang="en" class="active">${slide.body?.en || ''}</span>
+              <span data-lang="tr">${slide.body?.tr || ''}</span>
+              <span data-lang="es">${slide.body?.es || ''}</span>
+            </p>
+            <div class="hero-ctas">
+              <a href="${escapeAttr(slide.primaryHref || 'products.html')}" class="btn-primary"><span data-lang="en" class="active">${slide.primaryText?.en || ''}</span><span data-lang="tr">${slide.primaryText?.tr || ''}</span><span data-lang="es">${slide.primaryText?.es || ''}</span></a>
+              <a href="${escapeAttr(slide.secondaryHref || 'contact.html')}" class="btn-ghost" style="border-color:rgba(255,255,255,0.25);color:rgba(255,255,255,0.7)"><span data-lang="en" class="active">${slide.secondaryText?.en || ''}</span><span data-lang="tr">${slide.secondaryText?.tr || ''}</span><span data-lang="es">${slide.secondaryText?.es || ''}</span></a>
+            </div>
+          </div>
+        </div>
+      `).join('');
+      sliderWrap.innerHTML = slideHtml;
+      dotsWrap.innerHTML = sliders.map((_, index) => `<button class="hero-dot${index === 0 ? ' active' : ''}" type="button" aria-label="Slide ${index + 1}" onclick="setHeroSlide(${index},true)"></button>`).join('');
+
+      const lang = localStorage.getItem('fxlang') || document.documentElement.lang || 'en';
+      if (typeof window.setLang === 'function') window.setLang(lang);
+      if (typeof window.initHeroSlider === 'function') window.initHeroSlider();
+    } catch(e) { console.warn('Slider loader:', e); }
+  }
+
   function addAdminBar() {
     if (localStorage.getItem('fxtextile_admin_mode') !== 'true') return;
     if (document.getElementById('fx-admin-bar')) return;
@@ -207,6 +263,7 @@
 
   function init() {
     applyTheme();
+    applySliders();
     applyTexts();
     applyImages();
     applyMotion();
