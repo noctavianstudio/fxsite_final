@@ -3641,8 +3641,16 @@ function renderSettings() {
           <input id="theme-page-overlay-opacity" type="range" min="0.00" max="1.00" step="0.01" value="${theme.pageHeroOverlayOpacity}" oninput="syncThemeInputs()">
           <output id="theme-page-overlay-opacity-value">${Math.round(Number(theme.pageHeroOverlayOpacity) * 100)}%</output>
         </div>
+      </div>
+    </div>
+    <div class="setting-row">
+      <div class="setting-label">
+        <div class="sl-name">Hizmet Verdiğimiz Sektörler overlay</div>
+        <div class="sl-desc">Ana sayfadaki sektör kartlarının üzerindeki siyah gölge yoğunluğunu ayarlar</div>
+      </div>
+      <div class="theme-controls">
         <div class="theme-control">
-          <label>Sector overlay</label>
+          <label>Overlay</label>
           <input id="theme-sector-overlay-opacity" type="range" min="0.00" max="1.00" step="0.01" value="${theme.sectorOverlayOpacity}" oninput="syncThemeInputs()">
           <output id="theme-sector-overlay-opacity-value">${Math.round(Number(theme.sectorOverlayOpacity) * 100)}%</output>
         </div>
