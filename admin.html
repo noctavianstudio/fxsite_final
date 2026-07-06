@@ -139,6 +139,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .theme-preview-page .theme-preview-img{opacity:var(--preview-page-opacity,.2)}
 .theme-preview-page::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,5,.8),rgba(5,5,5,.08));opacity:var(--preview-page-overlay-opacity,1)}
 .theme-preview-page h4{position:relative;z-index:1;color:#fff;font-family:Georgia,serif;font-size:22px;font-weight:300}
+.theme-preview-sector{position:relative;min-height:128px;background:var(--preview-cream,#ede9e3);border:1px solid var(--border);border-radius:4px;overflow:hidden;padding:18px;display:flex;align-items:flex-end}
+.theme-preview-sector::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--preview-gray,#6b6b6b),var(--preview-black,#050505));opacity:.8}
+.theme-preview-sector::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,var(--preview-sector-overlay-opacity,.8)) 30%,rgba(10,10,10,0))}
+.theme-preview-sector h4{position:relative;z-index:1;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:16px;text-transform:uppercase;letter-spacing:2px}
 .theme-preview-swatches{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:16px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .theme-preview-swatch{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--text-dim)}.theme-preview-swatch span{width:34px;height:22px;border-radius:3px;border:1px solid rgba(255,255,255,.16)}
 @media(max-width:900px){.theme-preview-wrap{grid-template-columns:1fr}.setting-row{align-items:flex-start;flex-direction:column}.theme-controls{width:100%}}
@@ -354,72 +358,72 @@ const ORIGINAL_TEXTS = {
     "page_label": "Ana Sayfa / Home"
   },
   "index_63": {
-    "en": "Homepage Slider 02",
-    "tr": "Ana Sayfa Slider 02",
-    "es": "Slider de Inicio 02",
+    "en": "Certified Fabric Excellence",
+    "tr": "Sertifikal\u0131 Kuma\u015f M\u00fckemmelli\u011fi",
+    "es": "Excelencia Textil Certificada",
     "page": "index",
     "page_label": "Ana Sayfa / Home"
   },
   "index_64": {
-    "en": "Design your<br><em>second</em><br>message.",
-    "tr": "İkinci<br><em>mesajınızı</em><br>tasarlayın.",
-    "es": "Diseña tu<br><em>segundo</em><br>mensaje.",
+    "en": "Quality<br><em>woven with</em><br>purpose.",
+    "tr": "Ama\u00e7la<br><em>dokunan</em><br>kalite.",
+    "es": "Calidad<br><em>tejida con</em><br>prop\u00f3sito.",
     "page": "index",
     "page_label": "Ana Sayfa / Home"
   },
   "index_65": {
-    "en": "This independent homepage slide can be edited from the admin panel with your own text, buttons and image.",
-    "tr": "Bu bağımsız ana sayfa slaytı admin panelden kendi metniniz, butonlarınız ve görselinizle düzenlenebilir.",
-    "es": "Este slide independiente de inicio se puede editar desde el panel admin con tu propio texto, botones e imagen.",
+    "en": "Reliable apparel fabrics shaped by certified production, responsible sourcing and the experience of Turkish textile craft.",
+    "tr": "Sertifikal\u0131 \u00fcretim, sorumlu tedarik ve T\u00fcrk tekstil ustal\u0131\u011f\u0131n\u0131n deneyimiyle \u015fekillenen g\u00fcvenilir giyim kuma\u015flar\u0131.",
+    "es": "Telas confiables para confecci\u00f3n, creadas con producci\u00f3n certificada, abastecimiento responsable y experiencia textil turca.",
     "page": "index",
     "page_label": "Ana Sayfa / Home"
   },
   "index_66": {
-    "en": "Primary Button",
-    "tr": "Birincil Buton",
-    "es": "Botón Principal",
+    "en": "Explore Fabrics",
+    "tr": "Kuma\u015flar\u0131 Ke\u015ffet",
+    "es": "Ver Telas",
     "page": "index",
     "page_label": "Ana Sayfa / Home"
   },
   "index_67": {
-    "en": "Secondary Button",
-    "tr": "İkincil Buton",
-    "es": "Botón Secundario",
+    "en": "Request Samples",
+    "tr": "Numune \u0130ste",
+    "es": "Pedir Muestras",
     "page": "index",
     "page_label": "Ana Sayfa / Home"
   },
   "index_68": {
-    "en": "Homepage Slider 03",
-    "tr": "Ana Sayfa Slider 03",
-    "es": "Slider de Inicio 03",
+    "en": "Global Textile Partnership",
+    "tr": "K\u00fcresel Tekstil \u0130\u015f Ortakl\u0131\u011f\u0131",
+    "es": "Alianza Textil Global",
     "page": "index",
     "page_label": "Ana Sayfa / Home"
   },
   "index_69": {
-    "en": "Shape your<br><em>third</em><br>story.",
-    "tr": "Üçüncü<br><em>hikayenizi</em><br>şekillendirin.",
-    "es": "Da forma a tu<br><em>tercera</em><br>historia.",
+    "en": "Your<br><em>strategic</em><br>fabric partner.",
+    "tr": "Stratejik<br><em>kuma\u015f</em><br>i\u015f orta\u011f\u0131n\u0131z.",
+    "es": "Tu socio<br><em>estrat\u00e9gico</em><br>en tejidos.",
     "page": "index",
     "page_label": "Ana Sayfa / Home"
   },
   "index_70": {
-    "en": "Use this slide for a campaign, seasonal fabric story, collection highlight or any homepage announcement.",
-    "tr": "Bu slaytı kampanya, sezonluk kumaş hikayesi, koleksiyon vurgusu veya ana sayfa duyurusu için kullanabilirsiniz.",
-    "es": "Usa este slide para una campaña, historia de temporada, destaque de colección o anuncio de inicio.",
+    "en": "From Bursa to global markets, we support brands with sustainable fabric development, agile supply and long-term partnership.",
+    "tr": "Bursa\u2019dan global pazarlara, markalara s\u00fcrd\u00fcr\u00fclebilir kuma\u015f geli\u015ftirme, esnek tedarik ve uzun vadeli i\u015f ortakl\u0131\u011f\u0131 sunuyoruz.",
+    "es": "Desde Bursa hacia los mercados globales, apoyamos a las marcas con desarrollo sostenible, suministro \u00e1gil y colaboraci\u00f3n a largo plazo.",
     "page": "index",
     "page_label": "Ana Sayfa / Home"
   },
   "index_71": {
-    "en": "Primary Button",
-    "tr": "Birincil Buton",
-    "es": "Botón Principal",
+    "en": "Explore Fabrics",
+    "tr": "Kuma\u015flar\u0131 Ke\u015ffet",
+    "es": "Ver Telas",
     "page": "index",
     "page_label": "Ana Sayfa / Home"
   },
   "index_72": {
-    "en": "Start a Project",
-    "tr": "Proje Başlat",
-    "es": "Iniciar Proyecto",
+    "en": "Request Samples",
+    "tr": "Numune \u0130ste",
+    "es": "Pedir Muestras",
     "page": "index",
     "page_label": "Ana Sayfa / Home"
   },
@@ -3002,6 +3006,7 @@ const DEFAULT_THEME = {
   pageHeroOpacity: '0.20',
   heroOverlayOpacity: '1.00',
   pageHeroOverlayOpacity: '1.00',
+  sectorOverlayOpacity: '0.80',
   navFontSize: '11',
   navMobileFontSize: '13'
 };
@@ -3106,6 +3111,7 @@ function updateThemePreview(theme = getTheme()) {
   preview.style.setProperty('--preview-page-opacity', theme.pageHeroOpacity);
   preview.style.setProperty('--preview-hero-overlay-opacity', theme.heroOverlayOpacity);
   preview.style.setProperty('--preview-page-overlay-opacity', theme.pageHeroOverlayOpacity);
+  preview.style.setProperty('--preview-sector-overlay-opacity', theme.sectorOverlayOpacity);
   preview.style.setProperty('--preview-nav-font-size', theme.navFontSize + 'px');
   const swatches = {
     'preview-swatch-primary': theme.primary,
@@ -3138,6 +3144,7 @@ function syncThemeInputs() {
     pageHeroOpacity: document.getElementById('theme-page-hero-opacity').value,
     heroOverlayOpacity: document.getElementById('theme-hero-overlay-opacity').value,
     pageHeroOverlayOpacity: document.getElementById('theme-page-overlay-opacity').value,
+    sectorOverlayOpacity: document.getElementById('theme-sector-overlay-opacity').value,
     navFontSize: document.getElementById('theme-nav-font-size').value,
     navMobileFontSize: document.getElementById('theme-nav-mobile-font-size').value
   };
@@ -3146,12 +3153,14 @@ function syncThemeInputs() {
   const pageHeroValue = document.getElementById('theme-page-hero-opacity-value');
   const heroOverlayValue = document.getElementById('theme-hero-overlay-opacity-value');
   const pageOverlayValue = document.getElementById('theme-page-overlay-opacity-value');
+  const sectorOverlayValue = document.getElementById('theme-sector-overlay-opacity-value');
   const navFontValue = document.getElementById('theme-nav-font-size-value');
   const navMobileFontValue = document.getElementById('theme-nav-mobile-font-size-value');
   if (heroValue) heroValue.textContent = Math.round(Number(theme.heroOpacity) * 100) + '%';
   if (pageHeroValue) pageHeroValue.textContent = Math.round(Number(theme.pageHeroOpacity) * 100) + '%';
   if (heroOverlayValue) heroOverlayValue.textContent = Math.round(Number(theme.heroOverlayOpacity) * 100) + '%';
   if (pageOverlayValue) pageOverlayValue.textContent = Math.round(Number(theme.pageHeroOverlayOpacity) * 100) + '%';
+  if (sectorOverlayValue) sectorOverlayValue.textContent = Math.round(Number(theme.sectorOverlayOpacity) * 100) + '%';
   if (navFontValue) navFontValue.textContent = theme.navFontSize + 'px';
   if (navMobileFontValue) navMobileFontValue.textContent = theme.navMobileFontSize + 'px';
   applyAdminThemePreview();
@@ -3546,6 +3555,9 @@ function renderSettings() {
             <img class="theme-preview-img" src="${pageHeroPreview}" alt="">
             <h4>Page hero preview</h4>
           </div>
+          <div class="theme-preview-sector">
+            <h4>Sector overlay</h4>
+          </div>
           <div class="theme-preview-swatches">
             <div class="theme-preview-swatch"><span id="preview-swatch-primary" style="background:${theme.primary}"></span>Main color</div>
             <div class="theme-preview-swatch"><span id="preview-swatch-light" style="background:${theme.primaryLight}"></span>Light accent</div>
@@ -3628,6 +3640,11 @@ function renderSettings() {
           <label>Page overlay</label>
           <input id="theme-page-overlay-opacity" type="range" min="0.00" max="1.00" step="0.01" value="${theme.pageHeroOverlayOpacity}" oninput="syncThemeInputs()">
           <output id="theme-page-overlay-opacity-value">${Math.round(Number(theme.pageHeroOverlayOpacity) * 100)}%</output>
+        </div>
+        <div class="theme-control">
+          <label>Sector overlay</label>
+          <input id="theme-sector-overlay-opacity" type="range" min="0.00" max="1.00" step="0.01" value="${theme.sectorOverlayOpacity}" oninput="syncThemeInputs()">
+          <output id="theme-sector-overlay-opacity-value">${Math.round(Number(theme.sectorOverlayOpacity) * 100)}%</output>
         </div>
       </div>
     </div>

@@ -42,6 +42,7 @@
         pageHeroOpacity: '--fx-page-hero-opacity',
         heroOverlayOpacity: '--fx-hero-overlay-opacity',
         pageHeroOverlayOpacity: '--fx-page-hero-overlay-opacity',
+        sectorOverlayOpacity: '--fx-sector-overlay-opacity',
         navFontSize: '--fx-nav-font-size',
         navMobileFontSize: '--fx-nav-mobile-font-size'
       };
@@ -61,6 +62,7 @@
         .contact-hero img[data-img-key^="hero-"]{opacity:var(--fx-page-hero-opacity,0.18)!important}
         .hero-grad{opacity:var(--fx-hero-overlay-opacity,1)!important}
         .page-hero-grad,.contact-hero-grad{opacity:var(--fx-page-hero-overlay-opacity,1)!important}
+        .sector-overlay{background:linear-gradient(to top,rgba(10,10,10,var(--fx-sector-overlay-opacity,.8)) 30%,rgba(10,10,10,0))!important}
         .nav-links a{font-size:var(--fx-nav-font-size,11px)!important}
         body{background:var(--off-white)!important}
         nav{background:var(--off-white)!important}
@@ -149,7 +151,9 @@
         style.id = 'fx-motion-styles';
         style.textContent = `
           @media (prefers-reduced-motion:no-preference){
-            .fx-reveal{opacity:0;transform:translateY(42px);filter:blur(6px);transition:opacity .95s ease,transform .95s cubic-bezier(.2,.8,.2,1),filter .95s ease}
+            .fx-reveal{opacity:0;transform:translate3d(0,64px,0) scale(.985);filter:blur(8px);transition:opacity 1.05s ease,transform 1.05s cubic-bezier(.16,.84,.24,1),filter 1.05s ease}
+            .fx-reveal.fx-from-left{transform:translate3d(-52px,24px,0) scale(.985)}
+            .fx-reveal.fx-from-right{transform:translate3d(52px,24px,0) scale(.985)}
             .fx-reveal.in-view{opacity:1;transform:none}
             .fx-reveal.in-view{filter:none}
             .fx-hover-lift{transition:transform .28s ease,box-shadow .28s ease}
@@ -163,7 +167,7 @@
       }
 
       const revealSelector = [
-        '.section-eyebrow','.section-title','.section-body','.intro-text-side p',
+        '.section-eyebrow','.section-title','.section-body','.intro-text-side','.intro-text-side p',
         '.intro-img-side','.about-img-grid div','.stats-band','.stat-item',
         '.pillar','.about-card','.mission-card','.cert-strip-left','.cbadge',
         '.sector-card','.prod-card','.pd-card','.esg-card','.memb-card',
@@ -174,6 +178,8 @@
       ].join(',');
       document.querySelectorAll(revealSelector).forEach((el, index) => {
         el.classList.add('fx-reveal');
+        if (el.matches('.intro-text-side,.section-title,.about-card,.mission-card,.prod-card,.region-card')) el.classList.add('fx-from-left');
+        if (el.matches('.intro-img-side,.about-img-grid div,.sector-card,.pd-card,.office-card,.cert-card')) el.classList.add('fx-from-right');
         el.style.transitionDelay = Math.min(index % 6, 5) * 45 + 'ms';
       });
 
