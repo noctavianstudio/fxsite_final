@@ -3332,9 +3332,9 @@ function renderSliderCard(slide, index, total) {
           <div class="slider-preview">
             <img id="slider-preview-img-${index}" src="${escapeHtml(image)}" alt="">
             <div class="slider-preview-copy">
-              <div class="slider-preview-kicker">${slide.eyebrow?.en || ''}</div>
-              <div class="slider-preview-title">${slide.title?.en || ''}</div>
-              <div class="slider-preview-text">${slide.body?.en || ''}</div>
+              <div class="slider-preview-kicker">${slide.eyebrow?.tr || slide.eyebrow?.en || ''}</div>
+              <div class="slider-preview-title">${slide.title?.tr || slide.title?.en || ''}</div>
+              <div class="slider-preview-text">${slide.body?.tr || slide.body?.en || ''}</div>
             </div>
           </div>
           <div class="slider-fields" style="margin-top:10px">
@@ -3439,7 +3439,8 @@ function uploadSliderImage(index, input) {
   const reader = new FileReader();
   reader.onerror = () => toast('Image could not be read', 'error');
   reader.onload = e => {
-    compressSliderImage(e.target.result, 1800, 0.86).then(dataUrl => {
+    const originalDataUrl = e.target.result;
+    compressSliderImage(originalDataUrl, 1800, 0.86).catch(() => originalDataUrl).then(dataUrl => {
       updateSliderField(index, 'image', null, dataUrl);
       const preview = document.getElementById('slider-preview-img-' + index);
       if (preview) preview.src = dataUrl;
