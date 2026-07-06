@@ -18,8 +18,8 @@ window.FX_TEXTILE_EXPORTED_CONTENT = {
     "pageHeroOpacity": "1",
     "heroOverlayOpacity": "0.6",
     "pageHeroOverlayOpacity": "0.52",
-    "sectorOverlayOpacity": "0.80",
-    "navFontSize": "10",
+    "sectorOverlayOpacity": "0.21",
+    "navFontSize": "9",
     "navMobileFontSize": "13"
   },
   "sliders": [
@@ -114,5 +114,5 @@ window.FX_TEXTILE_EXPORTED_CONTENT = {
       "secondaryHref": "contact.html"
     }
   ],
-  "generatedAt": "2026-07-06T07:24:58.058Z"
+  "generatedAt": "2026-07-06T07:25:52.616Z"
 };
