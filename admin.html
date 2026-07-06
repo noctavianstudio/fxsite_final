@@ -167,6 +167,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .toast{position:fixed;bottom:24px;right:24px;background:#222;border:1px solid #444;color:#fff;padding:12px 18px;border-radius:4px;font-size:13px;z-index:9999;opacity:0;transform:translateY(8px);transition:all .25s;pointer-events:none}
 .toast.show{opacity:1;transform:translateY(0)}
 .toast.success{border-color:var(--green-light);background:#1a2e1a}
+.toast.warning{border-color:#f0a000;background:#2e2510}
 .toast.error{border-color:var(--red-light);background:#2e1a1a}
 
 /* ── LOGIN ── */
@@ -3010,6 +3011,7 @@ const IMG_STORAGE_KEY = 'fxtextile_images';
 const THEME_STORAGE_KEY = 'fxtextile_theme';
 const SLIDER_STORAGE_KEY = 'fxtextile_sliders';
 const SAVE_ENDPOINT_KEY = 'fxtextile_save_endpoint';
+const DEFAULT_SAVE_ENDPOINT = 'https://fxsite-final.vercel.app/api/save-content';
 const ADMIN_SESSION_KEY = 'fxtextile_admin_session';
 const ADMIN_USER = 'admin';
 const ADMIN_PASS = 'adminfx';
@@ -3147,6 +3149,10 @@ function buildDataJsContent() {
     sliders: getSliders(),
     generatedAt: new Date().toISOString()
   }, null, 2)};\n`;
+}
+
+function getSaveEndpoint() {
+  return localStorage.getItem(SAVE_ENDPOINT_KEY) || DEFAULT_SAVE_ENDPOINT;
 }
 
 function getTheme() {
@@ -3449,8 +3455,10 @@ function uploadSliderImage(index, input) {
   const objectUrl = URL.createObjectURL(file);
   if (preview) preview.src = objectUrl;
 
+  let uploadedDataUrl = '';
   compressSliderFile(file)
     .then(dataUrl => {
+      uploadedDataUrl = dataUrl;
       let sliders = getSliders();
       if (!sliders[index]) throw new Error('Slider not found');
       sliders[index].image = dataUrl;
@@ -3463,7 +3471,7 @@ function uploadSliderImage(index, input) {
       } catch (error) {
         throw new Error('Image is too large for browser storage. Try a smaller JPG.');
       }
-      if (preview) preview.src = dataUrl;
+      if (preview) preview.src = sliders[index]?.image || uploadedDataUrl;
       toast('Slider image loaded', 'success');
       setTimeout(() => showSection('sliders'), 80);
     })
@@ -3484,6 +3492,24 @@ async function compressStoredSliderImages(sliders) {
     }
   }
   return optimized;
+}
+
+async function optimizeStoredImagesForPublish() {
+  cleanSliderImageStorage();
+  savedSliders = await compressStoredSliderImages(getSliders());
+
+  for (const key of Object.keys(savedImages || {})) {
+    const image = savedImages[key];
+    if (!image || !image.startsWith('data:image/') || image.length < 900000) continue;
+    let optimized = await compressSliderImage(image, 1000, 0.62);
+    if (optimized.length > 900000) optimized = await compressSliderImage(optimized, 820, 0.56);
+    if (optimized.length > 900000) optimized = await compressSliderImage(optimized, 680, 0.50);
+    savedImages[key] = optimized;
+  }
+}
+
+function getPublishSizeMb(content) {
+  return new Blob([content]).size / (1024 * 1024);
 }
 
 function compressSliderFile(file) {
@@ -4025,12 +4051,12 @@ function renderSettings() {
         <div class="sl-name">Save endpoint</div>
         <div class="sl-desc">Used by Save All to publish data.js to GitHub</div>
       </div>
-      <input id="save-endpoint-input" value="${localStorage.getItem(SAVE_ENDPOINT_KEY) || ''}" placeholder="https://your-api.vercel.app/api/save-content" style="background:var(--surface);border:1px solid var(--border);color:var(--text);padding:10px 12px;width:min(460px,100%);border-radius:4px">
+      <input id="save-endpoint-input" value="${getSaveEndpoint()}" placeholder="https://your-api.vercel.app/api/save-content" style="background:var(--surface);border:1px solid var(--border);color:var(--text);padding:10px 12px;width:min(460px,100%);border-radius:4px">
     </div>
     <div class="setting-row">
       <div class="setting-label">
         <div class="sl-name">Endpoint setting</div>
-        <div class="sl-desc">Keep empty for local-only saves</div>
+        <div class="sl-desc">Default endpoint is used unless you enter a custom one</div>
       </div>
       <button class="btn btn-secondary" onclick="saveEndpointSetting()">Save Endpoint</button>
     </div>
@@ -4077,7 +4103,7 @@ function saveEndpointSetting() {
     toast('Save endpoint configured', 'success');
   } else {
     localStorage.removeItem(SAVE_ENDPOINT_KEY);
-    toast('Save endpoint cleared', 'success');
+    toast('Save endpoint reset to default', 'success');
   }
 }
 
@@ -4114,28 +4140,44 @@ function resetEverything() {
 
 // ── GLOBAL ACTIONS ────────────────────────────────────────────────────────
 async function saveAll() {
-  saveState(false);
-  const endpoint = localStorage.getItem(SAVE_ENDPOINT_KEY);
-  if (!endpoint) {
-    toast('Saved locally. Configure Save endpoint to publish automatically.', 'warning');
-    return;
-  }
-
-  const password = prompt('Publishing password');
-  if (!password) {
-    toast('Publish cancelled', 'warning');
-    return;
-  }
-
   try {
-    toast('Publishing to GitHub...', 'success');
+    toast('Preparing content...', 'success');
+    await optimizeStoredImagesForPublish();
+
+    try {
+      saveState(false);
+    } catch (storageError) {
+      console.warn(storageError);
+      toast('Browser storage is full; trying to publish current changes...', 'warning');
+    }
+
+    const endpoint = getSaveEndpoint();
+    if (!endpoint) {
+      toast('Save endpoint is missing in this browser tab.', 'error');
+      return;
+    }
+
+    const password = prompt('Publishing password');
+    if (!password) {
+      toast('Publish cancelled', 'warning');
+      return;
+    }
+
+    const content = buildDataJsContent();
+    const sizeMb = getPublishSizeMb(content);
+    if (sizeMb > 4.5) {
+      toast(`Publish data is too large (${sizeMb.toFixed(1)} MB). Use smaller images.`, 'error');
+      return;
+    }
+
+    toast(`Publishing to GitHub (${sizeMb.toFixed(1)} MB)...`, 'success');
     const response = await fetch(endpoint, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
         password,
         message: 'Update site content',
-        content: buildDataJsContent()
+        content
       })
     });
     const result = await response.json().catch(() => ({}));
