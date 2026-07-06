@@ -86,12 +86,13 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
 /* HERO */
 .hero{height:100vh;min-height:680px;background:var(--black);display:flex;align-items:flex-end;position:relative;overflow:hidden}
 .hero-slider{position:absolute;inset:0}
-.hero-slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity 900ms ease,visibility 900ms ease;display:flex;align-items:flex-end}
-.hero-slide.active{opacity:1;visibility:visible}
+.hero-slide{position:absolute;inset:0;opacity:0;visibility:hidden;pointer-events:none;transition:opacity 1100ms ease,visibility 0s linear 1100ms;display:flex;align-items:flex-end}
+.hero-slide.active{opacity:1;visibility:visible;pointer-events:auto;transition:opacity 1100ms ease}
 .hero-bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.3}
 .hero-grad{position:absolute;inset:0;background:linear-gradient(to top,#0a0a0a 35%,rgba(10,10,10,0.4) 100%)}
 .hero-accent{position:absolute;top:0;right:0;width:42%;height:100%;background:linear-gradient(180deg,rgba(139,26,26,0.18) 0%,transparent 70%);clip-path:polygon(28% 0%,100% 0%,100% 100%,0% 100%)}
-.hero-content{position:relative;z-index:2;padding:0 60px 90px;max-width:920px}
+.hero-content{position:relative;z-index:2;padding:0 60px 90px;max-width:920px;opacity:0;transform:translateY(20px);transition:opacity 800ms ease 220ms,transform 800ms ease 220ms}
+.hero-slide.active .hero-content{opacity:1;transform:none}
 .hero-eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:4px;color:var(--red-light);text-transform:uppercase;margin-bottom:24px;display:flex;align-items:center;gap:16px}
 .hero-eyebrow::before{content:'';display:block;width:40px;height:1px;background:var(--red-light)}
 .hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(54px,7.5vw,100px);font-weight:300;color:#fff;line-height:1.0;margin-bottom:32px;letter-spacing:-1px}
@@ -224,25 +225,25 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
       </div>
     </div>
     <div class="hero-slide">
-      <img data-img-key="hero-index-slide-2" class="hero-bg-img" src="images/hero-sustainability.jpg" alt="Sustainable Textile Production">
+      <img data-img-key="hero-index-slide-2" class="hero-bg-img" src="images/hero-slide-placeholder-2.svg" alt="FX Textile Slider 2">
       <div class="hero-content">
-        <div class="hero-eyebrow"><span data-lang="en" class="active" data-edit-key="index_63">Certified Sustainable Production</span><span data-lang="tr">Sertifikalı Sürdürülebilir Üretim</span><span data-lang="es">Producción Sostenible Certificada</span></div>
-        <h1 class="hero-title"><span data-lang="en" class="active" data-edit-key="index_64">Lower impact.<br><em>Higher</em><br>standards.</span><span data-lang="tr">Daha düşük etki.<br><em>Daha yüksek</em><br>standartlar.</span><span data-lang="es">Menor impacto.<br><em>Mayores</em><br>estándares.</span></h1>
-        <p class="hero-sub"><span data-lang="en" class="active" data-edit-key="index_65">GOTS, GRS, OCS and RCS certified fabrics supported by solar energy, water recycling and traceable production.</span><span data-lang="tr">Güneş enerjisi, su geri dönüşümü ve izlenebilir üretimle desteklenen GOTS, GRS, OCS ve RCS sertifikalı kumaşlar.</span><span data-lang="es">Telas certificadas GOTS, GRS, OCS y RCS respaldadas por energía solar, reciclaje de agua y producción trazable.</span></p>
+        <div class="hero-eyebrow"><span data-lang="en" class="active" data-edit-key="index_63">Homepage Slider 02</span><span data-lang="tr">Ana Sayfa Slider 02</span><span data-lang="es">Slider de Inicio 02</span></div>
+        <h1 class="hero-title"><span data-lang="en" class="active" data-edit-key="index_64">Design your<br><em>second</em><br>message.</span><span data-lang="tr">İkinci<br><em>mesajınızı</em><br>tasarlayın.</span><span data-lang="es">Diseña tu<br><em>segundo</em><br>mensaje.</span></h1>
+        <p class="hero-sub"><span data-lang="en" class="active" data-edit-key="index_65">This independent homepage slide can be edited from the admin panel with your own text, buttons and image.</span><span data-lang="tr">Bu bağımsız ana sayfa slaytı admin panelden kendi metniniz, butonlarınız ve görselinizle düzenlenebilir.</span><span data-lang="es">Este slide independiente de inicio se puede editar desde el panel admin con tu propio texto, botones e imagen.</span></p>
         <div class="hero-ctas">
-          <a href="sustainability.html" class="btn-primary"><span data-lang="en" class="active" data-edit-key="index_66">View Sustainability</span><span data-lang="tr">Sürdürülebilirliği Gör</span><span data-lang="es">Ver Sostenibilidad</span></a>
-          <a href="certifications.html" class="btn-ghost" style="border-color:rgba(255,255,255,0.25);color:rgba(255,255,255,0.7)"><span data-lang="en" class="active" data-edit-key="index_67">See Certificates</span><span data-lang="tr">Sertifikaları Gör</span><span data-lang="es">Ver Certificados</span></a>
+          <a href="products.html" class="btn-primary"><span data-lang="en" class="active" data-edit-key="index_66">Primary Button</span><span data-lang="tr">Birincil Buton</span><span data-lang="es">Botón Principal</span></a>
+          <a href="contact.html" class="btn-ghost" style="border-color:rgba(255,255,255,0.25);color:rgba(255,255,255,0.7)"><span data-lang="en" class="active" data-edit-key="index_67">Secondary Button</span><span data-lang="tr">İkincil Buton</span><span data-lang="es">Botón Secundario</span></a>
         </div>
       </div>
     </div>
     <div class="hero-slide">
-      <img data-img-key="hero-index-slide-3" class="hero-bg-img" src="images/hero-global.jpg" alt="Global Fabric Supply">
+      <img data-img-key="hero-index-slide-3" class="hero-bg-img" src="images/hero-slide-placeholder-3.svg" alt="FX Textile Slider 3">
       <div class="hero-content">
-        <div class="hero-eyebrow"><span data-lang="en" class="active" data-edit-key="index_68">Global Reach from Bursa</span><span data-lang="tr">Bursa'dan Küresel Erişim</span><span data-lang="es">Alcance Global desde Bursa</span></div>
-        <h1 class="hero-title"><span data-lang="en" class="active" data-edit-key="index_69">A strategic<br><em>fabric</em><br>partner.</span><span data-lang="tr">Stratejik<br><em>kumaş</em><br>iş ortağı.</span><span data-lang="es">Un socio<br><em>textil</em><br>estratégico.</span></h1>
-        <p class="hero-sub"><span data-lang="en" class="active" data-edit-key="index_70">Reliable supply, creative fabric development and export experience for Europe and global textile markets.</span><span data-lang="tr">Avrupa ve global tekstil pazarları için güvenilir tedarik, yaratıcı kumaş geliştirme ve ihracat deneyimi.</span><span data-lang="es">Suministro fiable, desarrollo creativo de tejidos y experiencia exportadora para Europa y mercados textiles globales.</span></p>
+        <div class="hero-eyebrow"><span data-lang="en" class="active" data-edit-key="index_68">Homepage Slider 03</span><span data-lang="tr">Ana Sayfa Slider 03</span><span data-lang="es">Slider de Inicio 03</span></div>
+        <h1 class="hero-title"><span data-lang="en" class="active" data-edit-key="index_69">Shape your<br><em>third</em><br>story.</span><span data-lang="tr">Üçüncü<br><em>hikayenizi</em><br>şekillendirin.</span><span data-lang="es">Da forma a tu<br><em>tercera</em><br>historia.</span></h1>
+        <p class="hero-sub"><span data-lang="en" class="active" data-edit-key="index_70">Use this slide for a campaign, seasonal fabric story, collection highlight or any homepage announcement.</span><span data-lang="tr">Bu slaytı kampanya, sezonluk kumaş hikayesi, koleksiyon vurgusu veya ana sayfa duyurusu için kullanabilirsiniz.</span><span data-lang="es">Usa este slide para una campaña, historia de temporada, destaque de colección o anuncio de inicio.</span></p>
         <div class="hero-ctas">
-          <a href="global.html" class="btn-primary"><span data-lang="en" class="active" data-edit-key="index_71">Explore Global Presence</span><span data-lang="tr">Global Varlığı Keşfet</span><span data-lang="es">Explorar Presencia Global</span></a>
+          <a href="products.html" class="btn-primary"><span data-lang="en" class="active" data-edit-key="index_71">Primary Button</span><span data-lang="tr">Birincil Buton</span><span data-lang="es">Botón Principal</span></a>
           <a href="contact.html" class="btn-ghost" style="border-color:rgba(255,255,255,0.25);color:rgba(255,255,255,0.7)"><span data-lang="en" class="active" data-edit-key="index_72">Start a Project</span><span data-lang="tr">Proje Başlat</span><span data-lang="es">Iniciar Proyecto</span></a>
         </div>
       </div>

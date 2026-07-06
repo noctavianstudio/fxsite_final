@@ -149,8 +149,9 @@
         style.id = 'fx-motion-styles';
         style.textContent = `
           @media (prefers-reduced-motion:no-preference){
-            .fx-reveal{opacity:0;transform:translateY(26px);transition:opacity .75s ease,transform .75s ease}
+            .fx-reveal{opacity:0;transform:translateY(42px);filter:blur(6px);transition:opacity .95s ease,transform .95s cubic-bezier(.2,.8,.2,1),filter .95s ease}
             .fx-reveal.in-view{opacity:1;transform:none}
+            .fx-reveal.in-view{filter:none}
             .fx-hover-lift{transition:transform .28s ease,box-shadow .28s ease}
             .fx-hover-lift:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,0,0,.12)}
             .fx-image-hover{overflow:hidden}
@@ -163,9 +164,13 @@
 
       const revealSelector = [
         '.section-eyebrow','.section-title','.section-body','.intro-text-side p',
+        '.intro-img-side','.about-img-grid div','.stats-band','.stat-item',
         '.pillar','.about-card','.mission-card','.cert-strip-left','.cbadge',
         '.sector-card','.prod-card','.pd-card','.esg-card','.memb-card',
-        '.region-card','.office-card','.cert-card','.dash-card'
+        '.region-card','.office-card','.cert-card','.dash-card',
+        '.global-intro','.map-section','.regions-section','.products-main',
+        '.material-section','.spec-table-section','.contact-main','.offices',
+        '.certs-main','.all-certs','.why-certs'
       ].join(',');
       document.querySelectorAll(revealSelector).forEach((el, index) => {
         el.classList.add('fx-reveal');

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="FX Textile slider placeholder 3">
+  <defs>
+    <linearGradient id="bg" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#222426"/>
+      <stop offset="0.5" stop-color="#4d5653"/>
+      <stop offset="1" stop-color="#0b0b0b"/>
+    </linearGradient>
+    <pattern id="grid" width="70" height="70" patternUnits="userSpaceOnUse">
+      <path d="M70 0H0V70" fill="none" stroke="#ffffff" stroke-opacity=".07" stroke-width="2"/>
+    </pattern>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#grid)" opacity=".7"/>
+  <path d="M980 0L1600 0L1600 900L760 900Z" fill="#8b1a1a" opacity=".18"/>
+  <text x="110" y="740" fill="#ffffff" opacity=".42" font-family="Arial, sans-serif" font-size="34" letter-spacing="8">SLIDER 03 PLACEHOLDER</text>
+</svg>
