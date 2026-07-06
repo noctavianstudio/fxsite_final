@@ -57,7 +57,9 @@
         document.head.appendChild(style);
       }
       style.textContent = `
-        .hero-bg-img{opacity:var(--fx-hero-opacity,0.3)!important}
+        .hero-bg-img{opacity:0!important}
+        .hero-slide.active .hero-bg-img{opacity:var(--fx-hero-opacity,0.3)!important}
+        .hero-slide.leaving .hero-bg-img{opacity:0!important}
         .page-hero img[data-img-key^="hero-"]{opacity:var(--fx-page-hero-opacity,0.2)!important}
         .contact-hero img[data-img-key^="hero-"]{opacity:var(--fx-page-hero-opacity,0.18)!important}
         .hero-grad{opacity:var(--fx-hero-overlay-opacity,1)!important}
