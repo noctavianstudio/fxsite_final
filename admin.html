@@ -3125,10 +3125,12 @@ function loadState() {
     if (theme) savedTheme = Object.assign(savedTheme, JSON.parse(theme));
     const sliders = localStorage.getItem(SLIDER_STORAGE_KEY);
     if (sliders) savedSliders = JSON.parse(sliders);
+    cleanSliderImageStorage();
   } catch(e) {}
 }
 
 function saveState(showToast = true) {
+  cleanSliderImageStorage();
   localStorage.setItem(STORAGE_KEY, JSON.stringify(savedTexts));
   localStorage.setItem(IMG_STORAGE_KEY, JSON.stringify(savedImages));
   localStorage.setItem(THEME_STORAGE_KEY, JSON.stringify(savedTheme));
@@ -3153,6 +3155,12 @@ function getTheme() {
 
 function getSliders() {
   return savedSliders && savedSliders.length ? savedSliders : DEFAULT_SLIDERS.map(s => JSON.parse(JSON.stringify(s)));
+}
+
+function cleanSliderImageStorage() {
+  ['hero-index','hero-index-slide-2','hero-index-slide-3'].forEach(key => {
+    if (savedImages && savedImages[key]) delete savedImages[key];
+  });
 }
 
 function applyAdminThemePreview() {
@@ -3443,9 +3451,12 @@ function uploadSliderImage(index, input) {
 
   compressSliderFile(file)
     .then(dataUrl => {
-      const sliders = getSliders();
+      let sliders = getSliders();
       if (!sliders[index]) throw new Error('Slider not found');
       sliders[index].image = dataUrl;
+      return compressStoredSliderImages(sliders);
+    })
+    .then(sliders => {
       savedSliders = sliders;
       try {
         saveState(false);
@@ -3463,11 +3474,23 @@ function uploadSliderImage(index, input) {
     .finally(() => URL.revokeObjectURL(objectUrl));
 }
 
+async function compressStoredSliderImages(sliders) {
+  const optimized = JSON.parse(JSON.stringify(sliders));
+  for (const slide of optimized) {
+    if (!slide.image || !slide.image.startsWith('data:image/') || slide.image.length < 900000) continue;
+    slide.image = await compressSliderImage(slide.image, 900, 0.58);
+    if (slide.image.length > 900000) {
+      slide.image = await compressSliderImage(slide.image, 720, 0.52);
+    }
+  }
+  return optimized;
+}
+
 function compressSliderFile(file) {
   const attempts = [
-    { maxWidth: 1600, quality: 0.78 },
-    { maxWidth: 1200, quality: 0.70 },
-    { maxWidth: 900, quality: 0.64 }
+    { maxWidth: 1200, quality: 0.68 },
+    { maxWidth: 900, quality: 0.60 },
+    { maxWidth: 720, quality: 0.54 }
   ];
   return fileToDataUrl(file)
     .then(dataUrl => compressSliderImage(dataUrl, attempts[0].maxWidth, attempts[0].quality)
@@ -3475,10 +3498,10 @@ function compressSliderFile(file) {
     .then(async firstResult => {
       let result = firstResult;
       for (const settings of attempts.slice(1)) {
-        if (result.length < 1800000) break;
+        if (result.length < 900000) break;
         result = await compressSliderImage(result, settings.maxWidth, settings.quality);
       }
-      if (result.length > 2600000) {
+      if (result.length > 1400000) {
         throw new Error('Image is too large. Please use a smaller JPG image.');
       }
       return result;
