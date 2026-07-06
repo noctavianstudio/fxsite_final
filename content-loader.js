@@ -5,6 +5,7 @@
 (function() {
   const STORAGE_KEY = 'fxtextile_content';
   const IMG_STORAGE_KEY = 'fxtextile_images';
+  const THEME_STORAGE_KEY = 'fxtextile_theme';
 
   function getExportedTexts() {
     return (window.FX_TEXTILE_EXPORTED_CONTENT && window.FX_TEXTILE_EXPORTED_CONTENT.texts) || {};
@@ -12,6 +13,43 @@
 
   function getExportedImages() {
     return (window.FX_TEXTILE_EXPORTED_CONTENT && window.FX_TEXTILE_EXPORTED_CONTENT.images) || {};
+  }
+
+  function getExportedTheme() {
+    return (window.FX_TEXTILE_EXPORTED_CONTENT && window.FX_TEXTILE_EXPORTED_CONTENT.theme) || {};
+  }
+
+  function applyTheme() {
+    try {
+      const exported = getExportedTheme();
+      const raw = localStorage.getItem(THEME_STORAGE_KEY);
+      const local = raw ? JSON.parse(raw) : {};
+      const theme = Object.assign({}, exported, local);
+      if (!Object.keys(theme).length) return;
+
+      const root = document.documentElement;
+      const vars = {
+        primary: '--red',
+        primaryLight: '--red-light',
+        primaryDark: '--red-dark',
+        heroOpacity: '--fx-hero-opacity',
+        pageHeroOpacity: '--fx-page-hero-opacity'
+      };
+      Object.keys(vars).forEach(key => {
+        if (theme[key]) root.style.setProperty(vars[key], theme[key]);
+      });
+
+      let style = document.getElementById('fx-theme-overrides');
+      if (!style) {
+        style = document.createElement('style');
+        style.id = 'fx-theme-overrides';
+        document.head.appendChild(style);
+      }
+      style.textContent = `
+        .hero-bg-img{opacity:var(--fx-hero-opacity,0.3)!important}
+        .page-hero img[data-img-key^="hero-"]{opacity:var(--fx-page-hero-opacity,0.2)!important}
+      `;
+    } catch(e) { console.warn('Theme loader:', e); }
   }
 
   function applyTexts() {
@@ -87,6 +125,7 @@
   }
 
   function init() {
+    applyTheme();
     applyTexts();
     applyImages();
     addAdminBar();

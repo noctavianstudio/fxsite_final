@@ -113,6 +113,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .setting-label{flex:1}
 .setting-label .sl-name{font-size:13px;color:var(--text)}
 .setting-label .sl-desc{font-size:12px;color:var(--text-dim);margin-top:2px}
+.theme-controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;width:min(720px,100%)}
+.theme-control{display:flex;align-items:center;gap:10px;background:var(--surface2);border:1px solid var(--border);padding:10px;border-radius:4px}
+.theme-control label{font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;min-width:92px}
+.theme-control input[type="color"]{width:40px;height:32px;border:none;background:transparent;padding:0;cursor:pointer}
+.theme-control input[type="range"]{flex:1}
+.theme-control output{font-size:12px;color:var(--text);min-width:36px;text-align:right}
 .danger-zone{background:rgba(139,26,26,0.08);border:1px solid rgba(139,26,26,0.3);border-radius:4px;padding:16px 20px;margin:24px}
 
 /* ── TOAST ── */
@@ -454,6 +460,34 @@ const ORIGINAL_TEXTS = {
     "en": "Harput Holding —<br><em>six decades, six facilities.</em>",
     "tr": "Harput Holding —<br><em>altı on yıl, altı tesis.</em>",
     "es": "Harput Holding —<br><em>seis décadas, seis plantas.</em>",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_59": {
+    "en": "Our Mission",
+    "tr": "Misyonumuz",
+    "es": "Nuestra Misión",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_60": {
+    "en": "Our mission is to ensure the highest level of customer satisfaction; deliver product and service quality beyond our customers' expectations; provide quality products at competitive costs and in the shortest possible time; support the continuous development of our employees; encourage creativity through R&amp;D and innovation; act with environmental responsibility through a sustainable production approach; and create value for all our stakeholders.",
+    "tr": "Misyonumuz; müşteri memnuniyetini en üst seviyede sağlamak, müşterilerimizin beklentilerinin üzerinde ürün ve hizmet kalitesi sunmak, kaliteli ürünleri rekabetçi maliyetlerle ve mümkün olan en kısa sürede müşterilerimize ulaştırmak, çalışanlarımızın sürekli gelişimini desteklemek, Ar-Ge ve inovasyon faaliyetleriyle yaratıcılığı teşvik etmek, sürdürülebilir üretim anlayışıyla çevreye duyarlı hareket etmek ve tüm paydaşlarımız için değer yaratmaktır.",
+    "es": "Nuestra misión es garantizar el más alto nivel de satisfacción del cliente; ofrecer una calidad de productos y servicios que supere las expectativas de nuestros clientes; entregar productos de calidad con costes competitivos y en el menor tiempo posible; apoyar el desarrollo continuo de nuestros empleados; fomentar la creatividad mediante actividades de I+D e innovación; actuar con responsabilidad ambiental a través de una producción sostenible; y crear valor para todos nuestros grupos de interés.",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_61": {
+    "en": "Our Vision",
+    "tr": "Vizyonumuz",
+    "es": "Nuestra Visión",
+    "page": "index",
+    "page_label": "Ana Sayfa / Home"
+  },
+  "index_62": {
+    "en": "Our vision is to be not only a supplier for our customers, but also a reliable and strategic business partner through our product and design diversity, creative and innovative approach; and to become one of the preferred and leading fabric suppliers in the global textile industry, especially in Europe, with our focus on sustainability, quality and customer-oriented service.",
+    "tr": "Vizyonumuz; ürün ve tasarım çeşitliliği, yaratıcı ve yenilikçi yaklaşımımız ile müşterilerimizin yalnızca bir tedarikçisi değil, aynı zamanda güvenilir ve stratejik iş ortağı olmak; sürdürülebilirlik, kalite ve müşteri odaklı hizmet anlayışımızla Avrupa başta olmak üzere global tekstil sektöründe tercih edilen ve lider kumaş tedarikçilerinden biri olmaktır.",
+    "es": "Nuestra visión es ser no solo un proveedor para nuestros clientes, sino también un socio comercial fiable y estratégico gracias a nuestra diversidad de productos y diseños y a nuestro enfoque creativo e innovador; y convertirnos en uno de los proveedores de tejidos preferidos y líderes del sector textil global, especialmente en Europa, con nuestro enfoque en la sostenibilidad, la calidad y el servicio orientado al cliente.",
     "page": "index",
     "page_label": "Ana Sayfa / Home"
   },
@@ -2844,12 +2878,21 @@ const ORIGINAL_IMAGES = {
 // ── STATE ─────────────────────────────────────────────────────────────────
 const STORAGE_KEY = 'fxtextile_content';
 const IMG_STORAGE_KEY = 'fxtextile_images';
+const THEME_STORAGE_KEY = 'fxtextile_theme';
 const SAVE_ENDPOINT_KEY = 'fxtextile_save_endpoint';
 const ADMIN_SESSION_KEY = 'fxtextile_admin_session';
 const ADMIN_USER = 'admin';
 const ADMIN_PASS = 'adminfx';
+const DEFAULT_THEME = {
+  primary: '#8b1a1a',
+  primaryLight: '#a52020',
+  primaryDark: '#6a1212',
+  heroOpacity: '0.30',
+  pageHeroOpacity: '0.20'
+};
 let savedTexts = {};
 let savedImages = {};
+let savedTheme = {};
 let currentSection = 'dashboard';
 let searchQuery = '';
 
@@ -2866,6 +2909,7 @@ function showAdmin() {
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('admin-shell').classList.remove('locked');
   loadState();
+  applyAdminThemePreview();
   showSection('dashboard');
   updateCounts();
 }
@@ -2897,12 +2941,15 @@ function loadState() {
     if (t) savedTexts = JSON.parse(t);
     const i = localStorage.getItem(IMG_STORAGE_KEY);
     if (i) savedImages = JSON.parse(i);
+    const theme = localStorage.getItem(THEME_STORAGE_KEY);
+    if (theme) savedTheme = JSON.parse(theme);
   } catch(e) {}
 }
 
 function saveState(showToast = true) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(savedTexts));
   localStorage.setItem(IMG_STORAGE_KEY, JSON.stringify(savedImages));
+  localStorage.setItem(THEME_STORAGE_KEY, JSON.stringify(savedTheme));
   updateCounts();
   if (showToast) toast('Changes saved ✓', 'success');
 }
@@ -2911,8 +2958,44 @@ function buildDataJsContent() {
   return `window.FX_TEXTILE_EXPORTED_CONTENT = ${JSON.stringify({
     texts: savedTexts,
     images: savedImages,
+    theme: getTheme(),
     generatedAt: new Date().toISOString()
   }, null, 2)};\n`;
+}
+
+function getTheme() {
+  return Object.assign({}, DEFAULT_THEME, savedTheme);
+}
+
+function applyAdminThemePreview() {
+  const theme = getTheme();
+  document.documentElement.style.setProperty('--red', theme.primary);
+  document.documentElement.style.setProperty('--red-light', theme.primaryLight);
+}
+
+function syncThemeInputs() {
+  const theme = {
+    primary: document.getElementById('theme-primary').value,
+    primaryLight: document.getElementById('theme-primary-light').value,
+    primaryDark: document.getElementById('theme-primary-dark').value,
+    heroOpacity: document.getElementById('theme-hero-opacity').value,
+    pageHeroOpacity: document.getElementById('theme-page-hero-opacity').value
+  };
+  savedTheme = theme;
+  const heroValue = document.getElementById('theme-hero-opacity-value');
+  const pageHeroValue = document.getElementById('theme-page-hero-opacity-value');
+  if (heroValue) heroValue.textContent = Math.round(Number(theme.heroOpacity) * 100) + '%';
+  if (pageHeroValue) pageHeroValue.textContent = Math.round(Number(theme.pageHeroOpacity) * 100) + '%';
+  applyAdminThemePreview();
+  saveState(false);
+}
+
+function resetThemeSettings() {
+  savedTheme = {};
+  localStorage.removeItem(THEME_STORAGE_KEY);
+  showSection('settings');
+  applyAdminThemePreview();
+  toast('Theme reset to default', 'success');
 }
 
 // ── COUNTS ───────────────────────────────────────────────────────────────
@@ -3262,9 +3345,58 @@ function resetImage(key) {
 function renderSettings() {
   const textCount = Object.keys(savedTexts).length;
   const imgCount = Object.keys(savedImages).length;
+  const theme = getTheme();
   
   return `
   <div class="content-header"><div><h2>Settings</h2></div></div>
+  <div class="settings-section">
+    <h3>Theme</h3>
+    <div class="setting-row">
+      <div class="setting-label">
+        <div class="sl-name">Site colors</div>
+        <div class="sl-desc">Applied across buttons, highlights, active menu states and accents</div>
+      </div>
+      <div class="theme-controls">
+        <div class="theme-control">
+          <label>Main</label>
+          <input id="theme-primary" type="color" value="${theme.primary}" oninput="syncThemeInputs()">
+        </div>
+        <div class="theme-control">
+          <label>Light</label>
+          <input id="theme-primary-light" type="color" value="${theme.primaryLight}" oninput="syncThemeInputs()">
+        </div>
+        <div class="theme-control">
+          <label>Dark</label>
+          <input id="theme-primary-dark" type="color" value="${theme.primaryDark}" oninput="syncThemeInputs()">
+        </div>
+      </div>
+    </div>
+    <div class="setting-row">
+      <div class="setting-label">
+        <div class="sl-name">Slider / hero image darkness</div>
+        <div class="sl-desc">Lower values make the hero images brighter on the live site</div>
+      </div>
+      <div class="theme-controls">
+        <div class="theme-control">
+          <label>Home hero</label>
+          <input id="theme-hero-opacity" type="range" min="0.10" max="0.75" step="0.05" value="${theme.heroOpacity}" oninput="syncThemeInputs()">
+          <output id="theme-hero-opacity-value">${Math.round(Number(theme.heroOpacity) * 100)}%</output>
+        </div>
+        <div class="theme-control">
+          <label>Page heroes</label>
+          <input id="theme-page-hero-opacity" type="range" min="0.10" max="0.75" step="0.05" value="${theme.pageHeroOpacity}" oninput="syncThemeInputs()">
+          <output id="theme-page-hero-opacity-value">${Math.round(Number(theme.pageHeroOpacity) * 100)}%</output>
+        </div>
+      </div>
+    </div>
+    <div class="setting-row">
+      <div class="setting-label">
+        <div class="sl-name">Theme reset</div>
+        <div class="sl-desc">Restore the original burgundy palette and hero darkness</div>
+      </div>
+      <button class="btn btn-secondary" onclick="resetThemeSettings()">Reset Theme</button>
+    </div>
+  </div>
   <div class="settings-section">
     <h3>Admin Mode</h3>
     <div class="setting-row">
@@ -3357,11 +3489,14 @@ function resetAllImages() {
 }
 
 function resetEverything() {
-  if (!confirm('Reset ALL changes (texts + images)?')) return;
+  if (!confirm('Reset ALL changes (texts + images + theme)?')) return;
   savedTexts = {};
   savedImages = {};
+  savedTheme = {};
   localStorage.removeItem(STORAGE_KEY);
   localStorage.removeItem(IMG_STORAGE_KEY);
+  localStorage.removeItem(THEME_STORAGE_KEY);
+  applyAdminThemePreview();
   toast('Everything reset', 'success');
   showSection('dashboard');
 }
