@@ -119,6 +119,24 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .theme-control input[type="color"]{width:40px;height:32px;border:none;background:transparent;padding:0;cursor:pointer}
 .theme-control input[type="range"]{flex:1}
 .theme-control output{font-size:12px;color:var(--text);min-width:36px;text-align:right}
+.theme-preview-wrap{display:grid;grid-template-columns:minmax(280px,1.3fr) minmax(240px,.7fr);gap:16px;width:100%;align-items:stretch}
+.theme-preview{border:1px solid var(--border);background:var(--surface2);border-radius:4px;overflow:hidden;min-height:260px}
+.theme-preview-hero{position:relative;min-height:260px;padding:24px;display:flex;flex-direction:column;justify-content:flex-end;background:#050505;overflow:hidden}
+.theme-preview-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(135deg,#1f1f22,#59524a 45%,#111);opacity:var(--preview-hero-opacity,.3)}
+.theme-preview-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,5,.82),rgba(5,5,5,.08))}
+.theme-preview-kicker,.theme-preview-title,.theme-preview-copy,.theme-preview-actions{position:relative;z-index:1}
+.theme-preview-kicker{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--red-light);margin-bottom:10px}
+.theme-preview-title{font-family:Georgia,serif;font-size:34px;line-height:1.05;color:#fff;margin-bottom:10px;font-weight:300}
+.theme-preview-title em{color:rgba(255,255,255,.55);font-style:italic}
+.theme-preview-copy{font-size:12px;line-height:1.6;color:rgba(255,255,255,.62);max-width:360px;margin-bottom:16px}
+.theme-preview-actions{display:flex;gap:8px;flex-wrap:wrap}.theme-preview-btn{background:var(--red);color:#fff;border:none;border-radius:2px;padding:9px 14px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase}.theme-preview-btn.secondary{background:transparent;color:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.25)}
+.theme-preview-side{display:grid;gap:16px}
+.theme-preview-page{position:relative;min-height:128px;background:#050505;border:1px solid var(--border);border-radius:4px;overflow:hidden;padding:18px;display:flex;align-items:flex-end}
+.theme-preview-page::before{content:'';position:absolute;inset:0;background:linear-gradient(120deg,#514943,#121212);opacity:var(--preview-page-opacity,.2)}
+.theme-preview-page h4{position:relative;z-index:1;color:#fff;font-family:Georgia,serif;font-size:22px;font-weight:300}
+.theme-preview-swatches{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:16px;display:grid;gap:10px}
+.theme-preview-swatch{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--text-dim)}.theme-preview-swatch span{width:34px;height:22px;border-radius:3px;border:1px solid rgba(255,255,255,.16)}
+@media(max-width:900px){.theme-preview-wrap{grid-template-columns:1fr}.setting-row{align-items:flex-start;flex-direction:column}.theme-controls{width:100%}}
 .danger-zone{background:rgba(139,26,26,0.08);border:1px solid rgba(139,26,26,0.3);border-radius:4px;padding:16px 20px;margin:24px}
 
 /* ── TOAST ── */
@@ -2971,6 +2989,27 @@ function applyAdminThemePreview() {
   const theme = getTheme();
   document.documentElement.style.setProperty('--red', theme.primary);
   document.documentElement.style.setProperty('--red-light', theme.primaryLight);
+  document.documentElement.style.setProperty('--red-dark', theme.primaryDark);
+  updateThemePreview(theme);
+}
+
+function updateThemePreview(theme = getTheme()) {
+  const preview = document.getElementById('theme-preview');
+  if (!preview) return;
+  preview.style.setProperty('--red', theme.primary);
+  preview.style.setProperty('--red-light', theme.primaryLight);
+  preview.style.setProperty('--red-dark', theme.primaryDark);
+  preview.style.setProperty('--preview-hero-opacity', theme.heroOpacity);
+  preview.style.setProperty('--preview-page-opacity', theme.pageHeroOpacity);
+  const swatches = {
+    'preview-swatch-primary': theme.primary,
+    'preview-swatch-light': theme.primaryLight,
+    'preview-swatch-dark': theme.primaryDark
+  };
+  Object.entries(swatches).forEach(([id, color]) => {
+    const el = document.getElementById(id);
+    if (el) el.style.background = color;
+  });
 }
 
 function syncThemeInputs() {
@@ -3039,6 +3078,7 @@ function showSection(section) {
     main.innerHTML = renderImages(page);
   } else if (section === 'settings') {
     main.innerHTML = renderSettings();
+    updateThemePreview();
   }
   
   main.scrollTop = 0;
@@ -3351,6 +3391,35 @@ function renderSettings() {
   <div class="content-header"><div><h2>Settings</h2></div></div>
   <div class="settings-section">
     <h3>Theme</h3>
+    <div class="setting-row">
+      <div class="setting-label">
+        <div class="sl-name">Live preview</div>
+        <div class="sl-desc">Shows how colors and hero brightness will feel before publishing</div>
+      </div>
+      <div id="theme-preview" class="theme-preview-wrap">
+        <div class="theme-preview">
+          <div class="theme-preview-hero">
+            <div class="theme-preview-kicker">FX Textile</div>
+            <div class="theme-preview-title">Fabric <em>woven for</em> tomorrow.</div>
+            <div class="theme-preview-copy">Preview the home slider darkness, accent color, buttons and contrast in one place.</div>
+            <div class="theme-preview-actions">
+              <button class="theme-preview-btn" type="button">Explore Fabrics</button>
+              <button class="theme-preview-btn secondary" type="button">Request Samples</button>
+            </div>
+          </div>
+        </div>
+        <div class="theme-preview-side">
+          <div class="theme-preview-page">
+            <h4>Page hero preview</h4>
+          </div>
+          <div class="theme-preview-swatches">
+            <div class="theme-preview-swatch"><span id="preview-swatch-primary" style="background:${theme.primary}"></span>Main color</div>
+            <div class="theme-preview-swatch"><span id="preview-swatch-light" style="background:${theme.primaryLight}"></span>Light accent</div>
+            <div class="theme-preview-swatch"><span id="preview-swatch-dark" style="background:${theme.primaryDark}"></span>Dark accent</div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="setting-row">
       <div class="setting-label">
         <div class="sl-name">Site colors</div>
