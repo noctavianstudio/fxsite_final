@@ -32,8 +32,18 @@
         primary: '--red',
         primaryLight: '--red-light',
         primaryDark: '--red-dark',
+        black: '--black',
+        offWhite: '--off-white',
+        cream: '--cream',
+        gray: '--gray',
+        grayLight: '--gray-light',
+        borderColor: '--border',
         heroOpacity: '--fx-hero-opacity',
-        pageHeroOpacity: '--fx-page-hero-opacity'
+        pageHeroOpacity: '--fx-page-hero-opacity',
+        heroOverlayOpacity: '--fx-hero-overlay-opacity',
+        pageHeroOverlayOpacity: '--fx-page-hero-overlay-opacity',
+        navFontSize: '--fx-nav-font-size',
+        navMobileFontSize: '--fx-nav-mobile-font-size'
       };
       Object.keys(vars).forEach(key => {
         if (theme[key]) root.style.setProperty(vars[key], theme[key]);
@@ -48,6 +58,14 @@
       style.textContent = `
         .hero-bg-img{opacity:var(--fx-hero-opacity,0.3)!important}
         .page-hero img[data-img-key^="hero-"]{opacity:var(--fx-page-hero-opacity,0.2)!important}
+        .contact-hero img[data-img-key^="hero-"]{opacity:var(--fx-page-hero-opacity,0.18)!important}
+        .hero-grad{opacity:var(--fx-hero-overlay-opacity,1)!important}
+        .page-hero-grad,.contact-hero-grad{opacity:var(--fx-page-hero-overlay-opacity,1)!important}
+        .nav-links a{font-size:var(--fx-nav-font-size,11px)!important}
+        body{background:var(--off-white)!important}
+        nav{background:var(--off-white)!important}
+        @media(max-width:600px){.nav-links{background:var(--off-white)!important}}
+        @media(max-width:600px){.nav-links a{font-size:var(--fx-nav-mobile-font-size,13px)!important}}
       `;
     } catch(e) { console.warn('Theme loader:', e); }
   }
