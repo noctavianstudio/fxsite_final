@@ -105,7 +105,7 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
 .values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:56px}
 .value-card{background:var(--off-white);padding:40px 36px;border-top:3px solid transparent;transition:border-color .3s}
 .value-card:hover{border-top-color:var(--red)}
-.value-icon{font-size:28px;margin-bottom:16px;display:block}
+
 .value-card h3{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;margin-bottom:10px}
 .value-card p{font-size:14px;color:var(--gray);line-height:1.75}
 /* TARİHÇE */
@@ -131,6 +131,51 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
   .vm-block{padding:60px 24px}
 }
 @media(max-width:600px){.values-grid{grid-template-columns:1fr}}
+
+/* ─── GLOBAL YUMUŞAK KÖŞELER ─────────────────────────────── */
+.about-card,.cert-card,.value-card,.doc-card,.office-card,
+.post-featured,.post-small,.video-card,.fuar-card,
+.cert-strip,.vm-section,.cert-badges .cbadge,
+.sidebar-widget,.prod-item,.gallery-item,
+.intro-text-side,.intro-img-side,
+.cat-panel,.process-strip,.gallery-section,
+.kvkk-docs .doc-card, .tl-item,
+.footer-brand,.footer-col{border-radius:12px}
+.cbadge,.cert-tag,.spec-tag,.tag-pill,.fuar-badge,
+.ps-cat,.od-label,.valid-badge,.cert-pill,
+.season-btn,.cat-tab,.filter-btn{border-radius:6px}
+.btn-primary,.btn-ghost,.btn,.doc-download{border-radius:8px!important}
+nav{border-radius:0 0 16px 16px}
+.page-hero,.hero{border-radius:0 0 20px 20px;overflow:hidden}
+.vm-grid{border-radius:16px;overflow:hidden}
+.vm-block:first-child{border-radius:16px 0 0 16px}
+.vm-block:last-child{border-radius:0 16px 16px 0}
+.memb-chip{border-radius:10px}
+.memb-chip:hover{border-color:rgba(42,122,58,0.5);border-radius:10px}
+
+
+/* ─── HERO SLIDER ─────────────────────────────────────────── */
+.hero-slider{position:relative;height:100vh;min-height:680px;overflow:hidden;border-radius:0 0 20px 20px}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity .8s ease;display:flex;align-items:flex-end}
+.slide.active{opacity:1;z-index:1}
+.slide-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.slide-grad{position:absolute;inset:0;background:linear-gradient(to top,#0a0a0a 30%,rgba(10,10,10,0.35) 100%)}
+.slide-content{position:relative;z-index:2;padding:0 60px 90px;max-width:900px}
+.slide-eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:4px;color:var(--red-light);text-transform:uppercase;margin-bottom:24px;display:flex;align-items:center;gap:16px}
+.slide-eyebrow::before{content:'';display:block;width:40px;height:1px;background:var(--red-light)}
+.slide-title{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,7vw,96px);font-weight:300;color:#fff;line-height:1.0;margin-bottom:28px}
+.slide-title em{font-style:italic;color:rgba(255,255,255,0.5)}
+.slide-sub{font-size:16px;color:rgba(255,255,255,0.45);max-width:520px;line-height:1.75;margin-bottom:44px}
+.slide-ctas{display:flex;gap:16px;flex-wrap:wrap}
+/* Slider Controls */
+.slider-controls{position:absolute;bottom:32px;right:60px;z-index:10;display:flex;align-items:center;gap:12px}
+.slider-dots{display:flex;gap:8px}
+.slider-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.3);cursor:pointer;transition:all .3s;border:none}
+.slider-dot.active{background:#fff;width:24px;border-radius:4px}
+.slider-btn{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;backdrop-filter:blur(4px)}
+.slider-btn:hover{background:rgba(255,255,255,0.25)}
+@media(max-width:768px){.slide-content{padding:0 24px 80px}.slider-controls{right:24px}}
+
 </style>
 </head>
 <body>
@@ -150,12 +195,98 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
   <ul class="nav-links"><li><a href="index.html" class="current"><span data-lang="tr" class="active">Hakkımızda</span><span data-lang="en">About Us</span><span data-lang="es">Sobre Nosotros</span></a></li><li><a href="products.html" ><span data-lang="tr" class="active">Ürünler</span><span data-lang="en">Products</span><span data-lang="es">Productos</span></a></li><li><a href="sustainability.html" ><span data-lang="tr" class="active">Sürdürülebilirlik</span><span data-lang="en">Sustainability</span><span data-lang="es">Sostenibilidad</span></a></li><li><a href="certifications.html" ><span data-lang="tr" class="active">Sertifikalar</span><span data-lang="en">Certifications</span><span data-lang="es">Certificaciones</span></a></li><li><a href="announcements.html" ><span data-lang="tr" class="active">Duyurular</span><span data-lang="en">News & Events</span><span data-lang="es">Noticias</span></a></li><li><a href="contact.html" class="nav-cta"><span data-lang="tr" class="active">İletişim</span><span data-lang="en">Contact</span><span data-lang="es">Contacto</span></a></li></ul>
 </nav>
 
-<!-- HERO — animasyon video -->
-<div class="hero">
-  <video class="hero-video" autoplay muted loop playsinline>
-    <source src="images/animasyon_harput_1.mp4" type="video/mp4">
-  </video>
-  <div class="hero-grad"></div>
+<!-- HERO SLIDER -->
+<div class="hero-slider" id="heroSlider">
+  <!-- Slide 1 -->
+  <div class="slide active">
+    <img class="slide-bg" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQwMCIgaGVpZ2h0PSI5MDAiIHZpZXdCb3g9IjAgMCAxNDAwIDkwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnU0xJREUiIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzFhMzAyMCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBkMWUxMCIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPgo8cmVjdCB3aWR0aD0iMTQwMCIgaGVpZ2h0PSI5MDAiIGZpbGw9InVybCgjZ1NMSURFKSIvPgo8cmVjdCB4PSIyMCIgeT0iMjAiIHdpZHRoPSIxMzYwIiBoZWlnaHQ9Ijg2MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMSkiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtZGFzaGFycmF5PSIxMCA3IiByeD0iNCIvPgo8dGV4dCB4PSI3MDAiIHk9IjQ0MCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjgiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xMikiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuKKnjwvdGV4dD4KPHRleHQgeD0iNzAwIiB5PSI0NjQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjExIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMjUpIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBsZXR0ZXItc3BhY2luZz0iMiI+U0xJREUgMTwvdGV4dD4KPC9zdmc+" alt="Slide 1">
+    <div class="slide-grad"></div>
+    <div class="slide-content">
+      <div class="slide-eyebrow">
+        <span data-lang="tr" class="active">Harput Tekstil'in Bir Markası &nbsp;·&nbsp; Kuruluş 2023, Bursa</span>
+        <span data-lang="en">A Division of Harput Tekstil &nbsp;·&nbsp; Est. 2023, Bursa</span>
+        <span data-lang="es">Una División de Harput Tekstil &nbsp;·&nbsp; Est. 2023, Bursa</span>
+      </div>
+      <h1 class="slide-title">
+        <span data-lang="tr" class="active">Kaliteli kumaş,<br><em>sorumlu üretim.</em></span>
+        <span data-lang="en">Quality fabric,<br><em>responsible production.</em></span>
+        <span data-lang="es">Tela de calidad,<br><em>producción responsable.</em></span>
+      </h1>
+      <p class="slide-sub">
+        <span data-lang="tr" class="active">Sertifikalı, izlenebilir ve sürdürülebilir giyim kumaşları.</span>
+        <span data-lang="en">Certified, traceable and sustainable apparel fabrics.</span>
+        <span data-lang="es">Telas certificadas, trazables y sostenibles para ropa.</span>
+      </p>
+      <div class="slide-ctas">
+        <a href="products.html" class="btn-primary"><span data-lang="tr" class="active">Ürünleri İncele</span><span data-lang="en">Explore Products</span><span data-lang="es">Ver Productos</span></a>
+        <a href="contact.html" class="btn-ghost" style="border-color:rgba(255,255,255,0.25);color:rgba(255,255,255,0.7)"><span data-lang="tr" class="active">Numune Talep Et</span><span data-lang="en">Request Samples</span><span data-lang="es">Pedir Muestras</span></a>
+      </div>
+    </div>
+  </div>
+  <!-- Slide 2 -->
+  <div class="slide">
+    <img class="slide-bg" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQwMCIgaGVpZ2h0PSI5MDAiIHZpZXdCb3g9IjAgMCAxNDAwIDkwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnU0xJREUiIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzFhMzAyMCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBkMWUxMCIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPgo8cmVjdCB3aWR0aD0iMTQwMCIgaGVpZ2h0PSI5MDAiIGZpbGw9InVybCgjZ1NMSURFKSIvPgo8cmVjdCB4PSIyMCIgeT0iMjAiIHdpZHRoPSIxMzYwIiBoZWlnaHQ9Ijg2MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMSkiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtZGFzaGFycmF5PSIxMCA3IiByeD0iNCIvPgo8dGV4dCB4PSI3MDAiIHk9IjQ0MCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjgiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xMikiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuKKnjwvdGV4dD4KPHRleHQgeD0iNzAwIiB5PSI0NjQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjExIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMjUpIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBsZXR0ZXItc3BhY2luZz0iMiI+U0xJREUgMjwvdGV4dD4KPC9zdmc+" alt="Slide 2">
+    <div class="slide-grad"></div>
+    <div class="slide-content">
+      <div class="slide-eyebrow">
+        <span data-lang="tr" class="active">Sürdürülebilirlik</span>
+        <span data-lang="en">Sustainability</span>
+        <span data-lang="es">Sostenibilidad</span>
+      </div>
+      <h1 class="slide-title">
+        <span data-lang="tr" class="active">Döngüsel üretim,<br><em>geleceğe yatırım.</em></span>
+        <span data-lang="en">Circular production,<br><em>investing in the future.</em></span>
+        <span data-lang="es">Producción circular,<br><em>invirtiendo en el futuro.</em></span>
+      </h1>
+      <p class="slide-sub">
+        <span data-lang="tr" class="active">GOTS, GRS, OCS ve RCS sertifikalı kumaşlar. Her siparişte işlem sertifikası.</span>
+        <span data-lang="en">GOTS, GRS, OCS and RCS certified fabrics. Transaction certificate with every order.</span>
+        <span data-lang="es">Telas certificadas GOTS, GRS, OCS y RCS. Certificado de transacción con cada pedido.</span>
+      </p>
+      <div class="slide-ctas">
+        <a href="sustainability.html" class="btn-primary"><span data-lang="tr" class="active">Sürdürülebilirlik</span><span data-lang="en">Sustainability</span><span data-lang="es">Sostenibilidad</span></a>
+        <a href="certifications.html" class="btn-ghost" style="border-color:rgba(255,255,255,0.25);color:rgba(255,255,255,0.7)"><span data-lang="tr" class="active">Sertifikalar</span><span data-lang="en">Certifications</span><span data-lang="es">Certificaciones</span></a>
+      </div>
+    </div>
+  </div>
+  <!-- Slide 3 -->
+  <div class="slide">
+    <img class="slide-bg" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQwMCIgaGVpZ2h0PSI5MDAiIHZpZXdCb3g9IjAgMCAxNDAwIDkwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnU0xJREUiIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzFhMzAyMCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBkMWUxMCIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPgo8cmVjdCB3aWR0aD0iMTQwMCIgaGVpZ2h0PSI5MDAiIGZpbGw9InVybCgjZ1NMSURFKSIvPgo8cmVjdCB4PSIyMCIgeT0iMjAiIHdpZHRoPSIxMzYwIiBoZWlnaHQ9Ijg2MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMSkiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtZGFzaGFycmF5PSIxMCA3IiByeD0iNCIvPgo8dGV4dCB4PSI3MDAiIHk9IjQ0MCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjgiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xMikiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuKKnjwvdGV4dD4KPHRleHQgeD0iNzAwIiB5PSI0NjQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjExIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMjUpIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBsZXR0ZXItc3BhY2luZz0iMiI+U0xJREUgMzwvdGV4dD4KPC9zdmc+" alt="Slide 3">
+    <div class="slide-grad"></div>
+    <div class="slide-content">
+      <div class="slide-eyebrow">
+        <span data-lang="tr" class="active">65 Yıllık Deneyim</span>
+        <span data-lang="en">65 Years of Expertise</span>
+        <span data-lang="es">65 Años de Experiencia</span>
+      </div>
+      <h1 class="slide-title">
+        <span data-lang="tr" class="active">Geçmişten gelen güç,<br><em>geleceğe taşınan miras.</em></span>
+        <span data-lang="en">Strength from the past,<br><em>heritage for the future.</em></span>
+        <span data-lang="es">Fuerza del pasado,<br><em>legado para el futuro.</em></span>
+      </h1>
+      <p class="slide-sub">
+        <span data-lang="tr" class="active">1958'den bu yana büyüyen Harput Holding'in giyim kumaşları markası.</span>
+        <span data-lang="en">The apparel fabric brand of Harput Holding, growing since 1958.</span>
+        <span data-lang="es">La marca de telas de Harput Holding, creciendo desde 1958.</span>
+      </p>
+      <div class="slide-ctas">
+        <a href="index.html#tarih" class="btn-primary"><span data-lang="tr" class="active">Hikayemiz</span><span data-lang="en">Our Story</span><span data-lang="es">Nuestra Historia</span></a>
+      </div>
+    </div>
+  </div>
+  <!-- Controls -->
+  <div class="slider-controls">
+    <button class="slider-btn" onclick="sliderShift(-1)" aria-label="Önceki">‹</button>
+    <div class="slider-dots">
+      <button class="slider-dot active" onclick="goSlide(0)"></button>
+      <button class="slider-dot" onclick="goSlide(1)"></button>
+      <button class="slider-dot" onclick="goSlide(2)"></button>
+    </div>
+    <button class="slider-btn" onclick="sliderShift(1)" aria-label="Sonraki">›</button>
+  </div>
+</div>
+
+
   <div class="hero-accent"></div>
   <div class="hero-content">
     <div class="hero-eyebrow">
@@ -265,32 +396,32 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
   </h2>
   <div class="values-grid">
     <div class="value-card">
-      <span class="value-icon">🏛</span>
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color:#2a7a3a;margin-bottom:16px;display:block"><path d="M12 3L4 9v12h6v-6h4v6h6V9z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 21V12h6v9" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
       <h3><span data-lang="tr" class="active">Güçlü Miras</span><span data-lang="en">Strong Heritage</span><span data-lang="es">Legado Sólido</span></h3>
       <p><span data-lang="tr" class="active">Nereden geldiğini unutmayan, geçmişine bağlı ve kurumsal sürekliliği olan bir firmayız.</span><span data-lang="en">A company that remembers its roots, stays true to its past and maintains institutional continuity.</span><span data-lang="es">Una empresa que recuerda sus orígenes y mantiene continuidad institucional.</span></p>
     </div>
     <div class="value-card">
-      <span class="value-icon">🤝</span>
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color:#2a7a3a;margin-bottom:16px;display:block"><circle cx="12" cy="8" r="3.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M16 11l2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <h3><span data-lang="tr" class="active">Önce Müşteri</span><span data-lang="en">Customer First</span><span data-lang="es">El Cliente Primero</span></h3>
       <p><span data-lang="tr" class="active">Müşterinin ihtiyaçlarını derinlemesine anlıyor, buna uygun kalıcı çözümler sunuyoruz.</span><span data-lang="en">We deeply understand customer needs and offer lasting solutions tailored to them.</span><span data-lang="es">Comprendemos profundamente las necesidades del cliente y ofrecemos soluciones duraderas a medida.</span></p>
     </div>
     <div class="value-card">
-      <span class="value-icon">💡</span>
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color:#2a7a3a;margin-bottom:16px;display:block"><path d="M12 2a7 7 0 0 1 5 11.9V17H7v-3.1A7 7 0 0 1 12 2z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9 17v1a3 3 0 0 0 6 0v-1" fill="none" stroke="currentColor" stroke-width="1.8"/><line x1="12" y1="6" x2="12" y2="10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
       <h3><span data-lang="tr" class="active">Yenilikçi Yaklaşım</span><span data-lang="en">Innovation</span><span data-lang="es">Innovación</span></h3>
       <p><span data-lang="tr" class="active">Yenilikçi ruhumuzu, bugünün sınırlarını aşarak yarının çözümlerini bulmak amacıyla yaptığımız her işe yansıtıyoruz.</span><span data-lang="en">We bring our innovative spirit to everything we do, pushing today's boundaries to find tomorrow's solutions.</span><span data-lang="es">Llevamos nuestro espíritu innovador a todo lo que hacemos, superando los límites actuales.</span></p>
     </div>
     <div class="value-card">
-      <span class="value-icon">📈</span>
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color:#2a7a3a;margin-bottom:16px;display:block"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <h3><span data-lang="tr" class="active">Sürekli İyileştirme</span><span data-lang="en">Continuous Improvement</span><span data-lang="es">Mejora Continua</span></h3>
       <p><span data-lang="tr" class="active">Gelişim yolculuğumuzda yarının büyük başarılarına giden yolun her küçük adımdan geçtiğine inanıyoruz.</span><span data-lang="en">On our development journey, we believe every great achievement begins with small, consistent steps.</span><span data-lang="es">Creemos que cada gran logro comienza con pasos pequeños y consistentes.</span></p>
     </div>
     <div class="value-card">
-      <span class="value-icon">👥</span>
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color:#2a7a3a;margin-bottom:16px;display:block"><circle cx="9" cy="7" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="15" cy="7" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 20c0-3.3 2.7-6 6-6h6c3.3 0 6 2.7 6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
       <h3><span data-lang="tr" class="active">Katılımcı Kültür</span><span data-lang="en">Participatory Culture</span><span data-lang="es">Cultura Participativa</span></h3>
       <p><span data-lang="tr" class="active">Tüm çalışanların fikrine değer verdiğimiz, birlikte düşündüğümüz ve birlikte başardığımız bir kültürle büyüyoruz.</span><span data-lang="en">We grow in a culture where every employee's voice matters, where we think and succeed together.</span><span data-lang="es">Crecemos en una cultura donde la voz de cada empleado importa y triunfamos juntos.</span></p>
     </div>
     <div class="value-card">
-      <span class="value-icon">🌱</span>
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color:#2a7a3a;margin-bottom:16px;display:block"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><polyline points="9 12 11 14 15 10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <h3><span data-lang="tr" class="active">Sürdürülebilirlik</span><span data-lang="en">Sustainability</span><span data-lang="es">Sostenibilidad</span></h3>
       <p><span data-lang="tr" class="active">Çevreye, topluma ve geleceğe karşı sorumluluğumuzu her üretim kararımızın merkezine koyuyoruz.</span><span data-lang="en">We place our responsibility to the environment, society and future generations at the heart of every production decision.</span><span data-lang="es">Ponemos nuestra responsabilidad hacia el medio ambiente y las generaciones futuras en el centro de cada decisión.</span></p>
     </div>
@@ -419,5 +550,25 @@ function setLang(l){
 }
 document.addEventListener('DOMContentLoaded',()=>{const s=localStorage.getItem('fxlang')||'tr';setLang(s);});
 </script>
+
+<script>
+// Hero Slider
+let slideIdx = 0;
+const slides = document.querySelectorAll('#heroSlider .slide');
+const dots = document.querySelectorAll('.slider-dot');
+let autoTimer = setInterval(() => sliderShift(1), 5000);
+
+function goSlide(n) {
+  slides[slideIdx].classList.remove('active');
+  dots[slideIdx].classList.remove('active');
+  slideIdx = (n + slides.length) % slides.length;
+  slides[slideIdx].classList.add('active');
+  dots[slideIdx].classList.add('active');
+  clearInterval(autoTimer);
+  autoTimer = setInterval(() => sliderShift(1), 5000);
+}
+function sliderShift(dir) { goSlide(slideIdx + dir); }
+</script>
+
 </body>
 </html>

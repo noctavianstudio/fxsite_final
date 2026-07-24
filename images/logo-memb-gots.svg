@@ -1,0 +1,6 @@
+<svg width="180" height="80" viewBox="0 0 180 80" xmlns="http://www.w3.org/2000/svg">
+<rect width="180" height="80" fill="rgba(255,255,255,0.05)" rx="6"/>
+<rect x="2" y="2" width="176" height="76" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1" rx="5"/>
+<text x="90" y="36" font-family="'Barlow Condensed',Arial,sans-serif" font-size="20" font-weight="700" fill="rgba(255,255,255,0.55)" text-anchor="middle" letter-spacing="1">GOTS</text>
+<text x="90" y="56" font-family="Arial,sans-serif" font-size="9" fill="rgba(255,255,255,0.2)" text-anchor="middle" letter-spacing="1">GOTS</text>
+</svg>

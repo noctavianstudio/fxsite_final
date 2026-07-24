@@ -93,18 +93,8 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
 .od-value a{color:var(--red);text-decoration:none}
 .od-value a:hover{text-decoration:underline}
 /* İSPANYA GÖRSELİ */
-.spain-img{width:100%;height:200px;object-fit:cover;display:block;margin-top:28px;border-radius:0}
-/* FORM */
-.contact-main{padding:80px 60px;background:var(--off-white);display:grid;grid-template-columns:1fr 1.4fr;gap:80px}
-.contact-left p{font-size:15px;color:var(--gray);line-height:1.85;margin-bottom:28px}
-.contact-form{background:var(--cream);padding:44px}
-.form-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;margin-bottom:28px}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.form-field{display:flex;flex-direction:column;gap:5px;margin-bottom:14px}
-.form-field label{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gray)}
-.form-field input,.form-field textarea,.form-field select{background:var(--off-white);border:1px solid var(--border);padding:12px 14px;color:var(--text);font-family:'Barlow',sans-serif;font-size:14px;outline:none;transition:border-color .2s;width:100%;appearance:none}
-.form-field input:focus,.form-field textarea:focus,.form-field select:focus{border-color:var(--red)}
-.form-field textarea{height:120px;resize:vertical}
+
+
 @media(max-width:1024px){
   .offices-grid,.contact-main{grid-template-columns:1fr}
   .offices-section,.contact-main{padding:60px 24px}
@@ -112,6 +102,11 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
   .contact-form{padding:28px 20px}
   .form-row{grid-template-columns:1fr}
 }
+
+/* ─── YUMUŞAK KÖŞELER ─── */
+.office-card,.btn-primary,.btn-ghost{border-radius:12px}
+.page-hero{border-radius:0 0 20px 20px;overflow:hidden}
+
 </style>
 </head>
 <body>
@@ -228,19 +223,11 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
           <span class="od-value"><a href="tel:+34639280718">+34 639 280 718</a></span>
         </div>
       </div>
-      <img class="spain-img" src="images/spain-office.jpg" alt="İspanya Ofisi">
+
     </div>
   </div>
 </section>
 
-<!-- İLETİŞİM FORMU -->
-<div class="contact-main">
-  <div class="contact-left">
-    <div class="section-eyebrow">
-      <span data-lang="tr" class="active">Bize Yazın</span>
-      <span data-lang="en">Get in Touch</span>
-      <span data-lang="es">Escríbanos</span>
-    </div>
     <h2 class="section-title">
       <span data-lang="tr" class="active">24 saat içinde<br><em>yanıt veririz.</em></span>
       <span data-lang="en">We reply within<br><em>24 hours.</em></span>
