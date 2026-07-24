@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>FX Textile — Premium Apparel Fabrics | A Division of Harput Holding</title>
+<title>FX Textile — Harput Holding Bünyesinde</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
+
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&display=swap');
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -20,22 +23,17 @@ body{font-family:'Barlow',sans-serif;background:#f5f2ee;color:#1a1a1a;overflow-x
 .lang-btn:hover,.lang-btn.active{color:#fff}
 .lang-btn+.lang-btn{border-left:1px solid #333}
 /* NAV */
-nav{position:sticky;top:0;z-index:100;background:rgba(245,242,238,0.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:0 60px;display:flex;align-items:center;justify-content:space-between;height:76px}
+nav{position:sticky;top:0;z-index:100;background:rgba(245,242,238,0.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:0 60px;display:flex;align-items:center;justify-content:space-between;height:88px}
 .nav-logo{display:flex;align-items:center;gap:18px}
-.logo-fx{height:34px;display:block;mix-blend-mode:multiply}
+.logo-fx{height:52px;display:block;mix-blend-mode:multiply}
 .logo-div{width:1px;height:26px;background:var(--gray-light)}
-.logo-harput{height:22px;display:block;mix-blend-mode:multiply;opacity:0.6}
+.logo-harput{height:38px;display:block;mix-blend-mode:multiply;opacity:0.7}
 .nav-links{display:flex;gap:32px;list-style:none;align-items:center}
 .nav-links a{text-decoration:none;color:var(--gray);font-size:11px;letter-spacing:2px;font-weight:500;text-transform:uppercase;transition:color .2s;font-family:'Barlow Condensed',sans-serif;padding:4px 0;border-bottom:2px solid transparent}
 .nav-links a:hover{color:var(--red)}
 .nav-links a.current{color:var(--black);border-bottom-color:var(--red)}
 .nav-cta{background:var(--red)!important;color:#fff!important;padding:10px 22px!important;border-bottom:none!important;letter-spacing:1.5px!important}
 .nav-cta:hover{background:var(--red-dark)!important}
-.nav-toggle{display:none;width:42px;height:42px;border:1px solid var(--border);background:transparent;align-items:center;justify-content:center;flex-direction:column;gap:5px;cursor:pointer;margin-left:16px}
-.nav-toggle span{display:block;width:18px;height:2px;background:var(--black);transition:transform .2s,opacity .2s}
-nav.menu-open .nav-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-nav.menu-open .nav-toggle span:nth-child(2){opacity:0}
-nav.menu-open .nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 /* LANG SWITCHING */
 [data-lang]{display:none}
 [data-lang].active{display:inline}
@@ -44,8 +42,8 @@ nav.menu-open .nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-4
 /* FOOTER */
 footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,255,255,0.05)}
 .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
-.footer-brand .foot-fx{height:28px;filter:brightness(0) invert(1);opacity:0.8;display:block;margin-bottom:12px}
-.footer-brand .foot-harput{height:18px;filter:brightness(0) invert(1);opacity:0.3;display:block;margin-bottom:20px}
+.footer-brand .foot-fx{height:40px;filter:brightness(0) invert(1);opacity:0.8;display:block;margin-bottom:12px}
+.footer-brand .foot-harput{height:28px;filter:brightness(0) invert(1);opacity:0.3;display:block;margin-bottom:20px}
 .footer-brand p{font-size:13px;color:rgba(255,255,255,0.3);line-height:1.7;max-width:220px}
 .footer-col h5{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:16px}
 .footer-col a{display:block;font-size:13px;color:rgba(255,255,255,0.4);text-decoration:none;margin-bottom:10px;transition:color .2s}
@@ -68,50 +66,24 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
   .footer-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:600px){
-  nav{height:68px}
-  .nav-logo{gap:12px;min-width:0}
-  .logo-fx{height:28px}
-  .logo-harput{height:18px}
-  .nav-toggle{display:flex;flex-shrink:0}
-  .nav-links{display:none;position:absolute;top:68px;left:0;right:0;background:rgba(245,242,238,0.99);border-bottom:1px solid var(--border);box-shadow:0 18px 34px rgba(0,0,0,0.12);padding:10px 24px 22px;flex-direction:column;align-items:stretch;gap:0}
-  nav.menu-open .nav-links{display:flex}
-  .nav-links li{border-bottom:1px solid var(--border)}
-  .nav-links li:last-child{border-bottom:none;padding-top:12px}
-  .nav-links a{display:block;padding:15px 0;font-size:13px;letter-spacing:1.6px;border-bottom:none}
-  .nav-cta{text-align:center;padding:13px 18px!important}
+  .nav-links{display:none}
   .footer-grid{grid-template-columns:1fr}
 }
 
 
+
 /* HERO */
 .hero{height:100vh;min-height:680px;background:var(--black);display:flex;align-items:flex-end;position:relative;overflow:hidden}
-.hero-slider{position:absolute;inset:0}
-.hero-slide{position:absolute;inset:0;opacity:1;visibility:hidden;pointer-events:none;transition:visibility 0s linear 1000ms;display:flex;align-items:flex-end}
-.hero-slide.active,.hero-slide.leaving{visibility:visible}
-.hero-slide.active{pointer-events:auto;transition:visibility 0s}
-.hero-bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 900ms ease}
-.hero-slide.active .hero-bg-img{opacity:0.3}
-.hero-slide.leaving .hero-bg-img{opacity:0}
-.hero-grad{position:absolute;inset:0;background:linear-gradient(to top,#0a0a0a 35%,rgba(10,10,10,0.4) 100%)}
-.hero-accent{position:absolute;top:0;right:0;width:42%;height:100%;background:linear-gradient(180deg,rgba(139,26,26,0.18) 0%,transparent 70%);clip-path:polygon(28% 0%,100% 0%,100% 100%,0% 100%)}
-.hero-content{position:relative;z-index:2;padding:0 60px 90px;max-width:920px;opacity:0;transform:translateX(-64px)}
-.hero-slide.active .hero-content{animation:heroTextIn 980ms cubic-bezier(.18,.82,.22,1) 120ms both}
-.hero-slide.leaving .hero-content{animation:heroTextOut 360ms ease both}
-@keyframes heroTextIn{0%{opacity:0;transform:translateX(-64px)}55%{opacity:.72}100%{opacity:1;transform:none}}
-@keyframes heroTextOut{0%{opacity:1;transform:none}100%{opacity:0;transform:translateY(14px)}}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.35}
+.hero-grad{position:absolute;inset:0;background:linear-gradient(to top,#0a0a0a 30%,rgba(10,10,10,0.35) 100%)}
+.hero-accent{position:absolute;top:0;right:0;width:40%;height:100%;background:linear-gradient(180deg,rgba(139,26,26,0.15) 0%,transparent 70%);clip-path:polygon(28% 0%,100% 0%,100% 100%,0% 100%)}
+.hero-content{position:relative;z-index:2;padding:0 60px 90px;max-width:900px}
 .hero-eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:4px;color:var(--red-light);text-transform:uppercase;margin-bottom:24px;display:flex;align-items:center;gap:16px}
 .hero-eyebrow::before{content:'';display:block;width:40px;height:1px;background:var(--red-light)}
-.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(54px,7.5vw,100px);font-weight:300;color:#fff;line-height:1.0;margin-bottom:32px;letter-spacing:-1px}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,7vw,96px);font-weight:300;color:#fff;line-height:1.0;margin-bottom:28px}
 .hero-title em{font-style:italic;color:rgba(255,255,255,0.5)}
-.hero-sub{font-size:16px;color:rgba(255,255,255,0.45);font-weight:300;max-width:500px;line-height:1.75;margin-bottom:48px}
-.hero-ctas{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
-.hero-scroll{position:absolute;bottom:32px;right:60px;color:rgba(255,255,255,0.25);font-size:10px;letter-spacing:3px;writing-mode:vertical-rl;font-family:'Barlow Condensed',sans-serif}
-.hero-controls{position:absolute;z-index:5;right:60px;bottom:86px;display:flex;gap:8px}
-.hero-arrow{width:38px;height:38px;border:1px solid rgba(255,255,255,0.24);background:rgba(10,10,10,0.28);color:#fff;font-size:20px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
-.hero-arrow:hover{background:var(--red);border-color:var(--red);transform:translateY(-1px)}
-.hero-dots{position:absolute;z-index:5;left:60px;bottom:42px;display:flex;gap:8px}
-.hero-dot{width:28px;height:2px;border:none;background:rgba(255,255,255,0.24);cursor:pointer;padding:0;transition:background .2s,width .2s}
-.hero-dot.active{background:var(--red-light);width:42px}
+.hero-sub{font-size:16px;color:rgba(255,255,255,0.45);font-weight:300;max-width:520px;line-height:1.75;margin-bottom:44px}
+.hero-ctas{display:flex;gap:16px;flex-wrap:wrap}
 /* STATS */
 .stats-band{background:var(--red);padding:0 60px;display:flex;justify-content:space-between;align-items:stretch}
 .stat-item{padding:36px 0;text-align:center;color:#fff;flex:1}
@@ -120,229 +92,274 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
 .stat-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:2px;opacity:0.7;text-transform:uppercase;margin-top:6px;display:block}
 /* INTRO SPLIT */
 .intro-split{display:grid;grid-template-columns:1fr 1fr}
-.intro-text-side{padding:100px 60px;background:var(--off-white)}
+.intro-text-side{padding:96px 60px;background:var(--off-white)}
 .intro-img-side{overflow:hidden;min-height:520px;position:relative}
 .intro-img-side img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
 .intro-text-side p{font-size:16px;color:var(--gray);line-height:1.85;margin-bottom:20px}
-/* PILLARS */
-.pillars-section{display:grid;grid-template-columns:repeat(3,1fr)}
-.pillar{padding:64px 44px;border-right:1px solid var(--border);background:var(--off-white)}
-.pillar:nth-child(even){background:var(--cream)}
-.pillar:last-child{border-right:none}
-.pillar-img{width:100%;height:220px;object-fit:cover;display:block;margin-bottom:28px}
-.pillar h3{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;margin:0 0 12px}
-.pillar p{font-size:14px;color:var(--gray);line-height:1.75}
-.pillar-num{font-family:'Barlow Condensed',sans-serif;font-size:44px;font-weight:700;color:var(--red);opacity:0.2;line-height:1;margin-bottom:8px}
-/* ABOUT */
-.about-sec{padding:100px 60px;background:var(--cream)}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-top:60px;align-items:start}
-.about-card{background:var(--off-white);padding:36px;border-left:3px solid var(--red);margin-bottom:24px}
-.about-card:last-child{margin-bottom:0}
-.about-card h3{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;margin-bottom:10px}
-.about-card p{font-size:14px;color:var(--gray);line-height:1.75}
-.mission-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:28px 0}
-.mission-card{background:rgba(255,255,255,0.42);border:1px solid var(--border);border-top:3px solid var(--red);padding:26px}
-.mission-card h3{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;margin-bottom:12px;color:var(--black)}
-.mission-card p{font-size:14px;color:var(--gray);line-height:1.75}
-.about-img-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.about-img-grid .tall{grid-row:1/3}
-.about-img-grid img{width:100%;height:260px;object-fit:cover;display:block}
-.about-img-grid .tall img{height:100%}
-/* CERT STRIP */
-.cert-strip{background:var(--black);padding:56px 60px;display:flex;align-items:center;gap:60px;flex-wrap:wrap}
-.cert-strip-left{flex:1;min-width:240px}
-.cert-strip-left h3{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:#fff;margin-bottom:8px}
-.cert-strip-left p{font-size:14px;color:rgba(255,255,255,0.35);line-height:1.6}
+/* VİZYON / MİSYON — YATAY */
+.vm-section{background:var(--black);padding:0}
+.vm-grid{display:grid;grid-template-columns:1fr 1fr}
+.vm-block{padding:80px 64px;position:relative}
+.vm-block:first-child{border-right:1px solid rgba(255,255,255,0.08)}
+.vm-tag{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--red-light);margin-bottom:24px;display:block}
+.vm-text{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,2.5vw,30px);font-weight:300;color:#fff;line-height:1.55}
+.vm-block:first-child{background:rgba(139,26,26,0.06)}
+/* KURUMSAL DEĞERLER */
+.values-section{padding:96px 60px;background:var(--cream)}
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:56px}
+.value-card{background:var(--off-white);padding:40px 36px;border-top:3px solid transparent;transition:border-color .3s}
+.value-card:hover{border-top-color:var(--red)}
+.value-icon{font-size:28px;margin-bottom:16px;display:block}
+.value-card h3{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;margin-bottom:10px}
+.value-card p{font-size:14px;color:var(--gray);line-height:1.75}
+/* TARİHÇE */
+.timeline-section{padding:96px 60px;background:var(--off-white)}
+.timeline{margin-top:56px;position:relative;padding-left:40px}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--red) 0%,var(--gray-light) 100%)}
+.tl-item{position:relative;padding-bottom:36px;padding-left:28px}
+.tl-item::before{content:'';position:absolute;left:-45px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--red);border:2px solid var(--off-white);box-shadow:0 0 0 2px var(--red)}
+.tl-year{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;color:var(--red);line-height:1}
+.tl-text{font-size:14px;color:var(--gray);margin-top:5px;line-height:1.6}
+/* SERTİFİKA ŞERİDİ */
+.cert-strip{background:var(--black);padding:52px 60px;display:flex;align-items:center;gap:60px;flex-wrap:wrap}
+.cert-strip-left h3{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;color:#fff;margin-bottom:8px}
+.cert-strip-left p a{color:rgba(255,255,255,0.4);font-size:12px;letter-spacing:2px;font-family:'Barlow Condensed',sans-serif;text-decoration:none;text-transform:uppercase}
 .cert-badges{display:flex;flex-wrap:wrap;gap:10px;flex:2}
-.cbadge{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);padding:10px 18px;font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:1px;color:rgba(255,255,255,0.7);white-space:nowrap}
-/* SECTORS */
-.sectors{padding:100px 60px;background:var(--off-white)}
-.sectors-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-top:56px}
-.sector-card{position:relative;overflow:hidden;aspect-ratio:3/4}
-.sector-card img{width:100%;height:100%;object-fit:cover;transition:transform .6s;display:block}
-.sector-card:hover img{transform:scale(1.06)}
-.sector-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,var(--fx-sector-overlay-opacity,.8)) 30%,rgba(10,10,10,0));display:flex;align-items:flex-end;padding:20px}
-.sector-name{font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:2px;text-transform:uppercase;color:#fff}
-/* HERITAGE */
-.heritage-banner{background:var(--red);padding:60px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-.heritage-banner h2{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,4vw,60px);font-weight:300;color:#fff;line-height:1.1}
-.heritage-banner h2 em{font-style:italic;opacity:0.7}
-.heritage-stats{display:grid;grid-template-columns:1fr 1fr;gap:28px}
-.hs{color:#fff}
-.hs-num{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:300;line-height:1;display:block}
-.hs-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:2px;opacity:0.6;margin-top:4px;display:block}
+.cbadge{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);padding:9px 16px;font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:1px;color:rgba(255,255,255,0.7);white-space:nowrap}
 @media(max-width:1024px){
-  .intro-split,.about-grid,.heritage-banner{grid-template-columns:1fr}
-  .mission-grid{grid-template-columns:1fr}
-  .pillars-section{grid-template-columns:1fr}
-  .sectors-grid{grid-template-columns:repeat(3,1fr)}
+  .intro-split,.vm-grid{grid-template-columns:1fr}
+  .values-grid{grid-template-columns:1fr 1fr}
   .stats-band{padding:0 24px;flex-wrap:wrap}
   .stat-item{flex:1 1 30%}
-  .hero-content,.about-sec,.sectors,.cert-strip{padding-left:24px;padding-right:24px}
-  .hero-controls{right:24px}
-  .hero-dots{left:24px}
-  .heritage-banner{padding:48px 24px}
+  .hero-content,.intro-text-side,.values-section,.timeline-section,.cert-strip{padding-left:24px;padding-right:24px}
+  .vm-block{padding:60px 24px}
 }
-@media(max-width:600px){.sectors-grid{grid-template-columns:repeat(2,1fr)}.stat-item{flex:1 1 45%}}
-@media(max-width:600px){.hero-controls{bottom:78px}.hero-arrow{width:34px;height:34px}.hero-dots{bottom:26px}.hero-content{padding-bottom:112px}.hero-scroll{display:none}}
+@media(max-width:600px){.values-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
 <div class="lang-bar">
-  <button class="lang-btn active" data-l="en" onclick="setLang('en')">EN</button>
-  <button class="lang-btn" data-l="tr" onclick="setLang('tr')">TR</button>
+  <button class="lang-btn active" data-l="tr" onclick="setLang('tr')">TR</button>
+  <button class="lang-btn" data-l="en" onclick="setLang('en')">EN</button>
   <button class="lang-btn" data-l="es" onclick="setLang('es')">ES</button>
 </div>
 <nav>
   <div class="nav-logo">
-    <a href="index.html"><img data-img-key="logo-fx-textile" class="logo-fx" src="images/logo-fx-textile.svg" alt="FX Textile"></a>
+    <a href="index.html"><img class="logo-fx" src="images/logo-fx-textile.svg" alt="FX Textile"></a>
     <div class="logo-div"></div>
-    <a href="index.html"><img data-img-key="logo-harput" class="logo-harput" src="images/logo-harput.svg" alt="Harput Holding"></a>
+    <a href="index.html"><img class="logo-harput" src="images/logo-harput.svg" alt="Harput Holding"></a>
   </div>
-  <ul class="nav-links"><li><a href="index.html" class="current"><span data-lang="en" class="active" data-edit-key="index_1">About</span><span data-lang="tr">Hakkımızda</span><span data-lang="es">Nosotros</span></a></li><li><a href="products.html" ><span data-lang="en" class="active" data-edit-key="index_2">Products</span><span data-lang="tr">Ürünler</span><span data-lang="es">Productos</span></a></li><li><a href="sustainability.html" ><span data-lang="en" class="active" data-edit-key="index_3">Sustainability</span><span data-lang="tr">Sürdürülebilirlik</span><span data-lang="es">Sostenibilidad</span></a></li><li><a href="global.html" ><span data-lang="en" class="active" data-edit-key="index_4">Global</span><span data-lang="tr">Global</span><span data-lang="es">Global</span></a></li><li><a href="certifications.html" ><span data-lang="en" class="active" data-edit-key="index_5">Certifications</span><span data-lang="tr">Sertifikalar</span><span data-lang="es">Certificaciones</span></a></li><li><a href="contact.html" class="nav-cta"><span data-lang="en" class="active" data-edit-key="index_6">Contact</span><span data-lang="tr">İletişim</span><span data-lang="es">Contacto</span></a></li></ul>
-  <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" onclick="toggleMobileMenu(this)"><span></span><span></span><span></span></button>
+  <ul class="nav-links"><li><a href="index.html" class="current"><span data-lang="tr" class="active">Hakkımızda</span><span data-lang="en">About Us</span><span data-lang="es">Sobre Nosotros</span></a></li><li><a href="products.html" ><span data-lang="tr" class="active">Ürünler</span><span data-lang="en">Products</span><span data-lang="es">Productos</span></a></li><li><a href="collections.html" ><span data-lang="tr" class="active">Koleksiyonlar</span><span data-lang="en">Collections</span><span data-lang="es">Colecciones</span></a></li><li><a href="sustainability.html" ><span data-lang="tr" class="active">Sürdürülebilirlik</span><span data-lang="en">Sustainability</span><span data-lang="es">Sostenibilidad</span></a></li><li><a href="certifications.html" ><span data-lang="tr" class="active">Sertifikalar</span><span data-lang="en">Certifications</span><span data-lang="es">Certificaciones</span></a></li><li><a href="announcements.html" ><span data-lang="tr" class="active">Duyurular</span><span data-lang="en">News & Events</span><span data-lang="es">Noticias</span></a></li><li><a href="contact.html" class="nav-cta"><span data-lang="tr" class="active">İletişim</span><span data-lang="en">Contact</span><span data-lang="es">Contacto</span></a></li></ul>
 </nav>
 
+<!-- HERO — animasyon video -->
 <div class="hero">
-  <div class="hero-slider" id="hero-slider">
-    <div class="hero-slide active">
-      <img data-img-key="hero-index" class="hero-bg-img" src="images/hero-index.jpg" alt="FX Textile Hero">
-      <div class="hero-content">
-        <div class="hero-eyebrow">
-          <span data-lang="en" class="active" data-edit-key="index_7">A Division of Harput Holding &nbsp;·&nbsp; Est. 2023, Bursa Turkey</span>
-          <span data-lang="tr">Harput Holding Bünyesinde &nbsp;·&nbsp; Kuruluş 2023, Bursa Türkiye</span>
-          <span data-lang="es">Una División de Harput Holding &nbsp;·&nbsp; Est. 2023, Bursa Turquía</span>
-        </div>
-        <h1 class="hero-title">
-          <span data-lang="en" class="active" data-edit-key="index_8">Fabric<br><em>woven for</em><br>tomorrow.</span>
-          <span data-lang="tr">Yarına<br><em>dokunan</em><br>kumaş.</span>
-          <span data-lang="es">Tejido para<br><em>construir</em><br>el mañana.</span>
-        </h1>
-        <p class="hero-sub">
-          <span data-lang="en" class="active" data-edit-key="index_9">Premium certified apparel fabrics — sustainable, traceable, and born from 65 years of Turkish textile mastery.</span>
-          <span data-lang="tr">Premium sertifikalı giyim kumaşları — sürdürülebilir, izlenebilir ve 65 yıllık Türk tekstil uzmanlığından doğmuş.</span>
-          <span data-lang="es">Telas premium certificadas para ropa — sostenibles, trazables y nacidas de 65 años de maestría textil turca.</span>
-        </p>
-        <div class="hero-ctas">
-          <a href="products.html" class="btn-primary"><span data-lang="en" class="active" data-edit-key="index_10">Explore Fabrics</span><span data-lang="tr">Kumaşları Keşfet</span><span data-lang="es">Ver Telas</span></a>
-          <a href="contact.html" class="btn-ghost" style="border-color:rgba(255,255,255,0.25);color:rgba(255,255,255,0.7)"><span data-lang="en" class="active" data-edit-key="index_11">Request Samples</span><span data-lang="tr">Numune İste</span><span data-lang="es">Pedir Muestras</span></a>
-        </div>
-      </div>
-    </div>
-    <div class="hero-slide">
-      <img data-img-key="hero-index-slide-2" class="hero-bg-img" src="images/hero-slide-placeholder-2.svg" alt="FX Textile Slider 2">
-      <div class="hero-content">
-        <div class="hero-eyebrow"><span data-lang="en" class="active" data-edit-key="index_63">Certified Fabric Excellence</span><span data-lang="tr">Sertifikal&#305; Kuma&#351; M&#252;kemmelli&#287;i</span><span data-lang="es">Excelencia Textil Certificada</span></div>
-        <h1 class="hero-title"><span data-lang="en" class="active" data-edit-key="index_64">Quality<br><em>woven with</em><br>purpose.</span><span data-lang="tr">Ama&#231;la<br><em>dokunan</em><br>kalite.</span><span data-lang="es">Calidad<br><em>tejida con</em><br>prop&#243;sito.</span></h1>
-        <p class="hero-sub"><span data-lang="en" class="active" data-edit-key="index_65">Reliable apparel fabrics shaped by certified production, responsible sourcing and the experience of Turkish textile craft.</span><span data-lang="tr">Sertifikal&#305; &#252;retim, sorumlu tedarik ve T&#252;rk tekstil ustal&#305;&#287;&#305;n&#305;n deneyimiyle &#351;ekillenen g&#252;venilir giyim kuma&#351;lar&#305;.</span><span data-lang="es">Telas confiables para confecci&#243;n, creadas con producci&#243;n certificada, abastecimiento responsable y experiencia textil turca.</span></p>
-        <div class="hero-ctas">
-          <a href="products.html" class="btn-primary"><span data-lang="en" class="active" data-edit-key="index_66">Explore Fabrics</span><span data-lang="tr">Kuma&#351;lar&#305; Ke&#351;fet</span><span data-lang="es">Ver Telas</span></a>
-          <a href="contact.html" class="btn-ghost" style="border-color:rgba(255,255,255,0.25);color:rgba(255,255,255,0.7)"><span data-lang="en" class="active" data-edit-key="index_67">Request Samples</span><span data-lang="tr">Numune &#304;ste</span><span data-lang="es">Pedir Muestras</span></a>
-        </div>
-      </div>
-    </div>
-    <div class="hero-slide">
-      <img data-img-key="hero-index-slide-3" class="hero-bg-img" src="images/hero-slide-placeholder-3.svg" alt="FX Textile Slider 3">
-      <div class="hero-content">
-        <div class="hero-eyebrow"><span data-lang="en" class="active" data-edit-key="index_68">Global Textile Partnership</span><span data-lang="tr">K&#252;resel Tekstil &#304;&#351; Ortakl&#305;&#287;&#305;</span><span data-lang="es">Alianza Textil Global</span></div>
-        <h1 class="hero-title"><span data-lang="en" class="active" data-edit-key="index_69">Your<br><em>strategic</em><br>fabric partner.</span><span data-lang="tr">Stratejik<br><em>kuma&#351;</em><br>i&#351; orta&#287;&#305;n&#305;z.</span><span data-lang="es">Tu socio<br><em>estrat&#233;gico</em><br>en tejidos.</span></h1>
-        <p class="hero-sub"><span data-lang="en" class="active" data-edit-key="index_70">From Bursa to global markets, we support brands with sustainable fabric development, agile supply and long-term partnership.</span><span data-lang="tr">Bursa&#8217;dan global pazarlara, markalara s&#252;rd&#252;r&#252;lebilir kuma&#351; geli&#351;tirme, esnek tedarik ve uzun vadeli i&#351; ortakl&#305;&#287;&#305; sunuyoruz.</span><span data-lang="es">Desde Bursa hacia los mercados globales, apoyamos a las marcas con desarrollo sostenible, suministro &#225;gil y colaboraci&#243;n a largo plazo.</span></p>
-        <div class="hero-ctas">
-          <a href="products.html" class="btn-primary"><span data-lang="en" class="active" data-edit-key="index_71">Explore Fabrics</span><span data-lang="tr">Kuma&#351;lar&#305; Ke&#351;fet</span><span data-lang="es">Ver Telas</span></a>
-          <a href="contact.html" class="btn-ghost" style="border-color:rgba(255,255,255,0.25);color:rgba(255,255,255,0.7)"><span data-lang="en" class="active" data-edit-key="index_72">Request Samples</span><span data-lang="tr">Numune &#304;ste</span><span data-lang="es">Pedir Muestras</span></a>
-        </div>
-      </div>
-    </div>
-  </div>
+  <video class="hero-video" autoplay muted loop playsinline>
+    <source src="images/animasyon_harput_1.mp4" type="video/mp4">
+  </video>
   <div class="hero-grad"></div>
   <div class="hero-accent"></div>
-  <div class="hero-controls">
-    <button class="hero-arrow" type="button" aria-label="Previous slide" onclick="moveHeroSlide(-1)">‹</button>
-    <button class="hero-arrow" type="button" aria-label="Next slide" onclick="moveHeroSlide(1)">›</button>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span data-lang="tr" class="active">Harput Holding Bünyesinde &nbsp;·&nbsp; Kuruluş 2023, Bursa</span>
+      <span data-lang="en">A Division of Harput Holding &nbsp;·&nbsp; Est. 2023, Bursa Turkey</span>
+      <span data-lang="es">Una División de Harput Holding &nbsp;·&nbsp; Est. 2023, Bursa Turquía</span>
+    </div>
+    <h1 class="hero-title">
+      <span data-lang="tr" class="active">Kaliteli kumaş,<br><em>sorumlu üretim.</em></span>
+      <span data-lang="en">Quality fabric,<br><em>responsible production.</em></span>
+      <span data-lang="es">Tela de calidad,<br><em>producción responsable.</em></span>
+    </h1>
+    <p class="hero-sub">
+      <span data-lang="tr" class="active">Sertifikalı, izlenebilir ve sürdürülebilir giyim kumaşları. Harput Holding'in 65 yıllık birikiminden doğan FX Textile ile tanışın.</span>
+      <span data-lang="en">Certified, traceable and sustainable apparel fabrics. Discover FX Textile, born from 65 years of Harput Holding expertise.</span>
+      <span data-lang="es">Telas certificadas, trazables y sostenibles. Descubra FX Textile, nacida de 65 años de experiencia de Harput Holding.</span>
+    </p>
+    <div class="hero-ctas">
+      <a href="products.html" class="btn-primary">
+        <span data-lang="tr" class="active">Ürünleri İncele</span>
+        <span data-lang="en">Explore Products</span>
+        <span data-lang="es">Ver Productos</span>
+      </a>
+      <a href="contact.html" class="btn-ghost" style="border-color:rgba(255,255,255,0.25);color:rgba(255,255,255,0.7)">
+        <span data-lang="tr" class="active">Numune Talep Et</span>
+        <span data-lang="en">Request Samples</span>
+        <span data-lang="es">Pedir Muestras</span>
+      </a>
+    </div>
   </div>
-  <div class="hero-dots" aria-label="Hero slide navigation">
-    <button class="hero-dot active" type="button" aria-label="Slide 1" onclick="setHeroSlide(0,true)"></button>
-    <button class="hero-dot" type="button" aria-label="Slide 2" onclick="setHeroSlide(1,true)"></button>
-    <button class="hero-dot" type="button" aria-label="Slide 3" onclick="setHeroSlide(2,true)"></button>
-  </div>
-  <div class="hero-scroll">SCROLL</div>
 </div>
 
+<!-- STATS -->
 <div class="stats-band">
-  <div class="stat-item"><span class="stat-num">1300+</span><span class="stat-label"><span data-lang="en" class="active" data-edit-key="index_12">Employees</span><span data-lang="tr">Çalışan</span><span data-lang="es">Empleados</span></span></div>
-  <div class="stat-item"><span class="stat-num">70</span><span class="stat-label"><span data-lang="en" class="active" data-edit-key="index_13">Export Countries</span><span data-lang="tr">İhracat Ülkesi</span><span data-lang="es">Países Exportación</span></span></div>
-  <div class="stat-item"><span class="stat-num">$200M</span><span class="stat-label"><span data-lang="en" class="active" data-edit-key="index_14">Revenue 2023</span><span data-lang="tr">Ciro 2023</span><span data-lang="es">Ingresos 2023</span></span></div>
-  <div class="stat-item"><span class="stat-num">195K m²</span><span class="stat-label"><span data-lang="en" class="active" data-edit-key="index_15">Production Area</span><span data-lang="tr">Üretim Alanı</span><span data-lang="es">Área Producción</span></span></div>
-  <div class="stat-item"><span class="stat-num">65+</span><span class="stat-label"><span data-lang="en" class="active" data-edit-key="index_16">Years Experience</span><span data-lang="tr">Yıl Deneyim</span><span data-lang="es">Años Experiencia</span></span></div>
-  <div class="stat-item"><span class="stat-num">ISO 500</span><span class="stat-label"><span data-lang="en" class="active" data-edit-key="index_17">Turkey Top Industrial</span><span data-lang="tr">Türkiye İlk 500</span><span data-lang="es">Top 500 Industrial TR</span></span></div>
+  <div class="stat-item"><span class="stat-num">1300+</span><span class="stat-label">Çalışan / Employees</span></div>
+  <div class="stat-item"><span class="stat-num">70</span><span class="stat-label"><span data-lang="tr" class="active">İhracat Ülkesi</span><span data-lang="en">Export Countries</span><span data-lang="es">Países</span></span></div>
+  <div class="stat-item"><span class="stat-num">$200M</span><span class="stat-label"><span data-lang="tr" class="active">Ciro 2023</span><span data-lang="en">Revenue 2023</span><span data-lang="es">Ingresos 2023</span></span></div>
+  <div class="stat-item"><span class="stat-num">195K m²</span><span class="stat-label"><span data-lang="tr" class="active">Üretim Alanı</span><span data-lang="en">Production Area</span><span data-lang="es">Área Producción</span></span></div>
+  <div class="stat-item"><span class="stat-num">65+</span><span class="stat-label"><span data-lang="tr" class="active">Yıllık Deneyim</span><span data-lang="en">Years Experience</span><span data-lang="es">Años Experiencia</span></span></div>
+  <div class="stat-item"><span class="stat-num">ISO 500</span><span class="stat-label"><span data-lang="tr" class="active">Türkiye İlk 500</span><span data-lang="en">Turkey Top 500</span><span data-lang="es">Top 500 TR</span></span></div>
 </div>
 
+<!-- HAKKIMIZDA GİRİŞ -->
 <div class="intro-split">
   <div class="intro-text-side">
-    <div class="section-eyebrow"><span data-lang="en" class="active" data-edit-key="index_18">About FX Textile</span><span data-lang="tr">FX Textile Hakkında</span><span data-lang="es">Sobre FX Textile</span></div>
-    <h2 class="section-title"><span data-lang="en" class="active" data-edit-key="index_19">Where craft meets<br><em>conscience.</em></span><span data-lang="tr">Ustalığın <em>vicdanla</em><br>buluştuğu yer.</span><span data-lang="es">Donde el oficio<br><em>encuentra la ética.</em></span></h2>
-    <p><span data-lang="en" class="active" data-edit-key="index_20">FX Textile is the apparel fabric brand of Harput Holding, established in 2023 to bring the group's full integrated production strength to the fashion sector. Every fabric carries GOTS, GRS, OCS or RCS certification.</span><span data-lang="tr">FX Textile, grubun tam entegre üretim gücünü moda sektörüne taşımak amacıyla 2023'te kurulmuş giyim kumaşları markasıdır. Her kumaş GOTS, GRS, OCS veya RCS sertifikası taşır.</span><span data-lang="es">FX Textile es la marca de telas de Harput Holding, fundada en 2023. Cada tela lleva certificación GOTS, GRS, OCS o RCS.</span></p>
-    <p><span data-lang="en" class="active" data-edit-key="index_21">Backed by 6 facilities across 195,000 m² in Bursa — yarn spinning, weaving, and a dyehouse recycling 100% of its process water — FX Textile offers a fully traceable, sustainable supply chain from fiber to finished fabric.</span><span data-lang="tr">Bursa'da 195.000 m²'ye yayılan 6 tesis — iplik eğirme, dokuma ve proses suyunun %100'ünü geri dönüştüren bir boyahane — ile FX Textile, elyaftan bitmiş kumaşa tam izlenebilir, sürdürülebilir bir tedarik zinciri sunar.</span><span data-lang="es">Con 6 instalaciones en 195.000 m² en Bursa — hilado, tejido y una tinturería que recicla el 100% del agua — FX Textile ofrece una cadena de suministro trazable y sostenible de fibra a tela terminada.</span></p>
-    <a href="products.html" class="btn-primary" style="margin-top:8px"><span data-lang="en" class="active" data-edit-key="index_22">View Products</span><span data-lang="tr">Ürünleri Gör</span><span data-lang="es">Ver Productos</span></a>
+    <div class="section-eyebrow">
+      <span data-lang="tr" class="active">FX Textile Hakkında</span>
+      <span data-lang="en">About FX Textile</span>
+      <span data-lang="es">Sobre FX Textile</span>
+    </div>
+    <h2 class="section-title">
+      <span data-lang="tr" class="active">Kalite ve sorumluluk<br><em>bir arada.</em></span>
+      <span data-lang="en">Quality and responsibility<br><em>together.</em></span>
+      <span data-lang="es">Calidad y responsabilidad<br><em>juntas.</em></span>
+    </h2>
+    <p>
+      <span data-lang="tr" class="active">FX Textile, Harput Holding'in giyim kumaşları markasıdır. 2023 yılında kurulan FX Textile, grubun onlarca yıllık üretim birikimini ve entegre altyapısını moda sektörüne taşımak amacıyla hayata geçirilmiştir. Ürettiğimiz her kumaş GOTS, GRS, OCS veya RCS sertifikası taşır.</span>
+      <span data-lang="en">FX Textile is the apparel fabric brand of Harput Holding. Established in 2023, FX Textile brings the group's decades of production experience and integrated infrastructure to the fashion sector. Every fabric we produce carries GOTS, GRS, OCS or RCS certification.</span>
+      <span data-lang="es">FX Textile es la marca de telas de Harput Holding. Fundada en 2023, lleva décadas de experiencia productiva al sector de la moda. Cada tela lleva certificación GOTS, GRS, OCS o RCS.</span>
+    </p>
+    <p>
+      <span data-lang="tr" class="active">Bursa'da 195.000 m² kapalı alana yayılan 6 tesis — iplik eğirme, dokuma ve proses suyunun tamamını geri dönüştüren bir boyahane — ile uçtan uca izlenebilir, sürdürülebilir bir tedarik zinciri sunuyoruz.</span>
+      <span data-lang="en">With 6 facilities across 195,000 m² in Bursa — yarn spinning, weaving, and a dyehouse that recycles all its process water — we offer an end-to-end traceable, sustainable supply chain.</span>
+      <span data-lang="es">Con 6 instalaciones en 195.000 m² en Bursa — hilado, tejido y una tinturería que recicla toda el agua de proceso — ofrecemos una cadena de suministro trazable y sostenible de extremo a extremo.</span>
+    </p>
+    <a href="products.html" class="btn-primary" style="margin-top:8px">
+      <span data-lang="tr" class="active">Ürünleri İncele</span>
+      <span data-lang="en">View Products</span>
+      <span data-lang="es">Ver Productos</span>
+    </a>
   </div>
   <div class="intro-img-side">
-    <img data-img-key="index-intro-weaving" src="images/index-intro-weaving.jpg" alt="Weaving Facility">
+    <img src="images/index-intro-weaving.jpg" alt="Dokuma Tesisi">
   </div>
 </div>
 
-<div class="pillars-section">
-  <div class="pillar">
-    <img data-img-key="index-pillar-recycled" class="pillar-img" src="images/index-pillar-recycled.jpg" alt="Recycled Polyester">
-    <div class="pillar-num">01</div>
-    <h3><span data-lang="en" class="active" data-edit-key="index_23">Certified Sustainable</span><span data-lang="tr">Sertifikalı Sürdürülebilir</span><span data-lang="es">Sostenibilidad Certificada</span></h3>
-    <p><span data-lang="en" class="active" data-edit-key="index_24">GOTS, GRS, OCS and RCS certified fabrics. Every roll comes with full Textile Exchange traceability and transaction certificates.</span><span data-lang="tr">GOTS, GRS, OCS ve RCS sertifikalı kumaşlar. Her top, Textile Exchange izlenebilirliği ve işlem sertifikaları ile birlikte gelir.</span><span data-lang="es">Telas certificadas GOTS, GRS, OCS y RCS. Cada rollo con trazabilidad Textile Exchange y certificados de transacción.</span></p>
-  </div>
-  <div class="pillar">
-    <img data-img-key="index-pillar-dyehouse" class="pillar-img" src="images/index-pillar-dyehouse.jpg" alt="Dyehouse">
-    <div class="pillar-num">02</div>
-    <h3><span data-lang="en" class="active" data-edit-key="index_25">Vertically Integrated</span><span data-lang="tr">Dikey Entegre</span><span data-lang="es">Integración Vertical</span></h3>
-    <p><span data-lang="en" class="active" data-edit-key="index_26">Yarn spinning, weaving, dyeing and finishing all under one holding — ensuring unbroken chain of custody from fiber to bolt.</span><span data-lang="tr">İplik eğirme, dokuma, boyama ve apre hepsi tek bir holding bünyesinde — elyaftan topa kesintisiz gözetim zinciri.</span><span data-lang="es">Hilado, tejido, teñido y acabado bajo un mismo holding — cadena de custodia ininterrumpida de fibra a pieza.</span></p>
-  </div>
-  <div class="pillar">
-    <img data-img-key="index-pillar-solar" class="pillar-img" src="images/index-pillar-solar.jpg" alt="Solar Energy">
-    <div class="pillar-num">03</div>
-    <h3><span data-lang="en" class="active" data-edit-key="index_27">Low-Impact Production</span><span data-lang="tr">Düşük Çevresel Etkili Üretim</span><span data-lang="es">Producción de Bajo Impacto</span></h3>
-    <p><span data-lang="en" class="active" data-edit-key="index_28">Solar-powered yarn facility, closed-loop dyehouse water recycling, rainwater harvesting and ZDHC-aligned chemical management.</span><span data-lang="tr">Güneş enerjili iplik tesisi, kapalı devre boyahane suyu geri dönüşümü, yağmur suyu hasadı ve ZDHC uyumlu kimyasal yönetim.</span><span data-lang="es">Planta de hilados solar, reciclaje de agua en circuito cerrado, cosecha de lluvia y gestión química ZDHC.</span></p>
-  </div>
-</div>
-
-<section class="about-sec">
-  <div class="section-eyebrow"><span data-lang="en" class="active" data-edit-key="index_29">The Holding Behind the Brand</span><span data-lang="tr">Markanın Arkasındaki Holding</span><span data-lang="es">El Holding Detrás de la Marca</span></div>
-  <div class="about-grid">
-    <div>
-      <h2 class="section-title"><span data-lang="en" class="active" data-edit-key="index_30">Harput Holding —<br><em>six decades, six facilities.</em></span><span data-lang="tr">Harput Holding —<br><em>altı on yıl, altı tesis.</em></span><span data-lang="es">Harput Holding —<br><em>seis décadas, seis plantas.</em></span></h2>
-      <div class="mission-grid">
-        <div class="mission-card">
-          <h3><span data-lang="en" class="active" data-edit-key="index_59">Our Mission</span><span data-lang="tr">Misyonumuz</span><span data-lang="es">Nuestra Misión</span></h3>
-          <p><span data-lang="en" class="active" data-edit-key="index_60">Our mission is to ensure the highest level of customer satisfaction; deliver product and service quality beyond our customers' expectations; provide quality products at competitive costs and in the shortest possible time; support the continuous development of our employees; encourage creativity through R&amp;D and innovation; act with environmental responsibility through a sustainable production approach; and create value for all our stakeholders.</span><span data-lang="tr">Misyonumuz; müşteri memnuniyetini en üst seviyede sağlamak, müşterilerimizin beklentilerinin üzerinde ürün ve hizmet kalitesi sunmak, kaliteli ürünleri rekabetçi maliyetlerle ve mümkün olan en kısa sürede müşterilerimize ulaştırmak, çalışanlarımızın sürekli gelişimini desteklemek, Ar-Ge ve inovasyon faaliyetleriyle yaratıcılığı teşvik etmek, sürdürülebilir üretim anlayışıyla çevreye duyarlı hareket etmek ve tüm paydaşlarımız için değer yaratmaktır.</span><span data-lang="es">Nuestra misión es garantizar el más alto nivel de satisfacción del cliente; ofrecer una calidad de productos y servicios que supere las expectativas de nuestros clientes; entregar productos de calidad con costes competitivos y en el menor tiempo posible; apoyar el desarrollo continuo de nuestros empleados; fomentar la creatividad mediante actividades de I+D e innovación; actuar con responsabilidad ambiental a través de una producción sostenible; y crear valor para todos nuestros grupos de interés.</span></p>
-        </div>
-        <div class="mission-card">
-          <h3><span data-lang="en" class="active" data-edit-key="index_61">Our Vision</span><span data-lang="tr">Vizyonumuz</span><span data-lang="es">Nuestra Visión</span></h3>
-          <p><span data-lang="en" class="active" data-edit-key="index_62">Our vision is to be not only a supplier for our customers, but also a reliable and strategic business partner through our product and design diversity, creative and innovative approach; and to become one of the preferred and leading fabric suppliers in the global textile industry, especially in Europe, with our focus on sustainability, quality and customer-oriented service.</span><span data-lang="tr">Vizyonumuz; ürün ve tasarım çeşitliliği, yaratıcı ve yenilikçi yaklaşımımız ile müşterilerimizin yalnızca bir tedarikçisi değil, aynı zamanda güvenilir ve stratejik iş ortağı olmak; sürdürülebilirlik, kalite ve müşteri odaklı hizmet anlayışımızla Avrupa başta olmak üzere global tekstil sektöründe tercih edilen ve lider kumaş tedarikçilerinden biri olmaktır.</span><span data-lang="es">Nuestra visión es ser no solo un proveedor para nuestros clientes, sino también un socio comercial fiable y estratégico gracias a nuestra diversidad de productos y diseños y a nuestro enfoque creativo e innovador; y convertirnos en uno de los proveedores de tejidos preferidos y líderes del sector textil global, especialmente en Europa, con nuestro enfoque en la sostenibilidad, la calidad y el servicio orientado al cliente.</span></p>
-        </div>
+<!-- VİZYON / MİSYON — YATAY -->
+<div class="vm-section">
+  <div class="vm-grid">
+    <div class="vm-block">
+      <span class="vm-tag">VİZYON</span>
+      <div class="vm-text">
+        <span data-lang="tr" class="active">İnovatif ürün ve hizmetlerle fark yaratan, sürdürülebilir büyüme yoluyla ve kurumsallaşmış yapısıyla tüm paydaşların güvenini kazanan küresel ölçekte lider bir marka olmak.</span>
+        <span data-lang="en">To become a globally leading brand that creates differentiation through innovative products and services, earns the trust of all stakeholders through sustainable growth, and operates with a strong institutional structure.</span>
+        <span data-lang="es">Convertirnos en una marca líder a nivel global que genera diferenciación mediante productos y servicios innovadores, gana la confianza de todos los grupos de interés y opera con una estructura institucional sólida.</span>
       </div>
-      <div class="about-card"><h3>Miranlı — Kemalpaşa Yarn Facility</h3><p><span data-lang="en" class="active" data-edit-key="index_31">Est. 2015. 220,000 m² total area. 4,500 t/month POY spinning, texturizing and twisting. Solar panels on roof.</span><span data-lang="tr">2015 kuruluş. 220.000 m² toplam alan. Aylık 4.500 ton POY eğirme, tekstüre ve büküm. Çatıda güneş panelleri.</span><span data-lang="es">Est. 2015. 220.000 m² de área total. 4.500 t/mes hilado POY, texturizado y torcido. Paneles solares en el techo.</span></p></div>
-      <div class="about-card"><h3>Kinteks — Dyehouse Facility</h3><p><span data-lang="en" class="active" data-edit-key="index_32">Est. 1998. 84,106 m². 3,500,000 m/month. Continuous dyeing, rotary &amp; digital printing, coating. Wastewater treatment &amp; recycling.</span><span data-lang="tr">1998 kuruluş. 84.106 m². Aylık 3.500.000 m. Kontinü boyama, rotasyon &amp; dijital baskı, kaplama. Atıksu arıtma &amp; geri dönüşüm.</span><span data-lang="es">Est. 1998. 84.106 m². 3.500.000 m/mes. Teñido continuo, impresión rotativa y digital, recubrimiento. Tratamiento de aguas residuales.</span></p></div>
-      <div class="about-card"><h3>Gökçeköy &amp; Miranda — Weaving</h3><p><span data-lang="en" class="active" data-edit-key="index_33">Two weaving facilities: Gökçeköy (1,800,000 m/month — Air-Jet &amp; Water-Jet) and Miranda Organize (700,000 m/month — Jacquard &amp; Armure).</span><span data-lang="tr">İki dokuma tesisi: Gökçeköy (1.800.000 m/ay — Hava &amp; Su Jetli) ve Miranda Organize (700.000 m/ay — Jakarlı &amp; Armür).</span><span data-lang="es">Dos plantas: Gökçeköy (1.800.000 m/mes — Air-Jet y Water-Jet) y Miranda (700.000 m/mes — Jacquard y Armure).</span></p></div>
     </div>
-    <div class="about-img-grid">
-      <div class="tall"><img data-img-key="index-facility-kemalpaşa" src="images/index-facility-kemalpaşa.jpg" alt="Kemalpaşa Facility"></div>
-      <div><img data-img-key="index-facility-kinteks" src="images/index-facility-kinteks.jpg" alt="Kinteks Dyehouse"></div>
-      <div><img data-img-key="index-facility-weaving" src="images/index-facility-weaving.jpg" alt="Weaving Hall"></div>
+    <div class="vm-block">
+      <span class="vm-tag">MİSYON</span>
+      <div class="vm-text">
+        <span data-lang="tr" class="active">Sahip olduğumuz güçlü mirasın temelleri üzerine ve girişimci ruhumuzun verdiği enerjiyle, müşteri odaklı, katma değerli, sürdürülebilir ve yenilikçi çözümler üretiyoruz.</span>
+        <span data-lang="en">Building on our strong heritage and driven by an entrepreneurial spirit, we deliver customer-focused, value-adding, sustainable and innovative solutions.</span>
+        <span data-lang="es">Apoyándonos en nuestro sólido legado y guiados por un espíritu emprendedor, ofrecemos soluciones centradas en el cliente, de alto valor añadido, sostenibles e innovadoras.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- KURUMSAL DEĞERLER -->
+<section class="values-section">
+  <div class="section-eyebrow">
+    <span data-lang="tr" class="active">Kurumsal Değerler</span>
+    <span data-lang="en">Corporate Values</span>
+    <span data-lang="es">Valores Corporativos</span>
+  </div>
+  <h2 class="section-title">
+    <span data-lang="tr" class="active">Bizi biz yapan <em>değerler.</em></span>
+    <span data-lang="en">The values that <em>define us.</em></span>
+    <span data-lang="es">Los valores que <em>nos definen.</em></span>
+  </h2>
+  <div class="values-grid">
+    <div class="value-card">
+      <span class="value-icon">🏛</span>
+      <h3><span data-lang="tr" class="active">Güçlü Miras</span><span data-lang="en">Strong Heritage</span><span data-lang="es">Legado Sólido</span></h3>
+      <p><span data-lang="tr" class="active">Nereden geldiğini unutmayan, geçmişine bağlı ve kurumsal sürekliliği olan bir firmayız.</span><span data-lang="en">A company that remembers its roots, stays true to its past and maintains institutional continuity.</span><span data-lang="es">Una empresa que recuerda sus orígenes y mantiene continuidad institucional.</span></p>
+    </div>
+    <div class="value-card">
+      <span class="value-icon">🤝</span>
+      <h3><span data-lang="tr" class="active">Önce Müşteri</span><span data-lang="en">Customer First</span><span data-lang="es">El Cliente Primero</span></h3>
+      <p><span data-lang="tr" class="active">Müşterinin ihtiyaçlarını derinlemesine anlıyor, buna uygun kalıcı çözümler sunuyoruz.</span><span data-lang="en">We deeply understand customer needs and offer lasting solutions tailored to them.</span><span data-lang="es">Comprendemos profundamente las necesidades del cliente y ofrecemos soluciones duraderas a medida.</span></p>
+    </div>
+    <div class="value-card">
+      <span class="value-icon">💡</span>
+      <h3><span data-lang="tr" class="active">Yenilikçi Yaklaşım</span><span data-lang="en">Innovation</span><span data-lang="es">Innovación</span></h3>
+      <p><span data-lang="tr" class="active">Yenilikçi ruhumuzu, bugünün sınırlarını aşarak yarının çözümlerini bulmak amacıyla yaptığımız her işe yansıtıyoruz.</span><span data-lang="en">We bring our innovative spirit to everything we do, pushing today's boundaries to find tomorrow's solutions.</span><span data-lang="es">Llevamos nuestro espíritu innovador a todo lo que hacemos, superando los límites actuales.</span></p>
+    </div>
+    <div class="value-card">
+      <span class="value-icon">📈</span>
+      <h3><span data-lang="tr" class="active">Sürekli İyileştirme</span><span data-lang="en">Continuous Improvement</span><span data-lang="es">Mejora Continua</span></h3>
+      <p><span data-lang="tr" class="active">Gelişim yolculuğumuzda yarının büyük başarılarına giden yolun her küçük adımdan geçtiğine inanıyoruz.</span><span data-lang="en">On our development journey, we believe every great achievement begins with small, consistent steps.</span><span data-lang="es">Creemos que cada gran logro comienza con pasos pequeños y consistentes.</span></p>
+    </div>
+    <div class="value-card">
+      <span class="value-icon">👥</span>
+      <h3><span data-lang="tr" class="active">Katılımcı Kültür</span><span data-lang="en">Participatory Culture</span><span data-lang="es">Cultura Participativa</span></h3>
+      <p><span data-lang="tr" class="active">Tüm çalışanların fikrine değer verdiğimiz, birlikte düşündüğümüz ve birlikte başardığımız bir kültürle büyüyoruz.</span><span data-lang="en">We grow in a culture where every employee's voice matters, where we think and succeed together.</span><span data-lang="es">Crecemos en una cultura donde la voz de cada empleado importa y triunfamos juntos.</span></p>
+    </div>
+    <div class="value-card">
+      <span class="value-icon">🌱</span>
+      <h3><span data-lang="tr" class="active">Sürdürülebilirlik</span><span data-lang="en">Sustainability</span><span data-lang="es">Sostenibilidad</span></h3>
+      <p><span data-lang="tr" class="active">Çevreye, topluma ve geleceğe karşı sorumluluğumuzu her üretim kararımızın merkezine koyuyoruz.</span><span data-lang="en">We place our responsibility to the environment, society and future generations at the heart of every production decision.</span><span data-lang="es">Ponemos nuestra responsabilidad hacia el medio ambiente y las generaciones futuras en el centro de cada decisión.</span></p>
     </div>
   </div>
 </section>
 
+<!-- TARİHÇE -->
+<section class="timeline-section">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start">
+    <div>
+      <div class="section-eyebrow">
+        <span data-lang="tr" class="active">Tarihçemiz</span>
+        <span data-lang="en">Our History</span>
+        <span data-lang="es">Nuestra Historia</span>
+      </div>
+      <h2 class="section-title">
+        <span data-lang="tr" class="active">65 yıllık birikim,<br><em>2023'te yeni bir marka.</em></span>
+        <span data-lang="en">65 years of expertise,<br><em>a new brand in 2023.</em></span>
+        <span data-lang="es">65 años de experiencia,<br><em>una nueva marca en 2023.</em></span>
+      </h2>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-year">1958</div><div class="tl-text"><span data-lang="tr" class="active">Elazığ'da ticari faaliyetler başladı.</span><span data-lang="en">Commercial activities began in Elazığ.</span><span data-lang="es">Inicio de actividades en Elazığ.</span></div></div>
+        <div class="tl-item"><div class="tl-year">1980</div><div class="tl-text"><span data-lang="tr" class="active">Bursa'ya taşındı. Harput Tekstil'in temelleri Gökçen Han'da atıldı.</span><span data-lang="en">Moved to Bursa. Harput Tekstil foundations laid at Gökçen Han.</span><span data-lang="es">Traslado a Bursa. Fundación de Harput Tekstil.</span></div></div>
+        <div class="tl-item"><div class="tl-year">1995</div><div class="tl-text"><span data-lang="tr" class="active">Demirtaş Fantezi İplik Tesisi (Harmonie) kuruldu.</span><span data-lang="en">Demirtaş Fancy Yarn Facility (Harmonie) established.</span><span data-lang="es">Planta de Hilados Demirtaş establecida.</span></div></div>
+        <div class="tl-item"><div class="tl-year">1998</div><div class="tl-text"><span data-lang="tr" class="active">Kinteks Boyahane Tesisi devreye alındı. Aylık 3,5 milyon metre kapasite.</span><span data-lang="en">Kinteks Dyehouse commissioned. 3.5M m/month capacity.</span><span data-lang="es">Tinturería Kinteks inaugurada. 3,5M m/mes.</span></div></div>
+        <div class="tl-item"><div class="tl-year">2002</div><div class="tl-text"><span data-lang="tr" class="active">Gökçeköy Dokuma Tesisi — aylık 1,8 milyon metre.</span><span data-lang="en">Gökçeköy Weaving Facility — 1.8M m/month.</span><span data-lang="es">Planta Tejido Gökçeköy — 1,8M m/mes.</span></div></div>
+        <div class="tl-item"><div class="tl-year">2015</div><div class="tl-text"><span data-lang="tr" class="active">Kemalpaşa İplik Tesisi (Miranlı) — aylık 4.500 ton. Çatıya güneş panelleri kuruldu.</span><span data-lang="en">Kemalpaşa Yarn Facility (Miranlı) — 4,500 t/month. Solar panels installed.</span><span data-lang="es">Planta de Hilados Kemalpaşa — 4.500 t/mes. Paneles solares instalados.</span></div></div>
+        <div class="tl-item"><div class="tl-year">2023</div><div class="tl-text"><span data-lang="tr" class="active">FX Textile kuruldu — Harput Holding'in premium giyim kumaşları markası.</span><span data-lang="en">FX Textile launched — premium apparel fabric brand of Harput Holding.</span><span data-lang="es">Lanzamiento de FX Textile — marca premium de Harput Holding.</span></div></div>
+      </div>
+    </div>
+    <div style="padding-top:20px">
+      <div style="background:var(--red);color:#fff;padding:40px">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:56px;font-weight:300;line-height:1">ISO 500</div>
+        <p style="font-size:14px;opacity:.85;line-height:1.6;margin-top:12px">
+          <span data-lang="tr" class="active">İstanbul Sanayi Odası tarafından 2023 yılında Türkiye'nin En Büyük 500 Sanayi Kuruluşu listesine alındık.</span>
+          <span data-lang="en">Ranked among Turkey's Top 500 Industrial Enterprises by the Istanbul Chamber of Industry for 2023.</span>
+          <span data-lang="es">Clasificada entre las 500 mayores empresas industriales de Turquía por la Cámara de Industria de Estambul 2023.</span>
+        </p>
+      </div>
+      <div style="background:var(--cream);padding:32px;margin-top:4px">
+        <h4 style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;margin-bottom:14px">
+          <span data-lang="tr" class="active">Üretim Tesislerimiz</span>
+          <span data-lang="en">Our Facilities</span>
+          <span data-lang="es">Nuestras Instalaciones</span>
+        </h4>
+        <div style="font-size:13px;color:var(--gray);line-height:2">
+          <div>🏭 <strong>Miranlı</strong> — Kemalpaşa İplik, 4.500 t/ay</div>
+          <div>🏭 <strong>Kinteks</strong> — Boyahane, 3.500.000 m/ay</div>
+          <div>🏭 <strong>Gökçeköy</strong> — Dokuma, 1.800.000 m/ay</div>
+          <div>🏭 <strong>Miranda</strong> — Jakarlı Dokuma, 700.000 m/ay</div>
+          <div>🏭 <strong>Harmonie</strong> — Fantezi İplik, 70 t/ay</div>
+          <div>🏭 <strong>Miranlı Konfeksiyon</strong> — Ev Tekstili</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERTİFİKA ŞERİDİ -->
 <div class="cert-strip">
   <div class="cert-strip-left">
-    <h3><span data-lang="en" class="active" data-edit-key="index_34">Certified at every standard.</span><span data-lang="tr">Her standartta sertifikalı.</span><span data-lang="es">Certificados en cada estándar.</span></h3>
-    <p style="margin-top:12px"><a href="certifications.html" style="color:rgba(255,255,255,0.45);font-size:12px;letter-spacing:2px;font-family:'Barlow Condensed',sans-serif;text-decoration:none;text-transform:uppercase"><span data-lang="en" class="active" data-edit-key="index_35">View all certificates →</span><span data-lang="tr">Tüm sertifikalar →</span><span data-lang="es">Ver todas →</span></a></p>
+    <h3><span data-lang="tr" class="active">Uluslararası standartlarla güvence altında.</span><span data-lang="en">Verified at every international standard.</span><span data-lang="es">Verificado en cada estándar internacional.</span></h3>
+    <p style="margin-top:12px"><a href="certifications.html"><span data-lang="tr" class="active">Tüm sertifikalar →</span><span data-lang="en">View all certificates →</span><span data-lang="es">Ver todas →</span></a></p>
   </div>
   <div class="cert-badges">
     <span class="cbadge">GOTS v7.0</span><span class="cbadge">GRS v4.0</span><span class="cbadge">OCS v3.0</span><span class="cbadge">RCS v2.0</span>
@@ -351,76 +368,51 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
   </div>
 </div>
 
-<section class="sectors">
-  <div class="section-eyebrow"><span data-lang="en" class="active" data-edit-key="index_36">Sectors We Serve</span><span data-lang="tr">Hizmet Verdiğimiz Sektörler</span><span data-lang="es">Sectores que Servimos</span></div>
-  <h2 class="section-title"><span data-lang="en" class="active" data-edit-key="index_37">Fabric for every <em>discipline.</em></span><span data-lang="tr">Her <em>disiplin</em> için kumaş.</span><span data-lang="es">Tela para cada <em>disciplina.</em></span></h2>
-  <div class="sectors-grid">
-    <div class="sector-card"><img data-img-key="index-sector-clothing" src="images/index-sector-clothing.jpg" alt="Clothing"><div class="sector-overlay"><span class="sector-name"><span data-lang="en" class="active" data-edit-key="index_38">Clothing</span><span data-lang="tr">Giyim</span><span data-lang="es">Ropa</span></span></div></div>
-    <div class="sector-card"><img data-img-key="index-sector-sportswear" src="images/index-sector-sportswear.jpg" alt="Sportswear"><div class="sector-overlay"><span class="sector-name"><span data-lang="en" class="active" data-edit-key="index_39">Sportswear</span><span data-lang="tr">Spor Giyim</span><span data-lang="es">Ropa Deportiva</span></span></div></div>
-    <div class="sector-card"><img data-img-key="index-sector-home" src="images/index-sector-home.jpg" alt="Home Textiles"><div class="sector-overlay"><span class="sector-name"><span data-lang="en" class="active" data-edit-key="index_40">Home Textiles</span><span data-lang="tr">Ev Tekstili</span><span data-lang="es">Textil Hogar</span></span></div></div>
-    <div class="sector-card"><img data-img-key="index-sector-automotive" src="images/index-sector-automotive.jpg" alt="Automotive"><div class="sector-overlay"><span class="sector-name"><span data-lang="en" class="active" data-edit-key="index_41">Automotive</span><span data-lang="tr">Otomotiv</span><span data-lang="es">Automotriz</span></span></div></div>
-    <div class="sector-card"><img data-img-key="index-sector-furnishing" src="images/index-sector-furnishing.jpg" alt="Furnishing"><div class="sector-overlay"><span class="sector-name"><span data-lang="en" class="active" data-edit-key="index_42">Furnishing</span><span data-lang="tr">Döşemelik</span><span data-lang="es">Tapicería</span></span></div></div>
-  </div>
-</section>
-
-<div class="heritage-banner">
-  <div>
-    <h2><span data-lang="en" class="active" data-edit-key="index_43">65 years of textile mastery,<br><em>now in the service of fashion.</em></span><span data-lang="tr">65 yıllık tekstil uzmanlığı,<br><em>şimdi modanın hizmetinde.</em></span><span data-lang="es">65 años de maestría textil,<br><em>ahora al servicio de la moda.</em></span></h2>
-  </div>
-  <div class="heritage-stats">
-    <div class="hs"><span class="hs-num">1958</span><span class="hs-label"><span data-lang="en" class="active" data-edit-key="index_44">Founded in Elazığ</span><span data-lang="tr">Elazığ'da Kuruluş</span><span data-lang="es">Fundada en Elazığ</span></span></div>
-    <div class="hs"><span class="hs-num">6</span><span class="hs-label"><span data-lang="en" class="active" data-edit-key="index_45">Production Facilities</span><span data-lang="tr">Üretim Tesisi</span><span data-lang="es">Plantas de Producción</span></span></div>
-    <div class="hs"><span class="hs-num">5</span><span class="hs-label"><span data-lang="en" class="active" data-edit-key="index_46">Continents</span><span data-lang="tr">Kıta</span><span data-lang="es">Continentes</span></span></div>
-    <div class="hs"><span class="hs-num">ISO</span><span class="hs-label"><span data-lang="en" class="active" data-edit-key="index_47">Turkey Top 500 Industrial</span><span data-lang="tr">Türkiye İlk 500 Sanayi</span><span data-lang="es">Top 500 Industrial Turquía</span></span></div>
-  </div>
-</div>
-
 
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
-      <img data-img-key="logo-fx-textile" class="foot-fx" src="images/logo-fx-textile.svg" alt="FX Textile">
-      <img data-img-key="logo-harput" class="foot-harput" src="images/logo-harput.svg" alt="Harput Holding">
-      <p><span data-lang="en" class="active" data-edit-key="index_48">Premium apparel fabrics. A division of Harput Holding. Est. 2023, Bursa, Turkey.</span>
-         <span data-lang="tr">Premium giyim kumaşları. Harput Holding bünyesinde. 2023, Bursa, Türkiye.</span>
+      <img class="foot-fx" src="images/logo-fx-textile.svg" alt="FX Textile">
+      <img class="foot-harput" src="images/logo-harput.svg" alt="Harput Holding">
+      <p><span data-lang="tr" class="active">Premium giyim kumaşları. Harput Holding bünyesinde. Est. 2023, Bursa, Türkiye.</span>
+         <span data-lang="en">Premium apparel fabrics. A division of Harput Holding. Est. 2023, Bursa, Turkey.</span>
          <span data-lang="es">Telas premium para ropa. División de Harput Holding. Est. 2023, Bursa, Turquía.</span></p>
     </div>
     <div class="footer-col">
-      <h5><span data-lang="en" class="active" data-edit-key="index_49">Company</span><span data-lang="tr">Şirket</span><span data-lang="es">Empresa</span></h5>
-      <a href="index.html"><span data-lang="en" class="active" data-edit-key="index_50">About Us</span><span data-lang="tr">Hakkımızda</span><span data-lang="es">Nosotros</span></a>
-      <a href="global.html"><span data-lang="en" class="active" data-edit-key="index_51">Global Presence</span><span data-lang="tr">Küresel Varlık</span><span data-lang="es">Presencia Global</span></a>
-      <a href="certifications.html"><span data-lang="en" class="active" data-edit-key="index_52">Certifications</span><span data-lang="tr">Sertifikalar</span><span data-lang="es">Certificaciones</span></a>
+      <h5>Kurumsal</h5>
+      <a href="index.html"><span data-lang="tr" class="active">Hakkımızda</span><span data-lang="en">About Us</span><span data-lang="es">Sobre Nosotros</span></a>
+      <a href="sustainability.html"><span data-lang="tr" class="active">Sürdürülebilirlik</span><span data-lang="en">Sustainability</span><span data-lang="es">Sostenibilidad</span></a>
+      <a href="certifications.html"><span data-lang="tr" class="active">Sertifikalar & KVKK</span><span data-lang="en">Certifications & KVKK</span><span data-lang="es">Certificaciones</span></a>
+      <a href="announcements.html"><span data-lang="tr" class="active">Duyurular</span><span data-lang="en">News & Events</span><span data-lang="es">Noticias</span></a>
     </div>
     <div class="footer-col">
-      <h5><span data-lang="en" class="active" data-edit-key="index_53">Products</span><span data-lang="tr">Ürünler</span><span data-lang="es">Productos</span></h5>
-      <a href="products.html"><span data-lang="en" class="active" data-edit-key="index_54">Recycled Polyester</span><span data-lang="tr">Geri Dön. Polyester</span><span data-lang="es">Poliéster Reciclado</span></a>
-      <a href="products.html"><span data-lang="en" class="active" data-edit-key="index_55">Organic Cotton</span><span data-lang="tr">Organik Pamuk</span><span data-lang="es">Algodón Orgánico</span></a>
-      <a href="sustainability.html"><span data-lang="en" class="active" data-edit-key="index_56">Sustainability</span><span data-lang="tr">Sürdürülebilirlik</span><span data-lang="es">Sostenibilidad</span></a>
+      <h5><span data-lang="tr" class="active">Ürünler</span><span data-lang="en">Products</span><span data-lang="es">Productos</span></h5>
+      <a href="products.html"><span data-lang="tr" class="active">Geri Dönüştürülmüş Polyester</span><span data-lang="en">Recycled Polyester</span><span data-lang="es">Poliéster Reciclado</span></a>
+      <a href="products.html"><span data-lang="tr" class="active">Organik Pamuk</span><span data-lang="en">Organic Cotton</span><span data-lang="es">Algodón Orgánico</span></a>
+      <a href="collections.html"><span data-lang="tr" class="active">Koleksiyonlar</span><span data-lang="en">Collections</span><span data-lang="es">Colecciones</span></a>
     </div>
     <div class="footer-col">
-      <h5><span data-lang="en" class="active" data-edit-key="index_57">Contact</span><span data-lang="tr">İletişim</span><span data-lang="es">Contacto</span></h5>
-      <a href="contact.html"><span data-lang="en" class="active" data-edit-key="index_58">Send Message</span><span data-lang="tr">Mesaj Gönder</span><span data-lang="es">Enviar Mensaje</span></a>
-      <a href="contact.html" style="color:rgba(255,255,255,0.25);font-size:12px;margin-top:8px">Işıktepe OSB Mah.<br>Nilüfer, Bursa, TR</a>
+      <h5><span data-lang="tr" class="active">İletişim</span><span data-lang="en">Contact</span><span data-lang="es">Contacto</span></h5>
+      <a href="contact.html"><span data-lang="tr" class="active">Mesaj Gönderin</span><span data-lang="en">Send Message</span><span data-lang="es">Enviar Mensaje</span></a>
+      <a href="contact.html" style="color:rgba(255,255,255,0.3);font-size:12px;margin-top:8px;line-height:1.6">Işıktepe OSB Mah.<br>Nilüfer, Bursa, TR</a>
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-copy">© 2025 Efiks Tekstil San. ve Tic. Ltd. Şti. — A Division of Harput Holding</span>
-    <span class="footer-copy">GOTS · GRS · OCS · RCS · ISO 9001 · 14001 · 50001</span>
+    <span class="footer-copy">© 2025 Efiks Tekstil San. ve Tic. A.Ş. — Harput Holding Bünyesinde</span>
+    <div style="display:flex;gap:16px">
+      <a href="certifications.html#kvkk" style="color:rgba(255,255,255,0.2);font-size:11px;font-family:'Barlow Condensed',sans-serif;text-decoration:none;letter-spacing:1px">KVKK</a>
+      <a href="certifications.html#cerez" style="color:rgba(255,255,255,0.2);font-size:11px;font-family:'Barlow Condensed',sans-serif;text-decoration:none;letter-spacing:1px">Çerez Politikası</a>
+    </div>
   </div>
 </footer>
 <script>
-let heroSlideIndex=0;
-let heroSlideTimer=null;
-let heroLeavingTimer=null;
-function setLang(l){document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.l===l));document.querySelectorAll('[data-lang]').forEach(e=>e.classList.toggle('active',e.getAttribute('data-lang')===l));localStorage.setItem('fxlang',l);document.documentElement.lang=l;}
-function setHeroSlide(index,manual=false){const slides=document.querySelectorAll('.hero-slide');const dots=document.querySelectorAll('.hero-dot');if(!slides.length)return;const next=(index+slides.length)%slides.length;const current=heroSlideIndex;if(next===current&&slides[current].classList.contains('active'))return;clearTimeout(heroLeavingTimer);slides.forEach(s=>s.classList.remove('leaving'));if(slides[current]&&slides[current].classList.contains('active')){slides[current].classList.remove('active');slides[current].classList.add('leaving');heroLeavingTimer=setTimeout(()=>slides[current]&&slides[current].classList.remove('leaving'),760);}heroSlideIndex=next;slides[next].classList.add('active');dots.forEach((d,i)=>d.classList.toggle('active',i===heroSlideIndex));if(manual)restartHeroSlider();}
-function moveHeroSlide(dir){setHeroSlide(heroSlideIndex+dir,true);}
-function restartHeroSlider(){clearInterval(heroSlideTimer);heroSlideTimer=setInterval(()=>setHeroSlide(heroSlideIndex+1),5000);}
-function initHeroSlider(){setHeroSlide(0);restartHeroSlider();}
-document.addEventListener('DOMContentLoaded',()=>{const s=localStorage.getItem('fxlang')||'en';setLang(s);initHeroSlider();document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{const n=document.querySelector('nav');const b=document.querySelector('.nav-toggle');if(n&&b){n.classList.remove('menu-open');b.setAttribute('aria-expanded','false');}}));});
-function toggleMobileMenu(btn){const nav=btn.closest('nav');const open=!nav.classList.contains('menu-open');nav.classList.toggle('menu-open',open);btn.setAttribute('aria-expanded',String(open));}
+function setLang(l){
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.l===l));
+  document.querySelectorAll('[data-lang]').forEach(e=>e.classList.toggle('active',e.getAttribute('data-lang')===l));
+  localStorage.setItem('fxlang',l);document.documentElement.lang=l;
+}
+document.addEventListener('DOMContentLoaded',()=>{
+  const s=localStorage.getItem('fxlang')||'tr';setLang(s);
+});
 </script>
-<script src="data.js"></script>
-<script src="content-loader.js"></script>
 </body></html>
-

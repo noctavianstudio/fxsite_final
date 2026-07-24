@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Certifications — FX Textile</title>
+<title>Sertifikalar & KVKK — FX Textile</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Barlow:wght@300;400;500&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
+
+
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&display=swap');
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -19,22 +22,17 @@ body{font-family:'Barlow',sans-serif;background:#f5f2ee;color:#1a1a1a;overflow-x
 .lang-btn:hover,.lang-btn.active{color:#fff}
 .lang-btn+.lang-btn{border-left:1px solid #333}
 /* NAV */
-nav{position:sticky;top:0;z-index:100;background:rgba(245,242,238,0.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:0 60px;display:flex;align-items:center;justify-content:space-between;height:76px}
+nav{position:sticky;top:0;z-index:100;background:rgba(245,242,238,0.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:0 60px;display:flex;align-items:center;justify-content:space-between;height:88px}
 .nav-logo{display:flex;align-items:center;gap:18px}
-.logo-fx{height:34px;display:block;mix-blend-mode:multiply}
+.logo-fx{height:52px;display:block;mix-blend-mode:multiply}
 .logo-div{width:1px;height:26px;background:var(--gray-light)}
-.logo-harput{height:22px;display:block;mix-blend-mode:multiply;opacity:0.6}
+.logo-harput{height:38px;display:block;mix-blend-mode:multiply;opacity:0.7}
 .nav-links{display:flex;gap:32px;list-style:none;align-items:center}
 .nav-links a{text-decoration:none;color:var(--gray);font-size:11px;letter-spacing:2px;font-weight:500;text-transform:uppercase;transition:color .2s;font-family:'Barlow Condensed',sans-serif;padding:4px 0;border-bottom:2px solid transparent}
 .nav-links a:hover{color:var(--red)}
 .nav-links a.current{color:var(--black);border-bottom-color:var(--red)}
 .nav-cta{background:var(--red)!important;color:#fff!important;padding:10px 22px!important;border-bottom:none!important;letter-spacing:1.5px!important}
 .nav-cta:hover{background:var(--red-dark)!important}
-.nav-toggle{display:none;width:42px;height:42px;border:1px solid var(--border);background:transparent;align-items:center;justify-content:center;flex-direction:column;gap:5px;cursor:pointer;margin-left:16px}
-.nav-toggle span{display:block;width:18px;height:2px;background:var(--black);transition:transform .2s,opacity .2s}
-nav.menu-open .nav-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-nav.menu-open .nav-toggle span:nth-child(2){opacity:0}
-nav.menu-open .nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 /* LANG SWITCHING */
 [data-lang]{display:none}
 [data-lang].active{display:inline}
@@ -43,8 +41,8 @@ nav.menu-open .nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-4
 /* FOOTER */
 footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,255,255,0.05)}
 .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
-.footer-brand .foot-fx{height:28px;filter:brightness(0) invert(1);opacity:0.8;display:block;margin-bottom:12px}
-.footer-brand .foot-harput{height:18px;filter:brightness(0) invert(1);opacity:0.3;display:block;margin-bottom:20px}
+.footer-brand .foot-fx{height:40px;filter:brightness(0) invert(1);opacity:0.8;display:block;margin-bottom:12px}
+.footer-brand .foot-harput{height:28px;filter:brightness(0) invert(1);opacity:0.3;display:block;margin-bottom:20px}
 .footer-brand p{font-size:13px;color:rgba(255,255,255,0.3);line-height:1.7;max-width:220px}
 .footer-col h5{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:16px}
 .footer-col a{display:block;font-size:13px;color:rgba(255,255,255,0.4);text-decoration:none;margin-bottom:10px;transition:color .2s}
@@ -67,62 +65,66 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
   .footer-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:600px){
-  nav{height:68px}
-  .nav-logo{gap:12px;min-width:0}
-  .logo-fx{height:28px}
-  .logo-harput{height:18px}
-  .nav-toggle{display:flex;flex-shrink:0}
-  .nav-links{display:none;position:absolute;top:68px;left:0;right:0;background:rgba(245,242,238,0.99);border-bottom:1px solid var(--border);box-shadow:0 18px 34px rgba(0,0,0,0.12);padding:10px 24px 22px;flex-direction:column;align-items:stretch;gap:0}
-  nav.menu-open .nav-links{display:flex}
-  .nav-links li{border-bottom:1px solid var(--border)}
-  .nav-links li:last-child{border-bottom:none;padding-top:12px}
-  .nav-links a{display:block;padding:15px 0;font-size:13px;letter-spacing:1.6px;border-bottom:none}
-  .nav-cta{text-align:center;padding:13px 18px!important}
+  .nav-links{display:none}
   .footer-grid{grid-template-columns:1fr}
 }
 
+
+
 .page-hero{height:55vh;min-height:380px;background:var(--black);display:flex;align-items:flex-end;position:relative;overflow:hidden}
-.page-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.2}
+.page-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.22}
 .page-hero-grad{position:absolute;inset:0;background:linear-gradient(to top,#0a0a0a 40%,rgba(10,10,10,0.2) 100%)}
 .page-hero-content{position:relative;z-index:2;padding:0 60px 72px}
 .page-tag{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--red-light);margin-bottom:16px;display:flex;align-items:center;gap:12px}
 .page-tag::before{content:'';width:24px;height:1px;background:var(--red-light);display:block}
-.page-title{font-family:'Cormorant Garamond',serif;font-size:clamp(48px,6vw,84px);font-weight:300;color:#fff;line-height:1.0}
-.page-title em{font-style:italic;opacity:0.5}
+.page-title{font-family:'Cormorant Garamond',serif;font-size:clamp(44px,6vw,80px);font-weight:300;color:#fff;line-height:1.0}
 /* CERT CARDS */
 .certs-main{padding:80px 60px;background:var(--off-white)}
-.certs-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:56px}
-.cert-card{background:var(--cream);border:1px solid var(--border);overflow:hidden}
-.cert-card-img{height:200px;overflow:hidden}
-.cert-card-img img{width:100%;height:100%;object-fit:cover}
-.cert-card-body{padding:36px}
-.cert-header{display:flex;align-items:flex-start;gap:20px;margin-bottom:20px}
-.cert-badge{width:64px;height:64px;background:var(--red);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:#fff;letter-spacing:-0.5px;text-align:center;flex-shrink:0;line-height:1.2}
-.cert-info h3{font-family:'Barlow Condensed',sans-serif;font-size:18px;letter-spacing:1px;font-weight:600;margin-bottom:6px}
-.cert-num{font-size:12px;color:var(--gray);font-family:'Barlow Condensed',sans-serif}
-.cert-body p{font-size:14px;color:var(--gray);line-height:1.7;margin-bottom:14px}
-.cert-products{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
-.cert-tag{background:var(--off-white);border:1px solid var(--gray-light);padding:4px 10px;font-size:11px;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.8px}
-.cert-validity{padding-top:16px;border-top:1px solid var(--border);font-size:12px;color:var(--gray);display:flex;justify-content:space-between;align-items:center;font-family:'Barlow Condensed',sans-serif}
-.valid-badge{background:#1a7a1a;color:#fff;padding:3px 10px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase}
+.certs-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:52px}
+.cert-card{background:var(--cream);border:1px solid var(--border);overflow:hidden;transition:box-shadow .3s}
+.cert-card:hover{box-shadow:0 8px 32px rgba(0,0,0,0.08)}
+.cert-card-img{height:190px;overflow:hidden}
+.cert-card-img img{width:100%;height:100%;object-fit:cover;display:block}
+.cert-body-pad{padding:32px}
+.cert-header{display:flex;align-items:flex-start;gap:18px;margin-bottom:16px}
+.cert-badge{width:60px;height:60px;background:var(--red);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:#fff;text-align:center;line-height:1.2;flex-shrink:0}
+.cert-info h3{font-family:'Barlow Condensed',sans-serif;font-size:17px;letter-spacing:1px;font-weight:600;margin-bottom:5px}
+.cert-num{font-size:11px;color:var(--gray);font-family:'Barlow Condensed',sans-serif}
+.cert-body p{font-size:14px;color:var(--gray);line-height:1.7;margin-bottom:12px}
+.cert-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:16px}
+.cert-tag{background:var(--off-white);border:1px solid var(--gray-light);padding:3px 9px;font-size:11px;font-family:'Barlow Condensed',sans-serif;letter-spacing:.8px}
+.cert-validity{padding-top:14px;border-top:1px solid var(--border);font-size:12px;color:var(--gray);display:flex;justify-content:space-between;align-items:center;font-family:'Barlow Condensed',sans-serif}
+.valid-badge{background:#1a7a1a;color:#fff;padding:2px 9px;font-size:10px;letter-spacing:1.5px}
 /* ALL CERTS TABLE */
-.all-certs{padding:80px 60px;background:var(--cream)}
-.certs-table{width:100%;border-collapse:collapse;margin-top:40px}
-.certs-table th{background:var(--black);color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:14px 20px;text-align:left}
-.certs-table td{padding:13px 20px;border-bottom:1px solid var(--border);font-size:13px;color:var(--gray)}
+.all-certs{padding:72px 60px;background:var(--cream)}
+.certs-table{width:100%;border-collapse:collapse;margin-top:36px}
+.certs-table th{background:var(--black);color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:13px 18px;text-align:left}
+.certs-table td{padding:12px 18px;border-bottom:1px solid var(--border);font-size:13px;color:var(--gray)}
 .certs-table tr:nth-child(even) td{background:var(--off-white)}
 .certs-table td:first-child{font-weight:600;color:var(--black)}
-/* WHY SECTION */
-.why-certs{padding:80px 60px;background:var(--off-white);display:grid;grid-template-columns:1fr 1fr;gap:0}
-.why-text{padding:60px;background:var(--cream)}
-.why-text p{font-size:15px;color:var(--gray);line-height:1.8;margin-bottom:18px}
-.why-img{overflow:hidden;position:relative;min-height:440px}
-.why-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* KVKK SECTION */
+.kvkk-section{padding:80px 60px;background:var(--off-white)}
+.kvkk-docs{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+.doc-card{background:var(--cream);border:1px solid var(--border);padding:32px;display:flex;flex-direction:column;gap:14px;transition:box-shadow .3s}
+.doc-card:hover{box-shadow:0 6px 24px rgba(0,0,0,0.08)}
+.doc-icon{font-size:36px}
+.doc-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600}
+.doc-desc{font-size:13px;color:var(--gray);line-height:1.65;flex:1}
+.doc-download{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;padding:10px 18px;font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:1.5px;text-decoration:none;text-transform:uppercase;margin-top:8px;transition:background .2s}
+.doc-download:hover{background:var(--red-dark)}
+/* KVKK METNİ ACCORDION */
+.kvkk-text-section{padding:72px 60px;background:var(--cream)}
+.accordion{margin-top:36px}
+.acc-item{background:var(--off-white);border:1px solid var(--border);margin-bottom:4px}
+.acc-header{padding:18px 24px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:1px;font-weight:600;user-select:none}
+.acc-header:hover{background:var(--cream)}
+.acc-toggle{font-size:18px;color:var(--gray);transition:transform .2s}
+.acc-body{display:none;padding:0 24px 24px;font-size:14px;color:var(--gray);line-height:1.8}
+.acc-body.open{display:block}
+.acc-toggle.open{transform:rotate(180deg)}
 @media(max-width:1024px){
-  .certs-grid{grid-template-columns:1fr}
-  .why-certs{grid-template-columns:1fr}
-  .certs-main,.all-certs,.why-certs{padding:60px 24px}
-  .why-text{padding:48px 24px}
+  .certs-grid,.kvkk-docs{grid-template-columns:1fr}
+  .certs-main,.all-certs,.kvkk-section,.kvkk-text-section{padding:60px 24px}
   .page-hero-content{padding:0 24px 56px}
 }
 </style>
@@ -130,154 +132,320 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
 <body>
 
 <div class="lang-bar">
-  <button class="lang-btn active" data-l="en" onclick="setLang('en')">EN</button>
-  <button class="lang-btn" data-l="tr" onclick="setLang('tr')">TR</button>
+  <button class="lang-btn active" data-l="tr" onclick="setLang('tr')">TR</button>
+  <button class="lang-btn" data-l="en" onclick="setLang('en')">EN</button>
   <button class="lang-btn" data-l="es" onclick="setLang('es')">ES</button>
 </div>
 <nav>
   <div class="nav-logo">
-    <a href="index.html"><img data-img-key="logo-fx-textile" class="logo-fx" src="images/logo-fx-textile.svg" alt="FX Textile"></a>
+    <a href="index.html"><img class="logo-fx" src="images/logo-fx-textile.svg" alt="FX Textile"></a>
     <div class="logo-div"></div>
-    <a href="index.html"><img data-img-key="logo-harput" class="logo-harput" src="images/logo-harput.svg" alt="Harput Holding"></a>
+    <a href="index.html"><img class="logo-harput" src="images/logo-harput.svg" alt="Harput Holding"></a>
   </div>
-  <ul class="nav-links"><li><a href="index.html" ><span data-lang="en" class="active" data-edit-key="certifications_1">About</span><span data-lang="tr">Hakkımızda</span><span data-lang="es">Nosotros</span></a></li><li><a href="products.html" ><span data-lang="en" class="active" data-edit-key="certifications_2">Products</span><span data-lang="tr">Ürünler</span><span data-lang="es">Productos</span></a></li><li><a href="sustainability.html" ><span data-lang="en" class="active" data-edit-key="certifications_3">Sustainability</span><span data-lang="tr">Sürdürülebilirlik</span><span data-lang="es">Sostenibilidad</span></a></li><li><a href="global.html" ><span data-lang="en" class="active" data-edit-key="certifications_4">Global</span><span data-lang="tr">Global</span><span data-lang="es">Global</span></a></li><li><a href="certifications.html" class="current"><span data-lang="en" class="active" data-edit-key="certifications_5">Certifications</span><span data-lang="tr">Sertifikalar</span><span data-lang="es">Certificaciones</span></a></li><li><a href="contact.html" class="nav-cta"><span data-lang="en" class="active" data-edit-key="certifications_6">Contact</span><span data-lang="tr">İletişim</span><span data-lang="es">Contacto</span></a></li></ul>
-  <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" onclick="toggleMobileMenu(this)"><span></span><span></span><span></span></button>
+  <ul class="nav-links"><li><a href="index.html" ><span data-lang="tr" class="active">Hakkımızda</span><span data-lang="en">About Us</span><span data-lang="es">Sobre Nosotros</span></a></li><li><a href="products.html" ><span data-lang="tr" class="active">Ürünler</span><span data-lang="en">Products</span><span data-lang="es">Productos</span></a></li><li><a href="collections.html" ><span data-lang="tr" class="active">Koleksiyonlar</span><span data-lang="en">Collections</span><span data-lang="es">Colecciones</span></a></li><li><a href="sustainability.html" ><span data-lang="tr" class="active">Sürdürülebilirlik</span><span data-lang="en">Sustainability</span><span data-lang="es">Sostenibilidad</span></a></li><li><a href="certifications.html" class="current"><span data-lang="tr" class="active">Sertifikalar</span><span data-lang="en">Certifications</span><span data-lang="es">Certificaciones</span></a></li><li><a href="announcements.html" ><span data-lang="tr" class="active">Duyurular</span><span data-lang="en">News & Events</span><span data-lang="es">Noticias</span></a></li><li><a href="contact.html" class="nav-cta"><span data-lang="tr" class="active">İletişim</span><span data-lang="en">Contact</span><span data-lang="es">Contacto</span></a></li></ul>
 </nav>
 
 <div class="page-hero">
-  <img data-img-key="hero-certifications" src="images/hero-certifications.jpg" alt="Certifications" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.2">
+  <img src="images/hero-certifications.jpg" alt="Sertifikalar">
   <div class="page-hero-grad"></div>
   <div class="page-hero-content">
-    <div class="page-tag"><span data-lang="en" class="active" data-edit-key="certifications_7">Certifications</span><span data-lang="tr">Sertifikalar</span><span data-lang="es">Certificaciones</span></div>
-    <h1 class="page-title"><span data-lang="en" class="active" data-edit-key="certifications_8">Verified at<br><em>every standard.</em></span><span data-lang="tr">Her standartta<br><em>doğrulanmış.</em></span><span data-lang="es">Verificado en<br><em>cada estándar.</em></span></h1>
+    <div class="page-tag"><span data-lang="tr" class="active">Sertifikalar & KVKK</span><span data-lang="en">Certifications & KVKK</span><span data-lang="es">Certificaciones y KVKK</span></div>
+    <h1 class="page-title">
+      <span data-lang="tr" class="active">Uluslararası standartlarla<br><em>güvence altında.</em></span>
+      <span data-lang="en">Verified at<br><em>every standard.</em></span>
+      <span data-lang="es">Verificado en<br><em>cada estándar.</em></span>
+    </h1>
   </div>
 </div>
 
+<!-- ANA SERTİFİKALAR -->
 <section class="certs-main">
-  <div class="section-eyebrow"><span data-lang="en" class="active" data-edit-key="certifications_9">Active Scope Certificates</span><span data-lang="tr">Aktif Kapsam Sertifikaları</span><span data-lang="es">Certificados de Alcance Activos</span></div>
-  <h2 class="section-title"><span data-lang="en" class="active" data-edit-key="certifications_10">Two scope certificates,<br><em>twelve certified products.</em></span><span data-lang="tr">İki kapsam sertifikası,<br><em>on iki sertifikalı ürün.</em></span><span data-lang="es">Dos certificados de alcance,<br><em>doce productos certificados.</em></span></h2>
+  <div class="section-eyebrow">
+    <span data-lang="tr" class="active">Aktif Kapsam Sertifikaları</span>
+    <span data-lang="en">Active Scope Certificates</span>
+    <span data-lang="es">Certificados de Alcance Activos</span>
+  </div>
+  <h2 class="section-title">
+    <span data-lang="tr" class="active">İki kapsam sertifikası,<br><em>on iki sertifikalı ürün.</em></span>
+    <span data-lang="en">Two scope certificates,<br><em>twelve certified products.</em></span>
+    <span data-lang="es">Dos certificados de alcance,<br><em>doce productos certificados.</em></span>
+  </h2>
   <div class="certs-grid">
     <div class="cert-card">
-      <div class="cert-card-img"><img data-img-key="cert-gots" src="images/cert-gots.jpg" alt="GOTS Organic Cotton"></div>
-      <div class="cert-card-body">
+      <div class="cert-card-img"><img src="images/cert-gots.jpg" alt="GOTS"></div>
+      <div class="cert-body-pad">
         <div class="cert-header">
           <div class="cert-badge">GOTS</div>
-          <div class="cert-info"><h3>Global Organic Textile Standard</h3><div class="cert-num">ETK-00043444-GOTS-2512 &nbsp;|&nbsp; License: GOTS-15837</div></div>
+          <div class="cert-info">
+            <h3>Global Organic Textile Standard</h3>
+            <div class="cert-num">ETK-00043444-GOTS-2512 · Lisans: GOTS-15837</div>
+          </div>
         </div>
         <div class="cert-body">
-          <p><span data-lang="en" class="active" data-edit-key="certifications_11">GOTS Version 7.0 certification issued by ETKO Ekolojik Tarım Kontrol Organizasyonu, accredited by IOAS (Acc. No. 53). Covers 100% organic cotton woven fabrics in greige, dyed and printed versions.</span><span data-lang="tr">IOAS tarafından akredite edilmiş ETKO tarafından verilen GOTS v7.0 sertifikası. Ham, boyalı ve baskılı %100 organik pamuk dokuma kumaşları kapsar.</span><span data-lang="es">Certificación GOTS v7.0 emitida por ETKO, acreditada por IOAS. Cubre telas tejidas 100% algodón orgánico en versiones crudas, teñidas e impresas.</span></p>
-          <div class="cert-products">
-            <span class="cert-tag">Greige Woven — 100% Organic Cotton</span>
-            <span class="cert-tag">Dyed Woven — 100% Organic Cotton</span>
-            <span class="cert-tag">Printed Woven — 100% Organic Cotton</span>
-            <span class="cert-tag">GOTS (Organic)</span>
+          <p><span data-lang="tr" class="active">IOAS tarafından akredite edilmiş ETKO Ekolojik Tarım Kontrol Organizasyonu tarafından verilen GOTS v7.0 sertifikası. %100 organik pamuk dokuma kumaşları kapsar.</span><span data-lang="en">GOTS v7.0 certification issued by ETKO, accredited by IOAS. Covers 100% organic cotton woven fabrics.</span><span data-lang="es">Certificación GOTS v7.0 emitida por ETKO, acreditada por IOAS. Cubre telas 100% algodón orgánico.</span></p>
+          <div class="cert-tags">
+            <span class="cert-tag">Ham Dokuma — %100 Organik Pamuk</span>
+            <span class="cert-tag">Boyalı Dokuma — %100 Organik Pamuk</span>
+            <span class="cert-tag">Baskılı Dokuma — %100 Organik Pamuk</span>
           </div>
         </div>
         <div class="cert-validity">
-          <span><span data-lang="en" class="active" data-edit-key="certifications_12">Valid: 12 Dec 2025 – 11 Dec 2026</span><span data-lang="tr">Geçerli: 12 Ara 2025 – 11 Ara 2026</span><span data-lang="es">Válido: 12 dic 2025 – 11 dic 2026</span></span>
-          <span class="valid-badge"><span data-lang="en" class="active" data-edit-key="certifications_13">ACTIVE</span><span data-lang="tr">AKTİF</span><span data-lang="es">ACTIVO</span></span>
+          <span><span data-lang="tr" class="active">Geçerli: 12 Ara 2025 – 11 Ara 2026</span><span data-lang="en">Valid: 12 Dec 2025 – 11 Dec 2026</span><span data-lang="es">Válido: 12 dic 2025 – 11 dic 2026</span></span>
+          <span class="valid-badge">AKTİF</span>
         </div>
       </div>
     </div>
     <div class="cert-card">
-      <div class="cert-card-img"><img data-img-key="cert-grs-ocs-rcs" src="images/cert-grs-ocs-rcs.jpg" alt="GRS OCS RCS"></div>
-      <div class="cert-card-body">
+      <div class="cert-card-img"><img src="images/cert-grs-ocs-rcs.jpg" alt="GRS OCS RCS"></div>
+      <div class="cert-body-pad">
         <div class="cert-header">
-          <div class="cert-badge" style="font-size:13px;line-height:1.3">GRS<br>OCS<br>RCS</div>
-          <div class="cert-info"><h3>GRS · OCS · RCS Multi-Standard</h3><div class="cert-num">ETK-00043444-MUL-2512 &nbsp;|&nbsp; TE-ID: TE-00128129</div></div>
+          <div class="cert-badge" style="font-size:12px;line-height:1.3">GRS<br>OCS<br>RCS</div>
+          <div class="cert-info">
+            <h3>GRS · OCS · RCS Çoklu Standart</h3>
+            <div class="cert-num">ETK-00043444-MUL-2512 · TE-ID: TE-00128129</div>
+          </div>
         </div>
         <div class="cert-body">
-          <p><span data-lang="en" class="active" data-edit-key="certifications_14">Multi-standard scope certificate (GRS v4.0, OCS v3.0, RCS v2.0) issued by ETKO, licensed by Textile Exchange. Covers 12 product lines including recycled polyester, organic cotton and blended woven fabrics.</span><span data-lang="tr">Textile Exchange lisanslı ETKO tarafından verilen çok standartlı kapsam sertifikası (GRS v4.0, OCS v3.0, RCS v2.0). 12 ürün hattını kapsar.</span><span data-lang="es">Certificado multi-estándar (GRS v4.0, OCS v3.0, RCS v2.0). Cubre 12 líneas de productos.</span></p>
-          <div class="cert-products">
-            <span class="cert-tag">GRS — 100% rPET Greige/Dyed/Printed</span>
-            <span class="cert-tag">RCS 100 — 100% rPET Dyed/Printed</span>
-            <span class="cert-tag">RCS Blended — rPET + Viscose/Modal/PES</span>
-            <span class="cert-tag">OCS 100 — 100% Organic Cotton</span>
-            <span class="cert-tag">OCS Blended — Org. Cotton + Viscose</span>
+          <p><span data-lang="tr" class="active">Textile Exchange lisanslı ETKO tarafından verilen çoklu standart sertifikası (GRS v4.0, OCS v3.0, RCS v2.0). Geri dönüştürülmüş polyester, organik pamuk ve karışımlı dokuma kumaşları kapsayan 12 ürün hattını içerir.</span><span data-lang="en">Multi-standard certificate (GRS v4.0, OCS v3.0, RCS v2.0) by ETKO, licensed by Textile Exchange. Covers 12 product lines.</span><span data-lang="es">Certificado multi-estándar (GRS v4.0, OCS v3.0, RCS v2.0). Cubre 12 líneas de productos.</span></p>
+          <div class="cert-tags">
+            <span class="cert-tag">GRS — %100 rPET</span>
+            <span class="cert-tag">RCS 100 — %100 rPET</span>
+            <span class="cert-tag">RCS Blended — rPET + Viskoz/Modal/PES</span>
+            <span class="cert-tag">OCS 100 — Organik Pamuk</span>
+            <span class="cert-tag">OCS Blended — Org. Pamuk + Viskoz</span>
           </div>
         </div>
         <div class="cert-validity">
-          <span><span data-lang="en" class="active" data-edit-key="certifications_15">Valid: 12 Dec 2025 – 11 Dec 2026</span><span data-lang="tr">Geçerli: 12 Ara 2025 – 11 Ara 2026</span><span data-lang="es">Válido: 12 dic 2025 – 11 dic 2026</span></span>
-          <span class="valid-badge"><span data-lang="en" class="active" data-edit-key="certifications_16">ACTIVE</span><span data-lang="tr">AKTİF</span><span data-lang="es">ACTIVO</span></span>
+          <span><span data-lang="tr" class="active">Geçerli: 12 Ara 2025 – 11 Ara 2026</span><span data-lang="en">Valid: 12 Dec 2025 – 11 Dec 2026</span><span data-lang="es">Válido: 12 dic 2025 – 11 dic 2026</span></span>
+          <span class="valid-badge">AKTİF</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- TÜM SERTİFİKALAR TABLOSU -->
 <section class="all-certs">
-  <div class="section-eyebrow"><span data-lang="en" class="active" data-edit-key="certifications_17">Complete Certification List</span><span data-lang="tr">Tam Sertifika Listesi</span><span data-lang="es">Lista Completa de Certificaciones</span></div>
-  <h2 class="section-title"><span data-lang="en" class="active" data-edit-key="certifications_18">All standards, <em>active today.</em></span><span data-lang="tr">Tüm standartlar, <em>bugün aktif.</em></span><span data-lang="es">Todos los estándares, <em>activos hoy.</em></span></h2>
+  <div class="section-eyebrow">
+    <span data-lang="tr" class="active">Tüm Sertifikalar</span>
+    <span data-lang="en">All Certifications</span>
+    <span data-lang="es">Todas las Certificaciones</span>
+  </div>
+  <h2 class="section-title">
+    <span data-lang="tr" class="active">Tüm standartlar, <em>bugün aktif.</em></span>
+    <span data-lang="en">All standards, <em>active today.</em></span>
+    <span data-lang="es">Todos los estándares, <em>activos hoy.</em></span>
+  </h2>
   <table class="certs-table">
-    <thead><tr><th><span data-lang="en" class="active" data-edit-key="certifications_19">Standard</span><span data-lang="tr">Standart</span><span data-lang="es">Norma</span></th><th><span data-lang="en" class="active" data-edit-key="certifications_20">Version</span><span data-lang="tr">Versiyon</span><span data-lang="es">Versión</span></th><th><span data-lang="en" class="active" data-edit-key="certifications_21">Issuing Body</span><span data-lang="tr">Veren Kuruluş</span><span data-lang="es">Organismo Emisor</span></th><th><span data-lang="en" class="active" data-edit-key="certifications_22">Scope</span><span data-lang="tr">Kapsam</span><span data-lang="es">Alcance</span></th><th><span data-lang="en" class="active" data-edit-key="certifications_23">Status</span><span data-lang="tr">Durum</span><span data-lang="es">Estado</span></th></tr></thead>
+    <thead><tr>
+      <th>Standart</th>
+      <th>Versiyon</th>
+      <th><span data-lang="tr" class="active">Veren Kuruluş</span><span data-lang="en">Issuing Body</span><span data-lang="es">Organismo</span></th>
+      <th><span data-lang="tr" class="active">Kapsam</span><span data-lang="en">Scope</span><span data-lang="es">Alcance</span></th>
+      <th><span data-lang="tr" class="active">Durum</span><span data-lang="en">Status</span><span data-lang="es">Estado</span></th>
+    </tr></thead>
     <tbody>
-      <tr><td>GOTS</td><td>v7.0</td><td>ETKO (IOAS Acc. 53)</td><td><span data-lang="en" class="active" data-edit-key="certifications_24">100% Organic Cotton woven fabrics</span><span data-lang="tr">%100 Organik Pamuk dokuma kumaşlar</span><span data-lang="es">Telas tejidas 100% Algodón Orgánico</span></td><td style="color:#1a7a1a;font-weight:600"><span data-lang="en" class="active" data-edit-key="certifications_25">Active</span><span data-lang="tr">Aktif</span><span data-lang="es">Activo</span></td></tr>
-      <tr><td>GRS</td><td>v4.0</td><td>ETKO / Textile Exchange</td><td><span data-lang="en" class="active" data-edit-key="certifications_26">100% rPET woven fabrics</span><span data-lang="tr">%100 rPET dokuma kumaşlar</span><span data-lang="es">Telas tejidas 100% rPET</span></td><td style="color:#1a7a1a;font-weight:600"><span data-lang="en" class="active" data-edit-key="certifications_27">Active</span><span data-lang="tr">Aktif</span><span data-lang="es">Activo</span></td></tr>
-      <tr><td>OCS</td><td>v3.0</td><td>ETKO / Textile Exchange</td><td><span data-lang="en" class="active" data-edit-key="certifications_28">Organic cotton &amp; blended wovens</span><span data-lang="tr">Org. pamuk ve karışımlı dokuma</span><span data-lang="es">Tejidos orgánicos y mezclados</span></td><td style="color:#1a7a1a;font-weight:600"><span data-lang="en" class="active" data-edit-key="certifications_29">Active</span><span data-lang="tr">Aktif</span><span data-lang="es">Activo</span></td></tr>
-      <tr><td>RCS</td><td>v2.0</td><td>ETKO / Textile Exchange</td><td><span data-lang="en" class="active" data-edit-key="certifications_30">rPET blended wovens</span><span data-lang="tr">rPET karışımlı dokuma</span><span data-lang="es">Tejidos mezclados rPET</span></td><td style="color:#1a7a1a;font-weight:600"><span data-lang="en" class="active" data-edit-key="certifications_31">Active</span><span data-lang="tr">Aktif</span><span data-lang="es">Activo</span></td></tr>
-      <tr><td>ISO 9001</td><td>2015</td><td>Accredited CB</td><td><span data-lang="en" class="active" data-edit-key="certifications_32">Quality Management System</span><span data-lang="tr">Kalite Yönetim Sistemi</span><span data-lang="es">Sistema de Gestión de Calidad</span></td><td style="color:#1a7a1a;font-weight:600"><span data-lang="en" class="active" data-edit-key="certifications_33">Active</span><span data-lang="tr">Aktif</span><span data-lang="es">Activo</span></td></tr>
-      <tr><td>ISO 14001</td><td>2015</td><td>Accredited CB</td><td><span data-lang="en" class="active" data-edit-key="certifications_34">Environmental Management System</span><span data-lang="tr">Çevre Yönetim Sistemi</span><span data-lang="es">Sistema de Gestión Ambiental</span></td><td style="color:#1a7a1a;font-weight:600"><span data-lang="en" class="active" data-edit-key="certifications_35">Active</span><span data-lang="tr">Aktif</span><span data-lang="es">Activo</span></td></tr>
-      <tr><td>ISO 50001</td><td>2018</td><td>Accredited CB</td><td><span data-lang="en" class="active" data-edit-key="certifications_36">Energy Management System</span><span data-lang="tr">Enerji Yönetim Sistemi</span><span data-lang="es">Sistema de Gestión de Energía</span></td><td style="color:#1a7a1a;font-weight:600"><span data-lang="en" class="active" data-edit-key="certifications_37">Active</span><span data-lang="tr">Aktif</span><span data-lang="es">Activo</span></td></tr>
-      <tr><td>ISO 22000</td><td>2018</td><td>Accredited CB</td><td><span data-lang="en" class="active" data-edit-key="certifications_38">Food Safety Management</span><span data-lang="tr">Gıda Güvenliği Yönetimi</span><span data-lang="es">Gestión de Seguridad Alimentaria</span></td><td style="color:#1a7a1a;font-weight:600"><span data-lang="en" class="active" data-edit-key="certifications_39">Active</span><span data-lang="tr">Aktif</span><span data-lang="es">Activo</span></td></tr>
-      <tr><td>ISO 45001</td><td>2018</td><td>Accredited CB</td><td><span data-lang="en" class="active" data-edit-key="certifications_40">Occupational Health &amp; Safety</span><span data-lang="tr">İş Sağlığı ve Güvenliği</span><span data-lang="es">Salud y Seguridad Ocupacional</span></td><td style="color:#1a7a1a;font-weight:600"><span data-lang="en" class="active" data-edit-key="certifications_41">Active</span><span data-lang="tr">Aktif</span><span data-lang="es">Activo</span></td></tr>
-      <tr><td>OEKO-TEX® Standard 100</td><td>2024</td><td>OEKO-TEX</td><td><span data-lang="en" class="active" data-edit-key="certifications_42">Finished fabrics — no harmful substances</span><span data-lang="tr">Bitmiş kumaşlar — zararlı madde yok</span><span data-lang="es">Telas terminadas — sin sustancias dañinas</span></td><td style="color:#1a7a1a;font-weight:600"><span data-lang="en" class="active" data-edit-key="certifications_43">Active</span><span data-lang="tr">Aktif</span><span data-lang="es">Activo</span></td></tr>
-      <tr><td>BSCI</td><td>—</td><td>amfori</td><td><span data-lang="en" class="active" data-edit-key="certifications_44">Social compliance — all facilities</span><span data-lang="tr">Sosyal uyum — tüm tesisler</span><span data-lang="es">Cumplimiento social — todas las instalaciones</span></td><td style="color:#1a7a1a;font-weight:600"><span data-lang="en" class="active" data-edit-key="certifications_45">Member</span><span data-lang="tr">Üye</span><span data-lang="es">Miembro</span></td></tr>
-      <tr><td>Higg Index</td><td>FEM + SLM</td><td>Higg Co.</td><td><span data-lang="en" class="active" data-edit-key="certifications_46">Environmental + Social Labour Module</span><span data-lang="tr">Çevresel + Sosyal İşgücü Modülü</span><span data-lang="es">Módulo Ambiental + Laboral Social</span></td><td style="color:#1a7a1a;font-weight:600"><span data-lang="en" class="active" data-edit-key="certifications_47">Active</span><span data-lang="tr">Aktif</span><span data-lang="es">Activo</span></td></tr>
-      <tr><td>INDITEX JOIN LIFE</td><td>—</td><td>Inditex</td><td><span data-lang="en" class="active" data-edit-key="certifications_48">Approved supplier — sustainable product line</span><span data-lang="tr">Onaylı tedarikçi — sürdürülebilir ürün hattı</span><span data-lang="es">Proveedor aprobado — línea de producto sostenible</span></td><td style="color:#1a7a1a;font-weight:600"><span data-lang="en" class="active" data-edit-key="certifications_49">Approved</span><span data-lang="tr">Onaylı</span><span data-lang="es">Aprobado</span></td></tr>
-      <tr><td>ICS</td><td>—</td><td>ICS</td><td><span data-lang="en" class="active" data-edit-key="certifications_50">Social compliance shared audit platform</span><span data-lang="tr">Sosyal uyum paylaşımlı denetim platformu</span><span data-lang="es">Plataforma de auditoría social compartida</span></td><td style="color:#1a7a1a;font-weight:600"><span data-lang="en" class="active" data-edit-key="certifications_51">Member</span><span data-lang="tr">Üye</span><span data-lang="es">Miembro</span></td></tr>
+      <tr><td>GOTS</td><td>v7.0</td><td>ETKO (IOAS Akr. 53)</td><td><span data-lang="tr" class="active">%100 Organik Pamuk dokuma kumaşlar</span><span data-lang="en">100% Organic Cotton woven fabrics</span><span data-lang="es">Telas tejidas 100% algodón orgánico</span></td><td style="color:#1a7a1a;font-weight:600">Aktif</td></tr>
+      <tr><td>GRS</td><td>v4.0</td><td>ETKO / Textile Exchange</td><td><span data-lang="tr" class="active">%100 rPET dokuma kumaşlar</span><span data-lang="en">100% rPET woven fabrics</span><span data-lang="es">Telas tejidas 100% rPET</span></td><td style="color:#1a7a1a;font-weight:600">Aktif</td></tr>
+      <tr><td>OCS</td><td>v3.0</td><td>ETKO / Textile Exchange</td><td><span data-lang="tr" class="active">Organik pamuk ve karışımlı dokuma</span><span data-lang="en">Organic cotton & blended wovens</span><span data-lang="es">Tejidos orgánicos y mezclados</span></td><td style="color:#1a7a1a;font-weight:600">Aktif</td></tr>
+      <tr><td>RCS</td><td>v2.0</td><td>ETKO / Textile Exchange</td><td><span data-lang="tr" class="active">rPET karışımlı dokuma kumaşlar</span><span data-lang="en">rPET blended wovens</span><span data-lang="es">Tejidos mezclados rPET</span></td><td style="color:#1a7a1a;font-weight:600">Aktif</td></tr>
+      <tr><td>ISO 9001</td><td>2015</td><td>Akredite KB</td><td><span data-lang="tr" class="active">Kalite Yönetim Sistemi</span><span data-lang="en">Quality Management System</span><span data-lang="es">Sistema de Gestión de Calidad</span></td><td style="color:#1a7a1a;font-weight:600">Aktif</td></tr>
+      <tr><td>ISO 14001</td><td>2015</td><td>Akredite KB</td><td><span data-lang="tr" class="active">Çevre Yönetim Sistemi</span><span data-lang="en">Environmental Management</span><span data-lang="es">Gestión Ambiental</span></td><td style="color:#1a7a1a;font-weight:600">Aktif</td></tr>
+      <tr><td>ISO 50001</td><td>2018</td><td>Akredite KB</td><td><span data-lang="tr" class="active">Enerji Yönetim Sistemi</span><span data-lang="en">Energy Management</span><span data-lang="es">Gestión de Energía</span></td><td style="color:#1a7a1a;font-weight:600">Aktif</td></tr>
+      <tr><td>ISO 22000</td><td>2018</td><td>Akredite KB</td><td><span data-lang="tr" class="active">Gıda Güvenliği Yönetimi</span><span data-lang="en">Food Safety Management</span><span data-lang="es">Gestión Alimentaria</span></td><td style="color:#1a7a1a;font-weight:600">Aktif</td></tr>
+      <tr><td>ISO 45001</td><td>2018</td><td>Akredite KB</td><td><span data-lang="tr" class="active">İş Sağlığı ve Güvenliği</span><span data-lang="en">OHS Management</span><span data-lang="es">Salud y Seguridad</span></td><td style="color:#1a7a1a;font-weight:600">Aktif</td></tr>
+      <tr><td>OEKO-TEX® Std 100</td><td>2024</td><td>OEKO-TEX</td><td><span data-lang="tr" class="active">Bitmiş kumaşlar — zararlı madde içermez</span><span data-lang="en">Finished fabrics — no harmful substances</span><span data-lang="es">Telas terminadas sin sustancias nocivas</span></td><td style="color:#1a7a1a;font-weight:600">Aktif</td></tr>
+      <tr><td>BSCI</td><td>—</td><td>amfori</td><td><span data-lang="tr" class="active">Sosyal uyum — tüm tesisler</span><span data-lang="en">Social compliance — all facilities</span><span data-lang="es">Cumplimiento social</span></td><td style="color:#1a7a1a;font-weight:600">Üye</td></tr>
+      <tr><td>Higg Index</td><td>FEM + SLM</td><td>Higg Co.</td><td><span data-lang="tr" class="active">Çevresel + Sosyal İşgücü Modülü</span><span data-lang="en">Environmental + Social Labour Module</span><span data-lang="es">Módulo Ambiental + Laboral</span></td><td style="color:#1a7a1a;font-weight:600">Aktif</td></tr>
+      <tr><td>INDITEX JOIN LIFE</td><td>—</td><td>Inditex</td><td><span data-lang="tr" class="active">Sürdürülebilir ürün hattı onaylı tedarikçi</span><span data-lang="en">Approved supplier — sustainable line</span><span data-lang="es">Proveedor aprobado línea sostenible</span></td><td style="color:#1a7a1a;font-weight:600">Onaylı</td></tr>
     </tbody>
   </table>
 </section>
 
-<div class="why-certs">
-  <div class="why-text">
-    <div class="section-eyebrow"><span data-lang="en" class="active" data-edit-key="certifications_52">What Certifications Mean for You</span><span data-lang="tr">Sertifikaların Size Anlamı</span><span data-lang="es">Qué Significan para Usted</span></div>
-    <h2 class="section-title"><span data-lang="en" class="active" data-edit-key="certifications_53">Claim it with<br><em>confidence.</em></span><span data-lang="tr">Güvenle <em>iddia edin.</em></span><span data-lang="es">Recláme­lo con <em>confianza.</em></span></h2>
-    <p><span data-lang="en" class="active" data-edit-key="certifications_54">When you use GRS, GOTS, OCS or RCS logos on your products, you need a valid Transaction Certificate (TC) from your fabric supplier for every shipment. At FX Textile we issue TCs for every certified order — plus full Scope Certificate documentation and Textile Exchange TE-ID.</span><span data-lang="tr">Ürünlerinizde GRS, GOTS, OCS veya RCS logolarını kullandığınızda, her sevkiyat için geçerli İşlem Sertifikası (TC) gerekir. FX Textile olarak her sertifikalı sipariş için TC düzenliyoruz.</span><span data-lang="es">Los logotipos GRS, GOTS, OCS o RCS en sus productos requieren un TC válido de su proveedor para cada envío. En FX Textile emitimos TCs para cada pedido certificado.</span></p>
-    <a href="contact.html" class="btn-primary" style="margin-top:8px"><span data-lang="en" class="active" data-edit-key="certifications_55">Request a Sample with TC</span><span data-lang="tr">TC ile Numune İste</span><span data-lang="es">Solicitar Muestra con TC</span></a>
+<!-- KVKK İNDİRİLEBİLİR DOKÜMANLAR -->
+<section class="kvkk-section" id="kvkk">
+  <div class="section-eyebrow">
+    <span data-lang="tr" class="active">Kişisel Verilerin Korunması</span>
+    <span data-lang="en">Data Protection (KVKK)</span>
+    <span data-lang="es">Protección de Datos</span>
   </div>
-  <div class="why-img"><img data-img-key="cert-trust" src="images/cert-trust.jpg" alt="Certification Trust" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></div>
-</div>
+  <h2 class="section-title">
+    <span data-lang="tr" class="active">KVKK & Gizlilik<br><em>Belgelerimiz</em></span>
+    <span data-lang="en">KVKK & Privacy<br><em>Documents</em></span>
+    <span data-lang="es">Documentos de<br><em>Privacidad</em></span>
+  </h2>
+  <p class="section-body" style="margin-top:16px">
+    <span data-lang="tr" class="active">6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) kapsamında hazırlanan aydınlatma metinlerimizi ve çerez politikamızı aşağıdan indirebilirsiniz.</span>
+    <span data-lang="en">You can download our disclosure texts and cookie policy prepared under the Personal Data Protection Law (KVKK) below.</span>
+    <span data-lang="es">Puede descargar nuestros textos de divulgación y política de cookies preparados bajo la Ley de Protección de Datos Personales (KVKK).</span>
+  </p>
+  <div class="kvkk-docs">
+    <div class="doc-card">
+      <span class="doc-icon">📄</span>
+      <div class="doc-title">
+        <span data-lang="tr" class="active">İnternet Sitesi Ziyaretçisi Aydınlatma Metni</span>
+        <span data-lang="en">Website Visitor Disclosure Text</span>
+        <span data-lang="es">Texto de Divulgación de Visitantes</span>
+      </div>
+      <div class="doc-desc">
+        <span data-lang="tr" class="active">İnternet sitemizi ziyaret eden kişilerin kişisel verilerinin işlenmesine ilişkin aydınlatma metni. Efiks Tekstil San. ve Tic. A.Ş.</span>
+        <span data-lang="en">Disclosure text regarding the processing of personal data of website visitors. Efiks Tekstil San. ve Tic. A.Ş.</span>
+        <span data-lang="es">Texto de divulgación sobre el tratamiento de datos de visitantes del sitio web.</span>
+      </div>
+      <a href="docs/KVKK-Aydinlatma-Metni.docx" download class="doc-download">
+        ⬇ <span data-lang="tr" class="active">İndir</span><span data-lang="en">Download</span><span data-lang="es">Descargar</span>
+      </a>
+    </div>
+    <div class="doc-card">
+      <span class="doc-icon">📋</span>
+      <div class="doc-title">
+        <span data-lang="tr" class="active">Ziyaretçi / İletişim Formu Aydınlatma Metni</span>
+        <span data-lang="en">Contact Form Disclosure Text</span>
+        <span data-lang="es">Texto de Divulgación del Formulario</span>
+      </div>
+      <div class="doc-desc">
+        <span data-lang="tr" class="active">İletişim formu aracılığıyla iletişime geçen kişilerin kişisel verilerinin işlenmesine ilişkin aydınlatma metni.</span>
+        <span data-lang="en">Disclosure text regarding the processing of personal data of persons contacting us via the contact form.</span>
+        <span data-lang="es">Texto de divulgación sobre el tratamiento de datos de personas que contactan a través del formulario.</span>
+      </div>
+      <a href="docs/Ziyaretci-Aydinlatma-Metni.docx" download class="doc-download">
+        ⬇ <span data-lang="tr" class="active">İndir</span><span data-lang="en">Download</span><span data-lang="es">Descargar</span>
+      </a>
+    </div>
+    <div class="doc-card" id="cerez">
+      <span class="doc-icon">🍪</span>
+      <div class="doc-title">
+        <span data-lang="tr" class="active">Çerez Politikası ve Aydınlatma Metni</span>
+        <span data-lang="en">Cookie Policy & Disclosure Text</span>
+        <span data-lang="es">Política de Cookies</span>
+      </div>
+      <div class="doc-desc">
+        <span data-lang="tr" class="active">Web sitemizde kullanılan çerezler, çerez türleri ve çerez yönetimi hakkında bilgi içeren politika ve aydınlatma metni.</span>
+        <span data-lang="en">Policy and disclosure text containing information about cookies used on our website, cookie types and cookie management.</span>
+        <span data-lang="es">Política e información sobre las cookies utilizadas en nuestro sitio web y su gestión.</span>
+      </div>
+      <a href="docs/Cerez-Politikasi.docx" download class="doc-download">
+        ⬇ <span data-lang="tr" class="active">İndir</span><span data-lang="en">Download</span><span data-lang="es">Descargar</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- KVKK ÖZET METİN ACCORDION -->
+<section class="kvkk-text-section">
+  <div class="section-eyebrow">
+    <span data-lang="tr" class="active">KVKK Özeti</span>
+    <span data-lang="en">KVKK Summary</span>
+    <span data-lang="es">Resumen KVKK</span>
+  </div>
+  <h2 class="section-title">
+    <span data-lang="tr" class="active">Kişisel verileriniz<br><em>güvendedir.</em></span>
+    <span data-lang="en">Your personal data<br><em>is safe.</em></span>
+    <span data-lang="es">Sus datos personales<br><em>están seguros.</em></span>
+  </h2>
+  <div class="accordion">
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        <span><span data-lang="tr" class="active">Hangi kişisel veriler işlenir?</span><span data-lang="en">What personal data is processed?</span><span data-lang="es">¿Qué datos personales se procesan?</span></span>
+        <span class="acc-toggle">▼</span>
+      </div>
+      <div class="acc-body">
+        <span data-lang="tr" class="active">Ad-soyad, e-posta, telefon (kimlik ve iletişim bilgileri); IP adresi, log kayıtları, çerezler (işlem güvenliği bilgileri); iletişim formunda paylaşılan mesaj içerikleri.</span>
+        <span data-lang="en">Name-surname, email, phone (identity and contact info); IP address, log records, cookies (transaction security); message content shared via contact form.</span>
+        <span data-lang="es">Nombre, email, teléfono; dirección IP, registros de log, cookies; contenido del formulario de contacto.</span>
+      </div>
+    </div>
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        <span><span data-lang="tr" class="active">Kişisel veriler hangi amaçla işlenir?</span><span data-lang="en">For what purpose is personal data processed?</span><span data-lang="es">¿Con qué finalidad se procesan los datos?</span></span>
+        <span class="acc-toggle">▼</span>
+      </div>
+      <div class="acc-body">
+        <span data-lang="tr" class="active">İletişim faaliyetleri, bilgi güvenliği süreçleri, talep/şikayet takibi, mevzuata uyum, müşteri ilişkileri yönetimi ve ziyaretçi kayıtlarının oluşturulması amaçlarıyla işlenmektedir.</span>
+        <span data-lang="en">Communication activities, information security, request/complaint tracking, regulatory compliance, customer relationship management and visitor record keeping.</span>
+        <span data-lang="es">Comunicación, seguridad de la información, seguimiento de solicitudes, cumplimiento normativo y gestión de relaciones con clientes.</span>
+      </div>
+    </div>
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        <span><span data-lang="tr" class="active">Haklarınız nelerdir?</span><span data-lang="en">What are your rights?</span><span data-lang="es">¿Cuáles son sus derechos?</span></span>
+        <span class="acc-toggle">▼</span>
+      </div>
+      <div class="acc-body">
+        <span data-lang="tr" class="active">KVKK'nın 11. maddesi uyarınca; verilerinizin işlenip işlenmediğini öğrenme, bilgi talep etme, düzeltilmesini veya silinmesini isteme, aktarıldığı üçüncü kişileri öğrenme ve itiraz etme haklarına sahipsiniz. Taleplerinizi <strong>kvkk@efikstekstil.com.tr</strong> adresine iletebilirsiniz.</span>
+        <span data-lang="en">Under KVKK Article 11: the right to learn whether your data is processed, request information, request correction or deletion, learn third parties it was transferred to, and object. Send requests to <strong>kvkk@efikstekstil.com.tr</strong>.</span>
+        <span data-lang="es">Derecho a saber si sus datos son procesados, solicitar información, corrección o eliminación, conocer los terceros receptores y objetar. Envíe solicitudes a <strong>kvkk@efikstekstil.com.tr</strong>.</span>
+      </div>
+    </div>
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        <span><span data-lang="tr" class="active">İletişim bilgileri</span><span data-lang="en">Contact information</span><span data-lang="es">Información de contacto</span></span>
+        <span class="acc-toggle">▼</span>
+      </div>
+      <div class="acc-body">
+        <strong>Efiks Tekstil San. ve Tic. A.Ş.</strong><br>
+        Işıktepe OSB Mah. Kahverengi Cad. 3. Sk. No:5, 16215 Nilüfer / Bursa<br>
+        E-posta: <a href="mailto:kvkk@efikstekstil.com.tr">kvkk@efikstekstil.com.tr</a>
+      </div>
+    </div>
+  </div>
+</section>
 
 
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
-      <img data-img-key="logo-fx-textile" class="foot-fx" src="images/logo-fx-textile.svg" alt="FX Textile">
-      <img data-img-key="logo-harput" class="foot-harput" src="images/logo-harput.svg" alt="Harput Holding">
-      <p><span data-lang="en" class="active" data-edit-key="certifications_56">Premium apparel fabrics. A division of Harput Holding. Est. 2023, Bursa, Turkey.</span>
-         <span data-lang="tr">Premium giyim kumaşları. Harput Holding bünyesinde. 2023, Bursa, Türkiye.</span>
+      <img class="foot-fx" src="images/logo-fx-textile.svg" alt="FX Textile">
+      <img class="foot-harput" src="images/logo-harput.svg" alt="Harput Holding">
+      <p><span data-lang="tr" class="active">Premium giyim kumaşları. Harput Holding bünyesinde. Est. 2023, Bursa, Türkiye.</span>
+         <span data-lang="en">Premium apparel fabrics. A division of Harput Holding. Est. 2023, Bursa, Turkey.</span>
          <span data-lang="es">Telas premium para ropa. División de Harput Holding. Est. 2023, Bursa, Turquía.</span></p>
     </div>
     <div class="footer-col">
-      <h5><span data-lang="en" class="active" data-edit-key="certifications_57">Company</span><span data-lang="tr">Şirket</span><span data-lang="es">Empresa</span></h5>
-      <a href="index.html"><span data-lang="en" class="active" data-edit-key="certifications_58">About Us</span><span data-lang="tr">Hakkımızda</span><span data-lang="es">Nosotros</span></a>
-      <a href="global.html"><span data-lang="en" class="active" data-edit-key="certifications_59">Global Presence</span><span data-lang="tr">Küresel Varlık</span><span data-lang="es">Presencia Global</span></a>
-      <a href="certifications.html"><span data-lang="en" class="active" data-edit-key="certifications_60">Certifications</span><span data-lang="tr">Sertifikalar</span><span data-lang="es">Certificaciones</span></a>
+      <h5>Kurumsal</h5>
+      <a href="index.html"><span data-lang="tr" class="active">Hakkımızda</span><span data-lang="en">About Us</span><span data-lang="es">Sobre Nosotros</span></a>
+      <a href="sustainability.html"><span data-lang="tr" class="active">Sürdürülebilirlik</span><span data-lang="en">Sustainability</span><span data-lang="es">Sostenibilidad</span></a>
+      <a href="certifications.html"><span data-lang="tr" class="active">Sertifikalar & KVKK</span><span data-lang="en">Certifications & KVKK</span><span data-lang="es">Certificaciones</span></a>
+      <a href="announcements.html"><span data-lang="tr" class="active">Duyurular</span><span data-lang="en">News & Events</span><span data-lang="es">Noticias</span></a>
     </div>
     <div class="footer-col">
-      <h5><span data-lang="en" class="active" data-edit-key="certifications_61">Products</span><span data-lang="tr">Ürünler</span><span data-lang="es">Productos</span></h5>
-      <a href="products.html"><span data-lang="en" class="active" data-edit-key="certifications_62">Recycled Polyester</span><span data-lang="tr">Geri Dön. Polyester</span><span data-lang="es">Poliéster Reciclado</span></a>
-      <a href="products.html"><span data-lang="en" class="active" data-edit-key="certifications_63">Organic Cotton</span><span data-lang="tr">Organik Pamuk</span><span data-lang="es">Algodón Orgánico</span></a>
-      <a href="sustainability.html"><span data-lang="en" class="active" data-edit-key="certifications_64">Sustainability</span><span data-lang="tr">Sürdürülebilirlik</span><span data-lang="es">Sostenibilidad</span></a>
+      <h5><span data-lang="tr" class="active">Ürünler</span><span data-lang="en">Products</span><span data-lang="es">Productos</span></h5>
+      <a href="products.html"><span data-lang="tr" class="active">Geri Dönüştürülmüş Polyester</span><span data-lang="en">Recycled Polyester</span><span data-lang="es">Poliéster Reciclado</span></a>
+      <a href="products.html"><span data-lang="tr" class="active">Organik Pamuk</span><span data-lang="en">Organic Cotton</span><span data-lang="es">Algodón Orgánico</span></a>
+      <a href="collections.html"><span data-lang="tr" class="active">Koleksiyonlar</span><span data-lang="en">Collections</span><span data-lang="es">Colecciones</span></a>
     </div>
     <div class="footer-col">
-      <h5><span data-lang="en" class="active" data-edit-key="certifications_65">Contact</span><span data-lang="tr">İletişim</span><span data-lang="es">Contacto</span></h5>
-      <a href="contact.html"><span data-lang="en" class="active" data-edit-key="certifications_66">Send Message</span><span data-lang="tr">Mesaj Gönder</span><span data-lang="es">Enviar Mensaje</span></a>
-      <a href="contact.html" style="color:rgba(255,255,255,0.25);font-size:12px;margin-top:8px">Işıktepe OSB Mah.<br>Nilüfer, Bursa, TR</a>
+      <h5><span data-lang="tr" class="active">İletişim</span><span data-lang="en">Contact</span><span data-lang="es">Contacto</span></h5>
+      <a href="contact.html"><span data-lang="tr" class="active">Mesaj Gönderin</span><span data-lang="en">Send Message</span><span data-lang="es">Enviar Mensaje</span></a>
+      <a href="contact.html" style="color:rgba(255,255,255,0.3);font-size:12px;margin-top:8px;line-height:1.6">Işıktepe OSB Mah.<br>Nilüfer, Bursa, TR</a>
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-copy">© 2025 Efiks Tekstil San. ve Tic. Ltd. Şti. — A Division of Harput Holding</span>
-    <span class="footer-copy">GOTS · GRS · OCS · RCS · ISO 9001 · 14001 · 50001</span>
+    <span class="footer-copy">© 2025 Efiks Tekstil San. ve Tic. A.Ş. — Harput Holding Bünyesinde</span>
+    <div style="display:flex;gap:16px">
+      <a href="certifications.html#kvkk" style="color:rgba(255,255,255,0.2);font-size:11px;font-family:'Barlow Condensed',sans-serif;text-decoration:none;letter-spacing:1px">KVKK</a>
+      <a href="certifications.html#cerez" style="color:rgba(255,255,255,0.2);font-size:11px;font-family:'Barlow Condensed',sans-serif;text-decoration:none;letter-spacing:1px">Çerez Politikası</a>
+    </div>
   </div>
 </footer>
 <script>
-function setLang(l){document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.l===l));document.querySelectorAll('[data-lang]').forEach(e=>e.classList.toggle('active',e.getAttribute('data-lang')===l));localStorage.setItem('fxlang',l);document.documentElement.lang=l;}
-document.addEventListener('DOMContentLoaded',()=>{const s=localStorage.getItem('fxlang')||'en';setLang(s);document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{const n=document.querySelector('nav');const b=document.querySelector('.nav-toggle');if(n&&b){n.classList.remove('menu-open');b.setAttribute('aria-expanded','false');}}));});
-function toggleMobileMenu(btn){const nav=btn.closest('nav');const open=!nav.classList.contains('menu-open');nav.classList.toggle('menu-open',open);btn.setAttribute('aria-expanded',String(open));}
+function setLang(l){
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.l===l));
+  document.querySelectorAll('[data-lang]').forEach(e=>e.classList.toggle('active',e.getAttribute('data-lang')===l));
+  localStorage.setItem('fxlang',l);document.documentElement.lang=l;
+}
+document.addEventListener('DOMContentLoaded',()=>{
+  const s=localStorage.getItem('fxlang')||'tr';setLang(s);
+});
 </script>
-<script src="data.js"></script>
-<script src="content-loader.js"></script>
+<script>
+function toggleAcc(header) {
+  const body = header.nextElementSibling;
+  const toggle = header.querySelector('.acc-toggle');
+  const isOpen = body.classList.contains('open');
+  document.querySelectorAll('.acc-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.acc-toggle').forEach(t => t.classList.remove('open'));
+  if (!isOpen) { body.classList.add('open'); toggle.classList.add('open'); }
+}
+</script>
 </body></html>
-

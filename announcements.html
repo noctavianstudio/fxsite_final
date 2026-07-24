@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Duyurular — FX Textile</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Barlow:wght@300;400;500&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;background:#f5f2ee;color:#1a1a1a;overflow-x:hidden}
+:root{
+  --black:#0a0a0a;--off-white:#f5f2ee;--cream:#ede9e3;
+  --red:#8b1a1a;--red-light:#a52020;--red-dark:#6a1212;
+  --gray:#6b6b6b;--gray-light:#c8c4be;--border:rgba(0,0,0,0.1);
+}
+/* LANG BAR */
+.lang-bar{background:var(--black);padding:8px 60px;display:flex;justify-content:flex-end;gap:4px}
+.lang-btn{background:none;border:none;color:rgba(255,255,255,0.35);font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:1.5px;cursor:pointer;padding:4px 10px;transition:color .2s}
+.lang-btn:hover,.lang-btn.active{color:#fff}
+.lang-btn+.lang-btn{border-left:1px solid #333}
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(245,242,238,0.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:0 60px;display:flex;align-items:center;justify-content:space-between;height:88px}
+.nav-logo{display:flex;align-items:center;gap:18px}
+.logo-fx{height:52px;display:block;mix-blend-mode:multiply}
+.logo-div{width:1px;height:26px;background:var(--gray-light)}
+.logo-harput{height:38px;display:block;mix-blend-mode:multiply;opacity:0.7}
+.nav-links{display:flex;gap:32px;list-style:none;align-items:center}
+.nav-links a{text-decoration:none;color:var(--gray);font-size:11px;letter-spacing:2px;font-weight:500;text-transform:uppercase;transition:color .2s;font-family:'Barlow Condensed',sans-serif;padding:4px 0;border-bottom:2px solid transparent}
+.nav-links a:hover{color:var(--red)}
+.nav-links a.current{color:var(--black);border-bottom-color:var(--red)}
+.nav-cta{background:var(--red)!important;color:#fff!important;padding:10px 22px!important;border-bottom:none!important;letter-spacing:1.5px!important}
+.nav-cta:hover{background:var(--red-dark)!important}
+/* LANG SWITCHING */
+[data-lang]{display:none}
+[data-lang].active{display:inline}
+.block-lang[data-lang]{display:none}
+.block-lang[data-lang].active{display:block}
+/* FOOTER */
+footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,255,255,0.05)}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
+.footer-brand .foot-fx{height:40px;filter:brightness(0) invert(1);opacity:0.8;display:block;margin-bottom:12px}
+.footer-brand .foot-harput{height:28px;filter:brightness(0) invert(1);opacity:0.3;display:block;margin-bottom:20px}
+.footer-brand p{font-size:13px;color:rgba(255,255,255,0.3);line-height:1.7;max-width:220px}
+.footer-col h5{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:16px}
+.footer-col a{display:block;font-size:13px;color:rgba(255,255,255,0.4);text-decoration:none;margin-bottom:10px;transition:color .2s}
+.footer-col a:hover{color:rgba(255,255,255,0.8)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:28px;border-top:1px solid rgba(255,255,255,0.07)}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.2);font-family:'Barlow Condensed',sans-serif}
+/* UTILS */
+.section-eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--red);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.section-eyebrow::before{content:'';display:inline-block;width:24px;height:1px;background:var(--red)}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,58px);font-weight:300;line-height:1.1;margin-bottom:20px}
+.section-title em{font-style:italic}
+.section-body{font-size:16px;color:var(--gray);line-height:1.85;max-width:620px}
+.btn-primary{background:var(--red);color:#fff;border:none;padding:14px 32px;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:background .2s;display:inline-block}
+.btn-primary:hover{background:var(--red-dark)}
+.btn-ghost{border:1px solid var(--gray-light);color:var(--gray);padding:14px 32px;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:all .2s;display:inline-block}
+.btn-ghost:hover{border-color:var(--red);color:var(--red)}
+@media(max-width:1024px){
+  nav,.lang-bar{padding-left:24px;padding-right:24px}
+  footer{padding:40px 24px 28px}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .nav-links{display:none}
+  .footer-grid{grid-template-columns:1fr}
+}
+
+
+
+
+/* HERO */
+.page-hero{height:52vh;min-height:340px;background:var(--black);display:flex;align-items:flex-end;position:relative;overflow:hidden}
+.page-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.22}
+.page-hero-grad{position:absolute;inset:0;background:linear-gradient(to top,#0a0a0a 40%,rgba(10,10,10,0.25) 100%)}
+.page-hero-content{position:relative;z-index:2;padding:0 60px 64px}
+.page-tag{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--red-light);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.page-tag::before{content:'';width:24px;height:1px;background:var(--red-light);display:block}
+.page-title{font-family:'Cormorant Garamond',serif;font-size:clamp(44px,6vw,80px);font-weight:300;color:#fff;line-height:1.0}
+
+/* FILTER BAR */
+.filter-bar{background:var(--cream);border-bottom:1px solid var(--border);padding:0 60px;display:flex;gap:0;overflow-x:auto}
+.filter-btn{padding:18px 28px;font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;border:none;background:transparent;cursor:pointer;color:var(--gray);border-bottom:3px solid transparent;white-space:nowrap;transition:all .2s}
+.filter-btn.active,.filter-btn:hover{color:var(--red);border-bottom-color:var(--red)}
+
+/* BLOG LAYOUT */
+.blog-layout{display:grid;grid-template-columns:1fr 320px;gap:48px;padding:64px 60px;background:var(--off-white);align-items:start}
+
+/* POST LISTESI */
+.posts-list{display:flex;flex-direction:column;gap:0}
+
+/* BÜYÜK POST — featured */
+.post-featured{margin-bottom:4px}
+.post-featured .post-media{position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--black)}
+.post-featured .post-media video,
+.post-featured .post-media img{width:100%;height:100%;object-fit:cover;display:block}
+.post-featured .post-media .media-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#111;flex-direction:column;gap:12px}
+.play-btn{width:64px;height:64px;border:2px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;color:rgba(255,255,255,0.6)}
+.media-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:3px;color:rgba(255,255,255,0.3)}
+.post-featured .post-body{background:var(--cream);padding:36px 40px}
+.post-cat{display:inline-flex;align-items:center;gap:8px;margin-bottom:14px}
+.post-cat-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#fff;background:var(--red);padding:3px 10px}
+.post-date{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:1px;color:var(--gray-light)}
+.post-title{font-family:'Cormorant Garamond',serif;font-size:clamp(24px,3vw,36px);font-weight:400;line-height:1.25;margin-bottom:16px}
+.post-excerpt{font-size:15px;color:var(--gray);line-height:1.8;margin-bottom:24px}
+.post-meta-row{display:flex;align-items:center;gap:20px;padding-top:20px;border-top:1px solid var(--border)}
+.post-location{font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:1px;color:var(--gray);display:flex;align-items:center;gap:6px}
+.post-read-more{font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--red);text-decoration:none;margin-left:auto;display:flex;align-items:center;gap:6px}
+.post-read-more:hover{text-decoration:underline}
+
+/* KÜÇÜK POST — standart */
+.post-small{display:grid;grid-template-columns:200px 1fr;gap:0;background:var(--cream);border-top:1px solid var(--border);transition:box-shadow .2s}
+.post-small:hover{box-shadow:0 4px 20px rgba(0,0,0,0.07)}
+.post-small .ps-img{overflow:hidden;height:160px}
+.post-small .ps-img img,
+.post-small .ps-img video{width:100%;height:100%;object-fit:cover;display:block}
+.post-small .ps-body{padding:20px 24px;display:flex;flex-direction:column;justify-content:center}
+.ps-cat{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--red);margin-bottom:6px}
+.ps-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;margin-bottom:8px;line-height:1.3}
+.ps-desc{font-size:13px;color:var(--gray);line-height:1.65;margin-bottom:10px}
+.ps-date{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:1px;color:var(--gray-light)}
+
+/* SIDEBAR */
+.sidebar{position:sticky;top:104px}
+.sidebar-widget{background:var(--cream);padding:28px;margin-bottom:20px;border:1px solid var(--border)}
+.widget-title{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gray);margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.upcoming-fuar{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.upcoming-fuar:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.fuar-mini-date{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:2px;color:var(--red);margin-bottom:4px}
+.fuar-mini-name{font-size:13px;font-weight:500;margin-bottom:2px}
+.fuar-mini-loc{font-size:12px;color:var(--gray)}
+.subscribe-form input{width:100%;background:var(--off-white);border:1px solid var(--border);padding:10px 12px;font-family:'Barlow',sans-serif;font-size:13px;margin-bottom:10px;outline:none}
+.subscribe-form input:focus{border-color:var(--red)}
+.tag-cloud{display:flex;flex-wrap:wrap;gap:6px}
+.tag-pill{background:var(--off-white);border:1px solid var(--border);padding:4px 12px;font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:1px;cursor:pointer;transition:all .2s}
+.tag-pill:hover{background:var(--red);border-color:var(--red);color:#fff}
+
+/* VIDEO SECTION */
+.videos-section{background:var(--black);padding:72px 60px}
+.videos-section .section-eyebrow{color:rgba(255,255,255,0.3)}
+.videos-section .section-eyebrow::before{background:rgba(255,255,255,0.3)}
+.videos-section .section-title{color:#fff;margin-bottom:48px}
+.videos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:16px}
+.video-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);overflow:hidden}
+.video-wrap{position:relative;aspect-ratio:16/9;background:#000;overflow:hidden}
+.video-wrap video,.video-wrap iframe{width:100%;height:100%;object-fit:cover;border:none;display:block}
+.video-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#0d0d0d;flex-direction:column;gap:14px;padding:24px;text-align:center}
+.video-ph .ph-icon{font-size:44px;opacity:.25}
+.video-ph .ph-text{font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:2px;color:rgba(255,255,255,0.25)}
+.video-info{padding:20px 24px 24px}
+.vi-cat{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--red-light);margin-bottom:6px}
+.vi-title{font-family:'Cormorant Garamond',serif;font-size:20px;color:#fff;font-weight:400;margin-bottom:6px}
+.vi-desc{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.6}
+
+@media(max-width:1100px){
+  .blog-layout{grid-template-columns:1fr;padding:48px 24px}
+  .sidebar{position:static}
+  .videos-section{padding:60px 24px}
+  .filter-bar{padding:0 24px}
+  .page-hero-content{padding:0 24px 56px}
+}
+@media(max-width:640px){
+  .post-small{grid-template-columns:1fr}
+  .post-small .ps-img{height:200px}
+  .videos-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="lang-bar">
+  <button class="lang-btn active" data-l="tr" onclick="setLang('tr')">TR</button>
+  <button class="lang-btn" data-l="en" onclick="setLang('en')">EN</button>
+  <button class="lang-btn" data-l="es" onclick="setLang('es')">ES</button>
+</div>
+<nav>
+  <div class="nav-logo">
+    <a href="index.html"><img class="logo-fx" src="images/logo-fx-textile.svg" alt="FX Textile"></a>
+    <div class="logo-div"></div>
+    <a href="index.html"><img class="logo-harput" src="images/logo-harput.svg" alt="Harput Holding"></a>
+  </div>
+  <ul class="nav-links"><li><a href="index.html"><span data-lang="tr" class="active">Hakkımızda</span><span data-lang="en">About Us</span><span data-lang="es">Sobre Nosotros</span></a></li><li><a href="products.html" ><span data-lang="tr" class="active">Ürünler</span><span data-lang="en">Products</span><span data-lang="es">Productos</span></a></li><li><a href="collections.html" ><span data-lang="tr" class="active">Koleksiyonlar</span><span data-lang="en">Collections</span><span data-lang="es">Colecciones</span></a></li><li><a href="sustainability.html" ><span data-lang="tr" class="active">Sürdürülebilirlik</span><span data-lang="en">Sustainability</span><span data-lang="es">Sostenibilidad</span></a></li><li><a href="certifications.html" ><span data-lang="tr" class="active">Sertifikalar</span><span data-lang="en">Certifications</span><span data-lang="es">Certificaciones</span></a></li><li><a href="announcements.html" class="current" ><span data-lang="tr" class="active">Duyurular</span><span data-lang="en">News & Events</span><span data-lang="es">Noticias</span></a></li><li><a href="contact.html" class="nav-cta"><span data-lang="tr" class="active">İletişim</span><span data-lang="en">Contact</span><span data-lang="es">Contacto</span></a></li></ul>
+</nav>
+
+<div class="page-hero">
+  <img src="images/hero-global.jpg" alt="Duyurular">
+  <div class="page-hero-grad"></div>
+  <div class="page-hero-content">
+    <div class="page-tag">
+      <span data-lang="tr" class="active">Duyurular</span>
+      <span data-lang="en">News &amp; Events</span>
+      <span data-lang="es">Noticias y Eventos</span>
+    </div>
+    <h1 class="page-title">
+      <span data-lang="tr" class="active">Haberler,<br><em>fuarlar ve videolar.</em></span>
+      <span data-lang="en">News,<br><em>fairs and videos.</em></span>
+      <span data-lang="es">Noticias,<br><em>ferias y videos.</em></span>
+    </h1>
+  </div>
+</div>
+
+<!-- FİLTRE -->
+<div class="filter-bar">
+  <button class="filter-btn active" onclick="filterPosts('all',this)">
+    <span data-lang="tr" class="active">Tümü</span>
+    <span data-lang="en">All</span>
+    <span data-lang="es">Todo</span>
+  </button>
+  <button class="filter-btn" onclick="filterPosts('fuar',this)">
+    <span data-lang="tr" class="active">Fuarlar</span>
+    <span data-lang="en">Trade Fairs</span>
+    <span data-lang="es">Ferias</span>
+  </button>
+  <button class="filter-btn" onclick="filterPosts('haber',this)">
+    <span data-lang="tr" class="active">Haberler</span>
+    <span data-lang="en">News</span>
+    <span data-lang="es">Noticias</span>
+  </button>
+  <button class="filter-btn" onclick="filterPosts('video',this)">
+    <span data-lang="tr" class="active">Videolar</span>
+    <span data-lang="en">Videos</span>
+    <span data-lang="es">Videos</span>
+  </button>
+</div>
+
+<!-- BLOG LAYOUT -->
+<div class="blog-layout">
+  <div class="posts-list" id="posts-list">
+
+    <!-- POST 1 — FEATURED: Harput Tanıtım Video -->
+    <div class="post-featured" data-cat="video">
+      <div class="post-media">
+        <video autoplay muted loop playsinline>
+          <source src="images/animasyon_harput_1.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="post-body">
+        <div class="post-cat">
+          <span class="post-cat-label">
+            <span data-lang="tr" class="active">Kurumsal Video</span>
+            <span data-lang="en">Corporate Video</span>
+            <span data-lang="es">Video Corporativo</span>
+          </span>
+          <span class="post-date">2025</span>
+        </div>
+        <h2 class="post-title">
+          <span data-lang="tr" class="active">Harput Holding & FX Textile Tanıtım Animasyonu</span>
+          <span data-lang="en">Harput Holding &amp; FX Textile Corporate Animation</span>
+          <span data-lang="es">Animación Corporativa Harput Holding &amp; FX Textile</span>
+        </h2>
+        <p class="post-excerpt">
+          <span data-lang="tr" class="active">Harput Holding'in 65 yıllık üretim birikimini, entegre tesis yapısını ve sürdürülebilirlik yatırımlarını anlatan kurumsal tanıtım animasyonumuzu izleyin. FX Textile olarak moda sektörüne sunduğumuz katma değeri keşfedin.</span>
+          <span data-lang="en">Watch our corporate animation presenting Harput Holding's 65-year production heritage, integrated facility structure and sustainability investments. Discover the value FX Textile brings to the fashion sector.</span>
+          <span data-lang="es">Vea nuestra animación corporativa que presenta el patrimonio productivo de 65 años de Harput Holding, su estructura integrada y sus inversiones en sostenibilidad.</span>
+        </p>
+        <div class="post-meta-row">
+          <span class="post-location">🏭 Bursa, Türkiye</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- POST 2: Fuar — Première Vision Paris (yaklaşan) -->
+    <div class="post-small" data-cat="fuar">
+      <div class="ps-img">
+        <img src="images/hero-global.jpg" alt="Première Vision Paris">
+      </div>
+      <div class="ps-body">
+        <div class="ps-cat">
+          <span data-lang="tr" class="active">🗓 Fuar — Yaklaşan</span>
+          <span data-lang="en">🗓 Trade Fair — Upcoming</span>
+          <span data-lang="es">🗓 Feria — Próximamente</span>
+        </div>
+        <div class="ps-title">Première Vision Paris — Eylül 2025</div>
+        <div class="ps-desc">
+          <span data-lang="tr" class="active">Dünyanın önde gelen kumaş fuarında FX Textile olarak yeni sezon koleksiyonlarımızı sunacağız. Standımızı ziyaret etmek ve numune görmek için bizimle iletişime geçin.</span>
+          <span data-lang="en">At the world's leading fabric fair, FX Textile will present its new season collections. Contact us to visit our stand and see samples.</span>
+          <span data-lang="es">En la principal feria de tejidos del mundo, FX Textile presentará sus nuevas colecciones. Contáctenos para visitar nuestro stand.</span>
+        </div>
+        <div class="ps-date">📍 Paris, Fransa &nbsp;·&nbsp; 14–16 Eylül 2025</div>
+      </div>
+    </div>
+
+    <!-- POST 3: Fuar Video Placeholder -->
+    <div class="post-small" data-cat="fuar video">
+      <div class="ps-img">
+        <div style="width:100%;height:100%;background:#111;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px">
+          <span style="font-size:32px;opacity:.25">▶</span>
+          <span style="font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:2px;color:rgba(255,255,255,.25)">
+            <span data-lang="tr" class="active">VIDEO EKLENECEKv</span>
+            <span data-lang="en">VIDEO TO BE ADDED</span>
+            <span data-lang="es">VIDEO A AÑADIR</span>
+          </span>
+        </div>
+      </div>
+      <div class="ps-body">
+        <div class="ps-cat">
+          <span data-lang="tr" class="active">🎬 Fuar Videosu</span>
+          <span data-lang="en">🎬 Fair Video</span>
+          <span data-lang="es">🎬 Video de Feria</span>
+        </div>
+        <div class="ps-title">
+          <span data-lang="tr" class="active">Fuar Videosu — Yakında</span>
+          <span data-lang="en">Fair Video — Coming Soon</span>
+          <span data-lang="es">Video de Feria — Próximamente</span>
+        </div>
+        <div class="ps-desc">
+          <span data-lang="tr" class="active">Fuar videosu yüklendiğinde burada görüntülenecek. Video dosyasını images/ klasörüne ekleyip bu kısmı güncelleyebilirsiniz.</span>
+          <span data-lang="en">Fair video will appear here once uploaded. Add the video file to the images/ folder and update this section.</span>
+          <span data-lang="es">El video de feria aparecerá aquí una vez subido. Añada el archivo a la carpeta images/ y actualice esta sección.</span>
+        </div>
+        <div class="ps-date" style="color:var(--red-light)">
+          <span data-lang="tr" class="active">Yakında eklenecek</span>
+          <span data-lang="en">Coming soon</span>
+          <span data-lang="es">Próximamente</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- POST 4: Haber — ISO 500 -->
+    <div class="post-small" data-cat="haber">
+      <div class="ps-img">
+        <img src="images/cert-trust.jpg" alt="ISO 500">
+      </div>
+      <div class="ps-body">
+        <div class="ps-cat">
+          <span data-lang="tr" class="active">🏆 Başarı</span>
+          <span data-lang="en">🏆 Achievement</span>
+          <span data-lang="es">🏆 Logro</span>
+        </div>
+        <div class="ps-title">
+          <span data-lang="tr" class="active">Türkiye'nin En Büyük 500 Sanayi Kuruluşu Listesindeyiz</span>
+          <span data-lang="en">We Are Among Turkey's Top 500 Industrial Enterprises</span>
+          <span data-lang="es">Estamos entre las 500 Mayores Empresas Industriales de Turquía</span>
+        </div>
+        <div class="ps-desc">
+          <span data-lang="tr" class="active">Harput Holding, İstanbul Sanayi Odası (İSO) tarafından 2023 yılında Türkiye'nin En Büyük 500 Sanayi Kuruluşu listesine girdi. FX Textile markamız bu güçlü yapının giyim kumaşları kolu olarak faaliyet göstermektedir.</span>
+          <span data-lang="en">Harput Holding was listed among Turkey's Top 500 Industrial Enterprises by the Istanbul Chamber of Industry for 2023. Our FX Textile brand operates as the apparel fabric arm of this strong group.</span>
+          <span data-lang="es">Harput Holding fue listada entre las 500 Mayores Empresas Industriales de Turquía por la Cámara de Industria de Estambul para 2023.</span>
+        </div>
+        <div class="ps-date">2023</div>
+      </div>
+    </div>
+
+    <!-- POST 5: Fuar — Texworld NY -->
+    <div class="post-small" data-cat="fuar">
+      <div class="ps-img">
+        <img src="images/index-intro-weaving.jpg" alt="Texworld">
+      </div>
+      <div class="ps-body">
+        <div class="ps-cat">
+          <span data-lang="tr" class="active">🗓 Fuar — Yaklaşan</span>
+          <span data-lang="en">🗓 Trade Fair — Upcoming</span>
+          <span data-lang="es">🗓 Feria — Próximamente</span>
+        </div>
+        <div class="ps-title">Texworld New York — Ekim 2025</div>
+        <div class="ps-desc">
+          <span data-lang="tr" class="active">Kuzey Amerika'nın en büyük tekstil fuarında geri dönüştürülmüş polyester, organik pamuk ve karışımlı kumaş koleksiyonlarımızı sergileyeceğiz.</span>
+          <span data-lang="en">At North America's largest textile fair we will exhibit our recycled polyester, organic cotton and blended fabric collections.</span>
+          <span data-lang="es">En la mayor feria textil de Norteamérica exhibiremos nuestras colecciones de poliéster reciclado, algodón orgánico y telas mezcladas.</span>
+        </div>
+        <div class="ps-date">📍 New York, ABD &nbsp;·&nbsp; Ekim 2025</div>
+      </div>
+    </div>
+
+    <!-- POST 6: Haber — FX Textile kuruluş -->
+    <div class="post-small" data-cat="haber">
+      <div class="ps-img">
+        <img src="images/index-pillar-recycled.jpg" alt="FX Textile">
+      </div>
+      <div class="ps-body">
+        <div class="ps-cat">
+          <span data-lang="tr" class="active">📢 Haber</span>
+          <span data-lang="en">📢 News</span>
+          <span data-lang="es">📢 Noticia</span>
+        </div>
+        <div class="ps-title">
+          <span data-lang="tr" class="active">FX Textile — Harput Holding'in Giyim Kumaşları Markası</span>
+          <span data-lang="en">FX Textile — Harput Holding's Apparel Fabric Brand</span>
+          <span data-lang="es">FX Textile — Marca de Telas de Harput Holding</span>
+        </div>
+        <div class="ps-desc">
+          <span data-lang="tr" class="active">2023 yılında kurulan FX Textile, Harput Holding'in onlarca yıllık entegre üretim altyapısını moda sektörüne taşıyor. GOTS, GRS, OCS ve RCS sertifikalı kumaşlarıyla küresel markalara hizmet veriyor.</span>
+          <span data-lang="en">Established in 2023, FX Textile brings Harput Holding's decades of integrated production infrastructure to the fashion sector, serving global brands with GOTS, GRS, OCS and RCS certified fabrics.</span>
+          <span data-lang="es">Fundada en 2023, FX Textile lleva la infraestructura de producción integrada de Harput Holding al sector de la moda.</span>
+        </div>
+        <div class="ps-date">2023</div>
+      </div>
+    </div>
+
+  </div><!-- /posts-list -->
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-widget">
+      <div class="widget-title">
+        <span data-lang="tr" class="active">Yaklaşan Fuarlar</span>
+        <span data-lang="en">Upcoming Fairs</span>
+        <span data-lang="es">Próximas Ferias</span>
+      </div>
+      <div class="upcoming-fuar">
+        <div class="fuar-mini-date">14–16 EYLÜL 2025</div>
+        <div class="fuar-mini-name">Première Vision Paris</div>
+        <div class="fuar-mini-loc">📍 Paris, Fransa</div>
+      </div>
+      <div class="upcoming-fuar">
+        <div class="fuar-mini-date">EKİM 2025</div>
+        <div class="fuar-mini-name">Texworld New York</div>
+        <div class="fuar-mini-loc">📍 New York, ABD</div>
+      </div>
+    </div>
+
+    <div class="sidebar-widget">
+      <div class="widget-title">
+        <span data-lang="tr" class="active">Konular</span>
+        <span data-lang="en">Topics</span>
+        <span data-lang="es">Temas</span>
+      </div>
+      <div class="tag-cloud">
+        <span class="tag-pill" onclick="filterPosts('fuar',null)">
+          <span data-lang="tr" class="active">Fuarlar</span>
+          <span data-lang="en">Trade Fairs</span>
+          <span data-lang="es">Ferias</span>
+        </span>
+        <span class="tag-pill" onclick="filterPosts('video',null)">Video</span>
+        <span class="tag-pill" onclick="filterPosts('haber',null)">
+          <span data-lang="tr" class="active">Haberler</span>
+          <span data-lang="en">News</span>
+          <span data-lang="es">Noticias</span>
+        </span>
+        <span class="tag-pill" onclick="filterPosts('all',null)">
+          <span data-lang="tr" class="active">Tümü</span>
+          <span data-lang="en">All</span>
+          <span data-lang="es">Todo</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="sidebar-widget">
+      <div class="widget-title">
+        <span data-lang="tr" class="active">İletişim</span>
+        <span data-lang="en">Contact</span>
+        <span data-lang="es">Contacto</span>
+      </div>
+      <p style="font-size:13px;color:var(--gray);line-height:1.7;margin-bottom:14px">
+        <span data-lang="tr" class="active">Fuarlarda bizi ziyaret etmek veya numune talep etmek için:</span>
+        <span data-lang="en">To visit us at fairs or request samples:</span>
+        <span data-lang="es">Para visitarnos en ferias o pedir muestras:</span>
+      </p>
+      <a href="contact.html" class="btn-primary" style="font-size:12px;display:block;text-align:center">
+        <span data-lang="tr" class="active">Bize Yazın</span>
+        <span data-lang="en">Get in Touch</span>
+        <span data-lang="es">Contáctenos</span>
+      </a>
+    </div>
+  </aside>
+</div>
+
+<!-- VİDEOLAR BÖLÜMÜ -->
+<section class="videos-section">
+  <div class="section-eyebrow">
+    <span data-lang="tr" class="active">Videolar</span>
+    <span data-lang="en">Videos</span>
+    <span data-lang="es">Videos</span>
+  </div>
+  <h2 class="section-title">
+    <span data-lang="tr" class="active">FX Textile'i <em>izleyin.</em></span>
+    <span data-lang="en">Watch <em>FX Textile.</em></span>
+    <span data-lang="es">Vea <em>FX Textile.</em></span>
+  </h2>
+  <div class="videos-grid">
+    <div class="video-card">
+      <div class="video-wrap">
+        <video autoplay muted loop playsinline>
+          <source src="images/animasyon_harput_1.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="video-info">
+        <div class="vi-cat">
+          <span data-lang="tr" class="active">Kurumsal</span>
+          <span data-lang="en">Corporate</span>
+          <span data-lang="es">Corporativo</span>
+        </div>
+        <div class="vi-title">
+          <span data-lang="tr" class="active">Harput Holding Tanıtım</span>
+          <span data-lang="en">Harput Holding Presentation</span>
+          <span data-lang="es">Presentación Harput Holding</span>
+        </div>
+        <div class="vi-desc">
+          <span data-lang="tr" class="active">Kurumsal tanıtım animasyonu — üretim gücü, sürdürülebilirlik, entegre altyapı.</span>
+          <span data-lang="en">Corporate animation — production strength, sustainability, integrated infrastructure.</span>
+          <span data-lang="es">Animación corporativa — fuerza productiva, sostenibilidad, infraestructura integrada.</span>
+        </div>
+      </div>
+    </div>
+    <div class="video-card">
+      <div class="video-wrap">
+        <div class="video-ph">
+          <span class="ph-icon">▶</span>
+          <span class="ph-text">
+            <span data-lang="tr" class="active">FUAR VİDEOSU<br>YAKINDA</span>
+            <span data-lang="en">FAIR VIDEO<br>COMING SOON</span>
+            <span data-lang="es">VIDEO FERIA<br>PRÓXIMAMENTE</span>
+          </span>
+        </div>
+      </div>
+      <div class="video-info">
+        <div class="vi-cat">
+          <span data-lang="tr" class="active">Fuar</span>
+          <span data-lang="en">Trade Fair</span>
+          <span data-lang="es">Feria</span>
+        </div>
+        <div class="vi-title">
+          <span data-lang="tr" class="active">Fuar Videosu</span>
+          <span data-lang="en">Fair Video</span>
+          <span data-lang="es">Video de Feria</span>
+        </div>
+        <div class="vi-desc">
+          <span data-lang="tr" class="active">Video dosyasını images/ klasörüne ekleyip &lt;video src="images/dosya.mp4"&gt; ile güncelleyebilirsiniz. YouTube için iframe embed kullanın.</span>
+          <span data-lang="en">Add video to images/ folder and update with &lt;video src="images/file.mp4"&gt;. Use YouTube iframe embed for YouTube videos.</span>
+          <span data-lang="es">Añada el video a images/ y actualice con &lt;video src="images/archivo.mp4"&gt;.</span>
+        </div>
+      </div>
+    </div>
+    <div class="video-card">
+      <div class="video-wrap">
+        <div class="video-ph">
+          <span class="ph-icon">▶</span>
+          <span class="ph-text">
+            <span data-lang="tr" class="active">KOLEKSİYON VİDEOSU<br>YAKINDA</span>
+            <span data-lang="en">COLLECTION VIDEO<br>COMING SOON</span>
+            <span data-lang="es">VIDEO COLECCIÓN<br>PRÓXIMAMENTE</span>
+          </span>
+        </div>
+      </div>
+      <div class="video-info">
+        <div class="vi-cat">
+          <span data-lang="tr" class="active">Koleksiyon</span>
+          <span data-lang="en">Collection</span>
+          <span data-lang="es">Colección</span>
+        </div>
+        <div class="vi-title">
+          <span data-lang="tr" class="active">Koleksiyon Tanıtımı</span>
+          <span data-lang="en">Collection Showcase</span>
+          <span data-lang="es">Presentación de Colección</span>
+        </div>
+        <div class="vi-desc">
+          <span data-lang="tr" class="active">YouTube linki için: &lt;iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen&gt;&lt;/iframe&gt;</span>
+          <span data-lang="en">For YouTube: &lt;iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen&gt;&lt;/iframe&gt;</span>
+          <span data-lang="es">Para YouTube: &lt;iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen&gt;&lt;/iframe&gt;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img class="foot-fx" src="images/logo-fx-textile.svg" alt="FX Textile">
+      <img class="foot-harput" src="images/logo-harput.svg" alt="Harput Holding">
+      <p><span data-lang="tr" class="active">Premium giyim kumaşları. Harput Holding bünyesinde. Est. 2023, Bursa, Türkiye.</span>
+         <span data-lang="en">Premium apparel fabrics. A division of Harput Holding. Est. 2023, Bursa, Turkey.</span>
+         <span data-lang="es">Telas premium para ropa. División de Harput Holding. Est. 2023, Bursa, Turquía.</span></p>
+    </div>
+    <div class="footer-col">
+      <h5>Kurumsal</h5>
+      <a href="index.html"><span data-lang="tr" class="active">Hakkımızda</span><span data-lang="en">About Us</span><span data-lang="es">Sobre Nosotros</span></a>
+      <a href="sustainability.html"><span data-lang="tr" class="active">Sürdürülebilirlik</span><span data-lang="en">Sustainability</span><span data-lang="es">Sostenibilidad</span></a>
+      <a href="certifications.html"><span data-lang="tr" class="active">Sertifikalar & KVKK</span><span data-lang="en">Certifications & KVKK</span><span data-lang="es">Certificaciones</span></a>
+      <a href="announcements.html"><span data-lang="tr" class="active">Duyurular</span><span data-lang="en">News & Events</span><span data-lang="es">Noticias</span></a>
+    </div>
+    <div class="footer-col">
+      <h5><span data-lang="tr" class="active">Ürünler</span><span data-lang="en">Products</span><span data-lang="es">Productos</span></h5>
+      <a href="products.html"><span data-lang="tr" class="active">Geri Dönüştürülmüş Polyester</span><span data-lang="en">Recycled Polyester</span><span data-lang="es">Poliéster Reciclado</span></a>
+      <a href="products.html"><span data-lang="tr" class="active">Organik Pamuk</span><span data-lang="en">Organic Cotton</span><span data-lang="es">Algodón Orgánico</span></a>
+      <a href="collections.html"><span data-lang="tr" class="active">Koleksiyonlar</span><span data-lang="en">Collections</span><span data-lang="es">Colecciones</span></a>
+    </div>
+    <div class="footer-col">
+      <h5><span data-lang="tr" class="active">İletişim</span><span data-lang="en">Contact</span><span data-lang="es">Contacto</span></h5>
+      <a href="contact.html"><span data-lang="tr" class="active">Mesaj Gönderin</span><span data-lang="en">Send Message</span><span data-lang="es">Enviar Mensaje</span></a>
+      <a href="contact.html" style="color:rgba(255,255,255,0.3);font-size:12px;margin-top:8px;line-height:1.6">Işıktepe OSB Mah.<br>Nilüfer, Bursa, TR</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Efiks Tekstil San. ve Tic. A.Ş. — Harput Holding Bünyesinde</span>
+    <div style="display:flex;gap:16px">
+      <a href="certifications.html#kvkk" style="color:rgba(255,255,255,0.2);font-size:11px;font-family:'Barlow Condensed',sans-serif;text-decoration:none;letter-spacing:1px">KVKK</a>
+      <a href="certifications.html#cerez" style="color:rgba(255,255,255,0.2);font-size:11px;font-family:'Barlow Condensed',sans-serif;text-decoration:none;letter-spacing:1px">Çerez Politikası</a>
+    </div>
+  </div>
+</footer>
+<script>
+function setLang(l){
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.l===l));
+  document.querySelectorAll('[data-lang]').forEach(e=>e.classList.toggle('active',e.getAttribute('data-lang')===l));
+  localStorage.setItem('fxlang',l);document.documentElement.lang=l;
+}
+document.addEventListener('DOMContentLoaded',()=>{
+  const s=localStorage.getItem('fxlang')||'tr';setLang(s);
+});
+</script>
+</body>
+<script>
+function filterPosts(cat, btn) {
+  if (btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+  document.querySelectorAll('#posts-list > [data-cat]').forEach(post => {
+    if (cat === 'all') {
+      post.style.display = '';
+    } else {
+      post.style.display = (post.dataset.cat || '').includes(cat) ? '' : 'none';
+    }
+  });
+}
+</script>
+</body></html>

@@ -30,11 +30,6 @@ nav{position:sticky;top:0;z-index:100;background:rgba(245,242,238,0.97);backdrop
 .nav-links a.current{color:var(--black);border-bottom-color:var(--red)}
 .nav-cta{background:var(--red)!important;color:#fff!important;padding:10px 22px!important;border-bottom:none!important;letter-spacing:1.5px!important}
 .nav-cta:hover{background:var(--red-dark)!important}
-.nav-toggle{display:none;width:42px;height:42px;border:1px solid var(--border);background:transparent;align-items:center;justify-content:center;flex-direction:column;gap:5px;cursor:pointer;margin-left:16px}
-.nav-toggle span{display:block;width:18px;height:2px;background:var(--black);transition:transform .2s,opacity .2s}
-nav.menu-open .nav-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-nav.menu-open .nav-toggle span:nth-child(2){opacity:0}
-nav.menu-open .nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 /* LANG SWITCHING */
 [data-lang]{display:none}
 [data-lang].active{display:inline}
@@ -67,17 +62,7 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
   .footer-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:600px){
-  nav{height:68px}
-  .nav-logo{gap:12px;min-width:0}
-  .logo-fx{height:28px}
-  .logo-harput{height:18px}
-  .nav-toggle{display:flex;flex-shrink:0}
-  .nav-links{display:none;position:absolute;top:68px;left:0;right:0;background:rgba(245,242,238,0.99);border-bottom:1px solid var(--border);box-shadow:0 18px 34px rgba(0,0,0,0.12);padding:10px 24px 22px;flex-direction:column;align-items:stretch;gap:0}
-  nav.menu-open .nav-links{display:flex}
-  .nav-links li{border-bottom:1px solid var(--border)}
-  .nav-links li:last-child{border-bottom:none;padding-top:12px}
-  .nav-links a{display:block;padding:15px 0;font-size:13px;letter-spacing:1.6px;border-bottom:none}
-  .nav-cta{text-align:center;padding:13px 18px!important}
+  .nav-links{display:none}
   .footer-grid{grid-template-columns:1fr}
 }
 
@@ -127,49 +112,49 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
 </head>
 <body>
 
+
 <div class="lang-bar">
-  <button class="lang-btn active" data-l="en" onclick="setLang('en')">EN</button>
-  <button class="lang-btn" data-l="tr" onclick="setLang('tr')">TR</button>
+  <button class="lang-btn active" data-l="tr" onclick="setLang('tr')">TR</button>
+  <button class="lang-btn" data-l="en" onclick="setLang('en')">EN</button>
   <button class="lang-btn" data-l="es" onclick="setLang('es')">ES</button>
 </div>
 <nav>
   <div class="nav-logo">
-    <a href="index.html"><img data-img-key="logo-fx-textile" class="logo-fx" src="images/logo-fx-textile.svg" alt="FX Textile"></a>
+    <a href="index.html"><img class="logo-fx" src="images/logo-fx-textile.svg" alt="FX Textile"></a>
     <div class="logo-div"></div>
-    <a href="index.html"><img data-img-key="logo-harput" class="logo-harput" src="images/logo-harput.svg" alt="Harput Holding"></a>
+    <a href="index.html"><img class="logo-harput" src="images/logo-harput.svg" alt="Harput Holding"></a>
   </div>
-  <ul class="nav-links"><li><a href="index.html" ><span data-lang="en" class="active" data-edit-key="global_1">About</span><span data-lang="tr">Hakkımızda</span><span data-lang="es">Nosotros</span></a></li><li><a href="products.html" ><span data-lang="en" class="active" data-edit-key="global_2">Products</span><span data-lang="tr">Ürünler</span><span data-lang="es">Productos</span></a></li><li><a href="sustainability.html" ><span data-lang="en" class="active" data-edit-key="global_3">Sustainability</span><span data-lang="tr">Sürdürülebilirlik</span><span data-lang="es">Sostenibilidad</span></a></li><li><a href="global.html" class="current"><span data-lang="en" class="active" data-edit-key="global_4">Global</span><span data-lang="tr">Global</span><span data-lang="es">Global</span></a></li><li><a href="certifications.html" ><span data-lang="en" class="active" data-edit-key="global_5">Certifications</span><span data-lang="tr">Sertifikalar</span><span data-lang="es">Certificaciones</span></a></li><li><a href="contact.html" class="nav-cta"><span data-lang="en" class="active" data-edit-key="global_6">Contact</span><span data-lang="tr">İletişim</span><span data-lang="es">Contacto</span></a></li></ul>
-  <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" onclick="toggleMobileMenu(this)"><span></span><span></span><span></span></button>
+  <ul class="nav-links"><li><a href="index.html" ><span data-lang="tr" class="active">Hakkımızda</span><span data-lang="en">About Us</span><span data-lang="es">Sobre Nosotros</span></a></li><li><a href="products.html" ><span data-lang="tr" class="active">Ürünler</span><span data-lang="en">Products</span><span data-lang="es">Productos</span></a></li><li><a href="collections.html" ><span data-lang="tr" class="active">Koleksiyonlar</span><span data-lang="en">Collections</span><span data-lang="es">Colecciones</span></a></li><li><a href="sustainability.html" ><span data-lang="tr" class="active">Sürdürülebilirlik</span><span data-lang="en">Sustainability</span><span data-lang="es">Sostenibilidad</span></a></li><li><a href="certifications.html" ><span data-lang="tr" class="active">Sertifikalar</span><span data-lang="en">Certifications</span><span data-lang="es">Certificaciones</span></a></li><li><a href="announcements.html" ><span data-lang="tr" class="active">Duyurular</span><span data-lang="en">News & Events</span><span data-lang="es">Noticias</span></a></li><li><a href="contact.html" class="nav-cta"><span data-lang="tr" class="active">İletişim</span><span data-lang="en">Contact</span><span data-lang="es">Contacto</span></a></li></ul>
 </nav>
 
 <div class="page-hero">
-  <img data-img-key="hero-global" src="images/hero-global.jpg" alt="Global" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.2">
+  <img src="images/hero-global.jpg" alt="Global" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.2">
   <div class="page-hero-grad"></div>
   <div class="page-hero-content">
-    <div class="page-tag"><span data-lang="en" class="active" data-edit-key="global_7">Global Presence</span><span data-lang="tr">Küresel Varlık</span><span data-lang="es">Presencia Global</span></div>
-    <h1 class="page-title"><span data-lang="en" class="active" data-edit-key="global_8">5 Continents.<br><em>70 Countries.</em></span><span data-lang="tr">5 Kıta.<br><em>70 Ülke.</em></span><span data-lang="es">5 Continentes.<br><em>70 Países.</em></span></h1>
+    <div class="page-tag"><span data-lang="en" class="active">Global Presence</span><span data-lang="tr">Küresel Varlık</span><span data-lang="es">Presencia Global</span></div>
+    <h1 class="page-title"><span data-lang="en" class="active">5 Continents.<br><em>70 Countries.</em></span><span data-lang="tr">5 Kıta.<br><em>70 Ülke.</em></span><span data-lang="es">5 Continentes.<br><em>70 Países.</em></span></h1>
   </div>
 </div>
 
 <div class="global-intro">
   <div class="global-intro-text">
-    <div class="section-eyebrow"><span data-lang="en" class="active" data-edit-key="global_9">Worldwide Reach</span><span data-lang="tr">Dünya Genelinde Erişim</span><span data-lang="es">Alcance Mundial</span></div>
-    <h2 class="section-title"><span data-lang="en" class="active" data-edit-key="global_10">Harput Holding exports<br>to <em>9 regions.</em></span><span data-lang="tr">Harput Holding <em>9 bölgeye</em><br>ihracat yapar.</span><span data-lang="es">Harput Holding exporta<br>a <em>9 regiones.</em></span></h2>
-    <p class="section-body"><span data-lang="en" class="active" data-edit-key="global_11">As the apparel fabric brand of Harput Holding, FX Textile taps into the group's established global distribution network — reaching garment makers and brands across 70 countries on 5 continents.</span><span data-lang="tr">Harput Holding'in giyim kumaşları markası olarak FX Textile, grubun küresel dağıtım ağından yararlanır — 5 kıtada 70 ülkedeki konfeksiyoncilere ve markalara ulaşır.</span><span data-lang="es">Como marca de telas de Harput Holding, FX Textile aprovecha su red de distribución global, llegando a fabricantes de prendas en 70 países en 5 continentes.</span></p>
+    <div class="section-eyebrow"><span data-lang="en" class="active">Worldwide Reach</span><span data-lang="tr">Dünya Genelinde Erişim</span><span data-lang="es">Alcance Mundial</span></div>
+    <h2 class="section-title"><span data-lang="en" class="active">Harput Holding exports<br>to <em>9 regions.</em></span><span data-lang="tr">Harput Holding <em>9 bölgeye</em><br>ihracat yapar.</span><span data-lang="es">Harput Holding exporta<br>a <em>9 regiones.</em></span></h2>
+    <p class="section-body"><span data-lang="en" class="active">As the apparel fabric brand of Harput Holding, FX Textile taps into the group's established global distribution network — reaching garment makers and brands across 70 countries on 5 continents.</span><span data-lang="tr">Harput Holding'in giyim kumaşları markası olarak FX Textile, grubun küresel dağıtım ağından yararlanır — 5 kıtada 70 ülkedeki konfeksiyoncilere ve markalara ulaşır.</span><span data-lang="es">Como marca de telas de Harput Holding, FX Textile aprovecha su red de distribución global, llegando a fabricantes de prendas en 70 países en 5 continentes.</span></p>
   </div>
   <div class="global-stats">
-    <div class="gs"><span class="gs-num">70</span><span class="gs-label"><span data-lang="en" class="active" data-edit-key="global_12">Countries</span><span data-lang="tr">Ülke</span><span data-lang="es">Países</span></span></div>
-    <div class="gs"><span class="gs-num">5</span><span class="gs-label"><span data-lang="en" class="active" data-edit-key="global_13">Continents</span><span data-lang="tr">Kıta</span><span data-lang="es">Continentes</span></span></div>
-    <div class="gs"><span class="gs-num">9</span><span class="gs-label"><span data-lang="en" class="active" data-edit-key="global_14">Regions</span><span data-lang="tr">Bölge</span><span data-lang="es">Regiones</span></span></div>
-    <div class="gs"><span class="gs-num">25%</span><span class="gs-label"><span data-lang="en" class="active" data-edit-key="global_15">of Sales Exported</span><span data-lang="tr">Satışların İhracatı</span><span data-lang="es">de Ventas Exportadas</span></span></div>
+    <div class="gs"><span class="gs-num">70</span><span class="gs-label"><span data-lang="en" class="active">Countries</span><span data-lang="tr">Ülke</span><span data-lang="es">Países</span></span></div>
+    <div class="gs"><span class="gs-num">5</span><span class="gs-label"><span data-lang="en" class="active">Continents</span><span data-lang="tr">Kıta</span><span data-lang="es">Continentes</span></span></div>
+    <div class="gs"><span class="gs-num">9</span><span class="gs-label"><span data-lang="en" class="active">Regions</span><span data-lang="tr">Bölge</span><span data-lang="es">Regiones</span></span></div>
+    <div class="gs"><span class="gs-num">25%</span><span class="gs-label"><span data-lang="en" class="active">of Sales Exported</span><span data-lang="tr">Satışların İhracatı</span><span data-lang="es">de Ventas Exportadas</span></span></div>
   </div>
 </div>
 
 <!-- WORLD MAP — Replace image/images/world-map.jpg with your actual map image -->
 <section class="map-section">
-  <div class="section-eyebrow"><span data-lang="en" class="active" data-edit-key="global_16">Export Map</span><span data-lang="tr">İhracat Haritası</span><span data-lang="es">Mapa de Exportación</span></div>
+  <div class="section-eyebrow"><span data-lang="en" class="active">Export Map</span><span data-lang="tr">İhracat Haritası</span><span data-lang="es">Mapa de Exportación</span></div>
   <div class="map-wrap">
-    <img data-img-key="world-map" src="images/world-map.jpg" alt="World Export Map"
+    <img src="images/world-map.jpg" alt="World Export Map"
          style="width:100%;display:block;min-height:420px;object-fit:cover">
     <!-- 
       ╔══════════════════════════════════════════════════════════════════╗
@@ -185,17 +170,17 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
 </section>
 
 <section class="regions-section">
-  <div class="section-eyebrow"><span data-lang="en" class="active" data-edit-key="global_17">9 Export Regions</span><span data-lang="tr">9 İhracat Bölgesi</span><span data-lang="es">9 Regiones de Exportación</span></div>
+  <div class="section-eyebrow"><span data-lang="en" class="active">9 Export Regions</span><span data-lang="tr">9 İhracat Bölgesi</span><span data-lang="es">9 Regiones de Exportación</span></div>
   <div class="regions-grid">
-    <div class="region-card"><div class="region-num">01</div><div class="region-name"><span data-lang="en" class="active" data-edit-key="global_18">European Union</span><span data-lang="tr">Avrupa Birliği</span><span data-lang="es">Unión Europea</span></div><p class="region-desc"><span data-lang="en" class="active" data-edit-key="global_19">Primary export market. Serving fashion brands and apparel manufacturers across all EU member states.</span><span data-lang="tr">Birincil ihracat pazarı. Tüm AB üye devletlerindeki moda markalarına ve giyim üreticilerine hizmet vermektedir.</span><span data-lang="es">Mercado de exportación principal. Marcas de moda y fabricantes en todos los estados miembros de la UE.</span></p></div>
-    <div class="region-card"><div class="region-num">02</div><div class="region-name"><span data-lang="en" class="active" data-edit-key="global_20">Non-EU Europe</span><span data-lang="tr">AB Dışı Avrupa</span><span data-lang="es">Europa no-UE</span></div><p class="region-desc"><span data-lang="en" class="active" data-edit-key="global_21">UK, Switzerland, Norway and other non-EU European markets. Strong fast-fashion and mid-market brand relationships.</span><span data-lang="tr">İngiltere, İsviçre, Norveç ve diğer AB dışı Avrupa pazarları.</span><span data-lang="es">UK, Suiza, Noruega y otros mercados europeos no-UE.</span></p></div>
-    <div class="region-card"><div class="region-num">03</div><div class="region-name"><span data-lang="en" class="active" data-edit-key="global_22">North America</span><span data-lang="tr">Kuzey Amerika</span><span data-lang="es">Norteamérica</span></div><p class="region-desc"><span data-lang="en" class="active" data-edit-key="global_23">USA and Canada. Growing demand for certified sustainable apparel fabrics from sustainable fashion brands.</span><span data-lang="tr">ABD ve Kanada. Sürdürülebilir moda markalarından sertifikalı kumaşlara artan talep.</span><span data-lang="es">EE.UU. y Canadá. Creciente demanda de telas certificadas sostenibles.</span></p></div>
-    <div class="region-card"><div class="region-num">04</div><div class="region-name"><span data-lang="en" class="active" data-edit-key="global_24">Middle East</span><span data-lang="tr">Orta Doğu</span><span data-lang="es">Oriente Medio</span></div><p class="region-desc"><span data-lang="en" class="active" data-edit-key="global_25">GCC countries, Jordan, Egypt and Lebanon. Strong historical commercial ties and growing fashion retail.</span><span data-lang="tr">Körfez İşbirliği Konseyi ülkeleri, Ürdün, Mısır ve Lübnan.</span><span data-lang="es">Países del CCG, Jordania, Egipto y Líbano.</span></p></div>
-    <div class="region-card"><div class="region-num">05</div><div class="region-name"><span data-lang="en" class="active" data-edit-key="global_26">Africa</span><span data-lang="tr">Afrika</span><span data-lang="es">África</span></div><p class="region-desc"><span data-lang="en" class="active" data-edit-key="global_27">Sub-Saharan and North Africa. Expanding market with growing garment manufacturing in Ethiopia, Morocco and Egypt.</span><span data-lang="tr">Sahra Altı ve Kuzey Afrika. Etiyopya, Fas ve Mısır'da büyüyen konfeksiyon üretim tabanıyla genişleyen pazar.</span><span data-lang="es">África subsahariana y del norte. Mercado en expansión con base de fabricación de prendas en Etiopía, Marruecos y Egipto.</span></p></div>
-    <div class="region-card"><div class="region-num">06</div><div class="region-name"><span data-lang="en" class="active" data-edit-key="global_28">Turkic Republics</span><span data-lang="tr">Türk Cumhuriyetleri</span><span data-lang="es">Repúblicas Túrquicas</span></div><p class="region-desc"><span data-lang="en" class="active" data-edit-key="global_29">Kazakhstan, Uzbekistan, Azerbaijan, Turkmenistan and Kyrgyzstan. Shared cultural heritage driving strong trade.</span><span data-lang="tr">Kazakistan, Özbekistan, Azerbaycan, Türkmenistan ve Kırgızistan.</span><span data-lang="es">Kazajistán, Uzbekistán, Azerbaiyán, Turkmenistán y Kirguistán.</span></p></div>
-    <div class="region-card"><div class="region-num">07</div><div class="region-name"><span data-lang="en" class="active" data-edit-key="global_30">CIS Countries</span><span data-lang="tr">BDT Ülkeleri</span><span data-lang="es">Países CEI</span></div><p class="region-desc"><span data-lang="en" class="active" data-edit-key="global_31">Russia, Ukraine, Belarus and other CIS members. Established wholesale and distribution relationships.</span><span data-lang="tr">Rusya, Ukrayna, Belarus ve diğer BDT üyeleri.</span><span data-lang="es">Rusia, Ucrania, Bielorrusia y otros miembros de la CEI.</span></p></div>
-    <div class="region-card"><div class="region-num">08</div><div class="region-name"><span data-lang="en" class="active" data-edit-key="global_32">Mid / South America</span><span data-lang="tr">Orta / Güney Amerika</span><span data-lang="es">Centro / Sudamérica</span></div><p class="region-desc"><span data-lang="en" class="active" data-edit-key="global_33">Brazil, Mexico, Colombia and beyond. Growing sustainable fashion movement driving certified fabric demand.</span><span data-lang="tr">Brezilya, Meksika, Kolombiya ve ötesi. Büyüyen sürdürülebilir moda hareketi.</span><span data-lang="es">Brasil, México, Colombia y más. El creciente movimiento de moda sostenible impulsa la demanda.</span></p></div>
-    <div class="region-card"><div class="region-num">09</div><div class="region-name"><span data-lang="en" class="active" data-edit-key="global_34">Asia — Far East</span><span data-lang="tr">Asya — Uzak Doğu</span><span data-lang="es">Asia — Lejano Oriente</span></div><p class="region-desc"><span data-lang="en" class="active" data-edit-key="global_35">China, South Korea, Japan, Bangladesh, Vietnam. Premium certified European fabrics for Asian garment exporters.</span><span data-lang="tr">Çin, Güney Kore, Japonya, Bangladeş, Vietnam. Asyalı konfeksiyon ihracatçıları için Avrupa yapımı sertifikalı kumaşlar.</span><span data-lang="es">China, Corea del Sur, Japón, Bangladesh, Vietnam. Telas europeas certificadas para exportadores asiáticos.</span></p></div>
+    <div class="region-card"><div class="region-num">01</div><div class="region-name"><span data-lang="en" class="active">European Union</span><span data-lang="tr">Avrupa Birliği</span><span data-lang="es">Unión Europea</span></div><p class="region-desc"><span data-lang="en" class="active">Primary export market. Serving fashion brands and apparel manufacturers across all EU member states.</span><span data-lang="tr">Birincil ihracat pazarı. Tüm AB üye devletlerindeki moda markalarına ve giyim üreticilerine hizmet vermektedir.</span><span data-lang="es">Mercado de exportación principal. Marcas de moda y fabricantes en todos los estados miembros de la UE.</span></p></div>
+    <div class="region-card"><div class="region-num">02</div><div class="region-name"><span data-lang="en" class="active">Non-EU Europe</span><span data-lang="tr">AB Dışı Avrupa</span><span data-lang="es">Europa no-UE</span></div><p class="region-desc"><span data-lang="en" class="active">UK, Switzerland, Norway and other non-EU European markets. Strong fast-fashion and mid-market brand relationships.</span><span data-lang="tr">İngiltere, İsviçre, Norveç ve diğer AB dışı Avrupa pazarları.</span><span data-lang="es">UK, Suiza, Noruega y otros mercados europeos no-UE.</span></p></div>
+    <div class="region-card"><div class="region-num">03</div><div class="region-name"><span data-lang="en" class="active">North America</span><span data-lang="tr">Kuzey Amerika</span><span data-lang="es">Norteamérica</span></div><p class="region-desc"><span data-lang="en" class="active">USA and Canada. Growing demand for certified sustainable apparel fabrics from sustainable fashion brands.</span><span data-lang="tr">ABD ve Kanada. Sürdürülebilir moda markalarından sertifikalı kumaşlara artan talep.</span><span data-lang="es">EE.UU. y Canadá. Creciente demanda de telas certificadas sostenibles.</span></p></div>
+    <div class="region-card"><div class="region-num">04</div><div class="region-name"><span data-lang="en" class="active">Middle East</span><span data-lang="tr">Orta Doğu</span><span data-lang="es">Oriente Medio</span></div><p class="region-desc"><span data-lang="en" class="active">GCC countries, Jordan, Egypt and Lebanon. Strong historical commercial ties and growing fashion retail.</span><span data-lang="tr">Körfez İşbirliği Konseyi ülkeleri, Ürdün, Mısır ve Lübnan.</span><span data-lang="es">Países del CCG, Jordania, Egipto y Líbano.</span></p></div>
+    <div class="region-card"><div class="region-num">05</div><div class="region-name"><span data-lang="en" class="active">Africa</span><span data-lang="tr">Afrika</span><span data-lang="es">África</span></div><p class="region-desc"><span data-lang="en" class="active">Sub-Saharan and North Africa. Expanding market with growing garment manufacturing in Ethiopia, Morocco and Egypt.</span><span data-lang="tr">Sahra Altı ve Kuzey Afrika. Etiyopya, Fas ve Mısır'da büyüyen konfeksiyon üretim tabanıyla genişleyen pazar.</span><span data-lang="es">África subsahariana y del norte. Mercado en expansión con base de fabricación de prendas en Etiopía, Marruecos y Egipto.</span></p></div>
+    <div class="region-card"><div class="region-num">06</div><div class="region-name"><span data-lang="en" class="active">Turkic Republics</span><span data-lang="tr">Türk Cumhuriyetleri</span><span data-lang="es">Repúblicas Túrquicas</span></div><p class="region-desc"><span data-lang="en" class="active">Kazakhstan, Uzbekistan, Azerbaijan, Turkmenistan and Kyrgyzstan. Shared cultural heritage driving strong trade.</span><span data-lang="tr">Kazakistan, Özbekistan, Azerbaycan, Türkmenistan ve Kırgızistan.</span><span data-lang="es">Kazajistán, Uzbekistán, Azerbaiyán, Turkmenistán y Kirguistán.</span></p></div>
+    <div class="region-card"><div class="region-num">07</div><div class="region-name"><span data-lang="en" class="active">CIS Countries</span><span data-lang="tr">BDT Ülkeleri</span><span data-lang="es">Países CEI</span></div><p class="region-desc"><span data-lang="en" class="active">Russia, Ukraine, Belarus and other CIS members. Established wholesale and distribution relationships.</span><span data-lang="tr">Rusya, Ukrayna, Belarus ve diğer BDT üyeleri.</span><span data-lang="es">Rusia, Ucrania, Bielorrusia y otros miembros de la CEI.</span></p></div>
+    <div class="region-card"><div class="region-num">08</div><div class="region-name"><span data-lang="en" class="active">Mid / South America</span><span data-lang="tr">Orta / Güney Amerika</span><span data-lang="es">Centro / Sudamérica</span></div><p class="region-desc"><span data-lang="en" class="active">Brazil, Mexico, Colombia and beyond. Growing sustainable fashion movement driving certified fabric demand.</span><span data-lang="tr">Brezilya, Meksika, Kolombiya ve ötesi. Büyüyen sürdürülebilir moda hareketi.</span><span data-lang="es">Brasil, México, Colombia y más. El creciente movimiento de moda sostenible impulsa la demanda.</span></p></div>
+    <div class="region-card"><div class="region-num">09</div><div class="region-name"><span data-lang="en" class="active">Asia — Far East</span><span data-lang="tr">Asya — Uzak Doğu</span><span data-lang="es">Asia — Lejano Oriente</span></div><p class="region-desc"><span data-lang="en" class="active">China, South Korea, Japan, Bangladesh, Vietnam. Premium certified European fabrics for Asian garment exporters.</span><span data-lang="tr">Çin, Güney Kore, Japonya, Bangladeş, Vietnam. Asyalı konfeksiyon ihracatçıları için Avrupa yapımı sertifikalı kumaşlar.</span><span data-lang="es">China, Corea del Sur, Japón, Bangladesh, Vietnam. Telas europeas certificadas para exportadores asiáticos.</span></p></div>
   </div>
 </section>
 
@@ -203,27 +188,27 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
-      <img data-img-key="logo-fx-textile" class="foot-fx" src="images/logo-fx-textile.svg" alt="FX Textile">
-      <img data-img-key="logo-harput" class="foot-harput" src="images/logo-harput.svg" alt="Harput Holding">
-      <p><span data-lang="en" class="active" data-edit-key="global_36">Premium apparel fabrics. A division of Harput Holding. Est. 2023, Bursa, Turkey.</span>
+      <img class="foot-fx" src="images/logo-fx-textile.svg" alt="FX Textile">
+      <img class="foot-harput" src="images/logo-harput.svg" alt="Harput Holding">
+      <p><span data-lang="en" class="active">Premium apparel fabrics. A division of Harput Holding. Est. 2023, Bursa, Turkey.</span>
          <span data-lang="tr">Premium giyim kumaşları. Harput Holding bünyesinde. 2023, Bursa, Türkiye.</span>
          <span data-lang="es">Telas premium para ropa. División de Harput Holding. Est. 2023, Bursa, Turquía.</span></p>
     </div>
     <div class="footer-col">
-      <h5><span data-lang="en" class="active" data-edit-key="global_37">Company</span><span data-lang="tr">Şirket</span><span data-lang="es">Empresa</span></h5>
-      <a href="index.html"><span data-lang="en" class="active" data-edit-key="global_38">About Us</span><span data-lang="tr">Hakkımızda</span><span data-lang="es">Nosotros</span></a>
-      <a href="global.html"><span data-lang="en" class="active" data-edit-key="global_39">Global Presence</span><span data-lang="tr">Küresel Varlık</span><span data-lang="es">Presencia Global</span></a>
-      <a href="certifications.html"><span data-lang="en" class="active" data-edit-key="global_40">Certifications</span><span data-lang="tr">Sertifikalar</span><span data-lang="es">Certificaciones</span></a>
+      <h5><span data-lang="en" class="active">Company</span><span data-lang="tr">Şirket</span><span data-lang="es">Empresa</span></h5>
+      <a href="index.html"><span data-lang="en" class="active">About Us</span><span data-lang="tr">Hakkımızda</span><span data-lang="es">Nosotros</span></a>
+      <a href="global.html"><span data-lang="en" class="active">Global Presence</span><span data-lang="tr">Küresel Varlık</span><span data-lang="es">Presencia Global</span></a>
+      <a href="certifications.html"><span data-lang="en" class="active">Certifications</span><span data-lang="tr">Sertifikalar</span><span data-lang="es">Certificaciones</span></a>
     </div>
     <div class="footer-col">
-      <h5><span data-lang="en" class="active" data-edit-key="global_41">Products</span><span data-lang="tr">Ürünler</span><span data-lang="es">Productos</span></h5>
-      <a href="products.html"><span data-lang="en" class="active" data-edit-key="global_42">Recycled Polyester</span><span data-lang="tr">Geri Dön. Polyester</span><span data-lang="es">Poliéster Reciclado</span></a>
-      <a href="products.html"><span data-lang="en" class="active" data-edit-key="global_43">Organic Cotton</span><span data-lang="tr">Organik Pamuk</span><span data-lang="es">Algodón Orgánico</span></a>
-      <a href="sustainability.html"><span data-lang="en" class="active" data-edit-key="global_44">Sustainability</span><span data-lang="tr">Sürdürülebilirlik</span><span data-lang="es">Sostenibilidad</span></a>
+      <h5><span data-lang="en" class="active">Products</span><span data-lang="tr">Ürünler</span><span data-lang="es">Productos</span></h5>
+      <a href="products.html"><span data-lang="en" class="active">Recycled Polyester</span><span data-lang="tr">Geri Dön. Polyester</span><span data-lang="es">Poliéster Reciclado</span></a>
+      <a href="products.html"><span data-lang="en" class="active">Organic Cotton</span><span data-lang="tr">Organik Pamuk</span><span data-lang="es">Algodón Orgánico</span></a>
+      <a href="sustainability.html"><span data-lang="en" class="active">Sustainability</span><span data-lang="tr">Sürdürülebilirlik</span><span data-lang="es">Sostenibilidad</span></a>
     </div>
     <div class="footer-col">
-      <h5><span data-lang="en" class="active" data-edit-key="global_45">Contact</span><span data-lang="tr">İletişim</span><span data-lang="es">Contacto</span></h5>
-      <a href="contact.html"><span data-lang="en" class="active" data-edit-key="global_46">Send Message</span><span data-lang="tr">Mesaj Gönder</span><span data-lang="es">Enviar Mensaje</span></a>
+      <h5><span data-lang="en" class="active">Contact</span><span data-lang="tr">İletişim</span><span data-lang="es">Contacto</span></h5>
+      <a href="contact.html"><span data-lang="en" class="active">Send Message</span><span data-lang="tr">Mesaj Gönder</span><span data-lang="es">Enviar Mensaje</span></a>
       <a href="contact.html" style="color:rgba(255,255,255,0.25);font-size:12px;margin-top:8px">Işıktepe OSB Mah.<br>Nilüfer, Bursa, TR</a>
     </div>
   </div>
@@ -234,10 +219,6 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
 </footer>
 <script>
 function setLang(l){document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.l===l));document.querySelectorAll('[data-lang]').forEach(e=>e.classList.toggle('active',e.getAttribute('data-lang')===l));localStorage.setItem('fxlang',l);document.documentElement.lang=l;}
-document.addEventListener('DOMContentLoaded',()=>{const s=localStorage.getItem('fxlang')||'en';setLang(s);document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{const n=document.querySelector('nav');const b=document.querySelector('.nav-toggle');if(n&&b){n.classList.remove('menu-open');b.setAttribute('aria-expanded','false');}}));});
-function toggleMobileMenu(btn){const nav=btn.closest('nav');const open=!nav.classList.contains('menu-open');nav.classList.toggle('menu-open',open);btn.setAttribute('aria-expanded',String(open));}
+document.addEventListener('DOMContentLoaded',()=>{const s=localStorage.getItem('fxlang')||'en';setLang(s);});
 </script>
-<script src="data.js"></script>
-<script src="content-loader.js"></script>
 </body></html>
-

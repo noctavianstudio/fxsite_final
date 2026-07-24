@@ -20,22 +20,17 @@ body{font-family:'Barlow',sans-serif;background:#f5f2ee;color:#1a1a1a;overflow-x
 .lang-btn:hover,.lang-btn.active{color:#fff}
 .lang-btn+.lang-btn{border-left:1px solid #333}
 /* NAV */
-nav{position:sticky;top:0;z-index:100;background:rgba(245,242,238,0.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:0 60px;display:flex;align-items:center;justify-content:space-between;height:76px}
+nav{position:sticky;top:0;z-index:100;background:rgba(245,242,238,0.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:0 60px;display:flex;align-items:center;justify-content:space-between;height:88px}
 .nav-logo{display:flex;align-items:center;gap:18px}
-.logo-fx{height:34px;display:block;mix-blend-mode:multiply}
+.logo-fx{height:52px;display:block;mix-blend-mode:multiply}
 .logo-div{width:1px;height:26px;background:var(--gray-light)}
-.logo-harput{height:22px;display:block;mix-blend-mode:multiply;opacity:0.6}
+.logo-harput{height:38px;display:block;mix-blend-mode:multiply;opacity:0.6}
 .nav-links{display:flex;gap:32px;list-style:none;align-items:center}
 .nav-links a{text-decoration:none;color:var(--gray);font-size:11px;letter-spacing:2px;font-weight:500;text-transform:uppercase;transition:color .2s;font-family:'Barlow Condensed',sans-serif;padding:4px 0;border-bottom:2px solid transparent}
 .nav-links a:hover{color:var(--red)}
 .nav-links a.current{color:var(--black);border-bottom-color:var(--red)}
 .nav-cta{background:var(--red)!important;color:#fff!important;padding:10px 22px!important;border-bottom:none!important;letter-spacing:1.5px!important}
 .nav-cta:hover{background:var(--red-dark)!important}
-.nav-toggle{display:none;width:42px;height:42px;border:1px solid var(--border);background:transparent;align-items:center;justify-content:center;flex-direction:column;gap:5px;cursor:pointer;margin-left:16px}
-.nav-toggle span{display:block;width:18px;height:2px;background:var(--black);transition:transform .2s,opacity .2s}
-nav.menu-open .nav-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-nav.menu-open .nav-toggle span:nth-child(2){opacity:0}
-nav.menu-open .nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 /* LANG SWITCHING */
 [data-lang]{display:none}
 [data-lang].active{display:inline}
@@ -68,17 +63,7 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
   .footer-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:600px){
-  nav{height:68px}
-  .nav-logo{gap:12px;min-width:0}
-  .logo-fx{height:28px}
-  .logo-harput{height:18px}
-  .nav-toggle{display:flex;flex-shrink:0}
-  .nav-links{display:none;position:absolute;top:68px;left:0;right:0;background:rgba(245,242,238,0.99);border-bottom:1px solid var(--border);box-shadow:0 18px 34px rgba(0,0,0,0.12);padding:10px 24px 22px;flex-direction:column;align-items:stretch;gap:0}
-  nav.menu-open .nav-links{display:flex}
-  .nav-links li{border-bottom:1px solid var(--border)}
-  .nav-links li:last-child{border-bottom:none;padding-top:12px}
-  .nav-links a{display:block;padding:15px 0;font-size:13px;letter-spacing:1.6px;border-bottom:none}
-  .nav-cta{text-align:center;padding:13px 18px!important}
+  .nav-links{display:none}
   .footer-grid{grid-template-columns:1fr}
 }
 
@@ -147,28 +132,28 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
 </head>
 <body>
 
+
 <div class="lang-bar">
-  <button class="lang-btn active" data-l="en" onclick="setLang('en')">EN</button>
-  <button class="lang-btn" data-l="tr" onclick="setLang('tr')">TR</button>
+  <button class="lang-btn active" data-l="tr" onclick="setLang('tr')">TR</button>
+  <button class="lang-btn" data-l="en" onclick="setLang('en')">EN</button>
   <button class="lang-btn" data-l="es" onclick="setLang('es')">ES</button>
 </div>
 <nav>
   <div class="nav-logo">
-    <a href="index.html"><img data-img-key="logo-fx-textile" class="logo-fx" src="images/logo-fx-textile.svg" alt="FX Textile"></a>
+    <a href="index.html"><img class="logo-fx" src="images/logo-fx-textile.svg" alt="FX Textile"></a>
     <div class="logo-div"></div>
-    <a href="index.html"><img data-img-key="logo-harput" class="logo-harput" src="images/logo-harput.svg" alt="Harput Holding"></a>
+    <a href="index.html"><img class="logo-harput" src="images/logo-harput.svg" alt="Harput Holding"></a>
   </div>
-  <ul class="nav-links"><li><a href="index.html" ><span data-lang="en" class="active" data-edit-key="products_1">About</span><span data-lang="tr">Hakkımızda</span><span data-lang="es">Nosotros</span></a></li><li><a href="products.html" class="current"><span data-lang="en" class="active" data-edit-key="products_2">Products</span><span data-lang="tr">Ürünler</span><span data-lang="es">Productos</span></a></li><li><a href="sustainability.html" ><span data-lang="en" class="active" data-edit-key="products_3">Sustainability</span><span data-lang="tr">Sürdürülebilirlik</span><span data-lang="es">Sostenibilidad</span></a></li><li><a href="global.html" ><span data-lang="en" class="active" data-edit-key="products_4">Global</span><span data-lang="tr">Global</span><span data-lang="es">Global</span></a></li><li><a href="certifications.html" ><span data-lang="en" class="active" data-edit-key="products_5">Certifications</span><span data-lang="tr">Sertifikalar</span><span data-lang="es">Certificaciones</span></a></li><li><a href="contact.html" class="nav-cta"><span data-lang="en" class="active" data-edit-key="products_6">Contact</span><span data-lang="tr">İletişim</span><span data-lang="es">Contacto</span></a></li></ul>
-  <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" onclick="toggleMobileMenu(this)"><span></span><span></span><span></span></button>
+  <ul class="nav-links"><li><a href="index.html" ><span data-lang="tr" class="active">Hakkımızda</span><span data-lang="en">About Us</span><span data-lang="es">Sobre Nosotros</span></a></li><li><a href="products.html" class="current"><span data-lang="tr" class="active">Ürünler</span><span data-lang="en">Products</span><span data-lang="es">Productos</span></a></li><li><a href="collections.html" ><span data-lang="tr" class="active">Koleksiyonlar</span><span data-lang="en">Collections</span><span data-lang="es">Colecciones</span></a></li><li><a href="sustainability.html" ><span data-lang="tr" class="active">Sürdürülebilirlik</span><span data-lang="en">Sustainability</span><span data-lang="es">Sostenibilidad</span></a></li><li><a href="certifications.html" ><span data-lang="tr" class="active">Sertifikalar</span><span data-lang="en">Certifications</span><span data-lang="es">Certificaciones</span></a></li><li><a href="announcements.html" ><span data-lang="tr" class="active">Duyurular</span><span data-lang="en">News & Events</span><span data-lang="es">Noticias</span></a></li><li><a href="contact.html" class="nav-cta"><span data-lang="tr" class="active">İletişim</span><span data-lang="en">Contact</span><span data-lang="es">Contacto</span></a></li></ul>
 </nav>
 
 <div class="page-hero">
-  <img data-img-key="hero-products" src="images/hero-products.jpg" alt="Products Hero" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.28">
+  <img src="images/hero-products.jpg" alt="Products Hero" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.28">
   <div class="page-hero-grad"></div>
   <div class="page-hero-content">
-    <div class="page-tag"><span data-lang="en" class="active" data-edit-key="products_7">Products</span><span data-lang="tr">Ürünler</span><span data-lang="es">Productos</span></div>
+    <div class="page-tag"><span data-lang="en" class="active">Products</span><span data-lang="tr">Ürünler</span><span data-lang="es">Productos</span></div>
     <h1 class="page-title">
-      <span data-lang="en" class="active" data-edit-key="products_8">Premium certified<br><em>apparel fabrics.</em></span>
+      <span data-lang="en" class="active">Premium certified<br><em>apparel fabrics.</em></span>
       <span data-lang="tr">Premium sertifikalı<br><em>giyim kumaşları.</em></span>
       <span data-lang="es">Telas premium<br><em>certificadas para ropa.</em></span>
     </h1>
@@ -176,92 +161,92 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
 </div>
 
 <div class="filter-bar">
-  <span class="filter-label"><span data-lang="en" class="active" data-edit-key="products_9">Filter:</span><span data-lang="tr">Filtrele:</span><span data-lang="es">Filtrar:</span></span>
-  <button class="fbtn active"><span data-lang="en" class="active" data-edit-key="products_10">All</span><span data-lang="tr">Tümü</span><span data-lang="es">Todo</span></button>
+  <span class="filter-label"><span data-lang="en" class="active">Filter:</span><span data-lang="tr">Filtrele:</span><span data-lang="es">Filtrar:</span></span>
+  <button class="fbtn active"><span data-lang="en" class="active">All</span><span data-lang="tr">Tümü</span><span data-lang="es">Todo</span></button>
   <button class="fbtn">GRS / Recycled</button><button class="fbtn">GOTS / Organic</button>
   <button class="fbtn">OCS</button><button class="fbtn">RCS Blended</button>
-  <button class="fbtn"><span data-lang="en" class="active" data-edit-key="products_11">Dyed</span><span data-lang="tr">Boyalı</span><span data-lang="es">Teñido</span></button>
-  <button class="fbtn"><span data-lang="en" class="active" data-edit-key="products_12">Printed</span><span data-lang="tr">Baskılı</span><span data-lang="es">Estampado</span></button>
+  <button class="fbtn"><span data-lang="en" class="active">Dyed</span><span data-lang="tr">Boyalı</span><span data-lang="es">Teñido</span></button>
+  <button class="fbtn"><span data-lang="en" class="active">Printed</span><span data-lang="tr">Baskılı</span><span data-lang="es">Estampado</span></button>
 </div>
 
 <section class="products-main">
   <div class="prod-grid">
     <div class="prod-card">
-      <div class="prod-img"><img data-img-key="product-recycled-polyester" src="images/product-recycled-polyester.jpg" alt="Recycled Polyester"><div class="prod-cert-row"><span class="cert-chip">GRS</span><span class="cert-chip">RCS 100</span></div></div>
-      <div class="prod-body"><h3><span data-lang="en" class="active" data-edit-key="products_13">100% Recycled Polyester</span><span data-lang="tr">%100 Geri Dön. Polyester</span><span data-lang="es">100% Poliéster Reciclado</span></h3>
-      <p><span data-lang="en" class="active" data-edit-key="products_14">Post-consumer recycled polyester woven fabric. Available in greige, dyed and printed. Full GRS traceability.</span><span data-lang="tr">Tüketici sonrası geri dönüştürülmüş polyester dokuma kumaş. Ham, boyalı ve baskılı mevcuttur. Tam GRS izlenebilirliği.</span><span data-lang="es">Tela tejida de poliéster reciclado post-consumo. Disponible en crudo, teñido e impreso. Trazabilidad GRS completa.</span></p>
+      <div class="prod-img"><img src="images/product-recycled-polyester.jpg" alt="Recycled Polyester"><div class="prod-cert-row"><span class="cert-chip">GRS</span><span class="cert-chip">RCS 100</span></div></div>
+      <div class="prod-body"><h3><span data-lang="en" class="active">100% Recycled Polyester</span><span data-lang="tr">%100 Geri Dön. Polyester</span><span data-lang="es">100% Poliéster Reciclado</span></h3>
+      <p><span data-lang="en" class="active">Post-consumer recycled polyester woven fabric. Available in greige, dyed and printed. Full GRS traceability.</span><span data-lang="tr">Tüketici sonrası geri dönüştürülmüş polyester dokuma kumaş. Ham, boyalı ve baskılı mevcuttur. Tam GRS izlenebilirliği.</span><span data-lang="es">Tela tejida de poliéster reciclado post-consumo. Disponible en crudo, teñido e impreso. Trazabilidad GRS completa.</span></p>
       <div class="prod-specs"><span class="spec-tag">Greige</span><span class="spec-tag">Dyed</span><span class="spec-tag">Printed</span><span class="spec-tag">GRS v4.0</span><span class="spec-tag">RCS v2.0</span></div></div>
     </div>
     <div class="prod-card">
-      <div class="prod-img"><img data-img-key="product-organic-cotton" src="images/product-organic-cotton.jpg" alt="Organic Cotton"><div class="prod-cert-row"><span class="cert-chip">GOTS</span><span class="cert-chip">OCS 100</span></div></div>
-      <div class="prod-body"><h3><span data-lang="en" class="active" data-edit-key="products_15">100% Organic Cotton</span><span data-lang="tr">%100 Organik Pamuk</span><span data-lang="es">100% Algodón Orgánico</span></h3>
-      <p><span data-lang="en" class="active" data-edit-key="products_16">GOTS v7.0 and OCS 100 certified woven fabric. Greige, dyed and printed. No synthetic pesticides. Full field-to-fabric chain of custody.</span><span data-lang="tr">GOTS v7.0 ve OCS 100 sertifikalı dokuma kumaş. Ham, boyalı ve baskılı. Sentetik pestisit yok. Tam gözetim zinciri.</span><span data-lang="es">Tela tejida certificada GOTS v7.0 y OCS 100. Cruda, teñida e impresa. Sin pesticidas sintéticos.</span></p>
+      <div class="prod-img"><img src="images/product-organic-cotton.jpg" alt="Organic Cotton"><div class="prod-cert-row"><span class="cert-chip">GOTS</span><span class="cert-chip">OCS 100</span></div></div>
+      <div class="prod-body"><h3><span data-lang="en" class="active">100% Organic Cotton</span><span data-lang="tr">%100 Organik Pamuk</span><span data-lang="es">100% Algodón Orgánico</span></h3>
+      <p><span data-lang="en" class="active">GOTS v7.0 and OCS 100 certified woven fabric. Greige, dyed and printed. No synthetic pesticides. Full field-to-fabric chain of custody.</span><span data-lang="tr">GOTS v7.0 ve OCS 100 sertifikalı dokuma kumaş. Ham, boyalı ve baskılı. Sentetik pestisit yok. Tam gözetim zinciri.</span><span data-lang="es">Tela tejida certificada GOTS v7.0 y OCS 100. Cruda, teñida e impresa. Sin pesticidas sintéticos.</span></p>
       <div class="prod-specs"><span class="spec-tag">Greige</span><span class="spec-tag">Dyed</span><span class="spec-tag">Printed</span><span class="spec-tag">GOTS v7.0</span><span class="spec-tag">OCS 100</span></div></div>
     </div>
     <div class="prod-card">
-      <div class="prod-img"><img data-img-key="product-rpet-viscose" src="images/product-rpet-viscose.jpg" alt="rPET Viscose"><div class="prod-cert-row"><span class="cert-chip">RCS Blended</span></div></div>
-      <div class="prod-body"><h3><span data-lang="en" class="active" data-edit-key="products_17">Recycled Polyester + Viscose</span><span data-lang="tr">Geri Dön. Polyester + Viskoz</span><span data-lang="es">Poliéster Reciclado + Viscosa</span></h3>
-      <p><span data-lang="en" class="active" data-edit-key="products_18">5–94% recycled polyester + 6–95% viscose. Superior drape for women's fashion. RCS Blended certified. Dyed and printed.</span><span data-lang="tr">%5–94 geri dönüştürülmüş polyester + %6–95 viskoz. Kadın modası için üstün döküm. RCS Blended sertifikalı.</span><span data-lang="es">5–94% rPET + 6–95% viscosa. Caída superior para moda femenina. Certificación RCS Blended.</span></p>
+      <div class="prod-img"><img src="images/product-rpet-viscose.jpg" alt="rPET Viscose"><div class="prod-cert-row"><span class="cert-chip">RCS Blended</span></div></div>
+      <div class="prod-body"><h3><span data-lang="en" class="active">Recycled Polyester + Viscose</span><span data-lang="tr">Geri Dön. Polyester + Viskoz</span><span data-lang="es">Poliéster Reciclado + Viscosa</span></h3>
+      <p><span data-lang="en" class="active">5–94% recycled polyester + 6–95% viscose. Superior drape for women's fashion. RCS Blended certified. Dyed and printed.</span><span data-lang="tr">%5–94 geri dönüştürülmüş polyester + %6–95 viskoz. Kadın modası için üstün döküm. RCS Blended sertifikalı.</span><span data-lang="es">5–94% rPET + 6–95% viscosa. Caída superior para moda femenina. Certificación RCS Blended.</span></p>
       <div class="prod-specs"><span class="spec-tag">Dyed</span><span class="spec-tag">Printed</span><span class="spec-tag">RCS Blended</span></div></div>
     </div>
     <div class="prod-card">
-      <div class="prod-img"><img data-img-key="product-rpet-modal" src="images/product-rpet-modal.jpg" alt="rPET Modal"><div class="prod-cert-row"><span class="cert-chip">RCS Blended</span></div></div>
-      <div class="prod-body"><h3><span data-lang="en" class="active" data-edit-key="products_19">Recycled Polyester + Modal</span><span data-lang="tr">Geri Dön. Polyester + Modal</span><span data-lang="es">Poliéster Reciclado + Modal</span></h3>
-      <p><span data-lang="en" class="active" data-edit-key="products_20">5–94% recycled polyester + 6–95% modal. Soft, breathable hand-feel. RCS Blended. Ideal for premium casual and resort collections.</span><span data-lang="tr">%5–94 geri dönüştürülmüş polyester + %6–95 modal. Yumuşak, nefes alabilen his. RCS Blended.</span><span data-lang="es">5–94% rPET + 6–95% modal. Sensación suave y transpirable. RCS Blended. Ideal para colecciones resort.</span></p>
+      <div class="prod-img"><img src="images/product-rpet-modal.jpg" alt="rPET Modal"><div class="prod-cert-row"><span class="cert-chip">RCS Blended</span></div></div>
+      <div class="prod-body"><h3><span data-lang="en" class="active">Recycled Polyester + Modal</span><span data-lang="tr">Geri Dön. Polyester + Modal</span><span data-lang="es">Poliéster Reciclado + Modal</span></h3>
+      <p><span data-lang="en" class="active">5–94% recycled polyester + 6–95% modal. Soft, breathable hand-feel. RCS Blended. Ideal for premium casual and resort collections.</span><span data-lang="tr">%5–94 geri dönüştürülmüş polyester + %6–95 modal. Yumuşak, nefes alabilen his. RCS Blended.</span><span data-lang="es">5–94% rPET + 6–95% modal. Sensación suave y transpirable. RCS Blended. Ideal para colecciones resort.</span></p>
       <div class="prod-specs"><span class="spec-tag">Dyed</span><span class="spec-tag">RCS Blended</span><span class="spec-tag">Soft Hand</span></div></div>
     </div>
     <div class="prod-card">
-      <div class="prod-img"><img data-img-key="product-organic-viscose" src="images/product-organic-viscose.jpg" alt="Organic Cotton Viscose"><div class="prod-cert-row"><span class="cert-chip">OCS Blended</span></div></div>
-      <div class="prod-body"><h3><span data-lang="en" class="active" data-edit-key="products_21">Organic Cotton + Viscose</span><span data-lang="tr">Organik Pamuk + Viskoz</span><span data-lang="es">Algodón Orgánico + Viscosa</span></h3>
-      <p><span data-lang="en" class="active" data-edit-key="products_22">5–94% organic cotton + 6–95% viscose. OCS Blended certified. Natural fluid drape. Rich dyed and printed palette.</span><span data-lang="tr">%5–94 organik pamuk + %6–95 viskoz. OCS Blended sertifikalı. Doğal akıcı döküm. Zengin boyalı ve baskılı palet.</span><span data-lang="es">5–94% algodón orgánico + 6–95% viscosa. Certificación OCS Blended. Caída fluida y natural.</span></p>
+      <div class="prod-img"><img src="images/product-organic-viscose.jpg" alt="Organic Cotton Viscose"><div class="prod-cert-row"><span class="cert-chip">OCS Blended</span></div></div>
+      <div class="prod-body"><h3><span data-lang="en" class="active">Organic Cotton + Viscose</span><span data-lang="tr">Organik Pamuk + Viskoz</span><span data-lang="es">Algodón Orgánico + Viscosa</span></h3>
+      <p><span data-lang="en" class="active">5–94% organic cotton + 6–95% viscose. OCS Blended certified. Natural fluid drape. Rich dyed and printed palette.</span><span data-lang="tr">%5–94 organik pamuk + %6–95 viskoz. OCS Blended sertifikalı. Doğal akıcı döküm. Zengin boyalı ve baskılı palet.</span><span data-lang="es">5–94% algodón orgánico + 6–95% viscosa. Certificación OCS Blended. Caída fluida y natural.</span></p>
       <div class="prod-specs"><span class="spec-tag">Dyed</span><span class="spec-tag">Printed</span><span class="spec-tag">OCS Blended</span></div></div>
     </div>
     <div class="prod-card">
-      <div class="prod-img"><img data-img-key="product-rpet-pes" src="images/product-rpet-pes.jpg" alt="rPET Polyester"><div class="prod-cert-row"><span class="cert-chip">RCS Blended</span></div></div>
-      <div class="prod-body"><h3><span data-lang="en" class="active" data-edit-key="products_23">Recycled Polyester + Polyester</span><span data-lang="tr">Geri Dön. Polyester + Polyester</span><span data-lang="es">Poliéster Reciclado + Poliéster</span></h3>
-      <p><span data-lang="en" class="active" data-edit-key="products_24">5–94% rPET + 6–95% standard polyester. RCS Blended. Cost-effective entry point into certified sustainable fabrics.</span><span data-lang="tr">%5–94 rPET + %6–95 standart polyester. RCS Blended. Sertifikalı sürdürülebilir kumaşlara uygun maliyetli giriş.</span><span data-lang="es">5–94% rPET + 6–95% poliéster estándar. RCS Blended. Punto de entrada rentable a telas certificadas.</span></p>
+      <div class="prod-img"><img src="images/product-rpet-pes.jpg" alt="rPET Polyester"><div class="prod-cert-row"><span class="cert-chip">RCS Blended</span></div></div>
+      <div class="prod-body"><h3><span data-lang="en" class="active">Recycled Polyester + Polyester</span><span data-lang="tr">Geri Dön. Polyester + Polyester</span><span data-lang="es">Poliéster Reciclado + Poliéster</span></h3>
+      <p><span data-lang="en" class="active">5–94% rPET + 6–95% standard polyester. RCS Blended. Cost-effective entry point into certified sustainable fabrics.</span><span data-lang="tr">%5–94 rPET + %6–95 standart polyester. RCS Blended. Sertifikalı sürdürülebilir kumaşlara uygun maliyetli giriş.</span><span data-lang="es">5–94% rPET + 6–95% poliéster estándar. RCS Blended. Punto de entrada rentable a telas certificadas.</span></p>
       <div class="prod-specs"><span class="spec-tag">Dyed</span><span class="spec-tag">RCS Blended</span><span class="spec-tag">Performance</span></div></div>
     </div>
   </div>
 </section>
 
 <section class="material-section">
-  <div class="section-eyebrow"><span data-lang="en" class="active" data-edit-key="products_25">Why Certified Materials</span><span data-lang="tr">Neden Sertifikalı Malzeme</span><span data-lang="es">Por qué Materiales Certificados</span></div>
-  <h2 class="section-title"><span data-lang="en" class="active" data-edit-key="products_26">Every certificate tells<br><em>the full story.</em></span><span data-lang="tr">Her sertifika tam<br><em>hikayeyi anlatır.</em></span><span data-lang="es">Cada certificado cuenta<br><em>la historia completa.</em></span></h2>
+  <div class="section-eyebrow"><span data-lang="en" class="active">Why Certified Materials</span><span data-lang="tr">Neden Sertifikalı Malzeme</span><span data-lang="es">Por qué Materiales Certificados</span></div>
+  <h2 class="section-title"><span data-lang="en" class="active">Every certificate tells<br><em>the full story.</em></span><span data-lang="tr">Her sertifika tam<br><em>hikayeyi anlatır.</em></span><span data-lang="es">Cada certificado cuenta<br><em>la historia completa.</em></span></h2>
   <div class="mat-split">
     <div class="mat-text">
-      <p><span data-lang="en" class="active" data-edit-key="products_27">When you source from FX Textile, you receive more than fabric — full supply chain documentation, Textile Exchange TE-ID, transaction certificates and scope certificates for every certified order.</span><span data-lang="tr">FX Textile'den tedarik ettiğinizde kumaştan fazlasını alırsınız — tam tedarik zinciri dokümantasyonu, Textile Exchange TE-ID, işlem sertifikaları ve kapsam sertifikaları.</span><span data-lang="es">Al adquirir de FX Textile recibe más que tela — documentación completa, TE-ID de Textile Exchange y certificados de transacción para cada pedido certificado.</span></p>
-      <p><span data-lang="en" class="active" data-edit-key="products_28">GRS, GOTS, OCS or RCS logos on your product require valid transaction certificates from your supplier for every shipment. We make this seamless.</span><span data-lang="tr">Ürününüzdeki GRS, GOTS, OCS veya RCS logoları, her sevkiyat için tedarikçinizden geçerli işlem sertifikaları gerektirir. Bu süreci sorunsuz hale getiriyoruz.</span><span data-lang="es">Los logotipos en su producto requieren certificados de transacción válidos de su proveedor para cada envío.</span></p>
-      <a href="certifications.html" class="btn-ghost" style="margin-top:24px"><span data-lang="en" class="active" data-edit-key="products_29">View Certifications</span><span data-lang="tr">Sertifikaları Gör</span><span data-lang="es">Ver Certificaciones</span></a>
+      <p><span data-lang="en" class="active">When you source from FX Textile, you receive more than fabric — full supply chain documentation, Textile Exchange TE-ID, transaction certificates and scope certificates for every certified order.</span><span data-lang="tr">FX Textile'den tedarik ettiğinizde kumaştan fazlasını alırsınız — tam tedarik zinciri dokümantasyonu, Textile Exchange TE-ID, işlem sertifikaları ve kapsam sertifikaları.</span><span data-lang="es">Al adquirir de FX Textile recibe más que tela — documentación completa, TE-ID de Textile Exchange y certificados de transacción para cada pedido certificado.</span></p>
+      <p><span data-lang="en" class="active">GRS, GOTS, OCS or RCS logos on your product require valid transaction certificates from your supplier for every shipment. We make this seamless.</span><span data-lang="tr">Ürününüzdeki GRS, GOTS, OCS veya RCS logoları, her sevkiyat için tedarikçinizden geçerli işlem sertifikaları gerektirir. Bu süreci sorunsuz hale getiriyoruz.</span><span data-lang="es">Los logotipos en su producto requieren certificados de transacción válidos de su proveedor para cada envío.</span></p>
+      <a href="certifications.html" class="btn-ghost" style="margin-top:24px"><span data-lang="en" class="active">View Certifications</span><span data-lang="tr">Sertifikaları Gör</span><span data-lang="es">Ver Certificaciones</span></a>
     </div>
-    <div class="mat-img"><img data-img-key="products-cert-docs" src="images/products-cert-docs.jpg" alt="Certification Documentation" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0"></div>
+    <div class="mat-img"><img src="images/products-cert-docs.jpg" alt="Certification Documentation" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0"></div>
   </div>
 </section>
 
 <section class="process-strip">
-  <div class="section-eyebrow" style="color:rgba(255,255,255,0.3)"><span data-lang="en" class="active" data-edit-key="products_30">Production Process</span><span data-lang="tr">Üretim Süreci</span><span data-lang="es">Proceso de Producción</span></div>
-  <h2 class="section-title" style="color:#fff"><span data-lang="en" class="active" data-edit-key="products_31">From fiber<br><em>to finished bolt.</em></span><span data-lang="tr">Elyaftan<br><em>bitmiş topa.</em></span><span data-lang="es">De la fibra<br><em>al rollo terminado.</em></span></h2>
+  <div class="section-eyebrow" style="color:rgba(255,255,255,0.3)"><span data-lang="en" class="active">Production Process</span><span data-lang="tr">Üretim Süreci</span><span data-lang="es">Proceso de Producción</span></div>
+  <h2 class="section-title" style="color:#fff"><span data-lang="en" class="active">From fiber<br><em>to finished bolt.</em></span><span data-lang="tr">Elyaftan<br><em>bitmiş topa.</em></span><span data-lang="es">De la fibra<br><em>al rollo terminado.</em></span></h2>
   <div class="process-steps">
-    <div class="ps-step"><div class="ps-num">01</div><div class="ps-title"><span data-lang="en" class="active" data-edit-key="products_32">Fiber</span><span data-lang="tr">Elyaf</span><span data-lang="es">Fibra</span></div><div class="ps-sub">rPET, Organic Cotton, Viscose</div></div>
-    <div class="ps-step"><div class="ps-num">02</div><div class="ps-title"><span data-lang="en" class="active" data-edit-key="products_33">Yarn</span><span data-lang="tr">İplik</span><span data-lang="es">Hilo</span></div><div class="ps-sub">Miranlı — POY Spinning</div></div>
-    <div class="ps-step"><div class="ps-num">03</div><div class="ps-title"><span data-lang="en" class="active" data-edit-key="products_34">Weaving</span><span data-lang="tr">Dokuma</span><span data-lang="es">Tejido</span></div><div class="ps-sub">Gökçeköy / Miranda</div></div>
-    <div class="ps-step"><div class="ps-num">04</div><div class="ps-title"><span data-lang="en" class="active" data-edit-key="products_35">Dyeing</span><span data-lang="tr">Boyama</span><span data-lang="es">Teñido</span></div><div class="ps-sub">Kinteks — Water recycled</div></div>
-    <div class="ps-step"><div class="ps-num">05</div><div class="ps-title"><span data-lang="en" class="active" data-edit-key="products_36">Finishing</span><span data-lang="tr">Apre</span><span data-lang="es">Acabado</span></div><div class="ps-sub">Coating, QC, Rolling</div></div>
-    <div class="ps-step"><div class="ps-num">06</div><div class="ps-title"><span data-lang="en" class="active" data-edit-key="products_37">Certified</span><span data-lang="tr">Sertifikalı</span><span data-lang="es">Certificado</span></div><div class="ps-sub">TC issued, ready to ship</div></div>
+    <div class="ps-step"><div class="ps-num">01</div><div class="ps-title"><span data-lang="en" class="active">Fiber</span><span data-lang="tr">Elyaf</span><span data-lang="es">Fibra</span></div><div class="ps-sub">rPET, Organic Cotton, Viscose</div></div>
+    <div class="ps-step"><div class="ps-num">02</div><div class="ps-title"><span data-lang="en" class="active">Yarn</span><span data-lang="tr">İplik</span><span data-lang="es">Hilo</span></div><div class="ps-sub">Miranlı — POY Spinning</div></div>
+    <div class="ps-step"><div class="ps-num">03</div><div class="ps-title"><span data-lang="en" class="active">Weaving</span><span data-lang="tr">Dokuma</span><span data-lang="es">Tejido</span></div><div class="ps-sub">Gökçeköy / Miranda</div></div>
+    <div class="ps-step"><div class="ps-num">04</div><div class="ps-title"><span data-lang="en" class="active">Dyeing</span><span data-lang="tr">Boyama</span><span data-lang="es">Teñido</span></div><div class="ps-sub">Kinteks — Water recycled</div></div>
+    <div class="ps-step"><div class="ps-num">05</div><div class="ps-title"><span data-lang="en" class="active">Finishing</span><span data-lang="tr">Apre</span><span data-lang="es">Acabado</span></div><div class="ps-sub">Coating, QC, Rolling</div></div>
+    <div class="ps-step"><div class="ps-num">06</div><div class="ps-title"><span data-lang="en" class="active">Certified</span><span data-lang="tr">Sertifikalı</span><span data-lang="es">Certificado</span></div><div class="ps-sub">TC issued, ready to ship</div></div>
   </div>
 </section>
 
 <section class="spec-table-section">
-  <div class="section-eyebrow"><span data-lang="en" class="active" data-edit-key="products_38">Technical Specifications</span><span data-lang="tr">Teknik Özellikler</span><span data-lang="es">Especificaciones Técnicas</span></div>
-  <h2 class="section-title"><span data-lang="en" class="active" data-edit-key="products_39">Standard <em>product range.</em></span><span data-lang="tr">Standart <em>ürün yelpazesi.</em></span><span data-lang="es">Gama de <em>productos estándar.</em></span></h2>
+  <div class="section-eyebrow"><span data-lang="en" class="active">Technical Specifications</span><span data-lang="tr">Teknik Özellikler</span><span data-lang="es">Especificaciones Técnicas</span></div>
+  <h2 class="section-title"><span data-lang="en" class="active">Standard <em>product range.</em></span><span data-lang="tr">Standart <em>ürün yelpazesi.</em></span><span data-lang="es">Gama de <em>productos estándar.</em></span></h2>
   <table class="spec-table">
-    <thead><tr><th><span data-lang="en" class="active" data-edit-key="products_40">Product</span><span data-lang="tr">Ürün</span><span data-lang="es">Producto</span></th><th><span data-lang="en" class="active" data-edit-key="products_41">Composition</span><span data-lang="tr">Kompozisyon</span><span data-lang="es">Composición</span></th><th>Standard</th><th><span data-lang="en" class="active" data-edit-key="products_42">Availability</span><span data-lang="tr">Mevcut</span><span data-lang="es">Disponibilidad</span></th></tr></thead>
+    <thead><tr><th><span data-lang="en" class="active">Product</span><span data-lang="tr">Ürün</span><span data-lang="es">Producto</span></th><th><span data-lang="en" class="active">Composition</span><span data-lang="tr">Kompozisyon</span><span data-lang="es">Composición</span></th><th>Standard</th><th><span data-lang="en" class="active">Availability</span><span data-lang="tr">Mevcut</span><span data-lang="es">Disponibilidad</span></th></tr></thead>
     <tbody>
-      <tr><td><span data-lang="en" class="active" data-edit-key="products_43">Recycled Polyester</span><span data-lang="tr">Geri Dön. Polyester</span><span data-lang="es">Poliéster Reciclado</span></td><td>100% rPET (RM0189)</td><td>GRS, RCS 100</td><td>Greige / Dyed / Printed</td></tr>
-      <tr><td><span data-lang="en" class="active" data-edit-key="products_44">Organic Cotton</span><span data-lang="tr">Organik Pamuk</span><span data-lang="es">Algodón Orgánico</span></td><td>100% Organic Cotton (RM0104)</td><td>GOTS, OCS 100</td><td>Greige / Dyed / Printed</td></tr>
+      <tr><td><span data-lang="en" class="active">Recycled Polyester</span><span data-lang="tr">Geri Dön. Polyester</span><span data-lang="es">Poliéster Reciclado</span></td><td>100% rPET (RM0189)</td><td>GRS, RCS 100</td><td>Greige / Dyed / Printed</td></tr>
+      <tr><td><span data-lang="en" class="active">Organic Cotton</span><span data-lang="tr">Organik Pamuk</span><span data-lang="es">Algodón Orgánico</span></td><td>100% Organic Cotton (RM0104)</td><td>GOTS, OCS 100</td><td>Greige / Dyed / Printed</td></tr>
       <tr><td>rPET + Viscose</td><td>5–94% rPET + 6–95% Viscose</td><td>RCS Blended</td><td>Dyed / Printed</td></tr>
       <tr><td>rPET + Modal</td><td>5–94% rPET + 6–95% Modal</td><td>RCS Blended</td><td>Dyed</td></tr>
-      <tr><td><span data-lang="en" class="active" data-edit-key="products_45">Organic Cotton + Viscose</span><span data-lang="tr">Org. Pamuk + Viskoz</span><span data-lang="es">Algodón Org. + Viscosa</span></td><td>5–94% Org. Cotton + 6–95% Viscose</td><td>OCS Blended</td><td>Dyed / Printed</td></tr>
+      <tr><td><span data-lang="en" class="active">Organic Cotton + Viscose</span><span data-lang="tr">Org. Pamuk + Viskoz</span><span data-lang="es">Algodón Org. + Viscosa</span></td><td>5–94% Org. Cotton + 6–95% Viscose</td><td>OCS Blended</td><td>Dyed / Printed</td></tr>
       <tr><td>rPET + Polyester</td><td>5–94% rPET + 6–95% PES</td><td>RCS Blended</td><td>Dyed / Printed</td></tr>
     </tbody>
   </table>
@@ -271,27 +256,27 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
-      <img data-img-key="logo-fx-textile" class="foot-fx" src="images/logo-fx-textile.svg" alt="FX Textile">
-      <img data-img-key="logo-harput" class="foot-harput" src="images/logo-harput.svg" alt="Harput Holding">
-      <p><span data-lang="en" class="active" data-edit-key="products_46">Premium apparel fabrics. A division of Harput Holding. Est. 2023, Bursa, Turkey.</span>
+      <img class="foot-fx" src="images/logo-fx-textile.svg" alt="FX Textile">
+      <img class="foot-harput" src="images/logo-harput.svg" alt="Harput Holding">
+      <p><span data-lang="en" class="active">Premium apparel fabrics. A division of Harput Holding. Est. 2023, Bursa, Turkey.</span>
          <span data-lang="tr">Premium giyim kumaşları. Harput Holding bünyesinde. 2023, Bursa, Türkiye.</span>
          <span data-lang="es">Telas premium para ropa. División de Harput Holding. Est. 2023, Bursa, Turquía.</span></p>
     </div>
     <div class="footer-col">
-      <h5><span data-lang="en" class="active" data-edit-key="products_47">Company</span><span data-lang="tr">Şirket</span><span data-lang="es">Empresa</span></h5>
-      <a href="index.html"><span data-lang="en" class="active" data-edit-key="products_48">About Us</span><span data-lang="tr">Hakkımızda</span><span data-lang="es">Nosotros</span></a>
-      <a href="global.html"><span data-lang="en" class="active" data-edit-key="products_49">Global Presence</span><span data-lang="tr">Küresel Varlık</span><span data-lang="es">Presencia Global</span></a>
-      <a href="certifications.html"><span data-lang="en" class="active" data-edit-key="products_50">Certifications</span><span data-lang="tr">Sertifikalar</span><span data-lang="es">Certificaciones</span></a>
+      <h5><span data-lang="en" class="active">Company</span><span data-lang="tr">Şirket</span><span data-lang="es">Empresa</span></h5>
+      <a href="index.html"><span data-lang="en" class="active">About Us</span><span data-lang="tr">Hakkımızda</span><span data-lang="es">Nosotros</span></a>
+      <a href="global.html"><span data-lang="en" class="active">Global Presence</span><span data-lang="tr">Küresel Varlık</span><span data-lang="es">Presencia Global</span></a>
+      <a href="certifications.html"><span data-lang="en" class="active">Certifications</span><span data-lang="tr">Sertifikalar</span><span data-lang="es">Certificaciones</span></a>
     </div>
     <div class="footer-col">
-      <h5><span data-lang="en" class="active" data-edit-key="products_51">Products</span><span data-lang="tr">Ürünler</span><span data-lang="es">Productos</span></h5>
-      <a href="products.html"><span data-lang="en" class="active" data-edit-key="products_52">Recycled Polyester</span><span data-lang="tr">Geri Dön. Polyester</span><span data-lang="es">Poliéster Reciclado</span></a>
-      <a href="products.html"><span data-lang="en" class="active" data-edit-key="products_53">Organic Cotton</span><span data-lang="tr">Organik Pamuk</span><span data-lang="es">Algodón Orgánico</span></a>
-      <a href="sustainability.html"><span data-lang="en" class="active" data-edit-key="products_54">Sustainability</span><span data-lang="tr">Sürdürülebilirlik</span><span data-lang="es">Sostenibilidad</span></a>
+      <h5><span data-lang="en" class="active">Products</span><span data-lang="tr">Ürünler</span><span data-lang="es">Productos</span></h5>
+      <a href="products.html"><span data-lang="en" class="active">Recycled Polyester</span><span data-lang="tr">Geri Dön. Polyester</span><span data-lang="es">Poliéster Reciclado</span></a>
+      <a href="products.html"><span data-lang="en" class="active">Organic Cotton</span><span data-lang="tr">Organik Pamuk</span><span data-lang="es">Algodón Orgánico</span></a>
+      <a href="sustainability.html"><span data-lang="en" class="active">Sustainability</span><span data-lang="tr">Sürdürülebilirlik</span><span data-lang="es">Sostenibilidad</span></a>
     </div>
     <div class="footer-col">
-      <h5><span data-lang="en" class="active" data-edit-key="products_55">Contact</span><span data-lang="tr">İletişim</span><span data-lang="es">Contacto</span></h5>
-      <a href="contact.html"><span data-lang="en" class="active" data-edit-key="products_56">Send Message</span><span data-lang="tr">Mesaj Gönder</span><span data-lang="es">Enviar Mensaje</span></a>
+      <h5><span data-lang="en" class="active">Contact</span><span data-lang="tr">İletişim</span><span data-lang="es">Contacto</span></h5>
+      <a href="contact.html"><span data-lang="en" class="active">Send Message</span><span data-lang="tr">Mesaj Gönder</span><span data-lang="es">Enviar Mensaje</span></a>
       <a href="contact.html" style="color:rgba(255,255,255,0.25);font-size:12px;margin-top:8px">Işıktepe OSB Mah.<br>Nilüfer, Bursa, TR</a>
     </div>
   </div>
@@ -302,11 +287,7 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
 </footer>
 <script>
 function setLang(l){document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.l===l));document.querySelectorAll('[data-lang]').forEach(e=>e.classList.toggle('active',e.getAttribute('data-lang')===l));localStorage.setItem('fxlang',l);document.documentElement.lang=l;}
-document.addEventListener('DOMContentLoaded',()=>{const s=localStorage.getItem('fxlang')||'en';setLang(s);document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{const n=document.querySelector('nav');const b=document.querySelector('.nav-toggle');if(n&&b){n.classList.remove('menu-open');b.setAttribute('aria-expanded','false');}}));});
-function toggleMobileMenu(btn){const nav=btn.closest('nav');const open=!nav.classList.contains('menu-open');nav.classList.toggle('menu-open',open);btn.setAttribute('aria-expanded',String(open));}
+document.addEventListener('DOMContentLoaded',()=>{const s=localStorage.getItem('fxlang')||'tr';setLang(s);});
 </script>
 <script>document.querySelectorAll('.fbtn').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');});});</script>
-<script src="data.js"></script>
-<script src="content-loader.js"></script>
 </body></html>
-

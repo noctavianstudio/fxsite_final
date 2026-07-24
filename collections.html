@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Koleksiyonlar — FX Textile</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Barlow:wght@300;400;500&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;background:#f5f2ee;color:#1a1a1a;overflow-x:hidden}
+:root{
+  --black:#0a0a0a;--off-white:#f5f2ee;--cream:#ede9e3;
+  --red:#8b1a1a;--red-light:#a52020;--red-dark:#6a1212;
+  --gray:#6b6b6b;--gray-light:#c8c4be;--border:rgba(0,0,0,0.1);
+}
+/* LANG BAR */
+.lang-bar{background:var(--black);padding:8px 60px;display:flex;justify-content:flex-end;gap:4px}
+.lang-btn{background:none;border:none;color:rgba(255,255,255,0.35);font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:1.5px;cursor:pointer;padding:4px 10px;transition:color .2s}
+.lang-btn:hover,.lang-btn.active{color:#fff}
+.lang-btn+.lang-btn{border-left:1px solid #333}
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(245,242,238,0.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:0 60px;display:flex;align-items:center;justify-content:space-between;height:88px}
+.nav-logo{display:flex;align-items:center;gap:18px}
+.logo-fx{height:52px;display:block;mix-blend-mode:multiply}
+.logo-div{width:1px;height:26px;background:var(--gray-light)}
+.logo-harput{height:38px;display:block;mix-blend-mode:multiply;opacity:0.7}
+.nav-links{display:flex;gap:32px;list-style:none;align-items:center}
+.nav-links a{text-decoration:none;color:var(--gray);font-size:11px;letter-spacing:2px;font-weight:500;text-transform:uppercase;transition:color .2s;font-family:'Barlow Condensed',sans-serif;padding:4px 0;border-bottom:2px solid transparent}
+.nav-links a:hover{color:var(--red)}
+.nav-links a.current{color:var(--black);border-bottom-color:var(--red)}
+.nav-cta{background:var(--red)!important;color:#fff!important;padding:10px 22px!important;border-bottom:none!important;letter-spacing:1.5px!important}
+.nav-cta:hover{background:var(--red-dark)!important}
+/* LANG SWITCHING */
+[data-lang]{display:none}
+[data-lang].active{display:inline}
+.block-lang[data-lang]{display:none}
+.block-lang[data-lang].active{display:block}
+/* FOOTER */
+footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,255,255,0.05)}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
+.footer-brand .foot-fx{height:40px;filter:brightness(0) invert(1);opacity:0.8;display:block;margin-bottom:12px}
+.footer-brand .foot-harput{height:28px;filter:brightness(0) invert(1);opacity:0.3;display:block;margin-bottom:20px}
+.footer-brand p{font-size:13px;color:rgba(255,255,255,0.3);line-height:1.7;max-width:220px}
+.footer-col h5{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:16px}
+.footer-col a{display:block;font-size:13px;color:rgba(255,255,255,0.4);text-decoration:none;margin-bottom:10px;transition:color .2s}
+.footer-col a:hover{color:rgba(255,255,255,0.8)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:28px;border-top:1px solid rgba(255,255,255,0.07)}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.2);font-family:'Barlow Condensed',sans-serif}
+/* UTILS */
+.section-eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--red);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.section-eyebrow::before{content:'';display:inline-block;width:24px;height:1px;background:var(--red)}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,58px);font-weight:300;line-height:1.1;margin-bottom:20px}
+.section-title em{font-style:italic}
+.section-body{font-size:16px;color:var(--gray);line-height:1.85;max-width:620px}
+.btn-primary{background:var(--red);color:#fff;border:none;padding:14px 32px;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:background .2s;display:inline-block}
+.btn-primary:hover{background:var(--red-dark)}
+.btn-ghost{border:1px solid var(--gray-light);color:var(--gray);padding:14px 32px;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:all .2s;display:inline-block}
+.btn-ghost:hover{border-color:var(--red);color:var(--red)}
+@media(max-width:1024px){
+  nav,.lang-bar{padding-left:24px;padding-right:24px}
+  footer{padding:40px 24px 28px}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .nav-links{display:none}
+  .footer-grid{grid-template-columns:1fr}
+}
+
+
+
+.page-hero{height:55vh;min-height:360px;background:var(--black);display:flex;align-items:flex-end;position:relative;overflow:hidden}
+.page-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.25}
+.page-hero-grad{position:absolute;inset:0;background:linear-gradient(to top,#0a0a0a 40%,rgba(10,10,10,0.2) 100%)}
+.page-hero-content{position:relative;z-index:2;padding:0 60px 64px}
+.page-tag{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--red-light);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.page-tag::before{content:'';width:24px;height:1px;background:var(--red-light);display:block}
+.page-title{font-family:'Cormorant Garamond',serif;font-size:clamp(44px,6vw,80px);font-weight:300;color:#fff;line-height:1.0}
+/* KOLEKSİYON GRİD */
+.collections-main{padding:72px 60px;background:var(--off-white)}
+.season-tabs{display:flex;gap:2px;margin-bottom:48px;flex-wrap:wrap}
+.season-btn{padding:10px 24px;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;border:1px solid var(--border);background:transparent;cursor:pointer;color:var(--gray);transition:all .2s}
+.season-btn.active,.season-btn:hover{background:var(--red);color:#fff;border-color:var(--red)}
+.collection-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:4px}
+.coll-card{position:relative;overflow:hidden;background:var(--cream)}
+.coll-img-wrap{aspect-ratio:3/4;overflow:hidden;position:relative}
+.coll-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .6s;display:block}
+.coll-card:hover .coll-img-wrap img{transform:scale(1.04)}
+.coll-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,0.7) 25%,transparent);opacity:0;transition:opacity .3s;display:flex;align-items:flex-end;padding:24px}
+.coll-card:hover .coll-overlay{opacity:1}
+.coll-overlay-text{color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:2px}
+.coll-info{padding:20px 20px 24px}
+.coll-season{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:4px}
+.coll-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;margin-bottom:4px}
+.coll-fabric{font-size:12px;color:var(--gray)}
+/* PLACEHOLDER */
+.coll-placeholder{aspect-ratio:3/4;background:var(--cream);border:2px dashed var(--gray-light);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--gray-light);font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:2px;cursor:pointer;transition:border-color .2s}
+.coll-placeholder:hover{border-color:var(--red);color:var(--red)}
+.coll-placeholder svg{opacity:.4}
+@media(max-width:1024px){
+  .collections-main{padding:60px 24px}
+  .page-hero-content{padding:0 24px 56px}
+  .collection-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){.collection-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="lang-bar">
+  <button class="lang-btn active" data-l="tr" onclick="setLang('tr')">TR</button>
+  <button class="lang-btn" data-l="en" onclick="setLang('en')">EN</button>
+  <button class="lang-btn" data-l="es" onclick="setLang('es')">ES</button>
+</div>
+<nav>
+  <div class="nav-logo">
+    <a href="index.html"><img class="logo-fx" src="images/logo-fx-textile.svg" alt="FX Textile"></a>
+    <div class="logo-div"></div>
+    <a href="index.html"><img class="logo-harput" src="images/logo-harput.svg" alt="Harput Holding"></a>
+  </div>
+  <ul class="nav-links"><li><a href="index.html" ><span data-lang="tr" class="active">Hakkımızda</span><span data-lang="en">About Us</span><span data-lang="es">Sobre Nosotros</span></a></li><li><a href="products.html" ><span data-lang="tr" class="active">Ürünler</span><span data-lang="en">Products</span><span data-lang="es">Productos</span></a></li><li><a href="collections.html" class="current"><span data-lang="tr" class="active">Koleksiyonlar</span><span data-lang="en">Collections</span><span data-lang="es">Colecciones</span></a></li><li><a href="sustainability.html" ><span data-lang="tr" class="active">Sürdürülebilirlik</span><span data-lang="en">Sustainability</span><span data-lang="es">Sostenibilidad</span></a></li><li><a href="certifications.html" ><span data-lang="tr" class="active">Sertifikalar</span><span data-lang="en">Certifications</span><span data-lang="es">Certificaciones</span></a></li><li><a href="announcements.html" ><span data-lang="tr" class="active">Duyurular</span><span data-lang="en">News & Events</span><span data-lang="es">Noticias</span></a></li><li><a href="contact.html" class="nav-cta"><span data-lang="tr" class="active">İletişim</span><span data-lang="en">Contact</span><span data-lang="es">Contacto</span></a></li></ul>
+</nav>
+
+<div class="page-hero">
+  <img src="images/hero-products.jpg" alt="Koleksiyonlar">
+  <div class="page-hero-grad"></div>
+  <div class="page-hero-content">
+    <div class="page-tag">
+      <span data-lang="tr" class="active">Koleksiyonlar</span>
+      <span data-lang="en">Collections</span>
+      <span data-lang="es">Colecciones</span>
+    </div>
+    <h1 class="page-title">
+      <span data-lang="tr" class="active">Kumaş<br><em>koleksiyonlarımız.</em></span>
+      <span data-lang="en">Our fabric<br><em>collections.</em></span>
+      <span data-lang="es">Nuestras<br><em>colecciones.</em></span>
+    </h1>
+  </div>
+</div>
+
+<section class="collections-main">
+  <div class="section-eyebrow">
+    <span data-lang="tr" class="active">Sezon Koleksiyonları</span>
+    <span data-lang="en">Seasonal Collections</span>
+    <span data-lang="es">Colecciones de Temporada</span>
+  </div>
+  <h2 class="section-title" style="margin-bottom:32px">
+    <span data-lang="tr" class="active">Her sezon, <em>yeni ifade.</em></span>
+    <span data-lang="en">Every season, <em>new expression.</em></span>
+    <span data-lang="es">Cada temporada, <em>nueva expresión.</em></span>
+  </h2>
+
+  <!-- Sezon filtreleri -->
+  <div class="season-tabs">
+    <button class="season-btn active" onclick="filterSeason('all',this)">
+      <span data-lang="tr" class="active">Tümü</span>
+      <span data-lang="en">All</span>
+      <span data-lang="es">Todo</span>
+    </button>
+    <button class="season-btn" onclick="filterSeason('ss25',this)">SS 2025</button>
+    <button class="season-btn" onclick="filterSeason('aw25',this)">AW 2025</button>
+    <button class="season-btn" onclick="filterSeason('ss26',this)">SS 2026</button>
+  </div>
+
+  <div class="collection-grid" id="coll-grid">
+    <!-- Koleksiyon görselleri admin panelinden yüklenecek -->
+    <!-- Şu an placeholder görseller gösterilmektedir -->
+    <div class="coll-card" data-season="ss25">
+      <div class="coll-img-wrap">
+        <img src="images/product-recycled-polyester.jpg" alt="Koleksiyon 1" data-img-key="coll-1">
+      </div>
+      <div class="coll-info">
+        <div class="coll-season">SS 2025</div>
+        <div class="coll-name">Natura Series</div>
+        <div class="coll-fabric">%100 Geri Dönüştürülmüş Polyester · GRS</div>
+      </div>
+    </div>
+    <div class="coll-card" data-season="ss25">
+      <div class="coll-img-wrap">
+        <img src="images/product-organic-cotton.jpg" alt="Koleksiyon 2" data-img-key="coll-2">
+      </div>
+      <div class="coll-info">
+        <div class="coll-season">SS 2025</div>
+        <div class="coll-name">Terra Organic</div>
+        <div class="coll-fabric">%100 Organik Pamuk · GOTS</div>
+      </div>
+    </div>
+    <div class="coll-card" data-season="aw25">
+      <div class="coll-img-wrap">
+        <img src="images/product-rpet-viscose.jpg" alt="Koleksiyon 3" data-img-key="coll-3">
+      </div>
+      <div class="coll-info">
+        <div class="coll-season">AW 2025</div>
+        <div class="coll-name">Fluid Motion</div>
+        <div class="coll-fabric">rPET + Viskoz · RCS Blended</div>
+      </div>
+    </div>
+    <div class="coll-card" data-season="aw25">
+      <div class="coll-img-wrap">
+        <img src="images/product-rpet-modal.jpg" alt="Koleksiyon 4" data-img-key="coll-4">
+      </div>
+      <div class="coll-info">
+        <div class="coll-season">AW 2025</div>
+        <div class="coll-name">Velvet Touch</div>
+        <div class="coll-fabric">rPET + Modal · RCS Blended</div>
+      </div>
+    </div>
+    <div class="coll-card" data-season="ss26">
+      <div class="coll-img-wrap">
+        <img src="images/product-organic-viscose.jpg" alt="Koleksiyon 5" data-img-key="coll-5">
+      </div>
+      <div class="coll-info">
+        <div class="coll-season">SS 2026</div>
+        <div class="coll-name">Pure Blend</div>
+        <div class="coll-fabric">Organik Pamuk + Viskoz · OCS Blended</div>
+      </div>
+    </div>
+    <div class="coll-card" data-season="ss26">
+      <div class="coll-img-wrap">
+        <img src="images/product-rpet-pes.jpg" alt="Koleksiyon 6" data-img-key="coll-6">
+      </div>
+      <div class="coll-info">
+        <div class="coll-season">SS 2026</div>
+        <div class="coll-name">Active Line</div>
+        <div class="coll-fabric">rPET + Polyester · RCS Blended</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:48px;padding:32px;background:var(--cream);border:1px solid var(--border);text-align:center">
+    <p style="font-size:14px;color:var(--gray);line-height:1.7;max-width:560px;margin:0 auto">
+      <span data-lang="tr" class="active">Koleksiyon görselleri ve numune talepleri için bizimle iletişime geçin. Güncel koleksiyonlarımızı yerinde incelemeniz için showroom ziyareti ayarlayabiliriz.</span>
+      <span data-lang="en">Contact us for collection images and sample requests. We can arrange a showroom visit for you to review our latest collections in person.</span>
+      <span data-lang="es">Contáctenos para imágenes de colecciones y solicitudes de muestras. Podemos organizar una visita al showroom.</span>
+    </p>
+    <a href="contact.html" class="btn-primary" style="margin-top:20px;display:inline-block">
+      <span data-lang="tr" class="active">Numune Talep Et</span>
+      <span data-lang="en">Request Samples</span>
+      <span data-lang="es">Pedir Muestras</span>
+    </a>
+  </div>
+</section>
+
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img class="foot-fx" src="images/logo-fx-textile.svg" alt="FX Textile">
+      <img class="foot-harput" src="images/logo-harput.svg" alt="Harput Holding">
+      <p><span data-lang="tr" class="active">Premium giyim kumaşları. Harput Holding bünyesinde. Est. 2023, Bursa, Türkiye.</span>
+         <span data-lang="en">Premium apparel fabrics. A division of Harput Holding. Est. 2023, Bursa, Turkey.</span>
+         <span data-lang="es">Telas premium para ropa. División de Harput Holding. Est. 2023, Bursa, Turquía.</span></p>
+    </div>
+    <div class="footer-col">
+      <h5>Kurumsal</h5>
+      <a href="index.html"><span data-lang="tr" class="active">Hakkımızda</span><span data-lang="en">About Us</span><span data-lang="es">Sobre Nosotros</span></a>
+      <a href="sustainability.html"><span data-lang="tr" class="active">Sürdürülebilirlik</span><span data-lang="en">Sustainability</span><span data-lang="es">Sostenibilidad</span></a>
+      <a href="certifications.html"><span data-lang="tr" class="active">Sertifikalar & KVKK</span><span data-lang="en">Certifications & KVKK</span><span data-lang="es">Certificaciones</span></a>
+      <a href="announcements.html"><span data-lang="tr" class="active">Duyurular</span><span data-lang="en">News & Events</span><span data-lang="es">Noticias</span></a>
+    </div>
+    <div class="footer-col">
+      <h5><span data-lang="tr" class="active">Ürünler</span><span data-lang="en">Products</span><span data-lang="es">Productos</span></h5>
+      <a href="products.html"><span data-lang="tr" class="active">Geri Dönüştürülmüş Polyester</span><span data-lang="en">Recycled Polyester</span><span data-lang="es">Poliéster Reciclado</span></a>
+      <a href="products.html"><span data-lang="tr" class="active">Organik Pamuk</span><span data-lang="en">Organic Cotton</span><span data-lang="es">Algodón Orgánico</span></a>
+      <a href="collections.html"><span data-lang="tr" class="active">Koleksiyonlar</span><span data-lang="en">Collections</span><span data-lang="es">Colecciones</span></a>
+    </div>
+    <div class="footer-col">
+      <h5><span data-lang="tr" class="active">İletişim</span><span data-lang="en">Contact</span><span data-lang="es">Contacto</span></h5>
+      <a href="contact.html"><span data-lang="tr" class="active">Mesaj Gönderin</span><span data-lang="en">Send Message</span><span data-lang="es">Enviar Mensaje</span></a>
+      <a href="contact.html" style="color:rgba(255,255,255,0.3);font-size:12px;margin-top:8px;line-height:1.6">Işıktepe OSB Mah.<br>Nilüfer, Bursa, TR</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Efiks Tekstil San. ve Tic. A.Ş. — Harput Holding Bünyesinde</span>
+    <div style="display:flex;gap:16px">
+      <a href="certifications.html#kvkk" style="color:rgba(255,255,255,0.2);font-size:11px;font-family:'Barlow Condensed',sans-serif;text-decoration:none;letter-spacing:1px">KVKK</a>
+      <a href="certifications.html#cerez" style="color:rgba(255,255,255,0.2);font-size:11px;font-family:'Barlow Condensed',sans-serif;text-decoration:none;letter-spacing:1px">Çerez Politikası</a>
+    </div>
+  </div>
+</footer>
+<script>
+function setLang(l){
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.l===l));
+  document.querySelectorAll('[data-lang]').forEach(e=>e.classList.toggle('active',e.getAttribute('data-lang')===l));
+  localStorage.setItem('fxlang',l);document.documentElement.lang=l;
+}
+document.addEventListener('DOMContentLoaded',()=>{
+  const s=localStorage.getItem('fxlang')||'tr';setLang(s);
+});
+</script>
+<script>
+function filterSeason(season, btn) {
+  document.querySelectorAll('.season-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.coll-card').forEach(card => {
+    card.style.display = (season === 'all' || card.dataset.season === season) ? '' : 'none';
+  });
+}
+</script>
+</body></html>
