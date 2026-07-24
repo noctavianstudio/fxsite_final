@@ -69,10 +69,10 @@
         .hero-bg-img{opacity:0!important}
         .hero-slide.active .hero-bg-img{opacity:var(--fx-hero-opacity,0.3)!important}
         .hero-slide.leaving .hero-bg-img{opacity:0!important}
-        .page-hero img[data-img-key^="hero-"]{opacity:var(--fx-page-hero-opacity,0.2)!important}
-        .contact-hero img[data-img-key^="hero-"]{opacity:var(--fx-page-hero-opacity,0.18)!important}
+        .page-hero img[data-img-key^="hero-"]{opacity:var(--fx-page-hero-opacity,1)!important}
+        .contact-hero img[data-img-key^="hero-"]{opacity:var(--fx-page-hero-opacity,1)!important}
         .hero-grad{opacity:var(--fx-hero-overlay-opacity,1)!important}
-        .page-hero-grad,.contact-hero-grad{opacity:var(--fx-page-hero-overlay-opacity,1)!important}
+        .page-hero-grad,.contact-hero-grad{opacity:var(--fx-page-hero-overlay-opacity,.2)!important}
         .sector-overlay{background:linear-gradient(to top,rgba(10,10,10,var(--fx-sector-overlay-opacity,.8)) 30%,rgba(10,10,10,0))!important}
         .nav-links a{font-size:var(--fx-nav-font-size,11px)!important}
         body{background:var(--off-white)!important}

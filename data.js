@@ -16,8 +16,8 @@ window.FX_TEXTILE_EXPORTED_CONTENT = {
     "borderColor": "#dedad3",
     "heroOpacity": "1",
     "pageHeroOpacity": "1",
-    "heroOverlayOpacity": "0.6",
-    "pageHeroOverlayOpacity": "0.52",
+    "heroOverlayOpacity": "0.35",
+    "pageHeroOverlayOpacity": "0.20",
     "sectorOverlayOpacity": "0.21",
     "navFontSize": "9",
     "navMobileFontSize": "13"
