@@ -1,8 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>ÃœrÃ¼nler â€” FX Textile</title>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ürünler — FX Textile</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Barlow:wght@300;400;500&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 
@@ -82,12 +83,12 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
 .page-tag::before{content:'';width:24px;height:1px;background:var(--red-light);display:block}
 .page-title{font-family:'Cormorant Garamond',serif;font-size:clamp(44px,6vw,80px);font-weight:300;color:#fff;line-height:1.0}
 
-/* KATEGORÄ° TABS */
+/* KATEGORİ TABS */
 .cat-tabs-bar{background:var(--cream);border-bottom:2px solid var(--border);padding:0 60px;display:flex;gap:0;overflow-x:auto}
 .cat-tab{padding:20px 28px;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;border:none;background:transparent;cursor:pointer;color:var(--gray);border-bottom:3px solid transparent;white-space:nowrap;transition:all .2s;margin-bottom:-2px}
 .cat-tab.active,.cat-tab:hover{color:var(--red);border-bottom-color:var(--red)}
 
-/* KATEGORÄ° PANELLERÄ° */
+/* KATEGORİ PANELLERİ */
 .cat-panels{padding:64px 60px;background:var(--off-white)}
 .cat-panel{display:none}
 .cat-panel.active{display:block}
@@ -103,20 +104,20 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
 .prod-item-cat{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--red);margin-bottom:4px}
 .prod-item-name{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600}
 
-/* ÃœRETÄ°M SÃœRECÄ° */
+/* ÜRETİM SÜRECİ */
 .process-strip{background:var(--black);padding:72px 60px}
 .process-strip .section-eyebrow{color:rgba(255,255,255,0.3)}
 .process-strip .section-eyebrow::before{background:rgba(255,255,255,0.3)}
 .process-strip .section-title{color:#fff;margin-bottom:52px}
 .process-steps{display:grid;grid-template-columns:repeat(6,1fr);gap:0}
 .ps-step{padding:0 20px;text-align:center;position:relative}
-.ps-step::after{content:'â†’';position:absolute;right:-12px;top:28px;color:rgba(255,255,255,0.2);font-size:18px}
+.ps-step::after{content:'→';position:absolute;right:-12px;top:28px;color:rgba(255,255,255,0.2);font-size:18px}
 .ps-step:last-child::after{display:none}
 .ps-num{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:300;color:var(--red-light);opacity:0.6;line-height:1}
 .ps-title{font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#fff;margin-top:8px}
 .ps-sub{font-size:11px;color:rgba(255,255,255,0.3);margin-top:5px;line-height:1.5}
 
-/* KOLEKSÄ°YON GALERÄ°SÄ° */
+/* KOLEKSİYON GALERİSİ */
 .gallery-section{padding:80px 60px;background:var(--cream)}
 .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:48px}
 .gallery-item{position:relative;aspect-ratio:4/5;overflow:hidden;cursor:pointer;background:var(--black)}
@@ -125,7 +126,7 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
 ..gallery-item:nth-child(5){grid-column:span 2;aspect-ratio:8/5}
 .gallery-item:nth-child(9){grid-column:span 2;aspect-ratio:8/5}
 
-/* LÄ°GHTBOX */
+/* LİGHTBOX */
 .lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9999;align-items:center;justify-content:center}
 .lightbox.open{display:flex}
 .lb-img{max-width:90vw;max-height:86vh;object-fit:contain}
@@ -149,7 +150,7 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
   .gallery-grid{grid-template-columns:1fr 1fr}
 }
 
-/* â”€â”€â”€ YUMUÅAK KÃ–ÅELER â”€â”€â”€ */
+/* ─── YUMUŞAK KÖŞELER ─── */
 .post-featured,.post-small,.video-card,.fuar-card,.sidebar-widget,
 .prod-item,.gallery-item,.cat-panel,.btn-primary,.btn-ghost{border-radius:12px}
 .post-cat-label,.ps-cat,.vi-cat,.fuar-badge,.season-btn,.cat-tab,.filter-btn{border-radius:6px}
@@ -170,39 +171,39 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
     <div class="logo-div"></div>
     <a href="index.html"><img class="logo-harput" src="images/logo-harput.png" alt="Harput Tekstil"></a>
   </div>
-  <ul class="nav-links"><li><a href="index.html" ><span data-lang="tr" class="active">HakkÄ±mÄ±zda</span><span data-lang="en">About Us</span><span data-lang="es">Sobre Nosotros</span></a></li><li><a href="products.html" class="current"><span data-lang="tr" class="active">ÃœrÃ¼nler</span><span data-lang="en">Products</span><span data-lang="es">Productos</span></a></li><li><a href="sustainability.html" ><span data-lang="tr" class="active">SÃ¼rdÃ¼rÃ¼lebilirlik</span><span data-lang="en">Sustainability</span><span data-lang="es">Sostenibilidad</span></a></li><li><a href="certifications.html" ><span data-lang="tr" class="active">Sertifikalar</span><span data-lang="en">Certifications</span><span data-lang="es">Certificaciones</span></a></li><li><a href="announcements.html" ><span data-lang="tr" class="active">Duyurular</span><span data-lang="en">News & Events</span><span data-lang="es">Noticias</span></a></li><li><a href="contact.html" class="nav-cta"><span data-lang="tr" class="active">Ä°letiÅŸim</span><span data-lang="en">Contact</span><span data-lang="es">Contacto</span></a></li></ul>
+  <ul class="nav-links"><li><a href="index.html" ><span data-lang="tr" class="active">Hakkımızda</span><span data-lang="en">About Us</span><span data-lang="es">Sobre Nosotros</span></a></li><li><a href="products.html" class="current"><span data-lang="tr" class="active">Ürünler</span><span data-lang="en">Products</span><span data-lang="es">Productos</span></a></li><li><a href="sustainability.html" ><span data-lang="tr" class="active">Sürdürülebilirlik</span><span data-lang="en">Sustainability</span><span data-lang="es">Sostenibilidad</span></a></li><li><a href="certifications.html" ><span data-lang="tr" class="active">Sertifikalar</span><span data-lang="en">Certifications</span><span data-lang="es">Certificaciones</span></a></li><li><a href="announcements.html" ><span data-lang="tr" class="active">Duyurular</span><span data-lang="en">News & Events</span><span data-lang="es">Noticias</span></a></li><li><a href="contact.html" class="nav-cta"><span data-lang="tr" class="active">İletişim</span><span data-lang="en">Contact</span><span data-lang="es">Contacto</span></a></li></ul>
 </nav>
 
 <div class="page-hero">
-  <img src="images/hero-products.jpg" alt="ÃœRÃœNLER HERO" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.25">
+  <img src="images/hero-products.jpg" alt="ÜRÜNLER HERO" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.25">
   <div class="page-hero-grad"></div>
   <div class="page-hero-content">
     <div class="page-tag">
-      <span data-lang="tr" class="active">ÃœrÃ¼nler</span>
+      <span data-lang="tr" class="active">Ürünler</span>
       <span data-lang="en">Products</span>
       <span data-lang="es">Productos</span>
     </div>
     <h1 class="page-title">
-      <span data-lang="tr" class="active">SertifikalÄ± kumaÅŸlar,<br><em>her kategoride.</em></span>
+      <span data-lang="tr" class="active">Sertifikalı kumaşlar,<br><em>her kategoride.</em></span>
       <span data-lang="en">Certified fabrics,<br><em>in every category.</em></span>
-      <span data-lang="es">Telas certificadas,<br><em>en cada categorÃ­a.</em></span>
+      <span data-lang="es">Telas certificadas,<br><em>en cada categoría.</em></span>
     </h1>
   </div>
 </div>
 
-<!-- KATEGORÄ° TABS -->
+<!-- KATEGORİ TABS -->
 <div class="cat-tabs-bar">
-  <button class="cat-tab" data-cat="giyim" onclick="switchCat('giyim',this)"><span data-lang="tr" class="active">Giyim</span><span data-lang="en">Clothing</span><span data-lang="es">Ropa</span></button><button class="cat-tab" data-cat="spor" onclick="switchCat('spor',this)"><span data-lang="tr" class="active">Spor Giyim</span><span data-lang="en">Sportswear</span><span data-lang="es">Ropa Deportiva</span></button><button class="cat-tab" data-cat="mayo" onclick="switchCat('mayo',this)"><span data-lang="tr" class="active">Mayo</span><span data-lang="en">Swimwear</span><span data-lang="es">Trajes de BaÃ±o</span></button><button class="cat-tab" data-cat="performans" onclick="switchCat('performans',this)"><span data-lang="tr" class="active">Performans KumaÅŸlar</span><span data-lang="en">Performance Fabrics</span><span data-lang="es">Tejidos de Rendimiento</span></button><button class="cat-tab" data-cat="cocuk" onclick="switchCat('cocuk',this)"><span data-lang="tr" class="active">Ã‡ocuk Giyim</span><span data-lang="en">Children's Wear</span><span data-lang="es">Ropa Infantil</span></button>
+  <button class="cat-tab" data-cat="giyim" onclick="switchCat('giyim',this)"><span data-lang="tr" class="active">Giyim</span><span data-lang="en">Clothing</span><span data-lang="es">Ropa</span></button><button class="cat-tab" data-cat="spor" onclick="switchCat('spor',this)"><span data-lang="tr" class="active">Spor Giyim</span><span data-lang="en">Sportswear</span><span data-lang="es">Ropa Deportiva</span></button><button class="cat-tab" data-cat="mayo" onclick="switchCat('mayo',this)"><span data-lang="tr" class="active">Mayo</span><span data-lang="en">Swimwear</span><span data-lang="es">Trajes de Baño</span></button><button class="cat-tab" data-cat="performans" onclick="switchCat('performans',this)"><span data-lang="tr" class="active">Performans Kumaşlar</span><span data-lang="en">Performance Fabrics</span><span data-lang="es">Tejidos de Rendimiento</span></button><button class="cat-tab" data-cat="cocuk" onclick="switchCat('cocuk',this)"><span data-lang="tr" class="active">Çocuk Giyim</span><span data-lang="en">Children's Wear</span><span data-lang="es">Ropa Infantil</span></button>
 </div>
 
-<!-- KATEGORÄ° PANELLERÄ° -->
+<!-- KATEGORİ PANELLERİ -->
 <section class="cat-panels">
 
     <div class="cat-panel active" id="panel-giyim">
       <div class="cat-intro">
         <div>
           <h3 class="cat-title"><span data-lang="tr" class="active">Giyim</span><span data-lang="en">Clothing</span><span data-lang="es">Ropa</span></h3>
-          <p class="cat-desc"><span data-lang="tr" class="active">Polyester, organik pamuk ve karÄ±ÅŸÄ±mlÄ± dokuma kumaÅŸlar. Giyim sektÃ¶rÃ¼nÃ¼n ihtiyaÃ§larÄ±na yÃ¶nelik geniÅŸ Ã¼rÃ¼n yelpazesi.</span><span data-lang="en">Polyester, organic cotton and blended woven fabrics for the clothing sector.</span><span data-lang="es">Telas tejidas de poliÃ©ster, algodÃ³n orgÃ¡nico y mezclas para el sector de la confecciÃ³n.</span></p>
+          <p class="cat-desc"><span data-lang="tr" class="active">Polyester, organik pamuk ve karışımlı dokuma kumaşlar. Giyim sektörünün ihtiyaçlarına yönelik geniş ürün yelpazesi.</span><span data-lang="en">Polyester, organic cotton and blended woven fabrics for the clothing sector.</span><span data-lang="es">Telas tejidas de poliéster, algodón orgánico y mezclas para el sector de la confección.</span></p>
           <div class="prod-specs"><span class="spec-tag">GRS</span><span class="spec-tag">GOTS</span><span class="spec-tag">OCS</span><span class="spec-tag">RCS Blended</span></div>
         </div>
       </div>
@@ -210,19 +211,19 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
           <img src="images/product-giyim-1.jpg" alt="Giyim 1" style="width:100%;height:280px;object-fit:cover;display:block">
           <div class="prod-item-info">
             <div class="prod-item-cat"><span data-lang="tr" class="active">Giyim</span><span data-lang="en">Clothing</span><span data-lang="es">Ropa</span></div>
-            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 1</span><span data-lang="en">Collection 1</span><span data-lang="es">ColecciÃ³n 1</span></div>
+            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 1</span><span data-lang="en">Collection 1</span><span data-lang="es">Colección 1</span></div>
           </div>
         </div><div class="prod-item">
           <img src="images/product-giyim-2.jpg" alt="Giyim 2" style="width:100%;height:280px;object-fit:cover;display:block">
           <div class="prod-item-info">
             <div class="prod-item-cat"><span data-lang="tr" class="active">Giyim</span><span data-lang="en">Clothing</span><span data-lang="es">Ropa</span></div>
-            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 2</span><span data-lang="en">Collection 2</span><span data-lang="es">ColecciÃ³n 2</span></div>
+            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 2</span><span data-lang="en">Collection 2</span><span data-lang="es">Colección 2</span></div>
           </div>
         </div><div class="prod-item">
           <img src="images/product-giyim-3.jpg" alt="Giyim 3" style="width:100%;height:280px;object-fit:cover;display:block">
           <div class="prod-item-info">
             <div class="prod-item-cat"><span data-lang="tr" class="active">Giyim</span><span data-lang="en">Clothing</span><span data-lang="es">Ropa</span></div>
-            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 3</span><span data-lang="en">Collection 3</span><span data-lang="es">ColecciÃ³n 3</span></div>
+            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 3</span><span data-lang="en">Collection 3</span><span data-lang="es">Colección 3</span></div>
           </div>
         </div></div>
     </div>
@@ -230,7 +231,7 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
       <div class="cat-intro">
         <div>
           <h3 class="cat-title"><span data-lang="tr" class="active">Spor Giyim</span><span data-lang="en">Sportswear</span><span data-lang="es">Ropa Deportiva</span></h3>
-          <p class="cat-desc"><span data-lang="tr" class="active">YÃ¼ksek performanslÄ±, hava geÃ§irgen ve hÄ±zlÄ± kuruyan spor kumaÅŸlarÄ±. Aktif yaÅŸam tarzÄ±na uygun sertifikalÄ± Ã§Ã¶zÃ¼mler.</span><span data-lang="en">High-performance, breathable and quick-dry sports fabrics. Certified solutions for active lifestyles.</span><span data-lang="es">Telas deportivas de alto rendimiento, transpirables y de secado rÃ¡pido.</span></p>
+          <p class="cat-desc"><span data-lang="tr" class="active">Yüksek performanslı, hava geçirgen ve hızlı kuruyan spor kumaşları. Aktif yaşam tarzına uygun sertifikalı çözümler.</span><span data-lang="en">High-performance, breathable and quick-dry sports fabrics. Certified solutions for active lifestyles.</span><span data-lang="es">Telas deportivas de alto rendimiento, transpirables y de secado rápido.</span></p>
           <div class="prod-specs"><span class="spec-tag">rPET</span><span class="spec-tag">GRS</span><span class="spec-tag">Strech Blend</span><span class="spec-tag">Performans</span></div>
         </div>
       </div>
@@ -238,141 +239,141 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
           <img src="images/product-spor-1.jpg" alt="Spor Giyim 1" style="width:100%;height:280px;object-fit:cover;display:block">
           <div class="prod-item-info">
             <div class="prod-item-cat"><span data-lang="tr" class="active">Spor Giyim</span><span data-lang="en">Sportswear</span><span data-lang="es">Ropa Deportiva</span></div>
-            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 1</span><span data-lang="en">Collection 1</span><span data-lang="es">ColecciÃ³n 1</span></div>
+            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 1</span><span data-lang="en">Collection 1</span><span data-lang="es">Colección 1</span></div>
           </div>
         </div><div class="prod-item">
           <img src="images/product-spor-2.jpg" alt="Spor Giyim 2" style="width:100%;height:280px;object-fit:cover;display:block">
           <div class="prod-item-info">
             <div class="prod-item-cat"><span data-lang="tr" class="active">Spor Giyim</span><span data-lang="en">Sportswear</span><span data-lang="es">Ropa Deportiva</span></div>
-            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 2</span><span data-lang="en">Collection 2</span><span data-lang="es">ColecciÃ³n 2</span></div>
+            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 2</span><span data-lang="en">Collection 2</span><span data-lang="es">Colección 2</span></div>
           </div>
         </div><div class="prod-item">
           <img src="images/product-spor-3.jpg" alt="Spor Giyim 3" style="width:100%;height:280px;object-fit:cover;display:block">
           <div class="prod-item-info">
             <div class="prod-item-cat"><span data-lang="tr" class="active">Spor Giyim</span><span data-lang="en">Sportswear</span><span data-lang="es">Ropa Deportiva</span></div>
-            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 3</span><span data-lang="en">Collection 3</span><span data-lang="es">ColecciÃ³n 3</span></div>
+            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 3</span><span data-lang="en">Collection 3</span><span data-lang="es">Colección 3</span></div>
           </div>
         </div></div>
     </div>
     <div class="cat-panel " id="panel-mayo">
       <div class="cat-intro">
         <div>
-          <h3 class="cat-title"><span data-lang="tr" class="active">Mayo</span><span data-lang="en">Swimwear</span><span data-lang="es">Trajes de BaÃ±o</span></h3>
-          <p class="cat-desc"><span data-lang="tr" class="active">Klora ve gÃ¼neÅŸe dayanÄ±klÄ±, elastik mayo kumaÅŸlarÄ±. Deniz ve havuz kullanÄ±mÄ±na uygun Ã¶zel dokuma yapÄ±larÄ±.</span><span data-lang="en">Chlorine and UV-resistant elastic swimwear fabrics with special weave structures for sea and pool use.</span><span data-lang="es">Telas elÃ¡sticas resistentes al cloro y UV con estructuras especiales para uso en piscina y mar.</span></p>
-          <div class="prod-specs"><span class="spec-tag">Klorina DayanÄ±klÄ±</span><span class="spec-tag">UV KorumalÄ±</span><span class="spec-tag">Elastan</span></div>
+          <h3 class="cat-title"><span data-lang="tr" class="active">Mayo</span><span data-lang="en">Swimwear</span><span data-lang="es">Trajes de Baño</span></h3>
+          <p class="cat-desc"><span data-lang="tr" class="active">Klora ve güneşe dayanıklı, elastik mayo kumaşları. Deniz ve havuz kullanımına uygun özel dokuma yapıları.</span><span data-lang="en">Chlorine and UV-resistant elastic swimwear fabrics with special weave structures for sea and pool use.</span><span data-lang="es">Telas elásticas resistentes al cloro y UV con estructuras especiales para uso en piscina y mar.</span></p>
+          <div class="prod-specs"><span class="spec-tag">Klorina Dayanıklı</span><span class="spec-tag">UV Korumalı</span><span class="spec-tag">Elastan</span></div>
         </div>
       </div>
       <div class="prod-items-grid"><div class="prod-item">
           <img src="images/product-mayo-1.jpg" alt="Mayo 1" style="width:100%;height:280px;object-fit:cover;display:block">
           <div class="prod-item-info">
-            <div class="prod-item-cat"><span data-lang="tr" class="active">Mayo</span><span data-lang="en">Swimwear</span><span data-lang="es">Trajes de BaÃ±o</span></div>
-            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 1</span><span data-lang="en">Collection 1</span><span data-lang="es">ColecciÃ³n 1</span></div>
+            <div class="prod-item-cat"><span data-lang="tr" class="active">Mayo</span><span data-lang="en">Swimwear</span><span data-lang="es">Trajes de Baño</span></div>
+            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 1</span><span data-lang="en">Collection 1</span><span data-lang="es">Colección 1</span></div>
           </div>
         </div><div class="prod-item">
           <img src="images/product-mayo-2.jpg" alt="Mayo 2" style="width:100%;height:280px;object-fit:cover;display:block">
           <div class="prod-item-info">
-            <div class="prod-item-cat"><span data-lang="tr" class="active">Mayo</span><span data-lang="en">Swimwear</span><span data-lang="es">Trajes de BaÃ±o</span></div>
-            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 2</span><span data-lang="en">Collection 2</span><span data-lang="es">ColecciÃ³n 2</span></div>
+            <div class="prod-item-cat"><span data-lang="tr" class="active">Mayo</span><span data-lang="en">Swimwear</span><span data-lang="es">Trajes de Baño</span></div>
+            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 2</span><span data-lang="en">Collection 2</span><span data-lang="es">Colección 2</span></div>
           </div>
         </div><div class="prod-item">
           <img src="images/product-mayo-3.jpg" alt="Mayo 3" style="width:100%;height:280px;object-fit:cover;display:block">
           <div class="prod-item-info">
-            <div class="prod-item-cat"><span data-lang="tr" class="active">Mayo</span><span data-lang="en">Swimwear</span><span data-lang="es">Trajes de BaÃ±o</span></div>
-            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 3</span><span data-lang="en">Collection 3</span><span data-lang="es">ColecciÃ³n 3</span></div>
+            <div class="prod-item-cat"><span data-lang="tr" class="active">Mayo</span><span data-lang="en">Swimwear</span><span data-lang="es">Trajes de Baño</span></div>
+            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 3</span><span data-lang="en">Collection 3</span><span data-lang="es">Colección 3</span></div>
           </div>
         </div></div>
     </div>
     <div class="cat-panel " id="panel-performans">
       <div class="cat-intro">
         <div>
-          <h3 class="cat-title"><span data-lang="tr" class="active">Performans KumaÅŸlar</span><span data-lang="en">Performance Fabrics</span><span data-lang="es">Tejidos de Rendimiento</span></h3>
-          <p class="cat-desc"><span data-lang="tr" class="active">Termal dÃ¼zenleme, nem yÃ¶netimi ve dayanÄ±klÄ±lÄ±k Ã¶zellikleriyle Ã¶ne Ã§Ä±kan teknik dokuma kumaÅŸlar.</span><span data-lang="en">Technical woven fabrics with thermal regulation, moisture management and durability properties.</span><span data-lang="es">Telas tÃ©cnicas tejidas con regulaciÃ³n tÃ©rmica, gestiÃ³n de la humedad y propiedades de durabilidad.</span></p>
-          <div class="prod-specs"><span class="spec-tag">Teknik</span><span class="spec-tag">Nem YÃ¶netimi</span><span class="spec-tag">Termal</span></div>
+          <h3 class="cat-title"><span data-lang="tr" class="active">Performans Kumaşlar</span><span data-lang="en">Performance Fabrics</span><span data-lang="es">Tejidos de Rendimiento</span></h3>
+          <p class="cat-desc"><span data-lang="tr" class="active">Termal düzenleme, nem yönetimi ve dayanıklılık özellikleriyle öne çıkan teknik dokuma kumaşlar.</span><span data-lang="en">Technical woven fabrics with thermal regulation, moisture management and durability properties.</span><span data-lang="es">Telas técnicas tejidas con regulación térmica, gestión de la humedad y propiedades de durabilidad.</span></p>
+          <div class="prod-specs"><span class="spec-tag">Teknik</span><span class="spec-tag">Nem Yönetimi</span><span class="spec-tag">Termal</span></div>
         </div>
       </div>
       <div class="prod-items-grid"><div class="prod-item">
-          <img src="images/product-performans-1.jpg" alt="Performans KumaÅŸlar 1" style="width:100%;height:280px;object-fit:cover;display:block">
+          <img src="images/product-performans-1.jpg" alt="Performans Kumaşlar 1" style="width:100%;height:280px;object-fit:cover;display:block">
           <div class="prod-item-info">
-            <div class="prod-item-cat"><span data-lang="tr" class="active">Performans KumaÅŸlar</span><span data-lang="en">Performance Fabrics</span><span data-lang="es">Tejidos de Rendimiento</span></div>
-            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 1</span><span data-lang="en">Collection 1</span><span data-lang="es">ColecciÃ³n 1</span></div>
+            <div class="prod-item-cat"><span data-lang="tr" class="active">Performans Kumaşlar</span><span data-lang="en">Performance Fabrics</span><span data-lang="es">Tejidos de Rendimiento</span></div>
+            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 1</span><span data-lang="en">Collection 1</span><span data-lang="es">Colección 1</span></div>
           </div>
         </div><div class="prod-item">
-          <img src="images/product-performans-2.jpg" alt="Performans KumaÅŸlar 2" style="width:100%;height:280px;object-fit:cover;display:block">
+          <img src="images/product-performans-2.jpg" alt="Performans Kumaşlar 2" style="width:100%;height:280px;object-fit:cover;display:block">
           <div class="prod-item-info">
-            <div class="prod-item-cat"><span data-lang="tr" class="active">Performans KumaÅŸlar</span><span data-lang="en">Performance Fabrics</span><span data-lang="es">Tejidos de Rendimiento</span></div>
-            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 2</span><span data-lang="en">Collection 2</span><span data-lang="es">ColecciÃ³n 2</span></div>
+            <div class="prod-item-cat"><span data-lang="tr" class="active">Performans Kumaşlar</span><span data-lang="en">Performance Fabrics</span><span data-lang="es">Tejidos de Rendimiento</span></div>
+            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 2</span><span data-lang="en">Collection 2</span><span data-lang="es">Colección 2</span></div>
           </div>
         </div><div class="prod-item">
-          <img src="images/product-performans-3.jpg" alt="Performans KumaÅŸlar 3" style="width:100%;height:280px;object-fit:cover;display:block">
+          <img src="images/product-performans-3.jpg" alt="Performans Kumaşlar 3" style="width:100%;height:280px;object-fit:cover;display:block">
           <div class="prod-item-info">
-            <div class="prod-item-cat"><span data-lang="tr" class="active">Performans KumaÅŸlar</span><span data-lang="en">Performance Fabrics</span><span data-lang="es">Tejidos de Rendimiento</span></div>
-            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 3</span><span data-lang="en">Collection 3</span><span data-lang="es">ColecciÃ³n 3</span></div>
+            <div class="prod-item-cat"><span data-lang="tr" class="active">Performans Kumaşlar</span><span data-lang="en">Performance Fabrics</span><span data-lang="es">Tejidos de Rendimiento</span></div>
+            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 3</span><span data-lang="en">Collection 3</span><span data-lang="es">Colección 3</span></div>
           </div>
         </div></div>
     </div>
     <div class="cat-panel " id="panel-cocuk">
       <div class="cat-intro">
         <div>
-          <h3 class="cat-title"><span data-lang="tr" class="active">Ã‡ocuk Giyim</span><span data-lang="en">Children's Wear</span><span data-lang="es">Ropa Infantil</span></h3>
-          <p class="cat-desc"><span data-lang="tr" class="active">OEKO-TEXÂ® sertifikalÄ±, cilde dost, organik pamuk aÄŸÄ±rlÄ±klÄ± Ã§ocuk giyim kumaÅŸlarÄ±. En yÃ¼ksek gÃ¼venlik standartlarÄ±.</span><span data-lang="en">OEKO-TEXÂ® certified, skin-friendly children's wear fabrics, predominantly organic cotton. Highest safety standards.</span><span data-lang="es">Telas para ropa infantil con certificaciÃ³n OEKO-TEXÂ®, respetuosas con la piel y principalmente de algodÃ³n orgÃ¡nico.</span></p>
-          <div class="prod-specs"><span class="spec-tag">OEKO-TEXÂ®</span><span class="spec-tag">Organik Pamuk</span><span class="spec-tag">GOTS</span></div>
+          <h3 class="cat-title"><span data-lang="tr" class="active">Çocuk Giyim</span><span data-lang="en">Children's Wear</span><span data-lang="es">Ropa Infantil</span></h3>
+          <p class="cat-desc"><span data-lang="tr" class="active">OEKO-TEX® sertifikalı, cilde dost, organik pamuk ağırlıklı çocuk giyim kumaşları. En yüksek güvenlik standartları.</span><span data-lang="en">OEKO-TEX® certified, skin-friendly children's wear fabrics, predominantly organic cotton. Highest safety standards.</span><span data-lang="es">Telas para ropa infantil con certificación OEKO-TEX®, respetuosas con la piel y principalmente de algodón orgánico.</span></p>
+          <div class="prod-specs"><span class="spec-tag">OEKO-TEX®</span><span class="spec-tag">Organik Pamuk</span><span class="spec-tag">GOTS</span></div>
         </div>
       </div>
       <div class="prod-items-grid"><div class="prod-item">
-          <img src="images/product-cocuk-1.jpg" alt="Ã‡ocuk Giyim 1" style="width:100%;height:280px;object-fit:cover;display:block">
+          <img src="images/product-cocuk-1.jpg" alt="Çocuk Giyim 1" style="width:100%;height:280px;object-fit:cover;display:block">
           <div class="prod-item-info">
-            <div class="prod-item-cat"><span data-lang="tr" class="active">Ã‡ocuk Giyim</span><span data-lang="en">Children's Wear</span><span data-lang="es">Ropa Infantil</span></div>
-            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 1</span><span data-lang="en">Collection 1</span><span data-lang="es">ColecciÃ³n 1</span></div>
+            <div class="prod-item-cat"><span data-lang="tr" class="active">Çocuk Giyim</span><span data-lang="en">Children's Wear</span><span data-lang="es">Ropa Infantil</span></div>
+            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 1</span><span data-lang="en">Collection 1</span><span data-lang="es">Colección 1</span></div>
           </div>
         </div><div class="prod-item">
-          <img src="images/product-cocuk-2.jpg" alt="Ã‡ocuk Giyim 2" style="width:100%;height:280px;object-fit:cover;display:block">
+          <img src="images/product-cocuk-2.jpg" alt="Çocuk Giyim 2" style="width:100%;height:280px;object-fit:cover;display:block">
           <div class="prod-item-info">
-            <div class="prod-item-cat"><span data-lang="tr" class="active">Ã‡ocuk Giyim</span><span data-lang="en">Children's Wear</span><span data-lang="es">Ropa Infantil</span></div>
-            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 2</span><span data-lang="en">Collection 2</span><span data-lang="es">ColecciÃ³n 2</span></div>
+            <div class="prod-item-cat"><span data-lang="tr" class="active">Çocuk Giyim</span><span data-lang="en">Children's Wear</span><span data-lang="es">Ropa Infantil</span></div>
+            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 2</span><span data-lang="en">Collection 2</span><span data-lang="es">Colección 2</span></div>
           </div>
         </div><div class="prod-item">
-          <img src="images/product-cocuk-3.jpg" alt="Ã‡ocuk Giyim 3" style="width:100%;height:280px;object-fit:cover;display:block">
+          <img src="images/product-cocuk-3.jpg" alt="Çocuk Giyim 3" style="width:100%;height:280px;object-fit:cover;display:block">
           <div class="prod-item-info">
-            <div class="prod-item-cat"><span data-lang="tr" class="active">Ã‡ocuk Giyim</span><span data-lang="en">Children's Wear</span><span data-lang="es">Ropa Infantil</span></div>
-            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 3</span><span data-lang="en">Collection 3</span><span data-lang="es">ColecciÃ³n 3</span></div>
+            <div class="prod-item-cat"><span data-lang="tr" class="active">Çocuk Giyim</span><span data-lang="en">Children's Wear</span><span data-lang="es">Ropa Infantil</span></div>
+            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 3</span><span data-lang="en">Collection 3</span><span data-lang="es">Colección 3</span></div>
           </div>
         </div></div>
     </div>
 </section>
 
-<!-- ÃœRETÄ°M SÃœRECÄ° -->
+<!-- ÜRETİM SÜRECİ -->
 <section class="process-strip">
   <div class="section-eyebrow">
-    <span data-lang="tr" class="active">Ãœretim SÃ¼reci</span>
+    <span data-lang="tr" class="active">Üretim Süreci</span>
     <span data-lang="en">Production Process</span>
-    <span data-lang="es">Proceso de ProducciÃ³n</span>
+    <span data-lang="es">Proceso de Producción</span>
   </div>
   <h2 class="section-title">
-    <span data-lang="tr" class="active">Ä°plikten Ã¼rÃ¼ne<br><em>bir Ã¼retim hikayesi.</em></span>
-    <span data-lang="en">From yarn to product â€”<br><em>a production story.</em></span>
-    <span data-lang="es">Del hilo al producto â€”<br><em>una historia de producciÃ³n.</em></span>
+    <span data-lang="tr" class="active">İplikten ürüne<br><em>bir üretim hikayesi.</em></span>
+    <span data-lang="en">From yarn to product —<br><em>a production story.</em></span>
+    <span data-lang="es">Del hilo al producto —<br><em>una historia de producción.</em></span>
   </h2>
   <div class="process-steps">
     <div class="ps-step"><div class="ps-num">01</div><div class="ps-title"><span data-lang="tr" class="active">Elyaf</span><span data-lang="en">Fiber</span><span data-lang="es">Fibra</span></div><div class="ps-sub">rPET, Organik Pamuk, Viskoz</div></div>
-    <div class="ps-step"><div class="ps-num">02</div><div class="ps-title"><span data-lang="tr" class="active">Ä°plik</span><span data-lang="en">Yarn</span><span data-lang="es">Hilo</span></div><div class="ps-sub">MiranlÄ± â€” POY EÄŸirme</div></div>
-    <div class="ps-step"><div class="ps-num">03</div><div class="ps-title"><span data-lang="tr" class="active">Dokuma</span><span data-lang="en">Weaving</span><span data-lang="es">Tejido</span></div><div class="ps-sub">GÃ¶kÃ§ekÃ¶y / Miranda</div></div>
-    <div class="ps-step"><div class="ps-num">04</div><div class="ps-title"><span data-lang="tr" class="active">Boyama</span><span data-lang="en">Dyeing</span><span data-lang="es">TeÃ±ido</span></div><div class="ps-sub">Kinteks â€” Su Geri DÃ¶nÃ¼ÅŸÃ¼mlÃ¼</div></div>
-    <div class="ps-step"><div class="ps-num">05</div><div class="ps-title"><span data-lang="tr" class="active">Apre</span><span data-lang="en">Finishing</span><span data-lang="es">Acabado</span></div><div class="ps-sub">Kaplama, KK, SarÄ±m</div></div>
-    <div class="ps-step"><div class="ps-num">06</div><div class="ps-title"><span data-lang="tr" class="active">SertifikalÄ±</span><span data-lang="en">Certified</span><span data-lang="es">Certificado</span></div><div class="ps-sub">TC dÃ¼zenlendi, sevkiyata hazÄ±r</div></div>
+    <div class="ps-step"><div class="ps-num">02</div><div class="ps-title"><span data-lang="tr" class="active">İplik</span><span data-lang="en">Yarn</span><span data-lang="es">Hilo</span></div><div class="ps-sub">Miranlı — POY Eğirme</div></div>
+    <div class="ps-step"><div class="ps-num">03</div><div class="ps-title"><span data-lang="tr" class="active">Dokuma</span><span data-lang="en">Weaving</span><span data-lang="es">Tejido</span></div><div class="ps-sub">Gökçeköy / Miranda</div></div>
+    <div class="ps-step"><div class="ps-num">04</div><div class="ps-title"><span data-lang="tr" class="active">Boyama</span><span data-lang="en">Dyeing</span><span data-lang="es">Teñido</span></div><div class="ps-sub">Kinteks — Su Geri Dönüşümlü</div></div>
+    <div class="ps-step"><div class="ps-num">05</div><div class="ps-title"><span data-lang="tr" class="active">Apre</span><span data-lang="en">Finishing</span><span data-lang="es">Acabado</span></div><div class="ps-sub">Kaplama, KK, Sarım</div></div>
+    <div class="ps-step"><div class="ps-num">06</div><div class="ps-title"><span data-lang="tr" class="active">Sertifikalı</span><span data-lang="en">Certified</span><span data-lang="es">Certificado</span></div><div class="ps-sub">TC düzenlendi, sevkiyata hazır</div></div>
   </div>
 </section>
 
-<!-- KOLEKSÄ°YON GALERÄ°SÄ° -->
+<!-- KOLEKSİYON GALERİSİ -->
 <section class="gallery-section">
   <div class="section-eyebrow">
     <span data-lang="tr" class="active">Koleksiyon</span>
     <span data-lang="en">Collection</span>
-    <span data-lang="es">ColecciÃ³n</span>
+    <span data-lang="es">Colección</span>
   </div>
   <h2 class="section-title">
-    <span data-lang="tr" class="active">KumaÅŸ <em>galeri.</em></span>
+    <span data-lang="tr" class="active">Kumaş <em>galeri.</em></span>
     <span data-lang="en">Fabric <em>gallery.</em></span>
-    <span data-lang="es">GalerÃ­a de <em>telas.</em></span>
+    <span data-lang="es">Galería de <em>telas.</em></span>
   </h2>
   <div class="gallery-grid" id="gallery-grid">
     <div class="gallery-item">
@@ -403,12 +404,12 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
   </div>
 </section>
 
-<!-- LÄ°GHTBOX -->
+<!-- LİGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="closeLB(event)">
-  <button class="lb-close" onclick="closeLB()">âœ•</button>
-  <button class="lb-prev" onclick="shiftLB(-1,event)">â€¹</button>
+  <button class="lb-close" onclick="closeLB()">✕</button>
+  <button class="lb-prev" onclick="shiftLB(-1,event)">‹</button>
   <img class="lb-img" id="lb-img" src="" alt="">
-  <button class="lb-next" onclick="shiftLB(1,event)">â€º</button>
+  <button class="lb-next" onclick="shiftLB(1,event)">›</button>
 </div>
 
 
@@ -420,42 +421,42 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
         <img style="height:32px;filter:brightness(0) invert(1);opacity:0.55" src="images/logo-harput.png" alt="Harput Tekstil">
       </div>
       <p style="font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:2px;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-bottom:10px">
-        <span data-lang="tr" class="active">Harput Tekstil'in Bir MarkasÄ±</span>
+        <span data-lang="tr" class="active">Harput Tekstil'in Bir Markası</span>
         <span data-lang="en">A Division of Harput Tekstil</span>
-        <span data-lang="es">Una DivisiÃ³n de Harput Tekstil</span>
+        <span data-lang="es">Una División de Harput Tekstil</span>
       </p>
       <p style="font-size:13px;color:rgba(255,255,255,0.3);line-height:1.7;max-width:220px">
-        <span data-lang="tr" class="active">Premium giyim kumaÅŸlarÄ±. Est. 2023, Bursa, TÃ¼rkiye.</span>
+        <span data-lang="tr" class="active">Premium giyim kumaşları. Est. 2023, Bursa, Türkiye.</span>
         <span data-lang="en">Premium apparel fabrics. Est. 2023, Bursa, Turkey.</span>
-        <span data-lang="es">Telas premium para ropa. Est. 2023, Bursa, TurquÃ­a.</span>
+        <span data-lang="es">Telas premium para ropa. Est. 2023, Bursa, Turquía.</span>
       </p>
     </div>
     <div class="footer-col">
       <h5>Kurumsal</h5>
-      <a href="index.html"><span data-lang="tr" class="active">HakkÄ±mÄ±zda</span><span data-lang="en">About Us</span><span data-lang="es">Sobre Nosotros</span></a>
-      <a href="sustainability.html"><span data-lang="tr" class="active">SÃ¼rdÃ¼rÃ¼lebilirlik</span><span data-lang="en">Sustainability</span><span data-lang="es">Sostenibilidad</span></a>
+      <a href="index.html"><span data-lang="tr" class="active">Hakkımızda</span><span data-lang="en">About Us</span><span data-lang="es">Sobre Nosotros</span></a>
+      <a href="sustainability.html"><span data-lang="tr" class="active">Sürdürülebilirlik</span><span data-lang="en">Sustainability</span><span data-lang="es">Sostenibilidad</span></a>
       <a href="certifications.html"><span data-lang="tr" class="active">Sertifikalar</span><span data-lang="en">Certifications</span><span data-lang="es">Certificaciones</span></a>
       <a href="announcements.html"><span data-lang="tr" class="active">Duyurular</span><span data-lang="en">News</span><span data-lang="es">Noticias</span></a>
     </div>
     <div class="footer-col">
-      <h5><span data-lang="tr" class="active">ÃœrÃ¼nler</span><span data-lang="en">Products</span><span data-lang="es">Productos</span></h5>
+      <h5><span data-lang="tr" class="active">Ürünler</span><span data-lang="en">Products</span><span data-lang="es">Productos</span></h5>
       <a href="products.html#giyim"><span data-lang="tr" class="active">Giyim</span><span data-lang="en">Clothing</span><span data-lang="es">Ropa</span></a>
       <a href="products.html#spor"><span data-lang="tr" class="active">Spor Giyim</span><span data-lang="en">Sportswear</span><span data-lang="es">Deportiva</span></a>
-      <a href="products.html#mayo"><span data-lang="tr" class="active">Mayo</span><span data-lang="en">Swimwear</span><span data-lang="es">BaÃ±o</span></a>
+      <a href="products.html#mayo"><span data-lang="tr" class="active">Mayo</span><span data-lang="en">Swimwear</span><span data-lang="es">Baño</span></a>
       <a href="products.html#performans"><span data-lang="tr" class="active">Performans</span><span data-lang="en">Performance</span><span data-lang="es">Rendimiento</span></a>
-      <a href="products.html#cocuk"><span data-lang="tr" class="active">Ã‡ocuk Giyim</span><span data-lang="en">Children's</span><span data-lang="es">Infantil</span></a>
+      <a href="products.html#cocuk"><span data-lang="tr" class="active">Çocuk Giyim</span><span data-lang="en">Children's</span><span data-lang="es">Infantil</span></a>
     </div>
     <div class="footer-col">
-      <h5><span data-lang="tr" class="active">Ä°letiÅŸim</span><span data-lang="en">Contact</span><span data-lang="es">Contacto</span></h5>
-      <a href="contact.html"><span data-lang="tr" class="active">Mesaj GÃ¶nderin</span><span data-lang="en">Send Message</span><span data-lang="es">Enviar Mensaje</span></a>
-      <a href="contact.html" style="color:rgba(255,255,255,0.3);font-size:12px;margin-top:8px;line-height:1.8">IÅŸÄ±ktepe Org. San. BÃ¶lgesi<br>Siyah Cad. No:49<br>NilÃ¼fer / Bursa</a>
+      <h5><span data-lang="tr" class="active">İletişim</span><span data-lang="en">Contact</span><span data-lang="es">Contacto</span></h5>
+      <a href="contact.html"><span data-lang="tr" class="active">Mesaj Gönderin</span><span data-lang="en">Send Message</span><span data-lang="es">Enviar Mensaje</span></a>
+      <a href="contact.html" style="color:rgba(255,255,255,0.3);font-size:12px;margin-top:8px;line-height:1.8">Işıktepe Org. San. Bölgesi<br>Siyah Cad. No:49<br>Nilüfer / Bursa</a>
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-copy">Â© 2025 Efiks Tekstil San. ve Tic. A.Å.</span>
+    <span class="footer-copy">© 2025 Efiks Tekstil San. ve Tic. A.Ş.</span>
     <div style="display:flex;gap:16px">
       <a href="certifications.html#kvkk" style="color:rgba(255,255,255,0.2);font-size:11px;font-family:'Barlow Condensed',sans-serif;text-decoration:none;letter-spacing:1px">KVKK</a>
-      <a href="certifications.html#cerez" style="color:rgba(255,255,255,0.2);font-size:11px;font-family:'Barlow Condensed',sans-serif;text-decoration:none;letter-spacing:1px">Ã‡erez PolitikasÄ±</a>
+      <a href="certifications.html#cerez" style="color:rgba(255,255,255,0.2);font-size:11px;font-family:'Barlow Condensed',sans-serif;text-decoration:none;letter-spacing:1px">Çerez Politikası</a>
     </div>
   </div>
 </footer>
@@ -525,8 +526,9 @@ document.addEventListener('keydown', e => {
 </body></htmlTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>ÃœrÃ¼nler â€” FX Textile</title>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ürünler — FX Textile</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Barlow:wght@300;400;500&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 
@@ -606,12 +608,12 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
 .page-tag::before{content:'';width:24px;height:1px;background:var(--red-light);display:block}
 .page-title{font-family:'Cormorant Garamond',serif;font-size:clamp(44px,6vw,80px);font-weight:300;color:#fff;line-height:1.0}
 
-/* KATEGORÄ° TABS */
+/* KATEGORİ TABS */
 .cat-tabs-bar{background:var(--cream);border-bottom:2px solid var(--border);padding:0 60px;display:flex;gap:0;overflow-x:auto}
 .cat-tab{padding:20px 28px;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;border:none;background:transparent;cursor:pointer;color:var(--gray);border-bottom:3px solid transparent;white-space:nowrap;transition:all .2s;margin-bottom:-2px}
 .cat-tab.active,.cat-tab:hover{color:var(--red);border-bottom-color:var(--red)}
 
-/* KATEGORÄ° PANELLERÄ° */
+/* KATEGORİ PANELLERİ */
 .cat-panels{padding:64px 60px;background:var(--off-white)}
 .cat-panel{display:none}
 .cat-panel.active{display:block}
@@ -627,20 +629,20 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
 .prod-item-cat{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--red);margin-bottom:4px}
 .prod-item-name{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600}
 
-/* ÃœRETÄ°M SÃœRECÄ° */
+/* ÜRETİM SÜRECİ */
 .process-strip{background:var(--black);padding:72px 60px}
 .process-strip .section-eyebrow{color:rgba(255,255,255,0.3)}
 .process-strip .section-eyebrow::before{background:rgba(255,255,255,0.3)}
 .process-strip .section-title{color:#fff;margin-bottom:52px}
 .process-steps{display:grid;grid-template-columns:repeat(6,1fr);gap:0}
 .ps-step{padding:0 20px;text-align:center;position:relative}
-.ps-step::after{content:'â†’';position:absolute;right:-12px;top:28px;color:rgba(255,255,255,0.2);font-size:18px}
+.ps-step::after{content:'→';position:absolute;right:-12px;top:28px;color:rgba(255,255,255,0.2);font-size:18px}
 .ps-step:last-child::after{display:none}
 .ps-num{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:300;color:var(--red-light);opacity:0.6;line-height:1}
 .ps-title{font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#fff;margin-top:8px}
 .ps-sub{font-size:11px;color:rgba(255,255,255,0.3);margin-top:5px;line-height:1.5}
 
-/* KOLEKSÄ°YON GALERÄ°SÄ° */
+/* KOLEKSİYON GALERİSİ */
 .gallery-section{padding:80px 60px;background:var(--cream)}
 .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:48px}
 .gallery-item{position:relative;aspect-ratio:4/5;overflow:hidden;cursor:pointer;background:var(--black)}
@@ -649,7 +651,7 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
 ..gallery-item:nth-child(5){grid-column:span 2;aspect-ratio:8/5}
 .gallery-item:nth-child(9){grid-column:span 2;aspect-ratio:8/5}
 
-/* LÄ°GHTBOX */
+/* LİGHTBOX */
 .lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9999;align-items:center;justify-content:center}
 .lightbox.open{display:flex}
 .lb-img{max-width:90vw;max-height:86vh;object-fit:contain}
@@ -673,7 +675,7 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
   .gallery-grid{grid-template-columns:1fr 1fr}
 }
 
-/* â”€â”€â”€ YUMUÅAK KÃ–ÅELER â”€â”€â”€ */
+/* ─── YUMUŞAK KÖŞELER ─── */
 .post-featured,.post-small,.video-card,.fuar-card,.sidebar-widget,
 .prod-item,.gallery-item,.cat-panel,.btn-primary,.btn-ghost{border-radius:12px}
 .post-cat-label,.ps-cat,.vi-cat,.fuar-badge,.season-btn,.cat-tab,.filter-btn{border-radius:6px}
@@ -694,209 +696,69 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
     <div class="logo-div"></div>
     <a href="index.html"><img class="logo-harput" src="images/logo-harput.png" alt="Harput Tekstil"></a>
   </div>
-  <ul class="nav-links"><li><a href="index.html" ><span data-lang="tr" class="active">HakkÄ±mÄ±zda</span><span data-lang="en">About Us</span><span data-lang="es">Sobre Nosotros</span></a></li><li><a href="products.html" class="current"><span data-lang="tr" class="active">ÃœrÃ¼nler</span><span data-lang="en">Products</span><span data-lang="es">Productos</span></a></li><li><a href="sustainability.html" ><span data-lang="tr" class="active">SÃ¼rdÃ¼rÃ¼lebilirlik</span><span data-lang="en">Sustainability</span><span data-lang="es">Sostenibilidad</span></a></li><li><a href="certifications.html" ><span data-lang="tr" class="active">Sertifikalar</span><span data-lang="en">Certifications</span><span data-lang="es">Certificaciones</span></a></li><li><a href="announcements.html" ><span data-lang="tr" class="active">Duyurular</span><span data-lang="en">News & Events</span><span data-lang="es">Noticias</span></a></li><li><a href="contact.html" class="nav-cta"><span data-lang="tr" class="active">Ä°letiÅŸim</span><span data-lang="en">Contact</span><span data-lang="es">Contacto</span></a></li></ul>
+  <ul class="nav-links"><li><a href="index.html" ><span data-lang="tr" class="active">Hakkımızda</span><span data-lang="en">About Us</span><span data-lang="es">Sobre Nosotros</span></a></li><li><a href="products.html" class="current"><span data-lang="tr" class="active">Ürünler</span><span data-lang="en">Products</span><span data-lang="es">Productos</span></a></li><li><a href="sustainability.html" ><span data-lang="tr" class="active">Sürdürülebilirlik</span><span data-lang="en">Sustainability</span><span data-lang="es">Sostenibilidad</span></a></li><li><a href="certifications.html" ><span data-lang="tr" class="active">Sertifikalar</span><span data-lang="en">Certifications</span><span data-lang="es">Certificaciones</span></a></li><li><a href="announcements.html" ><span data-lang="tr" class="active">Duyurular</span><span data-lang="en">News & Events</span><span data-lang="es">Noticias</span></a></li><li><a href="contact.html" class="nav-cta"><span data-lang="tr" class="active">İletişim</span><span data-lang="en">Contact</span><span data-lang="es">Contacto</span></a></li></ul>
 </nav>
 
 <div class="page-hero">
-  <img src="images/hero-products.jpg" alt="ÃœRÃœNLER HERO" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.25">
+  <img src="images/hero-products.jpg" alt="ÜRÜNLER HERO" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.25">
   <div class="page-hero-grad"></div>
   <div class="page-hero-content">
     <div class="page-tag">
-      <span data-lang="tr" class="active">ÃœrÃ¼nler</span>
+      <span data-lang="tr" class="active">Ürünler</span>
       <span data-lang="en">Products</span>
       <span data-lang="es">Productos</span>
     </div>
     <h1 class="page-title">
-      <span data-lang="tr" class="active">SertifikalÄ± kumaÅŸlar,<br><em>her kategoride.</em></span>
+      <span data-lang="tr" class="active">Sertifikalı kumaşlar,<br><em>her kategoride.</em></span>
       <span data-lang="en">Certified fabrics,<br><em>in every category.</em></span>
-      <span data-lang="es">Telas certificadas,<br><em>en cada categorÃ­a.</em></span>
+      <span data-lang="es">Telas certificadas,<br><em>en cada categoría.</em></span>
     </h1>
   </div>
 </div>
 
-<!-- KATEGORÄ° TABS -->
+<!-- KATEGORİ TABS -->
 <div class="cat-tabs-bar">
-  <button class="cat-tab" data-cat="giyim" onclick="switchCat('giyim',this)"><span data-lang="tr" class="active">Giyim</span><span data-lang="en">Clothing</span><span data-lang="es">Ropa</span></button><button class="cat-tab" data-cat="spor" onclick="switchCat('spor',this)"><span data-lang="tr" class="active">Spor Giyim</span><span data-lang="en">Sportswear</span><span data-lang="es">Ropa Deportiva</span></button><button class="cat-tab" data-cat="mayo" onclick="switchCat('mayo',this)"><span data-lang="tr" class="active">Mayo</span><span data-lang="en">Swimwear</span><span data-lang="es">Trajes de BaÃ±o</span></button><button class="cat-tab" data-cat="performans" onclick="switchCat('performans',this)"><span data-lang="tr" class="active">Performans KumaÅŸlar</span><span data-lang="en">Performance Fabrics</span><span data-lang="es">Tejidos de Rendimiento</span></button><button class="cat-tab" data-cat="cocuk" onclick="switchCat('cocuk',this)"><span data-lang="tr" class="active">Ã‡ocuk Giyim</span><span data-lang="en">Children's Wear</span><span data-lang="es">Ropa Infantil</span></button>
+  <button class="cat-tab" data-cat="giyim" onclick="switchCat('giyim',this)"><span data-lang="tr" class="active">Giyim</span><span data-lang="en">Clothing</span><span data-lang="es">Ropa</span></button><button class="cat-tab" data-cat="spor" onclick="switchCat('spor',this)"><span data-lang="tr" class="active">Spor Giyim</span><span data-lang="en">Sportswear</span><span data-lang="es">Ropa Deportiva</span></button><button class="cat-tab" data-cat="mayo" onclick="switchCat('mayo',this)"><span data-lang="tr" class="active">Mayo</span><span data-lang="en">Swimwear</span><span data-lang="es">Trajes de Baño</span></button><button class="cat-tab" data-cat="performans" onclick="switchCat('performans',this)"><span data-lang="tr" class="active">Performans Kumaşlar</span><span data-lang="en">Performance Fabrics</span><span data-lang="es">Tejidos de Rendimiento</span></button><button class="cat-tab" data-cat="cocuk" onclick="switchCat('cocuk',this)"><span data-lang="tr" class="active">Çocuk Giyim</span><span data-lang="en">Children's Wear</span><span data-lang="es">Ropa Infantil</span></button>
 </div>
 
-<!-- KATEGORÄ° PANELLERÄ° -->
+<!-- KATEGORİ PANELLERİ -->
 <section class="cat-panels">
 
-    <div class="cat-panel active" id="panel-giyim">
-      <div class="cat-intro">
-        <div>
-          <h3 class="cat-title"><span data-lang="tr" class="active">Giyim</span><span data-lang="en">Clothing</span><span data-lang="es">Ropa</span></h3>
-          <p class="cat-desc"><span data-lang="tr" class="active">Polyester, organik pamuk ve karÄ±ÅŸÄ±mlÄ± dokuma kumaÅŸlar. Giyim sektÃ¶rÃ¼nÃ¼n ihtiyaÃ§larÄ±na yÃ¶nelik geniÅŸ Ã¼rÃ¼n yelpazesi.</span><span data-lang="en">Polyester, organic cotton and blended woven fabrics for the clothing sector.</span><span data-lang="es">Telas tejidas de poliÃ©ster, algodÃ³n orgÃ¡nico y mezclas para el sector de la confecciÃ³n.</span></p>
-          <div class="prod-specs"><span class="spec-tag">GRS</span><span class="spec-tag">GOTS</span><span class="spec-tag">OCS</span><span class="spec-tag">RCS Blended</span></div>
-        </div>
-      </div>
-      <div class="prod-items-grid"><div class="prod-item">
-          <img src="images/hero-products.jpg" alt="Giyim 1" style="width:100%;height:280px;object-fit:cover;display:block">
-          <div class="prod-item-info">
-            <div class="prod-item-cat"><span data-lang="tr" class="active">Giyim</span><span data-lang="en">Clothing</span><span data-lang="es">Ropa</span></div>
-            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 1</span><span data-lang="en">Collection 1</span><span data-lang="es">ColecciÃ³n 1</span></div>
-          </div>
-        </div><div class="prod-item">
-          <img src="images/product-giyim-1.jpg" alt="Giyim 2" style="width:100%;height:280px;object-fit:cover;display:block">
-          <div class="prod-item-info">
-            <div class="prod-item-cat"><span data-lang="tr" class="active">Giyim</span><span data-lang="en">Clothing</span><span data-lang="es">Ropa</span></div>
-            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 2</span><span data-lang="en">Collection 2</span><span data-lang="es">ColecciÃ³n 2</span></div>
-          </div>
-        </div><div class="prod-item">
-          <img src="images/hero-products.jpg" alt="Giyim 3" style="width:100%;height:280px;object-fit:cover;display:block">
-          <div class="prod-item-info">
-            <div class="prod-item-cat"><span data-lang="tr" class="active">Giyim</span><span data-lang="en">Clothing</span><span data-lang="es">Ropa</span></div>
-            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 3</span><span data-lang="en">Collection 3</span><span data-lang="es">ColecciÃ³n 3</span></div>
-          </div>
-        </div></div>
-    </div>
-    <div class="cat-panel " id="panel-spor">
-      <div class="cat-intro">
-        <div>
-          <h3 class="cat-title"><span data-lang="tr" class="active">Spor Giyim</span><span data-lang="en">Sportswear</span><span data-lang="es">Ropa Deportiva</span></h3>
-          <p class="cat-desc"><span data-lang="tr" class="active">YÃ¼ksek performanslÄ±, hava geÃ§irgen ve hÄ±zlÄ± kuruyan spor kumaÅŸlarÄ±. Aktif yaÅŸam tarzÄ±na uygun sertifikalÄ± Ã§Ã¶zÃ¼mler.</span><span data-lang="en">High-performance, breathable and quick-dry sports fabrics. Certified solutions for active lifestyles.</span><span data-lang="es">Telas deportivas de alto rendimiento, transpirables y de secado rÃ¡pido.</span></p>
-          <div class="prod-specs"><span class="spec-tag">rPET</span><span class="spec-tag">GRS</span><span class="spec-tag">Strech Blend</span><span class="spec-tag">Performans</span></div>
-        </div>
-      </div>
-      <div class="prod-items-grid"><div class="prod-item">
-          <img src="images/hero-products.jpg" alt="Spor Giyim 1" style="width:100%;height:280px;object-fit:cover;display:block">
-          <div class="prod-item-info">
-            <div class="prod-item-cat"><span data-lang="tr" class="active">Spor Giyim</span><span data-lang="en">Sportswear</span><span data-lang="es">Ropa Deportiva</span></div>
-            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 1</span><span data-lang="en">Collection 1</span><span data-lang="es">ColecciÃ³n 1</span></div>
-          </div>
-        </div><div class="prod-item">
-          <img src="images/product-spor-1.jpg" alt="Spor Giyim 2" style="width:100%;height:280px;object-fit:cover;display:block">
-          <div class="prod-item-info">
-            <div class="prod-item-cat"><span data-lang="tr" class="active">Spor Giyim</span><span data-lang="en">Sportswear</span><span data-lang="es">Ropa Deportiva</span></div>
-            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 2</span><span data-lang="en">Collection 2</span><span data-lang="es">ColecciÃ³n 2</span></div>
-          </div>
-        </div><div class="prod-item">
-          <img src="images/hero-products.jpg" alt="Spor Giyim 3" style="width:100%;height:280px;object-fit:cover;display:block">
-          <div class="prod-item-info">
-            <div class="prod-item-cat"><span data-lang="tr" class="active">Spor Giyim</span><span data-lang="en">Sportswear</span><span data-lang="es">Ropa Deportiva</span></div>
-            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 3</span><span data-lang="en">Collection 3</span><span data-lang="es">ColecciÃ³n 3</span></div>
-          </div>
-        </div></div>
-    </div>
-    <div class="cat-panel " id="panel-mayo">
-      <div class="cat-intro">
-        <div>
-          <h3 class="cat-title"><span data-lang="tr" class="active">Mayo</span><span data-lang="en">Swimwear</span><span data-lang="es">Trajes de BaÃ±o</span></h3>
-          <p class="cat-desc"><span data-lang="tr" class="active">Klora ve gÃ¼neÅŸe dayanÄ±klÄ±, elastik mayo kumaÅŸlarÄ±. Deniz ve havuz kullanÄ±mÄ±na uygun Ã¶zel dokuma yapÄ±larÄ±.</span><span data-lang="en">Chlorine and UV-resistant elastic swimwear fabrics with special weave structures for sea and pool use.</span><span data-lang="es">Telas elÃ¡sticas resistentes al cloro y UV con estructuras especiales para uso en piscina y mar.</span></p>
-          <div class="prod-specs"><span class="spec-tag">Klorina DayanÄ±klÄ±</span><span class="spec-tag">UV KorumalÄ±</span><span class="spec-tag">Elastan</span></div>
-        </div>
-      </div>
-      <div class="prod-items-grid"><div class="prod-item">
-          <img src="images/hero-products.jpg" alt="Mayo 1" style="width:100%;height:280px;object-fit:cover;display:block">
-          <div class="prod-item-info">
-            <div class="prod-item-cat"><span data-lang="tr" class="active">Mayo</span><span data-lang="en">Swimwear</span><span data-lang="es">Trajes de BaÃ±o</span></div>
-            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 1</span><span data-lang="en">Collection 1</span><span data-lang="es">ColecciÃ³n 1</span></div>
-          </div>
-        </div><div class="prod-item">
-          <img src="images/product-mayo-1.jpg" alt="Mayo 2" style="width:100%;height:280px;object-fit:cover;display:block">
-          <div class="prod-item-info">
-            <div class="prod-item-cat"><span data-lang="tr" class="active">Mayo</span><span data-lang="en">Swimwear</span><span data-lang="es">Trajes de BaÃ±o</span></div>
-            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 2</span><span data-lang="en">Collection 2</span><span data-lang="es">ColecciÃ³n 2</span></div>
-          </div>
-        </div><div class="prod-item">
-          <img src="images/hero-products.jpg" alt="Mayo 3" style="width:100%;height:280px;object-fit:cover;display:block">
-          <div class="prod-item-info">
-            <div class="prod-item-cat"><span data-lang="tr" class="active">Mayo</span><span data-lang="en">Swimwear</span><span data-lang="es">Trajes de BaÃ±o</span></div>
-            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 3</span><span data-lang="en">Collection 3</span><span data-lang="es">ColecciÃ³n 3</span></div>
-          </div>
-        </div></div>
-    </div>
-    <div class="cat-panel " id="panel-performans">
-      <div class="cat-intro">
-        <div>
-          <h3 class="cat-title"><span data-lang="tr" class="active">Performans KumaÅŸlar</span><span data-lang="en">Performance Fabrics</span><span data-lang="es">Tejidos de Rendimiento</span></h3>
-          <p class="cat-desc"><span data-lang="tr" class="active">Termal dÃ¼zenleme, nem yÃ¶netimi ve dayanÄ±klÄ±lÄ±k Ã¶zellikleriyle Ã¶ne Ã§Ä±kan teknik dokuma kumaÅŸlar.</span><span data-lang="en">Technical woven fabrics with thermal regulation, moisture management and durability properties.</span><span data-lang="es">Telas tÃ©cnicas tejidas con regulaciÃ³n tÃ©rmica, gestiÃ³n de la humedad y propiedades de durabilidad.</span></p>
-          <div class="prod-specs"><span class="spec-tag">Teknik</span><span class="spec-tag">Nem YÃ¶netimi</span><span class="spec-tag">Termal</span></div>
-        </div>
-      </div>
-      <div class="prod-items-grid"><div class="prod-item">
-          <img src="images/hero-products.jpg" alt="Performans KumaÅŸlar 1" style="width:100%;height:280px;object-fit:cover;display:block">
-          <div class="prod-item-info">
-            <div class="prod-item-cat"><span data-lang="tr" class="active">Performans KumaÅŸlar</span><span data-lang="en">Performance Fabrics</span><span data-lang="es">Tejidos de Rendimiento</span></div>
-            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 1</span><span data-lang="en">Collection 1</span><span data-lang="es">ColecciÃ³n 1</span></div>
-          </div>
-        </div><div class="prod-item">
-          <img src="images/product-performans-1.jpg" alt="Performans KumaÅŸlar 2" style="width:100%;height:280px;object-fit:cover;display:block">
-          <div class="prod-item-info">
-            <div class="prod-item-cat"><span data-lang="tr" class="active">Performans KumaÅŸlar</span><span data-lang="en">Performance Fabrics</span><span data-lang="es">Tejidos de Rendimiento</span></div>
-            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 2</span><span data-lang="en">Collection 2</span><span data-lang="es">ColecciÃ³n 2</span></div>
-          </div>
-        </div><div class="prod-item">
-          <img src="images/hero-products.jpg" alt="Performans KumaÅŸlar 3" style="width:100%;height:280px;object-fit:cover;display:block">
-          <div class="prod-item-info">
-            <div class="prod-item-cat"><span data-lang="tr" class="active">Performans KumaÅŸlar</span><span data-lang="en">Performance Fabrics</span><span data-lang="es">Tejidos de Rendimiento</span></div>
-            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 3</span><span data-lang="en">Collection 3</span><span data-lang="es">ColecciÃ³n 3</span></div>
-          </div>
-        </div></div>
-    </div>
-    <div class="cat-panel " id="panel-cocuk">
-      <div class="cat-intro">
-        <div>
-          <h3 class="cat-title"><span data-lang="tr" class="active">Ã‡ocuk Giyim</span><span data-lang="en">Children's Wear</span><span data-lang="es">Ropa Infantil</span></h3>
-          <p class="cat-desc"><span data-lang="tr" class="active">OEKO-TEXÂ® sertifikalÄ±, cilde dost, organik pamuk aÄŸÄ±rlÄ±klÄ± Ã§ocuk giyim kumaÅŸlarÄ±. En yÃ¼ksek gÃ¼venlik standartlarÄ±.</span><span data-lang="en">OEKO-TEXÂ® certified, skin-friendly children's wear fabrics, predominantly organic cotton. Highest safety standards.</span><span data-lang="es">Telas para ropa infantil con certificaciÃ³n OEKO-TEXÂ®, respetuosas con la piel y principalmente de algodÃ³n orgÃ¡nico.</span></p>
-          <div class="prod-specs"><span class="spec-tag">OEKO-TEXÂ®</span><span class="spec-tag">Organik Pamuk</span><span class="spec-tag">GOTS</span></div>
-        </div>
-      </div>
-      <div class="prod-items-grid"><div class="prod-item">
-          <img src="images/hero-products.jpg" alt="Ã‡ocuk Giyim 1" style="width:100%;height:280px;object-fit:cover;display:block">
-          <div class="prod-item-info">
-            <div class="prod-item-cat"><span data-lang="tr" class="active">Ã‡ocuk Giyim</span><span data-lang="en">Children's Wear</span><span data-lang="es">Ropa Infantil</span></div>
-            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 1</span><span data-lang="en">Collection 1</span><span data-lang="es">ColecciÃ³n 1</span></div>
-          </div>
-        </div><div class="prod-item">
-          <img src="images/product-cocuk-1.jpg" alt="Ã‡ocuk Giyim 2" style="width:100%;height:280px;object-fit:cover;display:block">
-          <div class="prod-item-info">
-            <div class="prod-item-cat"><span data-lang="tr" class="active">Ã‡ocuk Giyim</span><span data-lang="en">Children's Wear</span><span data-lang="es">Ropa Infantil</span></div>
-            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 2</span><span data-lang="en">Collection 2</span><span data-lang="es">ColecciÃ³n 2</span></div>
-          </div>
-        </div><div class="prod-item">
-          <img src="images/hero-products.jpg" alt="Ã‡ocuk Giyim 3" style="width:100%;height:280px;object-fit:cover;display:block">
-          <div class="prod-item-info">
-            <div class="prod-item-cat"><span data-lang="tr" class="active">Ã‡ocuk Giyim</span><span data-lang="en">Children's Wear</span><span data-lang="es">Ropa Infantil</span></div>
-            <div class="prod-item-name"><span data-lang="tr" class="active">Koleksiyon 3</span><span data-lang="en">Collection 3</span><span data-lang="es">ColecciÃ³n 3</span></div>
-          </div>
-        </div></div>
-    </div>
 </section>
 
-<!-- ÃœRETÄ°M SÃœRECÄ° -->
+<!-- ÜRETİM SÜRECİ -->
 <section class="process-strip">
   <div class="section-eyebrow">
-    <span data-lang="tr" class="active">Ãœretim SÃ¼reci</span>
+    <span data-lang="tr" class="active">Üretim Süreci</span>
     <span data-lang="en">Production Process</span>
-    <span data-lang="es">Proceso de ProducciÃ³n</span>
+    <span data-lang="es">Proceso de Producción</span>
   </div>
   <h2 class="section-title">
-    <span data-lang="tr" class="active">Ä°plikten Ã¼rÃ¼ne<br><em>bir Ã¼retim hikayesi.</em></span>
-    <span data-lang="en">From yarn to product â€”<br><em>a production story.</em></span>
-    <span data-lang="es">Del hilo al producto â€”<br><em>una historia de producciÃ³n.</em></span>
+    <span data-lang="tr" class="active">İplikten ürüne<br><em>bir üretim hikayesi.</em></span>
+    <span data-lang="en">From yarn to product —<br><em>a production story.</em></span>
+    <span data-lang="es">Del hilo al producto —<br><em>una historia de producción.</em></span>
   </h2>
   <div class="process-steps">
     <div class="ps-step"><div class="ps-num">01</div><div class="ps-title"><span data-lang="tr" class="active">Elyaf</span><span data-lang="en">Fiber</span><span data-lang="es">Fibra</span></div><div class="ps-sub">rPET, Organik Pamuk, Viskoz</div></div>
-    <div class="ps-step"><div class="ps-num">02</div><div class="ps-title"><span data-lang="tr" class="active">Ä°plik</span><span data-lang="en">Yarn</span><span data-lang="es">Hilo</span></div><div class="ps-sub">MiranlÄ± â€” POY EÄŸirme</div></div>
-    <div class="ps-step"><div class="ps-num">03</div><div class="ps-title"><span data-lang="tr" class="active">Dokuma</span><span data-lang="en">Weaving</span><span data-lang="es">Tejido</span></div><div class="ps-sub">GÃ¶kÃ§ekÃ¶y / Miranda</div></div>
-    <div class="ps-step"><div class="ps-num">04</div><div class="ps-title"><span data-lang="tr" class="active">Boyama</span><span data-lang="en">Dyeing</span><span data-lang="es">TeÃ±ido</span></div><div class="ps-sub">Kinteks â€” Su Geri DÃ¶nÃ¼ÅŸÃ¼mlÃ¼</div></div>
-    <div class="ps-step"><div class="ps-num">05</div><div class="ps-title"><span data-lang="tr" class="active">Apre</span><span data-lang="en">Finishing</span><span data-lang="es">Acabado</span></div><div class="ps-sub">Kaplama, KK, SarÄ±m</div></div>
-    <div class="ps-step"><div class="ps-num">06</div><div class="ps-title"><span data-lang="tr" class="active">SertifikalÄ±</span><span data-lang="en">Certified</span><span data-lang="es">Certificado</span></div><div class="ps-sub">TC dÃ¼zenlendi, sevkiyata hazÄ±r</div></div>
+    <div class="ps-step"><div class="ps-num">02</div><div class="ps-title"><span data-lang="tr" class="active">İplik</span><span data-lang="en">Yarn</span><span data-lang="es">Hilo</span></div><div class="ps-sub">Miranlı — POY Eğirme</div></div>
+    <div class="ps-step"><div class="ps-num">03</div><div class="ps-title"><span data-lang="tr" class="active">Dokuma</span><span data-lang="en">Weaving</span><span data-lang="es">Tejido</span></div><div class="ps-sub">Gökçeköy / Miranda</div></div>
+    <div class="ps-step"><div class="ps-num">04</div><div class="ps-title"><span data-lang="tr" class="active">Boyama</span><span data-lang="en">Dyeing</span><span data-lang="es">Teñido</span></div><div class="ps-sub">Kinteks — Su Geri Dönüşümlü</div></div>
+    <div class="ps-step"><div class="ps-num">05</div><div class="ps-title"><span data-lang="tr" class="active">Apre</span><span data-lang="en">Finishing</span><span data-lang="es">Acabado</span></div><div class="ps-sub">Kaplama, KK, Sarım</div></div>
+    <div class="ps-step"><div class="ps-num">06</div><div class="ps-title"><span data-lang="tr" class="active">Sertifikalı</span><span data-lang="en">Certified</span><span data-lang="es">Certificado</span></div><div class="ps-sub">TC düzenlendi, sevkiyata hazır</div></div>
   </div>
 </section>
 
-<!-- KOLEKSÄ°YON GALERÄ°SÄ° -->
+<!-- KOLEKSİYON GALERİSİ -->
 <section class="gallery-section">
   <div class="section-eyebrow">
     <span data-lang="tr" class="active">Koleksiyon</span>
     <span data-lang="en">Collection</span>
-    <span data-lang="es">ColecciÃ³n</span>
+    <span data-lang="es">Colección</span>
   </div>
   <h2 class="section-title">
-    <span data-lang="tr" class="active">KumaÅŸ <em>galeri.</em></span>
+    <span data-lang="tr" class="active">Kumaş <em>galeri.</em></span>
     <span data-lang="en">Fabric <em>gallery.</em></span>
-    <span data-lang="es">GalerÃ­a de <em>telas.</em></span>
+    <span data-lang="es">Galería de <em>telas.</em></span>
   </h2>
   <div class="gallery-grid" id="gallery-grid">
     <div class="gallery-item">
@@ -927,12 +789,12 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
   </div>
 </section>
 
-<!-- LÄ°GHTBOX -->
+<!-- LİGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="closeLB(event)">
-  <button class="lb-close" onclick="closeLB()">âœ•</button>
-  <button class="lb-prev" onclick="shiftLB(-1,event)">â€¹</button>
+  <button class="lb-close" onclick="closeLB()">✕</button>
+  <button class="lb-prev" onclick="shiftLB(-1,event)">‹</button>
   <img class="lb-img" id="lb-img" src="" alt="">
-  <button class="lb-next" onclick="shiftLB(1,event)">â€º</button>
+  <button class="lb-next" onclick="shiftLB(1,event)">›</button>
 </div>
 
 
@@ -944,42 +806,42 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
         <img style="height:32px;filter:brightness(0) invert(1);opacity:0.55" src="images/logo-harput.png" alt="Harput Tekstil">
       </div>
       <p style="font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:2px;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-bottom:10px">
-        <span data-lang="tr" class="active">Harput Tekstil'in Bir MarkasÄ±</span>
+        <span data-lang="tr" class="active">Harput Tekstil'in Bir Markası</span>
         <span data-lang="en">A Division of Harput Tekstil</span>
-        <span data-lang="es">Una DivisiÃ³n de Harput Tekstil</span>
+        <span data-lang="es">Una División de Harput Tekstil</span>
       </p>
       <p style="font-size:13px;color:rgba(255,255,255,0.3);line-height:1.7;max-width:220px">
-        <span data-lang="tr" class="active">Premium giyim kumaÅŸlarÄ±. Est. 2023, Bursa, TÃ¼rkiye.</span>
+        <span data-lang="tr" class="active">Premium giyim kumaşları. Est. 2023, Bursa, Türkiye.</span>
         <span data-lang="en">Premium apparel fabrics. Est. 2023, Bursa, Turkey.</span>
-        <span data-lang="es">Telas premium para ropa. Est. 2023, Bursa, TurquÃ­a.</span>
+        <span data-lang="es">Telas premium para ropa. Est. 2023, Bursa, Turquía.</span>
       </p>
     </div>
     <div class="footer-col">
       <h5>Kurumsal</h5>
-      <a href="index.html"><span data-lang="tr" class="active">HakkÄ±mÄ±zda</span><span data-lang="en">About Us</span><span data-lang="es">Sobre Nosotros</span></a>
-      <a href="sustainability.html"><span data-lang="tr" class="active">SÃ¼rdÃ¼rÃ¼lebilirlik</span><span data-lang="en">Sustainability</span><span data-lang="es">Sostenibilidad</span></a>
+      <a href="index.html"><span data-lang="tr" class="active">Hakkımızda</span><span data-lang="en">About Us</span><span data-lang="es">Sobre Nosotros</span></a>
+      <a href="sustainability.html"><span data-lang="tr" class="active">Sürdürülebilirlik</span><span data-lang="en">Sustainability</span><span data-lang="es">Sostenibilidad</span></a>
       <a href="certifications.html"><span data-lang="tr" class="active">Sertifikalar</span><span data-lang="en">Certifications</span><span data-lang="es">Certificaciones</span></a>
       <a href="announcements.html"><span data-lang="tr" class="active">Duyurular</span><span data-lang="en">News</span><span data-lang="es">Noticias</span></a>
     </div>
     <div class="footer-col">
-      <h5><span data-lang="tr" class="active">ÃœrÃ¼nler</span><span data-lang="en">Products</span><span data-lang="es">Productos</span></h5>
+      <h5><span data-lang="tr" class="active">Ürünler</span><span data-lang="en">Products</span><span data-lang="es">Productos</span></h5>
       <a href="products.html#giyim"><span data-lang="tr" class="active">Giyim</span><span data-lang="en">Clothing</span><span data-lang="es">Ropa</span></a>
       <a href="products.html#spor"><span data-lang="tr" class="active">Spor Giyim</span><span data-lang="en">Sportswear</span><span data-lang="es">Deportiva</span></a>
-      <a href="products.html#mayo"><span data-lang="tr" class="active">Mayo</span><span data-lang="en">Swimwear</span><span data-lang="es">BaÃ±o</span></a>
+      <a href="products.html#mayo"><span data-lang="tr" class="active">Mayo</span><span data-lang="en">Swimwear</span><span data-lang="es">Baño</span></a>
       <a href="products.html#performans"><span data-lang="tr" class="active">Performans</span><span data-lang="en">Performance</span><span data-lang="es">Rendimiento</span></a>
-      <a href="products.html#cocuk"><span data-lang="tr" class="active">Ã‡ocuk Giyim</span><span data-lang="en">Children's</span><span data-lang="es">Infantil</span></a>
+      <a href="products.html#cocuk"><span data-lang="tr" class="active">Çocuk Giyim</span><span data-lang="en">Children's</span><span data-lang="es">Infantil</span></a>
     </div>
     <div class="footer-col">
-      <h5><span data-lang="tr" class="active">Ä°letiÅŸim</span><span data-lang="en">Contact</span><span data-lang="es">Contacto</span></h5>
-      <a href="contact.html"><span data-lang="tr" class="active">Mesaj GÃ¶nderin</span><span data-lang="en">Send Message</span><span data-lang="es">Enviar Mensaje</span></a>
-      <a href="contact.html" style="color:rgba(255,255,255,0.3);font-size:12px;margin-top:8px;line-height:1.8">IÅŸÄ±ktepe Org. San. BÃ¶lgesi<br>Siyah Cad. No:49<br>NilÃ¼fer / Bursa</a>
+      <h5><span data-lang="tr" class="active">İletişim</span><span data-lang="en">Contact</span><span data-lang="es">Contacto</span></h5>
+      <a href="contact.html"><span data-lang="tr" class="active">Mesaj Gönderin</span><span data-lang="en">Send Message</span><span data-lang="es">Enviar Mensaje</span></a>
+      <a href="contact.html" style="color:rgba(255,255,255,0.3);font-size:12px;margin-top:8px;line-height:1.8">Işıktepe Org. San. Bölgesi<br>Siyah Cad. No:49<br>Nilüfer / Bursa</a>
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-copy">Â© 2025 Efiks Tekstil San. ve Tic. A.Å.</span>
+    <span class="footer-copy">© 2025 Efiks Tekstil San. ve Tic. A.Ş.</span>
     <div style="display:flex;gap:16px">
       <a href="certifications.html#kvkk" style="color:rgba(255,255,255,0.2);font-size:11px;font-family:'Barlow Condensed',sans-serif;text-decoration:none;letter-spacing:1px">KVKK</a>
-      <a href="certifications.html#cerez" style="color:rgba(255,255,255,0.2);font-size:11px;font-family:'Barlow Condensed',sans-serif;text-decoration:none;letter-spacing:1px">Ã‡erez PolitikasÄ±</a>
+      <a href="certifications.html#cerez" style="color:rgba(255,255,255,0.2);font-size:11px;font-family:'Barlow Condensed',sans-serif;text-decoration:none;letter-spacing:1px">Çerez Politikası</a>
     </div>
   </div>
 </footer>

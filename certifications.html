@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Sertifikalar & KVKK — FX Textile</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Barlow:wght@300;400;500&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -139,30 +140,30 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
   content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none}
 .slider-track-wrap::before{left:0;background:linear-gradient(to right,var(--black),transparent)}
 .slider-track-wrap::after{right:0;background:linear-gradient(to left,var(--black),transparent)}
-.slider-track{display:flex;gap:20px;animation:scrollLeft 28s linear infinite}
+.slider-track{display:flex;gap:20px;animation:scrollLeft 20s linear infinite}
 .slider-track:hover{animation-play-state:paused}
 @keyframes scrollLeft{
   0%{transform:translateX(0)}
   100%{transform:translateX(-50%)}
 }
 
-.memb-chip{border-radius:10px;min-width:200px;padding:0;overflow:hidden;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1)}
-.memb-chip-img{height:110px;overflow:hidden}
-.memb-chip-img img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(40%);transition:filter .3s}
-.memb-chip:hover .memb-chip-img img{filter:grayscale(0%)}
-.memb-chip-name{display:block;font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:1px;font-weight:600;color:#fff;padding:12px 16px 2px}
-.memb-chip-desc{display:block;font-size:11px;color:rgba(255,255,255,0.35);line-height:1.4;padding:0 16px 14px}
 
-.memb-chip-name{font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:1px;font-weight:600;color:#fff}
-.memb-chip-desc{font-size:12px;color:rgba(255,255,255,0.35);line-height:1.5}
+
+.memb-chip-img img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(40%);transition:filter .3s}
+
+
+
+
+
+
 @media(max-width:1024px){
   .memberships-slider-section{padding:56px 0}
 }
 
 
-.memb-chip{border-radius:10px;min-width:180px;padding:16px 24px}
-.memb-chip img{filter:brightness(0) invert(1);transition:opacity .3s}
-.memb-chip:hover img{opacity:1}
+
+
+
 
 
 /* ─── YUMUŞAK KÖŞELER ─── */
@@ -170,6 +171,28 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
 .certs-table,.cert-tag,.valid-badge,.cert-pill,.all-certs-row{border-radius:12px}
 .acc-item{overflow:hidden}
 .page-hero{border-radius:0 0 20px 20px;overflow:hidden}
+
+
+/* Üyelik chip — çerçevesiz */
+.memb-chip{
+  flex-shrink:0;min-width:220px;padding:0;
+  background:transparent;border:none;border-radius:0;
+  display:flex;flex-direction:column;align-items:center;gap:12px;
+}
+.memb-chip img{
+  width:220px;height:130px;object-fit:cover;
+  border-radius:8px;display:block;
+  filter:grayscale(20%);transition:filter .3s;
+}
+.memb-chip:hover img{filter:grayscale(0%)}
+.memb-chip-img{display:none}
+.memb-chip-name{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:13px;letter-spacing:1.5px;font-weight:600;
+  color:rgba(255,255,255,0.5);text-align:center;
+  text-transform:uppercase;
+}
+.memb-chip-desc{display:none}
 
 </style>
 </head>
@@ -324,85 +347,41 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
   </div>
   <div class="slider-track-wrap">
     <div class="slider-track"><div class="memb-chip">
-  <div class="memb-chip-img"><img src="images/sustain-bsci.jpg" alt="BSCI"></div>
+  <img src="images/sustain-bsci.jpg" alt="BSCI">
   <span class="memb-chip-name">BSCI</span>
-  <span class="memb-chip-desc">Business Social Compliance Initiative</span>
 </div><div class="memb-chip">
-  <div class="memb-chip-img"><img src="images/sustain-higg.jpg" alt="Higg Index"></div>
+  <img src="images/sustain-higg.jpg" alt="Higg Index">
   <span class="memb-chip-name">Higg Index</span>
-  <span class="memb-chip-desc">FEM + SLM</span>
 </div><div class="memb-chip">
-  <div class="memb-chip-img"><img src="images/sustain-inditex.jpg" alt="INDITEX JOIN LIFE"></div>
+  <img src="images/sustain-inditex.jpg" alt="INDITEX JOIN LIFE">
   <span class="memb-chip-name">INDITEX JOIN LIFE</span>
-  <span class="memb-chip-desc">Tedarikçi Onayı</span>
 </div><div class="memb-chip">
-  <div class="memb-chip-img"><img src="images/sustain-textile-exchange.jpg" alt="Textile Exchange"></div>
+  <img src="images/sustain-textile-exchange.jpg" alt="Textile Exchange">
   <span class="memb-chip-name">Textile Exchange</span>
-  <span class="memb-chip-desc">GRS / OCS / RCS</span>
 </div><div class="memb-chip">
-  <div class="memb-chip-img"><img src="images/sustain-chemical.jpg" alt="OEKO-TEX®"></div>
-  <span class="memb-chip-name">OEKO-TEX®</span>
-  <span class="memb-chip-desc">Standard 100</span>
-</div><div class="memb-chip">
-  <div class="memb-chip-img"><img src="images/sustain-recycled.jpg" alt="GRS"></div>
-  <span class="memb-chip-name">GRS</span>
-  <span class="memb-chip-desc">Global Recycled Standard v4.0</span>
-</div><div class="memb-chip">
-  <div class="memb-chip-img"><img src="images/sustain-organic.jpg" alt="OCS"></div>
-  <span class="memb-chip-name">OCS</span>
-  <span class="memb-chip-desc">Organic Content Standard v3.0</span>
-</div><div class="memb-chip">
-  <div class="memb-chip-img"><img src="images/sustain-circular.jpg" alt="RCS"></div>
-  <span class="memb-chip-name">RCS</span>
-  <span class="memb-chip-desc">Recycled Claim Standard v2.0</span>
-</div><div class="memb-chip">
-  <div class="memb-chip-img"><img src="images/sustain-water.jpg" alt="GOTS"></div>
-  <span class="memb-chip-name">GOTS</span>
-  <span class="memb-chip-desc">v7.0 — Organic</span>
-</div><div class="memb-chip">
-  <div class="memb-chip-img"><img src="images/sustain-energy.jpg" alt="BSCI"></div>
+  <img src="images/sustain-bsci.jpg" alt="BSCI">
   <span class="memb-chip-name">BSCI</span>
-  <span class="memb-chip-desc">ICS Paylaşımlı Denetim</span>
 </div><div class="memb-chip">
-  <div class="memb-chip-img"><img src="images/sustain-bsci.jpg" alt="BSCI"></div>
-  <span class="memb-chip-name">BSCI</span>
-  <span class="memb-chip-desc">Business Social Compliance Initiative</span>
-</div><div class="memb-chip">
-  <div class="memb-chip-img"><img src="images/sustain-higg.jpg" alt="Higg Index"></div>
+  <img src="images/sustain-higg.jpg" alt="Higg Index">
   <span class="memb-chip-name">Higg Index</span>
-  <span class="memb-chip-desc">FEM + SLM</span>
 </div><div class="memb-chip">
-  <div class="memb-chip-img"><img src="images/sustain-inditex.jpg" alt="INDITEX JOIN LIFE"></div>
+  <img src="images/sustain-inditex.jpg" alt="INDITEX JOIN LIFE">
   <span class="memb-chip-name">INDITEX JOIN LIFE</span>
-  <span class="memb-chip-desc">Tedarikçi Onayı</span>
 </div><div class="memb-chip">
-  <div class="memb-chip-img"><img src="images/sustain-textile-exchange.jpg" alt="Textile Exchange"></div>
+  <img src="images/sustain-textile-exchange.jpg" alt="Textile Exchange">
   <span class="memb-chip-name">Textile Exchange</span>
-  <span class="memb-chip-desc">GRS / OCS / RCS</span>
 </div><div class="memb-chip">
-  <div class="memb-chip-img"><img src="images/sustain-chemical.jpg" alt="OEKO-TEX®"></div>
-  <span class="memb-chip-name">OEKO-TEX®</span>
-  <span class="memb-chip-desc">Standard 100</span>
-</div><div class="memb-chip">
-  <div class="memb-chip-img"><img src="images/sustain-recycled.jpg" alt="GRS"></div>
-  <span class="memb-chip-name">GRS</span>
-  <span class="memb-chip-desc">Global Recycled Standard v4.0</span>
-</div><div class="memb-chip">
-  <div class="memb-chip-img"><img src="images/sustain-organic.jpg" alt="OCS"></div>
-  <span class="memb-chip-name">OCS</span>
-  <span class="memb-chip-desc">Organic Content Standard v3.0</span>
-</div><div class="memb-chip">
-  <div class="memb-chip-img"><img src="images/sustain-circular.jpg" alt="RCS"></div>
-  <span class="memb-chip-name">RCS</span>
-  <span class="memb-chip-desc">Recycled Claim Standard v2.0</span>
-</div><div class="memb-chip">
-  <div class="memb-chip-img"><img src="images/sustain-water.jpg" alt="GOTS"></div>
-  <span class="memb-chip-name">GOTS</span>
-  <span class="memb-chip-desc">v7.0 — Organic</span>
-</div><div class="memb-chip">
-  <div class="memb-chip-img"><img src="images/sustain-energy.jpg" alt="BSCI"></div>
+  <img src="images/sustain-bsci.jpg" alt="BSCI">
   <span class="memb-chip-name">BSCI</span>
-  <span class="memb-chip-desc">ICS Paylaşımlı Denetim</span>
+</div><div class="memb-chip">
+  <img src="images/sustain-higg.jpg" alt="Higg Index">
+  <span class="memb-chip-name">Higg Index</span>
+</div><div class="memb-chip">
+  <img src="images/sustain-inditex.jpg" alt="INDITEX JOIN LIFE">
+  <span class="memb-chip-name">INDITEX JOIN LIFE</span>
+</div><div class="memb-chip">
+  <img src="images/sustain-textile-exchange.jpg" alt="Textile Exchange">
+  <span class="memb-chip-name">Textile Exchange</span>
 </div></div>
 </div>
 </section>
