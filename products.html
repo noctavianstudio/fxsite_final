@@ -77,7 +77,7 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
 
 .page-hero{height:52vh;min-height:340px;background:var(--black);display:flex;align-items:flex-end;position:relative;overflow:hidden}
 .page-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.25}
-.page-hero-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.55) 0%,rgba(0,0,0,0.08) 20%,transparent 40%)}
+.page-hero-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.50) 0%,rgba(0,0,0,0.05) 15%,transparent 30%)}
 .page-hero-content{position:relative;z-index:2;padding:0 60px 72px}
 .page-tag{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--red-light);margin-bottom:16px;display:flex;align-items:center;gap:12px}
 .page-tag::before{content:'';width:24px;height:1px;background:var(--red-light);display:block}
@@ -187,6 +187,8 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
 .mob-close{position:absolute;top:24px;right:24px;background:none;border:none;font-size:28px;cursor:pointer;color:var(--black)}
 @media(max-width:1024px){
   .ham-btn{display:flex}
+
+}
 </style>
 </head>
 <body>
@@ -202,7 +204,8 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
     <div class="logo-div"></div>
     <a href="index.html"><img class="logo-harput" src="images/logo-harput.png" alt="Harput Tekstil"></a>
   </div>
-  <ul class="nav-links"><li><a href="index.html" ><span data-lang="tr" class="active">Hakkımızda</span><span data-lang="en">About Us</span><span data-lang="es">Sobre Nosotros</span></a></li><li><a href="products.html" class="current"><span data-lang="tr" class="active">Ürünler</span><span data-lang="en">Products</span><span data-lang="es">Productos</span></a></li><li><a href="sustainability.html" ><span data-lang="tr" class="active">Sürdürülebilirlik</span><span data-lang="en">Sustainability</span><span data-lang="es">Sostenibilidad</span></a></li><li><a href="certifications.html" ><span data-lang="tr" class="active">Sertifikalar</span><span data-lang="en">Certifications</span><span data-lang="es">Certificaciones</span></a></li><li><a href="announcements.html" ><span data-lang="tr" class="active">Duyurular</span><span data-lang="en">News & Events</span><span data-lang="es">Noticias</span></a></li><li><a href="contact.html" class="nav-cta"><span data-lang="tr" class="active">İletişim</span><span data-lang="en">Contact</span><span data-lang="es">Contacto</span></a></li></ul>
+  <button class="ham-btn" id="hamBtn" onclick="toggleNav()" aria-label="Menü"><span></span><span></span><span></span></button>
+  <ul class="nav-links"><li><a href="index.html" class="current"><span data-lang="tr" class="active">Hakkımızda</span><span data-lang="en">About Us</span><span data-lang="es">Sobre Nosotros</span></a></li><li><a href="products.html" class="current" ><span data-lang="tr" class="active">Ürünler</span><span data-lang="en">Products</span><span data-lang="es">Productos</span></a></li><li><a href="sustainability.html" ><span data-lang="tr" class="active">Sürdürülebilirlik</span><span data-lang="en">Sustainability</span><span data-lang="es">Sostenibilidad</span></a></li><li><a href="certifications.html" ><span data-lang="tr" class="active">Sertifikalar</span><span data-lang="en">Certifications</span><span data-lang="es">Certificaciones</span></a></li><li><a href="announcements.html" ><span data-lang="tr" class="active">Duyurular</span><span data-lang="en">News & Events</span><span data-lang="es">Noticias</span></a></li><li><a href="contact.html" class="nav-cta"><span data-lang="tr" class="active">İletişim</span><span data-lang="en">Contact</span><span data-lang="es">Contacto</span></a></li></ul>
 </nav>
 <div class="mobile-nav" id="mobileNav">
   <button class="mob-close" onclick="toggleNav()">✕</button>
@@ -241,7 +244,7 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
     <button class="lang-btn" data-l="en" onclick="setLang('en');toggleNav()">EN</button>
     <button class="lang-btn" data-l="es" onclick="setLang('es');toggleNav()">ES</button>
   </div>
-
+</div>
 
 <div class="page-hero">
   <img src="images/hero-products.jpg" alt="ÜRÜNLER HERO" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.25">
@@ -261,11 +264,12 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
 </div>
 
 <!-- KATEGORİ PANELLERİ -->
-<section class="cat-panels">
 <!-- KATEGORİ TABS -->
 <div class="cat-tabs-bar">
   <button class="cat-tab" data-cat="giyim" onclick="switchCat('giyim',this)"><span data-lang="tr" class="active">Giyim</span><span data-lang="en">Clothing</span><span data-lang="es">Ropa</span></button><button class="cat-tab" data-cat="spor" onclick="switchCat('spor',this)"><span data-lang="tr" class="active">Spor Giyim</span><span data-lang="en">Sportswear</span><span data-lang="es">Ropa Deportiva</span></button><button class="cat-tab" data-cat="mayo" onclick="switchCat('mayo',this)"><span data-lang="tr" class="active">Mayo</span><span data-lang="en">Swimwear</span><span data-lang="es">Trajes de Baño</span></button><button class="cat-tab" data-cat="performans" onclick="switchCat('performans',this)"><span data-lang="tr" class="active">Performans Kumaşlar</span><span data-lang="en">Performance Fabrics</span><span data-lang="es">Tejidos de Rendimiento</span></button><button class="cat-tab" data-cat="cocuk" onclick="switchCat('cocuk',this)"><span data-lang="tr" class="active">Çocuk Giyim</span><span data-lang="en">Children's Wear</span><span data-lang="es">Ropa Infantil</span></button>
 </div>
+
+<section class="cat-panels">
 
 
 
@@ -521,51 +525,6 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
 </div>
 </section>
 
-  <button class="lb-next" onclick="shiftLB(1,event)">›</button>
-  <div class="lb-counter" id="lb-counter"></div>
-</div>
-
-<script>
-function toggleNav(){
-  const btn = document.getElementById('hamBtn');
-  const nav = document.getElementById('mobileNav');
-  const isOpen = nav.classList.contains('open');
-  btn.classList.toggle('open', !isOpen);
-  nav.classList.toggle('open', !isOpen);
-  document.body.style.overflow = isOpen ? '' : 'hidden';
-}
-function setLang(l){
-  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.l===l));
-  document.querySelectorAll('[data-lang]').forEach(e=>e.classList.toggle('active',e.getAttribute('data-lang')===l));
-  localStorage.setItem('fxlang',l);document.documentElement.lang=l;
-}
-document.addEventListener('DOMContentLoaded',()=>{const s=localStorage.getItem('fxlang')||'tr';setLang(s);});
-</script>
-<script>
-// Category switcher
-function switchCat(cat, btn) {
-  document.querySelectorAll('.cat-tab').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('.cat-panel').forEach(p => p.classList.remove('active'));
-  document.getElementById('panel-' + cat).classList.add('active');
-  // Update URL hash
-  history.replaceState(null, '', '#' + cat);
-}
-// On load check hash
-document.addEventListener('DOMContentLoaded', () => {
-  const hash = location.hash.replace('#','');
-  if (hash) {
-    const tab = document.querySelector('[data-cat="' + hash + '"]');
-    if (tab) switchCat(hash, tab);
-  }
-  // Default first tab active
-  if (!document.querySelector('.cat-tab.active')) {
-    const first = document.querySelector('.cat-tab');
-    if (first) first.classList.add('active');
-  }
-
-</script>
-<!-- LIGHTBOX -->
 <div id="lightbox" onclick="if(event.target===this)closeLB()">
   <button class="lb-close" onclick="closeLB()">✕</button>
   <button class="lb-prev" onclick="shiftLB(-1,event)">‹</button>
@@ -620,6 +579,31 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
   </div>
 </footer>
+<script>
+// Category switcher
+function switchCat(cat, btn) {
+  document.querySelectorAll('.cat-tab').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  document.querySelectorAll('.cat-panel').forEach(function(panel){ panel.classList.remove('active'); });
+  var target = document.getElementById('panel-' + cat);
+  if(target) target.classList.add('active');
+  history.replaceState(null, '', '#' + cat);
+}
+// On load check hash
+document.addEventListener('DOMContentLoaded', function(){
+  var hash = location.hash.replace('#','');
+  if(hash) {
+    var tab = document.querySelector('[data-cat="' + hash + '"]');
+    if(tab) switchCat(hash, tab);
+  }
+  if(!document.querySelector('.cat-tab.active')) {
+    var first = document.querySelector('.cat-tab');
+    if(first) first.classList.add('active');
+    var fp = document.querySelector('.cat-panel');
+    if(fp) fp.classList.add('active');
+  }
+});
+</script>
 <script>
 function toggleNav(){
   const btn = document.getElementById('hamBtn');

@@ -75,7 +75,7 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
 
 .page-hero{height:55vh;min-height:380px;background:var(--black);display:flex;align-items:flex-end;position:relative;overflow:hidden}
 .page-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.22}
-.page-hero-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.55) 0%,rgba(0,0,0,0.08) 20%,transparent 40%)}
+.page-hero-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.50) 0%,rgba(0,0,0,0.05) 15%,transparent 30%)}
 .page-hero-content{position:relative;z-index:2;padding:0 60px 72px}
 .page-tag{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--red-light);margin-bottom:16px;display:flex;align-items:center;gap:12px}
 .page-tag::before{content:'';width:24px;height:1px;background:var(--red-light);display:block}
@@ -211,6 +211,8 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
 .mob-close{position:absolute;top:24px;right:24px;background:none;border:none;font-size:28px;cursor:pointer;color:var(--black)}
 @media(max-width:1024px){
   .ham-btn{display:flex}
+
+}
 </style>
 </head>
 <body>
@@ -227,7 +229,8 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
     <div class="logo-div"></div>
     <a href="index.html"><img class="logo-harput" src="images/logo-harput.png" alt="Harput Tekstil"></a>
   </div>
-  <ul class="nav-links"><li><a href="index.html" ><span data-lang="tr" class="active">Hakkımızda</span><span data-lang="en">About Us</span><span data-lang="es">Sobre Nosotros</span></a></li><li><a href="products.html" ><span data-lang="tr" class="active">Ürünler</span><span data-lang="en">Products</span><span data-lang="es">Productos</span></a></li><li><a href="sustainability.html" ><span data-lang="tr" class="active">Sürdürülebilirlik</span><span data-lang="en">Sustainability</span><span data-lang="es">Sostenibilidad</span></a></li><li><a href="certifications.html" class="current"><span data-lang="tr" class="active">Sertifikalar</span><span data-lang="en">Certifications</span><span data-lang="es">Certificaciones</span></a></li><li><a href="announcements.html" ><span data-lang="tr" class="active">Duyurular</span><span data-lang="en">News & Events</span><span data-lang="es">Noticias</span></a></li><li><a href="contact.html" class="nav-cta"><span data-lang="tr" class="active">İletişim</span><span data-lang="en">Contact</span><span data-lang="es">Contacto</span></a></li></ul>
+  <button class="ham-btn" id="hamBtn" onclick="toggleNav()" aria-label="Menü"><span></span><span></span><span></span></button>
+  <ul class="nav-links"><li><a href="index.html" class="current"><span data-lang="tr" class="active">Hakkımızda</span><span data-lang="en">About Us</span><span data-lang="es">Sobre Nosotros</span></a></li><li><a href="products.html" ><span data-lang="tr" class="active">Ürünler</span><span data-lang="en">Products</span><span data-lang="es">Productos</span></a></li><li><a href="sustainability.html" ><span data-lang="tr" class="active">Sürdürülebilirlik</span><span data-lang="en">Sustainability</span><span data-lang="es">Sostenibilidad</span></a></li><li><a href="certifications.html" class="current" ><span data-lang="tr" class="active">Sertifikalar</span><span data-lang="en">Certifications</span><span data-lang="es">Certificaciones</span></a></li><li><a href="announcements.html" ><span data-lang="tr" class="active">Duyurular</span><span data-lang="en">News & Events</span><span data-lang="es">Noticias</span></a></li><li><a href="contact.html" class="nav-cta"><span data-lang="tr" class="active">İletişim</span><span data-lang="en">Contact</span><span data-lang="es">Contacto</span></a></li></ul>
 </nav>
 <div class="mobile-nav" id="mobileNav">
   <button class="mob-close" onclick="toggleNav()">✕</button>
@@ -266,7 +269,7 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
     <button class="lang-btn" data-l="en" onclick="setLang('en');toggleNav()">EN</button>
     <button class="lang-btn" data-l="es" onclick="setLang('es');toggleNav()">ES</button>
   </div>
-
+</div>
 
 <div class="page-hero">
   <img src="images/hero-certifications.jpg" alt="Sertifikalar">
