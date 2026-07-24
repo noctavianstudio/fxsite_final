@@ -88,19 +88,24 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
 .hero-ctas{display:flex;gap:16px;flex-wrap:wrap}
 
 /* INTRO SPLIT */
-.intro-split{display:grid;grid-template-columns:1fr 1fr}
+.intro-split{display:grid;grid-template-columns:1fr 1fr;margin-top:0}
 .intro-text-side{padding:96px 60px;background:var(--off-white)}
 .intro-img-side{overflow:hidden;min-height:520px;position:relative}
 .intro-img-side img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
 .intro-text-side p{font-size:16px;color:var(--gray);line-height:1.85;margin-bottom:20px}
+
 /* VİZYON / MİSYON — YATAY */
 .vm-section{background:var(--black);padding:0}
 .vm-grid{display:grid;grid-template-columns:1fr 1fr}
 .vm-block{padding:80px 64px;position:relative}
-.vm-block:first-child{border-right:1px solid rgba(255,255,255,0.08)}
-.vm-tag{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--red-light);margin-bottom:24px;display:block}
-.vm-text{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,2.5vw,30px);font-weight:300;color:#fff;line-height:1.55}
-.vm-block:first-child{background:rgba(139,26,26,0.06)}
+.vm-block:first-child{background:var(--red);border-radius:16px 0 0 16px}
+.vm-block:last-child{background:#f7f5f0;border-radius:0 16px 16px 0}
+.vm-tag{font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-bottom:24px;display:block}
+.vm-block:last-child .vm-tag{font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-bottom:24px;display:block}
+.vm-text{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,2.4vw,30px);font-weight:300;color:#fff;line-height:1.55}
+.vm-block:first-child .vm-text{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,2.4vw,30px);font-weight:300;color:#fff;line-height:1.55}
+.vm-block:last-child .vm-text{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,2.4vw,30px);font-weight:300;color:#fff;line-height:1.55}
+
 /* KURUMSAL DEĞERLER */
 .values-section{padding:96px 60px;background:var(--cream)}
 .values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:56px}
@@ -149,14 +154,15 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
 nav{border-radius:0 0 16px 16px}
 .page-hero,.hero{border-radius:0 0 20px 20px;overflow:hidden}
 .vm-grid{border-radius:16px;overflow:hidden}
-.vm-block:first-child{border-radius:16px 0 0 16px}
+.vm-block:first-child{background:var(--red);border-radius:16px 0 0 16px}
 .vm-block:last-child{border-radius:0 16px 16px 0}
+.vm-block:last-child .vm-text{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,2.4vw,30px);font-weight:300;color:#fff;line-height:1.55}
 .memb-chip{border-radius:10px}
 .memb-chip:hover{border-color:rgba(42,122,58,0.5);border-radius:10px}
 
 
 /* ─── HERO SLIDER ─────────────────────────────────────────── */
-.hero-slider{position:relative;height:100vh;min-height:680px;overflow:hidden;border-radius:0 0 20px 20px}
+.hero-slider{position:relative;height:100vh;min-height:680px;overflow:hidden;border-radius:0 0 20px 20px;margin-bottom:0;margin-bottom:0}
 .slide{position:absolute;inset:0;opacity:0;transition:opacity .8s ease;display:flex;align-items:flex-end}
 .slide.active{opacity:1;z-index:1}
 .slide-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
@@ -286,7 +292,7 @@ nav{border-radius:0 0 16px 16px}
 </div>
 
 <!-- HAKKIMIZDA GİRİŞ -->
-<div class="intro-split">
+<div class="intro-split" style="margin-top:0">
   <div class="intro-text-side">
     <div class="section-eyebrow">
       <span data-lang="tr" class="active">FX Textile Hakkında</span>
@@ -343,11 +349,15 @@ nav{border-radius:0 0 16px 16px}
 
 
 <!-- ANİMASYON VIDEO -->
-<section style="background:var(--black);padding:0;line-height:0">
-  <video autoplay muted loop playsinline
-    style="width:100%;display:block;max-height:680px;object-fit:cover">
-    <source src="images/animasyon_harput_1.mp4" type="video/mp4">
-  </video>
+<section style="background:var(--black);padding:48px 80px">
+  <div style="position:relative;border-radius:12px;overflow:hidden;max-height:600px;line-height:0">
+    <video autoplay muted loop playsinline
+      disablepictureinpicture
+      controlslist="nodownload nofullscreen noremoteplayback"
+      style="width:100%;display:block;max-height:600px;object-fit:cover;pointer-events:none">
+      <source src="images/animasyon_harput_1.mp4" type="video/mp4">
+    </video>
+  </div>
 </section>
 
 <section class="values-section">
@@ -441,12 +451,12 @@ nav{border-radius:0 0 16px 16px}
           <span data-lang="es">Nuestras Instalaciones</span>
         </h4>
         <div style="font-size:13px;color:var(--gray);line-height:2">
-          <div>🏭 <strong>Miranlı</strong> — Kemalpaşa İplik, 4.500 t/ay</div>
-          <div>🏭 <strong>Kinteks</strong> — Boyahane, 3.500.000 m/ay</div>
-          <div>🏭 <strong>Gökçeköy</strong> — Dokuma, 1.800.000 m/ay</div>
-          <div>🏭 <strong>Miranda</strong> — Jakarlı Dokuma, 700.000 m/ay</div>
-          <div>🏭 <strong>Harmonie</strong> — Fantezi İplik, 70 t/ay</div>
-          <div>🏭 <strong>Miranlı Konfeksiyon</strong> — Ev Tekstili</div>
+          <div><strong>Miranlı</strong> — Kemalpaşa İplik, 4.500 t/ay</div>
+          <div><strong>Kinteks</strong> — Boyahane, 3.500.000 m/ay</div>
+          <div><strong>Gökçeköy</strong> — Dokuma, 1.800.000 m/ay</div>
+          <div><strong>Miranda</strong> — Jakarlı Dokuma, 700.000 m/ay</div>
+          <div><strong>Harmonie</strong> — Fantezi İplik, 70 t/ay</div>
+          <div><strong>Miranlı Konfeksiyon</strong> — Ev Tekstili</div>
         </div>
       </div>
     </div>
@@ -508,7 +518,7 @@ nav{border-radius:0 0 16px 16px}
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-copy">© 2025 Efiks Tekstil San. ve Tic. A.Ş.</span>
+    <span class="footer-copy">© 2026 Efiks Tekstil San. ve Tic. A.Ş.</span>
     <div style="display:flex;gap:16px">
       <a href="certifications.html#kvkk" style="color:rgba(255,255,255,0.2);font-size:11px;font-family:'Barlow Condensed',sans-serif;text-decoration:none;letter-spacing:1px">KVKK</a>
       <a href="certifications.html#cerez" style="color:rgba(255,255,255,0.2);font-size:11px;font-family:'Barlow Condensed',sans-serif;text-decoration:none;letter-spacing:1px">Çerez Politikası</a>

@@ -78,7 +78,7 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
 /* HERO */
 .page-hero{height:52vh;min-height:340px;background:var(--black);display:flex;align-items:flex-end;position:relative;overflow:hidden}
 .page-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.22}
-.page-hero-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,0.75) 0%,rgba(10,10,10,0.35) 40%,rgba(10,10,10,0.0) 70%)}
+.page-hero-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,0.70) 0%,rgba(10,10,10,0.25) 30%,rgba(10,10,10,0.0) 55%)}
 .page-hero-content{position:relative;z-index:2;padding:0 60px 64px}
 .page-tag{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--red-light);margin-bottom:16px;display:flex;align-items:center;gap:12px}
 .page-tag::before{content:'';width:24px;height:1px;background:var(--red-light);display:block}
@@ -177,6 +177,24 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
 .post-cat-label,.ps-cat,.vi-cat,.fuar-badge,.season-btn,.cat-tab,.filter-btn{border-radius:6px}
 .page-hero{border-radius:0 0 20px 20px;overflow:hidden}
 
+
+/* ─── VİDEO MODAL ──────────────────────────────────────────── */
+.vid-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:99999;align-items:center;justify-content:center}
+.vid-modal.open{display:flex}
+.vid-modal-inner{position:relative;width:90vw;max-width:1000px;aspect-ratio:16/9;background:#000;border-radius:8px;overflow:hidden}
+.vid-modal-inner iframe{width:100%;height:100%;border:none}
+.vid-modal-close{position:absolute;top:-44px;right:0;background:none;border:none;color:#fff;font-size:32px;cursor:pointer;opacity:.7;line-height:1}
+.vid-modal-close:hover{opacity:1}
+.video-card.clickable{cursor:pointer}
+.video-card.clickable:hover{box-shadow:0 8px 32px rgba(0,0,0,0.4)}
+.yt-thumb-wrap{position:relative;aspect-ratio:16/9;background:#000;overflow:hidden}
+.yt-thumb-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+.video-card:hover .yt-thumb-wrap img{transform:scale(1.04)}
+.yt-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.yt-play-btn{width:64px;height:64px;background:rgba(255,255,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);border:2px solid rgba(255,255,255,0.3);transition:background .2s}
+.video-card:hover .yt-play-btn{background:rgba(255,255,255,0.25)}
+.yt-play-btn::after{content:'';border-left:22px solid #fff;border-top:13px solid transparent;border-bottom:13px solid transparent;margin-left:4px}
+
 </style>
 </head>
 <body>
@@ -241,16 +259,16 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
   <div class="posts-list" id="posts-list">
 
     <!-- POST 1 — FEATURED: Harput Tanıtım Video -->
-    <div class="post-featured" data-cat="video">
+    <div class="post-featured" data-cat="fuar video">
       <div class="post-media">
         <video autoplay muted loop playsinline>
-          <source src="images/animasyon_harput_1.mp4" type="video/mp4">
+          <source src="images/FX.mp4" type="video/mp4">
         </video>
       </div>
       <div class="post-body">
         <div class="post-cat">
           <span class="post-cat-label">
-            <span data-lang="tr" class="active">Kurumsal Video</span>
+            <span data-lang="tr" class="active">🎬 Fuar Videosu</span>
             <span data-lang="en">Corporate Video</span>
             <span data-lang="es">Video Corporativo</span>
           </span>
@@ -258,11 +276,11 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
         </div>
         <h2 class="post-title">
           <span data-lang="tr" class="active">Harput Holding & FX Textile Tanıtım Animasyonu</span>
-          <span data-lang="en">Harput Holding &amp; FX Textile Corporate Animation</span>
-          <span data-lang="es">Animación Corporativa Harput Holding &amp; FX Textile</span>
+          <span data-lang="en">FX Textile Trade Fair Video</span>
+          <span data-lang="es">Video de Feria FX Textile</span>
         </h2>
         <p class="post-excerpt">
-          <span data-lang="tr" class="active">Harput Holding'in 65 yıllık üretim birikimini, entegre tesis yapısını ve sürdürülebilirlik yatırımlarını anlatan kurumsal tanıtım animasyonumuzu izleyin. FX Textile olarak moda sektörüne sunduğumuz katma değeri keşfedin.</span>
+          <span data-lang="tr" class="active">FX Textile'in fuardaki tanıtım videosu. Ürün koleksiyonlarımızı, sertifikalarımızı ve üretim altyapımızı keşfedin.</span>
           <span data-lang="en">Watch our corporate animation presenting Harput Holding's 65-year production heritage, integrated facility structure and sustainability investments. Discover the value FX Textile brings to the fashion sector.</span>
           <span data-lang="es">Vea nuestra animación corporativa que presenta el patrimonio productivo de 65 años de Harput Holding, su estructura integrada y sus inversiones en sostenibilidad.</span>
         </p>
@@ -469,6 +487,7 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
 </div>
 
 <!-- VİDEOLAR BÖLÜMÜ -->
+
 <section class="videos-section">
   <div class="section-eyebrow">
     <span data-lang="tr" class="active">Videolar</span>
@@ -481,40 +500,15 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
     <span data-lang="es">Vea <em>FX Textile.</em></span>
   </h2>
   <div class="videos-grid">
+
+    <!-- FX.mp4 — Fuar Videosu -->
     <div class="video-card">
       <div class="video-wrap">
-        <video autoplay muted loop playsinline>
-          <source src="images/animasyon_harput_1.mp4" type="video/mp4">
+        <video autoplay muted loop playsinline
+          disablepictureinpicture
+          style="width:100%;height:100%;object-fit:cover;display:block;pointer-events:none">
+          <source src="images/FX.mp4" type="video/mp4">
         </video>
-      </div>
-      <div class="video-info">
-        <div class="vi-cat">
-          <span data-lang="tr" class="active">Kurumsal</span>
-          <span data-lang="en">Corporate</span>
-          <span data-lang="es">Corporativo</span>
-        </div>
-        <div class="vi-title">
-          <span data-lang="tr" class="active">Harput Holding Tanıtım</span>
-          <span data-lang="en">Harput Holding Presentation</span>
-          <span data-lang="es">Presentación Harput Holding</span>
-        </div>
-        <div class="vi-desc">
-          <span data-lang="tr" class="active">Kurumsal tanıtım animasyonu — üretim gücü, sürdürülebilirlik, entegre altyapı.</span>
-          <span data-lang="en">Corporate animation — production strength, sustainability, integrated infrastructure.</span>
-          <span data-lang="es">Animación corporativa — fuerza productiva, sostenibilidad, infraestructura integrada.</span>
-        </div>
-      </div>
-    </div>
-    <div class="video-card">
-      <div class="video-wrap">
-        <div class="video-ph">
-          <span class="ph-icon">▶</span>
-          <span class="ph-text">
-            <span data-lang="tr" class="active">FUAR VİDEOSU<br>YAKINDA</span>
-            <span data-lang="en">FAIR VIDEO<br>COMING SOON</span>
-            <span data-lang="es">VIDEO FERIA<br>PRÓXIMAMENTE</span>
-          </span>
-        </div>
       </div>
       <div class="video-info">
         <div class="vi-cat">
@@ -523,48 +517,83 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
           <span data-lang="es">Feria</span>
         </div>
         <div class="vi-title">
-          <span data-lang="tr" class="active">Fuar Videosu</span>
-          <span data-lang="en">Fair Video</span>
-          <span data-lang="es">Video de Feria</span>
+          <span data-lang="tr" class="active">Fuar Tanıtım Videosu</span>
+          <span data-lang="en">Trade Fair Presentation</span>
+          <span data-lang="es">Video de Presentación de Feria</span>
         </div>
         <div class="vi-desc">
-          <span data-lang="tr" class="active">Video dosyasını images/ klasörüne ekleyip &lt;video src="images/dosya.mp4"&gt; ile güncelleyebilirsiniz. YouTube için iframe embed kullanın.</span>
-          <span data-lang="en">Add video to images/ folder and update with &lt;video src="images/file.mp4"&gt;. Use YouTube iframe embed for YouTube videos.</span>
-          <span data-lang="es">Añada el video a images/ y actualice con &lt;video src="images/archivo.mp4"&gt;.</span>
+          <span data-lang="tr" class="active">FX Textile fuar tanıtım videosu. Ürünlerimizi ve üretim altyapımızı keşfedin.</span>
+          <span data-lang="en">FX Textile trade fair video. Discover our products and production infrastructure.</span>
+          <span data-lang="es">Video de feria FX Textile. Descubra nuestros productos e infraestructura de producción.</span>
         </div>
       </div>
     </div>
-    <div class="video-card">
-      <div class="video-wrap">
-        <div class="video-ph">
-          <span class="ph-icon">▶</span>
-          <span class="ph-text">
-            <span data-lang="tr" class="active">KOLEKSİYON VİDEOSU<br>YAKINDA</span>
-            <span data-lang="en">COLLECTION VIDEO<br>COMING SOON</span>
-            <span data-lang="es">VIDEO COLECCIÓN<br>PRÓXIMAMENTE</span>
-          </span>
-        </div>
+
+    <!-- YouTube 1 — popup -->
+    <div class="video-card clickable" onclick="openVidModal('https://www.youtube.com/embed/1smopyAoYZY?autoplay=1')">
+      <div class="yt-thumb-wrap">
+        <img src="https://img.youtube.com/vi/1smopyAoYZY/maxresdefault.jpg"
+             alt="FX Textile" loading="lazy"
+             onerror="this.src='https://img.youtube.com/vi/1smopyAoYZY/hqdefault.jpg'">
+        <div class="yt-play"><div class="yt-play-btn"></div></div>
       </div>
       <div class="video-info">
         <div class="vi-cat">
-          <span data-lang="tr" class="active">Koleksiyon</span>
-          <span data-lang="en">Collection</span>
-          <span data-lang="es">Colección</span>
+          <span data-lang="tr" class="active">Tanıtım</span>
+          <span data-lang="en">Presentation</span>
+          <span data-lang="es">Presentación</span>
         </div>
         <div class="vi-title">
-          <span data-lang="tr" class="active">Koleksiyon Tanıtımı</span>
-          <span data-lang="en">Collection Showcase</span>
-          <span data-lang="es">Presentación de Colección</span>
+          <span data-lang="tr" class="active">FX Textile — Koleksiyon Tanıtımı</span>
+          <span data-lang="en">FX Textile — Collection Showcase</span>
+          <span data-lang="es">FX Textile — Presentación de Colección</span>
         </div>
         <div class="vi-desc">
-          <span data-lang="tr" class="active">YouTube linki için: &lt;iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen&gt;&lt;/iframe&gt;</span>
-          <span data-lang="en">For YouTube: &lt;iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen&gt;&lt;/iframe&gt;</span>
-          <span data-lang="es">Para YouTube: &lt;iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen&gt;&lt;/iframe&gt;</span>
+          <span data-lang="tr" class="active">İzlemek için tıklayın.</span>
+          <span data-lang="en">Click to watch.</span>
+          <span data-lang="es">Haga clic para ver.</span>
         </div>
       </div>
     </div>
+
+    <!-- YouTube 2 — popup -->
+    <div class="video-card clickable" onclick="openVidModal('https://www.youtube.com/embed/QFIr4a1Bx7o?autoplay=1')">
+      <div class="yt-thumb-wrap">
+        <img src="https://img.youtube.com/vi/QFIr4a1Bx7o/maxresdefault.jpg"
+             alt="FX Textile" loading="lazy"
+             onerror="this.src='https://img.youtube.com/vi/QFIr4a1Bx7o/hqdefault.jpg'">
+        <div class="yt-play"><div class="yt-play-btn"></div></div>
+      </div>
+      <div class="video-info">
+        <div class="vi-cat">
+          <span data-lang="tr" class="active">Tanıtım</span>
+          <span data-lang="en">Presentation</span>
+          <span data-lang="es">Presentación</span>
+        </div>
+        <div class="vi-title">
+          <span data-lang="tr" class="active">FX Textile — Üretim Süreci</span>
+          <span data-lang="en">FX Textile — Production Process</span>
+          <span data-lang="es">FX Textile — Proceso de Producción</span>
+        </div>
+        <div class="vi-desc">
+          <span data-lang="tr" class="active">İzlemek için tıklayın.</span>
+          <span data-lang="en">Click to watch.</span>
+          <span data-lang="es">Haga clic para ver.</span>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
+
+<!-- VİDEO MODAL -->
+<div class="vid-modal" id="vidModal" onclick="closeVidModal(event)">
+  <div class="vid-modal-inner">
+    <button class="vid-modal-close" onclick="closeVidModal()">✕</button>
+    <iframe id="vidFrame" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+  </div>
+</div>
+
 
 
 <footer>
@@ -607,7 +636,7 @@ footer{background:#050505;padding:56px 60px 40px;border-top:1px solid rgba(255,2
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-copy">© 2025 Efiks Tekstil San. ve Tic. A.Ş.</span>
+    <span class="footer-copy">© 2026 Efiks Tekstil San. ve Tic. A.Ş.</span>
     <div style="display:flex;gap:16px">
       <a href="certifications.html#kvkk" style="color:rgba(255,255,255,0.2);font-size:11px;font-family:'Barlow Condensed',sans-serif;text-decoration:none;letter-spacing:1px">KVKK</a>
       <a href="certifications.html#cerez" style="color:rgba(255,255,255,0.2);font-size:11px;font-family:'Barlow Condensed',sans-serif;text-decoration:none;letter-spacing:1px">Çerez Politikası</a>
@@ -622,6 +651,24 @@ function setLang(l){
 }
 document.addEventListener('DOMContentLoaded',()=>{const s=localStorage.getItem('fxlang')||'tr';setLang(s);});
 </script>
+
+<script>
+function openVidModal(url) {
+  document.getElementById('vidFrame').src = url;
+  document.getElementById('vidModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeVidModal(e) {
+  if (e && e.target !== document.getElementById('vidModal') && !e.target.classList.contains('vid-modal-close')) return;
+  document.getElementById('vidFrame').src = '';
+  document.getElementById('vidModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeVidModal({target: document.getElementById('vidModal')});
+});
+</script>
+
 </body>
 <script>
 function filterPosts(cat, btn) {
